@@ -53,7 +53,7 @@ setxkbmap de nodeadkeys
 # Disable the bell.
 xset b off
 # Set keyboard delay and repeat rate.
-xset r rate 160 120
+xset r rate 200 120
 # Run compositor.
 picom &
 # Enable VMware copy/paste

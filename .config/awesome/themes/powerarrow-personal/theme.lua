@@ -411,6 +411,8 @@ function theme.at_screen_connect(s)
             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, dpi(2), dpi(3)), "#b58900"),
             arrow("#b58900", theme.titlebar_bg_normal),
             wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(4)), theme.titlebar_bg_normal),
+            --arrow("#8DAA9A", "#C0C0A2"),
+            --wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#C0C0A2"),
             arrow("#4B696D", "#073642"),
             wibox.container.background(wibox.container.margin(clock, dpi(4), dpi(8)), "#073642"),
             --wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, dpi(4), dpi(4)), "#4B3B51"),

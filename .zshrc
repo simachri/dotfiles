@@ -53,9 +53,14 @@ zplug "zsh-users/zsh-completions"
 # Load plugins
 zplug load
 
+## Theming
 # Load the i10k theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Load customized dircolors.
+# https://unix.stackexchange.com/a/241735
+[ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || 
+    eval $(dircolors -b)
 
 # FZF
 # --files: List files that would be searched but do not search
