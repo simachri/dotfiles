@@ -28,25 +28,20 @@ Plug 'tpope/vim-repeat'
 " Bufferline
 Plug 'akinsho/nvim-bufferline.lua'
 
-" 21-03-14, deactivate in favour of native LSP
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" Language server
 Plug 'neovim/nvim-lspconfig'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-lsp'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'deoplete-plugins/deoplete-lsp'
 " Python: Add import for word under cursor if already imported before.
 Plug 'tjdevries/apyrori.nvim'
 
-Plug 'haya14busa/incsearch.vim'
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'scrooloose/nerdcommenter'
 " 2020-12-04, use undotree instead as gundo does not work with python3
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
-" 2020-12-09 Currently not using it.
-" Plug 'honza/vim-snippets'
-" 21-05-04, use nvim-tree instead of nerdtree.
-"Plug 'preservim/nerdtree'
+
 Plug 'kyazdani42/nvim-tree.lua'
 
 " Tags
@@ -68,8 +63,8 @@ Plug 'ferrine/md-img-paste.vim'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-pandoc/vim-pandoc-syntax'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 
 " Debugging
 Plug 'puremourning/vimspector'
@@ -96,7 +91,6 @@ luafile ~/.config/nvim/lua/plugin/telescope.lua
 luafile ~/.config/nvim/lua/plugin/treesitter.lua
 luafile ~/.config/nvim/lua/plugin/galaxyline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
-" lua require('colorbuddy')
 
 
 
@@ -165,7 +159,6 @@ augroup END
 " colorscheme solarized
 colorscheme solarized-flat
 
-
 " 21-03-09: Fix neovim issues with clipboard not working.
 set clipboard+=unnamedplus
 set clipboard+=unnamed
@@ -229,28 +222,6 @@ command Delview call MyDeleteView()
 " Use relative line numbers
 set number relativenumber
 
-""""""""""""
-" Statusline
-""""""""""""
-let g:Powerline_symbols = "fancy"
-let g:powerline_pycmd = "py3"
-let g:airline_powerline_fonts = 1
-" Disable tagbar extension as it takes too much space especially in markdown files.
-let g:airline#extensions#tagbar#enabled = 0
-" Show buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show Buffer Numbers in Airline Bar
-let g:airline#extensions#tabline#buffer_nr_show = 1
-" Set airline theme
-let g:airline_theme='solarized'
-" Disable the 'whitespace' extension as it takes too much space in the airline
-" statusbar on the bottom right.
-let g:airline#extensions#whitespace#enabled = 0
-" Disable the 'fileencoding/fileformat' display to get more space.
-let g:airline_section_y = ''
-" Disable flickering when switching between tabs.
-let g:airline#extensions#tabline#disable_refresh = 1
-" let g:airline_highlighting_cache = 1
 
 """""""""""
 " Searching
@@ -262,20 +233,9 @@ nnoremap <silent> <Leader>th :set hlsearch!<CR>
 set incsearch
 set ignorecase
 set smartcase
-" Incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-"augroup incsearch-keymap
-"    autocmd!
-"    autocmd VimEnter * call s:incsearch_keymap()
-"augroup END
-"function! s:incsearch_keymap()
-"    IncSearchNoreMap <C-k> <Over>(incsearch-prev)
-"    IncSearchNoreMap <C-j> <Over>(incsearch-next)
-"endfunction
 " Search for visual selection
 vnoremap // y/<C-R>"<CR>
+
 
 """"""""""""""""""""""""""""""""
 " Text format and editing styles
@@ -313,6 +273,8 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" Close current buffer
+nnoremap <C-w>d :bd<CR>
 " Let Y yank to end of line instead of entire line.
 nnoremap Y y$
 "" Remove DOS line endings ^M 'reformat/remove m'
@@ -322,13 +284,6 @@ nnoremap Y y$
 set nowrap
 " Toggle wrap
 nnoremap <silent> <Leader>tw :set wrap!<CR>
-
-" Make the ALT key work in GNOME terminal Vim
-" Source: https://stackoverflow.com/a/10216459
-
-" " Switch input language <Alt-d>, <Alt-e>
-" nnoremap <silent>d :!setxkbmap de<CR>
-" nnoremap <silent>e :!setxkbmap us<CR>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 " Simple insertion of blank lines
@@ -351,9 +306,6 @@ imap <C-D> <Del>
 function! RepeatChar(char, count)
    return repeat(a:char, a:count)
 endfunction
-" 21-03-17: I need the space keymappings for development.
-"nnoremap <Space> :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
-"nnoremap g<Space> :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 " 'refactor: replace word' word under cursor
 nnoremap <silent> <Leader>rrw :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 " Replace selection
@@ -426,6 +378,7 @@ augroup vimrc_autocmds
   au FileType plaintex set indentexpr&
 augroup END
 
+
 """"""""
 " Tags
 """"""""
@@ -438,19 +391,19 @@ noremap <Leader>fh :TagbarOpenAutoClose<CR>
 set tags=./tags;,tags;
 
 
-""""""""""
-" Deoplete
-""""""""""
-let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#option('auto_complete_delay', 200)
-" Disable when showing TelescopePrompt
-augroup disable_deoplete
-  autocmd!
-  autocmd FileType TelescopePrompt call deoplete#disable()
-      \| autocmd BufLeave <buffer> call deoplete#enable()
-augroup END
-" Configuration of 'deoplete-plugins/deoplete-lsp':
-let g:deoplete#lsp#use_icons_for_candidates = v:true
+"""""""""""
+"" Deoplete
+"""""""""""
+"let g:deoplete#enable_at_startup = 1
+"" call deoplete#custom#option('auto_complete_delay', 200)
+"" Disable when showing TelescopePrompt
+"augroup disable_deoplete
+"  autocmd!
+"  autocmd FileType TelescopePrompt call deoplete#disable()
+"      \| autocmd BufLeave <buffer> call deoplete#enable()
+"augroup END
+"" Configuration of 'deoplete-plugins/deoplete-lsp':
+"let g:deoplete#lsp#use_icons_for_candidates = v:true
 
 """"""""""""""""
 " Vim table-mode
@@ -461,69 +414,69 @@ let g:table_mode_corner_corner='|'
 let g:table_mode_header_fillchar='-'
 let g:table_mode_syntax = 0
 
-"""""
-" fzf
-"""""
-" Set runtime path
-set rtp+=~/.fzf
-" By default fzf will spawn a popup window in an own terminal session. This is rather slow.
-" Make it spawn at the bottom instead, which is much faster:
-" let g:fzf_layout = { 'down': '40%' }
-" let g:fzf_prefer_tmux = 1
-" Remove status line in results window
-augroup fzf
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-augroup END
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-"" Insert mode completion
-"imap <c-x><c-k> <plug>(fzf-complete-word)
-"" inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': -1.2, 'height': 0.9, 'xoffset': 1 }})
-"imap <c-x><c-f> <plug>(fzf-complete-path)
-" Use this complex command to prevent the issue that a blank space is inserted in front of the word.
-" imap <c-x><c-j> <plug>(fzf-complete-file)
-inoremap <expr> <c-x><c-j> fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print \| sed 's:^..::'")
-"imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
-" Add <C-c> keymap to yank the filename in an fzf result list to default register +
-let g:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-x': 'split',
-      \ 'ctrl-v': 'vsplit',
-      \ 'ctrl-c': {lines -> setreg('+', join(lines, "\n"))}}
-nnoremap <Leader>tf :Files .<CR>
-nnoremap <Leader>tb :Buffer<CR>
-" fzf: ripgrep wrapper
-" --column: Show column number
-" --line-number: Show line number
-" --no-heading: Do not show file headings in results
-" --fixed-strings: Search term as a literal string
-" --ignore-case: Case insensitive search
-" --no-ignore: Do not respect .gitignore, etc...
-" --hidden: Search hidden files and folders
-" --follow: Follow symlinks
-" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-" --color: Search color options
-" Source: https://github.com/junegunn/fzf.vim
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --line-number --no-heading --color=always --ignore-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-command! -nargs=* -bang Find call RipgrepFzf(<q-args>, <bang>0)
-" Grep
-nnoremap <Leader>tg :Find 
-"" Find word under cursor - note: conflicts with 'toggle wrap'
-"nnoremap <Leader>tw :Find <C-r><C-w><CR>
-" Find anchor
-nnoremap <Leader>ta :Find id="<C-r><C-w><CR>
-" Find visual selection
-vnoremap <Leader>fs "sy:Find <C-r>s<CR>
+""""""
+"" fzf
+""""""
+"" Set runtime path
+"set rtp+=~/.fzf
+"" By default fzf will spawn a popup window in an own terminal session. This is rather slow.
+"" Make it spawn at the bottom instead, which is much faster:
+"" let g:fzf_layout = { 'down': '40%' }
+"" let g:fzf_prefer_tmux = 1
+"" Remove status line in results window
+"augroup fzf
+"  autocmd! FileType fzf
+"  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+"    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+"augroup END
+"" Mapping selecting mappings
+"nmap <leader><tab> <plug>(fzf-maps-n)
+"xmap <leader><tab> <plug>(fzf-maps-x)
+"omap <leader><tab> <plug>(fzf-maps-o)
+""" Insert mode completion
+""imap <c-x><c-k> <plug>(fzf-complete-word)
+""" inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': -1.2, 'height': 0.9, 'xoffset': 1 }})
+""imap <c-x><c-f> <plug>(fzf-complete-path)
+"" Use this complex command to prevent the issue that a blank space is inserted in front of the word.
+"" imap <c-x><c-j> <plug>(fzf-complete-file)
+"inoremap <expr> <c-x><c-j> fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print \| sed 's:^..::'")
+""imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
+"" Add <C-c> keymap to yank the filename in an fzf result list to default register +
+"let g:fzf_action = {
+"      \ 'ctrl-t': 'tab split',
+"      \ 'ctrl-x': 'split',
+"      \ 'ctrl-v': 'vsplit',
+"      \ 'ctrl-c': {lines -> setreg('+', join(lines, "\n"))}}
+"nnoremap <Leader>tf :Files .<CR>
+"nnoremap <Leader>tb :Buffer<CR>
+"" fzf: ripgrep wrapper
+"" --column: Show column number
+"" --line-number: Show line number
+"" --no-heading: Do not show file headings in results
+"" --fixed-strings: Search term as a literal string
+"" --ignore-case: Case insensitive search
+"" --no-ignore: Do not respect .gitignore, etc...
+"" --hidden: Search hidden files and folders
+"" --follow: Follow symlinks
+"" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+"" --color: Search color options
+"" Source: https://github.com/junegunn/fzf.vim
+"function! RipgrepFzf(query, fullscreen)
+"  let command_fmt = 'rg --line-number --no-heading --color=always --ignore-case -- %s || true'
+"  let initial_command = printf(command_fmt, shellescape(a:query))
+"  let reload_command = printf(command_fmt, '{q}')
+"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"endfunction
+"command! -nargs=* -bang Find call RipgrepFzf(<q-args>, <bang>0)
+"" Grep
+"nnoremap <Leader>tg :Find 
+""" Find word under cursor - note: conflicts with 'toggle wrap'
+""nnoremap <Leader>tw :Find <C-r><C-w><CR>
+"" Find anchor
+"nnoremap <Leader>ta :Find id="<C-r><C-w><CR>
+"" Find visual selection
+"vnoremap <Leader>fs "sy:Find <C-r>s<CR>
 
 """"""""""
 " Markdown
@@ -671,53 +624,6 @@ nnoremap <Leader>ch ^xf`x0cw## <C-[>
 " ~/.vim/after/ftplugin/markdown.vim
 
 
-
-""""""""
-" Pandoc
-""""""""
-" Command to export a markdown file as docx to DebianShare/Export_docx
-" The file DebianShare/Export_docx/_Pandoc_reference_for_export.docx provides the styles.
-"
-" The current working directory is temporarily switched to the file's directory such that 
-" images are also exported.
-"
-" +task_lists interprets - [ ] as checkbox
-" +pipe_tables interpretes pipe tables
-" 
-" The redraw! is required to update Vim's screen after the command has been executed.
-function! PandocMdToDocx()
-  " Change the working directory temporarily.
-  lcd %:h
-
-  let src_filename = fnameescape(expand('%:p'))
-  " %:t:r - select the 'tail' of the path (filename) but without the file extension.
-  let dst_filename = '~/DebianShare/Export_docx/'.fnameescape(expand('%:t:r')).'.docx'
-  silent execute
-    \ "!pandoc -f markdown+task_lists+pipe_tables
-    \ --reference-doc ~/DebianShare/Export_docx/_Pandoc_reference_for_export.docx
-    \ -s ".src_filename." -o ".dst_filename | redraw!
-
-  " Change the working directory back.
-  lcd -
-endfunction
-command ToDocx call PandocMdToDocx()
-
-"""""""""""
-"" Nerdtree
-"""""""""""
-"" Open on startup
-""autocmd vimenter * NERDTree
-"" 'Browser toggle'
-"nnoremap <Leader>bt :NERDTreeToggle<CR>
-"" 'Browser': Open current 'file'
-"nnoremap <Leader>bf :NERDTreeFind<CR>
-"let NERDTreeShowBookmarks=1
-""" cd into the directory of a file after opening it
-""let NERDTreeChDirMode=2
-"" Automatically close NERDTree when opening a file
-"let NERDTreeQuitOnOpen=1
-
-
 """"""""""""""""
 " Scratch buffer
 """"""""""""""""
@@ -733,6 +639,7 @@ function! CreateScratchBuffer()
 endfunction
 command! NewScratchBuf call CreateScratchBuffer()
 nnoremap <Leader>i :NewScratchBuf<CR>
+
 
 """""""""""""""""
 " Markdown server
