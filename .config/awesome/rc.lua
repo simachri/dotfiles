@@ -278,7 +278,7 @@ local function custom_prompt()
         exe_callback = function(input)
             if not input or #input == 0 then return end
             if input == 'wiki' then
-              new_terminal('Wiki', '1 main', '/home/xi3k/wiki', true, awful.placement.stretch)
+              new_terminal('Wiki', '1 main', '/home/xi3k/Wiki', true, awful.placement.stretch)
               return
             end
             if input == 'sap' then
@@ -286,14 +286,14 @@ local function custom_prompt()
               return
             end
             if input == 'life' then
-              new_terminal('Life', '2 life', '/home/xi3k/Notes/Coco-Life', true, awful.placement.left)
-              new_terminal('Friends', '2 life', '/home/xi3k/Notes/Freunde', true, awful.placement.right)
+              new_terminal('Life', '2 life', '/home/xi3k/Journal/Coco-Life', true, awful.placement.left)
+              new_terminal('Friends', '2 life', '/home/xi3k/Journal/Freunde', true, awful.placement.right)
               return
             end
             if input == 'dev' then
-              new_terminal('Notes', '3 dev', '/home/xi3k/Notes/Development', true, awful.placement.top_right)
+              new_terminal('Notes', '3 dev', '/home/xi3k/Development', true, awful.placement.top_right)
               new_terminal('Terminal', '3 dev', '/home/xi3k', true, awful.placement.bottom_right)
-              new_terminal('Code', '3 dev', '/home/xi3k/Projects', true, awful.placement.left)
+              new_terminal('Code', '3 dev', '/home/xi3k/Development', true, awful.placement.left)
               return
             end
             -- Hier weitermachen: Life und Dev spawnen

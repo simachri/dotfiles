@@ -28,9 +28,10 @@ function backup_journal() {
   foldername=`date +"%Y-%m-%d"`
   folderpath=~/VmHostShare/Journal_Backups/$foldername
   mkdir -p $folderpath
-  cp -R ~/wiki $folderpath/wiki
-  cp -R ~/Notes $folderpath/Notes
+  cp -R ~/Wiki $folderpath/Wiki
+  cp -R ~/Journal $folderpath/Journal
   cp -R ~/SAP $folderpath/SAP
+  cp -R ~/Development $folderpath/Development
   echo "Backup finished."
 }
 alias backup_journal=backup_journal
