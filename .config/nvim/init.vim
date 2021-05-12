@@ -30,6 +30,9 @@ Plug 'akinsho/nvim-bufferline.lua'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
+
+" Autocomplete
+Plug 'hrsh7th/nvim-compe'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'deoplete-plugins/deoplete-lsp'
 " Python: Add import for word under cursor if already imported before.
@@ -91,6 +94,7 @@ luafile ~/.config/nvim/lua/plugin/telescope.lua
 luafile ~/.config/nvim/lua/plugin/treesitter.lua
 luafile ~/.config/nvim/lua/plugin/galaxyline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
+luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
 
 
 
