@@ -1,5 +1,4 @@
 local gl = require('galaxyline')
-local colors = require('galaxyline.theme').default
 local condition = require('galaxyline.condition')
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
@@ -24,12 +23,6 @@ local colors = {
   darkgrey = '#839496',
   beige = '#eee8d5'
 }
-
--- Custom function to get filename including path.
--- Modify: function M.get_current_file_name()
--- ~/.config/nvim/plugged/galaxyline.nvim/lua/galaxyline/provider_fileinfo.lua
--- -- local file = vim.fn.expand('%:t')
--- local file = vim.fn.expand('%')
 
 -- padding left
 gls.left[1] = {
@@ -74,7 +67,8 @@ gls.left[4] ={
 
 gls.left[5] = {
   FileName = {
-    provider = 'FileName',
+    --provider = 'FileName',
+    provider = function () return vim.fn.expand('%') end,
     condition = condition.buffer_not_empty,
     -- highlight = {colors.fg,colors.bg,'bold'}
     highlight = {colors.fg,colors.bg}
