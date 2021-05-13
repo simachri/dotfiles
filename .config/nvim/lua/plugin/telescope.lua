@@ -83,6 +83,15 @@ function grep_prompt()
   }
 end
 
+
+function find_config()
+  require('telescope.builtin').find_files {
+    prompt_title = "Find config files",
+    shorten_path = false,
+    cwd = "~/.config",
+  }
+end
+
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function curbuf()
   local opts = themes.get_dropdown {
@@ -154,6 +163,8 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin
 -- vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true })
 -- All Files, including the hidden ones
 vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
+-- Configuration files
+vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { noremap = true, silent = true })
 
 -- Grep
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
@@ -161,8 +172,8 @@ vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua grep_prompt()<cr>]], { nor
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]], { noremap = true, silent = true })
 -- Grep markdown anchor references
 vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
--- CurrBuf
-vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
+---- CurrBuf
+--vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
 -- Buffers
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
 -- -- Tags: Use tagbar instead.
