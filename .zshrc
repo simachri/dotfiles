@@ -144,6 +144,11 @@ x11-clip-wrap-widgets paste  $paste_widgets
 
 # Add to path:
 # ~/.local/bin contains locally installed Python modules. The most prominent one is 
-# pipenv.
 path+=('/home/xi3k/.local/bin')
+# ~/node_modules/.bin locally installed Node modules.
+path+=('/home/xi3k/node_modules/.bin')
+# Pyright server
 export PATH
+# Pipenv: Create environment in local project directory.
+# Source: https://stackoverflow.com/a/52540270
+export PIPENV_VENV_IN_PROJECT="enabled"

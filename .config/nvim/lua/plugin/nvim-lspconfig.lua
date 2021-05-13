@@ -61,7 +61,8 @@ require'lspconfig'.pyright.setup {
   before_init = function(params)
     params.processId = vim.NIL
   end,
-  cmd = require'lspcontainers'.command('pyright'),
+  -- Note: lspcontainers does not work with pipenv yet (21-05-13).
+  -- cmd = require'lspcontainers'.command('pyright'),
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
 }
