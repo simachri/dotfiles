@@ -142,3 +142,8 @@ local paste_widgets=(
 x11-clip-wrap-widgets copy $copy_widgets
 x11-clip-wrap-widgets paste  $paste_widgets
 
+# Add to path:
+# ~/.local/bin contains locally installed Python modules. The most prominent one is 
+# pipenv.
+path+=('/home/xi3k/.local/bin')
+export PATH
