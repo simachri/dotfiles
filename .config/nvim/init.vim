@@ -83,8 +83,8 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Golang
-" 21-03-20: Still required when using nvim-lsp?
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" 21-05-13: Removed in favour of native lsp.
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sebdah/vim-delve'
 
 call plug#end()
@@ -103,7 +103,6 @@ luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
 """"""""""""""""""""""
 " Always use the block cursor
 set guicursor=
-" LSP (taken from Coc)
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -501,7 +500,7 @@ let g:vim_markdown_no_extensions_in_markdown = 0
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '~/.vim/plugged/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsbin' : '~/.config/nvim/plugged/markdown2ctags/markdown2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
@@ -513,22 +512,22 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
-" Add support for markdown (pandoc flavour) files in tagbar.
-" Source: https://stackoverflow.com/a/58768939
-let g:tagbar_type_pandoc = {
-    \ 'ctagstype': 'pandoc',
-    \ 'ctagsbin' : '~/.vim/plugged/markdown2ctags/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
+"" Add support for markdown (pandoc flavour) files in tagbar.
+"" Source: https://stackoverflow.com/a/58768939
+"let g:tagbar_type_pandoc = {
+"    \ 'ctagstype': 'pandoc',
+"    \ 'ctagsbin' : '~/.vim/plugged/markdown2ctags/markdown2ctags.py',
+"    \ 'ctagsargs' : '-f - --sort=yes',
+"    \ 'kinds' : [
+"        \ 's:sections',
+"        \ 'i:images'
+"    \ ],
+"    \ 'sro' : '|',
+"    \ 'kind2scope' : {
+"        \ 's' : 'section',
+"    \ },
+"    \ 'sort': 0,
+"\ }
 " Set {anchor} as the anchor expression - this is aligned with Pandoc's anchor mechanism.
 " Note: When setting the anchor, use {#<anchor name>}, e.g. {#my-anchor} such that
 " Pandoc omits the anchor in the heading when rendered.
