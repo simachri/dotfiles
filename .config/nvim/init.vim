@@ -30,6 +30,7 @@ Plug 'akinsho/nvim-bufferline.lua'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
+Plug 'lspcontainers/lspcontainers.nvim'
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'

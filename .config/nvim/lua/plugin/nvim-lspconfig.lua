@@ -1,4 +1,5 @@
 local nvim_lsp = require('lspconfig')
+local util = require 'lspconfig/util'
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -52,16 +53,45 @@ local on_attach = function(client, bufnr)
   end
 end
 
+-- Using lspcontainers to run the language servers, see 
+-- https://github.com/lspcontainers/lspcontainers.nvim#supported-lsps
+-- The 'on_attach' is required to have the keymappings defined in the functions above.
 -- Python
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup {
+  before_init = function(params)
+    params.processId = vim.NIL
+  end,
+  cmd = require'lspcontainers'.command('pyright'),
+  root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+  on_attach = on_attach,
+}
 -- Golang
-require'lspconfig'.gopls.setup{}
-
--- Use a loop to conveniently both setup defined servers 
--- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "gopls" }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
-end
+require'lspconfig'.gopls.setup {
+  cmd = require'lspcontainers'.command('gopls'),
+  on_attach = on_attach,
+}
+-- Docker
+require'lspconfig'.dockerls.setup {
+  before_init = function(params)
+    params.processId = vim.NIL
+  end,
+  cmd = require'lspcontainers'.command('dockerls'),
+  root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+  on_attach = on_attach,
+}
+-- Docker
+require'lspconfig'.dockerls.setup {
+  before_init = function(params)
+    params.processId = vim.NIL
+  end,
+  cmd = require'lspcontainers'.command('dockerls'),
+  root_dir = util.root_pattern(".git", vim.fn.getcwd()),
+  on_attach = on_attach,
+}
+-- Lua
+require'lspconfig'.sumneko_lua.setup {
+  cmd = require'lspcontainers'.command('sumneko_lua'),
+  on_attach = on_attach,
+}
 
 
