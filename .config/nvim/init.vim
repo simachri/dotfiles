@@ -679,3 +679,34 @@ let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
 " Disable automatic types/signatures info for the word under the cursor.
 let g:go_auto_type_info = 0
+
+
+""""""""
+" Pandoc
+""""""""
+" Command to export a markdown file as docx to DebianShare/Export_docx
+" The file DebianShare/Export_docx/_Pandoc_reference_for_export.docx provides the styles.
+"
+" The current working directory is temporarily switched to the file's directory such that 
+" images are also exported.
+"
+" +task_lists interprets - [ ] as checkbox
+" +pipe_tables interpretes pipe tables
+" 
+" The redraw! is required to update Vim's screen after the command has been executed.
+function! PandocMdToDocx()
+  " Change the working directory temporarily.
+  lcd %:h
+
+  let src_filename = fnameescape(expand('%:p'))
+  " %:t:r - select the 'tail' of the path (filename) but without the file extension.
+  let dst_filename = '~/VmHostShare/Export/'.fnameescape(expand('%:t:r')).'.docx'
+  silent execute
+    \ "!pandoc -f markdown+task_lists+pipe_tables
+    \ --reference-doc ~/VmHostShare/_Pandoc_reference_for_export.docx
+    \ -s ".src_filename." -o ".dst_filename | redraw!
+
+  " Change the working directory back.
+  lcd -
+endfunction
+command ToDocx call PandocMdToDocx()
