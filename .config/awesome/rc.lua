@@ -111,12 +111,12 @@ local browser      = "brave"
 awful.util.terminal = terminal
 awful.util.tagnames = { "1 main", "2 life", "3 dev", "4 www", "5 ectr" }
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
+    awful.layout.suit.fair,
+    awful.layout.suit.floating,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
@@ -249,7 +249,7 @@ root.buttons(mytable.join(
 
 -- }}}
 
-local function new_terminal(term_name, tag_name, dir, switch_if_exists, placement)
+local function new_terminal(term_name, tag_name, dir, switch_if_exists, placement, cmd)
     -- Check if the client is already created. If yes, jump to it.
     -- Note: We need to check against the title provided to kitty.
     if switch_if_exists then
@@ -257,13 +257,22 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
         if cl.name == term_name then cl:jump_to() return end
       end
     end
-    awful.spawn("kitty -1 --title " .. term_name .. " --directory " .. dir,
+    awful.spawn("kitty --title " .. term_name .. " --directory " .. dir ..
+                -- Listen for incoming commands.
+                " --listen-on unix:/tmp/kitty_" .. term_name,
                 { tag = tag_name,
                   switch_to_tags = true,
                   --placement = awful.placement.stretch(client.focus, {honor_workarea=true}),
                   --placement = awful.placement.maximize,
                   placement = placement,
                   honor_workarea = true,
+                  callback = function ()
+                    if cmd then
+                      -- Start NeoVim, \x0D is "carriage return".
+                      awful.spawn.with_shell("kitty @ --to unix:/tmp/kitty_" .. term_name .. " send-text " ..
+                        cmd .. "\x0D")
+                    end
+                  end,
                 })
 end
 
@@ -278,22 +287,22 @@ local function custom_prompt()
         exe_callback = function(input)
             if not input or #input == 0 then return end
             if input == 'wiki' then
-              new_terminal('Wiki', '1 main', '/home/xi3k/Wiki', true, awful.placement.stretch)
+              new_terminal('Wiki', '1 main', '/home/xi3k/Wiki', true, awful.placement.stretch, "nvim")
               return
             end
             if input == 'sap' then
-              new_terminal('SAP', '1 main', '/home/xi3k/SAP', true, awful.placement.stretch)
+              new_terminal('SAP', '1 main', '/home/xi3k/SAP', true, awful.placement.stretch, "nvim")
               return
             end
             if input == 'life' then
-              new_terminal('Life', '2 life', '/home/xi3k/Journal/Coco-Life', true, awful.placement.left)
-              new_terminal('Friends', '2 life', '/home/xi3k/Journal/Freunde', true, awful.placement.right)
+              new_terminal('Life', '2 life', '/home/xi3k/Journal/Coco-Life', true, awful.placement.left, "nvim")
+              new_terminal('Friends', '2 life', '/home/xi3k/Journal/Freunde', true, awful.placement.right, "nvim")
               return
             end
             if input == 'dev' then
-              new_terminal('Notes', '3 dev', '/home/xi3k/Development', true, awful.placement.top_right)
-              new_terminal('Terminal', '3 dev', '/home/xi3k', true, awful.placement.bottom_right)
-              new_terminal('Code', '3 dev', '/home/xi3k/Development', true, awful.placement.left)
+              new_terminal('Notes', '3 dev', '/home/xi3k/Development', true, awful.placement.top_right, "nvim")
+              new_terminal('Terminal', '3 dev', '/home/xi3k/Development', true, awful.placement.bottom_right)
+              new_terminal('Code', '3 dev', '/home/xi3k/Development', true, awful.placement.left, "nvim")
               return
             end
             -- Hier weitermachen: Life und Dev spawnen
