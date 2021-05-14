@@ -21,3 +21,10 @@ setlocal formatoptions=Mwjlnt
 " Prevent jumping to beginning of line when insertin a '#'.
 " See also: ~/.config/nvim/plugged/vim-markdown/indent/markdown.vim
 set indentkeys=
+
+
+""""""""""""""""""""""""""""""""""""""
+" Keymaps
+""""""""""""""""""""""""""""""""""""""
+" "Find header", previously "Find tags"
+noremap <buffer> <Leader>fh :TagbarOpenAutoClose<CR>

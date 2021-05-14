@@ -48,8 +48,9 @@ Plug 'tpope/vim-surround'
 
 Plug 'kyazdani42/nvim-tree.lua'
 
-" Tags
+" Tags and outline
 Plug 'majutsushi/tagbar'
+Plug 'simrat39/symbols-outline.nvim'
 
 Plug 'alvan/vim-closetag'
 Plug 'Chiel92/vim-autoformat'
@@ -96,6 +97,7 @@ luafile ~/.config/nvim/lua/plugin/treesitter.lua
 luafile ~/.config/nvim/lua/plugin/galaxyline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
 luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
+luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 
 
 
@@ -244,8 +246,8 @@ vnoremap // y/<C-R>"<CR>
 """"""""""""""""""""""""""""""""
 " Text format and editing styles
 """"""""""""""""""""""""""""""""
-" Set default indent method
-set smartindent
+" Do not set smartindent as it messes with # by putting it always on the first column.
+" set smartindent
 set autoindent
 set backspace=2
 " Folding
@@ -387,8 +389,6 @@ augroup END
 " Tags
 """"""""
 let g:tagbar_width = 80
-" "Find header", previously "Find tags"
-noremap <Leader>fh :TagbarOpenAutoClose<CR>
 " CTags: Search for tag file recursively upwards until the home directory
 " Source: https://stackoverflow.com/a/741486
 " Help: :h tags
