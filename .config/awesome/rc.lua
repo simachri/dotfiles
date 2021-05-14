@@ -258,6 +258,8 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
       end
     end
     awful.spawn("kitty --title " .. term_name .. " --directory " .. dir ..
+                -- Allow external calls to the terminal to launch programs later.
+                " -o allow_remote_control=yes" ..
                 -- Listen for incoming commands.
                 " --listen-on unix:/tmp/kitty_" .. term_name,
                 { tag = tag_name,
