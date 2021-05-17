@@ -2,12 +2,16 @@
 	email = marvin.christe@posteo.de
 	name = xi3k
 [core]
-        editor = nvim
+        editor = /opt/nvim.appimage
+[alias]
+        d = difftool
 [diff]
         tool = nvimdiff
+[difftool]
+        prompt = false
 [difftool "nvimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE
+	cmd = /opt/nvim.appimage -d $LOCAL $REMOTE
 [merge]
         tool = vimdiff2
 [mergetool "vimdiff2"]
-        path = nvim
+        cmd = /opt/nvim.appimage
