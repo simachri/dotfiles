@@ -71,7 +71,9 @@ gls.left[5] = {
     provider = function () return vim.fn.expand('%') end,
     condition = condition.buffer_not_empty,
     -- highlight = {colors.fg,colors.bg,'bold'}
-    highlight = {colors.fg,colors.bg}
+    highlight = {colors.fg,colors.bg},
+    separator = '  ',
+    separator_highlight = {colors.fg,colors.bg},
   }
 }
 

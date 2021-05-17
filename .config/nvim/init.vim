@@ -28,6 +28,9 @@ Plug 'tpope/vim-repeat'
 " Bufferline
 Plug 'akinsho/nvim-bufferline.lua'
 
+" Terminal
+Plug 'voldikss/vim-floaterm'
+
 " Language server
 Plug 'neovim/nvim-lspconfig'
 Plug 'lspcontainers/lspcontainers.nvim'
@@ -417,6 +420,8 @@ let g:table_mode_corner_corner='|'
 " We use the fillchar - to make the markdown preview properly render.
 let g:table_mode_header_fillchar='-'
 let g:table_mode_syntax = 0
+" Table format
+let g:table_mode_tableize_map = '<Leader>tf'
 
 """"""
 "" fzf
