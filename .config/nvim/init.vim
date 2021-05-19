@@ -705,11 +705,13 @@ function! PandocMdToDocx()
 
   let src_filename = fnameescape(expand('%:p'))
   " %:t:r - select the 'tail' of the path (filename) but without the file extension.
-  let dst_filename = '~/VmHostShare/Export/'.fnameescape(expand('%:t:r')).'.docx'
+  let today = strftime('%y-%m-%d')
+  let dst_filename = '~/VmHostShare/Export/'.fnameescape(expand('%:t:r')).'_'.today.'.docx'
   silent execute
     \ "!pandoc -f markdown+task_lists+pipe_tables
     \ --reference-doc ~/VmHostShare/_Pandoc_reference_for_export.docx
     \ -s ".src_filename." -o ".dst_filename | redraw!
+  echo dst_filename.' exported.'
 
   " Change the working directory back.
   lcd -
