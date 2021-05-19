@@ -109,7 +109,7 @@ local editor       = os.getenv("EDITOR") or "nvim"
 local browser      = "brave"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1 main", "2 life", "3 dev", "4 www", "5 ectr" }
+awful.util.tagnames = { "1 main", "2 life", "3 dev", "4 www" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
