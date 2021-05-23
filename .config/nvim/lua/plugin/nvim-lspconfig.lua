@@ -1,5 +1,6 @@
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -53,11 +54,11 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- Using lspcontainers to run the language servers, see 
+-- Using lspcontainers to run the language servers, see
 -- https://github.com/lspcontainers/lspcontainers.nvim#supported-lsps
 -- The 'on_attach' is required to have the keymappings defined in the functions above.
 -- Python
-require'lspconfig'.pyright.setup {
+nvim_lsp.pyright.setup {
   before_init = function(params)
     params.processId = vim.NIL
   end,
@@ -67,21 +68,12 @@ require'lspconfig'.pyright.setup {
   on_attach = on_attach,
 }
 -- Golang
-require'lspconfig'.gopls.setup {
+nvim_lsp.gopls.setup {
   cmd = require'lspcontainers'.command('gopls'),
   on_attach = on_attach,
 }
 -- Docker
-require'lspconfig'.dockerls.setup {
-  before_init = function(params)
-    params.processId = vim.NIL
-  end,
-  cmd = require'lspcontainers'.command('dockerls'),
-  root_dir = util.root_pattern(".git", vim.fn.getcwd()),
-  on_attach = on_attach,
-}
--- Docker
-require'lspconfig'.dockerls.setup {
+nvim_lsp.dockerls.setup {
   before_init = function(params)
     params.processId = vim.NIL
   end,
@@ -90,9 +82,18 @@ require'lspconfig'.dockerls.setup {
   on_attach = on_attach,
 }
 -- Lua
-require'lspconfig'.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   cmd = require'lspcontainers'.command('sumneko_lua'),
   on_attach = on_attach,
+  -- Add 'vim' to globals to prevent message 'Undefined global `vim`.'
+  -- https://www.reddit.com/r/neovim/comments/khk335/lua_configuration_global_vim_is_undefined/gglrg7k?utm_source=share&utm_medium=web2x&context=3
+  settings = {
+      Lua = {
+          diagnostics = {
+              globals = { 'vim' }
+          }
+      }
+  }
 }
 
 
