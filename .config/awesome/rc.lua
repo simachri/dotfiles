@@ -109,7 +109,8 @@ local editor       = os.getenv("EDITOR") or "nvim"
 local browser      = "brave"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1 main", "2 life", "3 dev", "4 www" }
+--awful.util.tagnames = { "1 main", "2 life", "3 dev", "4 www" }
+awful.util.tagnames = { "1", "2", "3", "4" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -289,22 +290,22 @@ local function custom_prompt()
         exe_callback = function(input)
             if not input or #input == 0 then return end
             if input == 'wiki' then
-              new_terminal('Wiki', '1 main', '/home/xi3k/Wiki', true, awful.placement.stretch, "nvim")
+              new_terminal('Wiki', '1', '/home/xi3k/Wiki', true, awful.placement.stretch, "nvim")
               return
             end
             if input == 'sap' then
-              new_terminal('SAP', '1 main', '/home/xi3k/SAP', true, awful.placement.stretch, "nvim")
+              new_terminal('SAP', '1', '/home/xi3k/SAP', true, awful.placement.stretch, "nvim")
               return
             end
             if input == 'life' then
-              new_terminal('Life', '2 life', '/home/xi3k/Journal/Coco-Life', true, awful.placement.left, "nvim")
-              new_terminal('Friends', '2 life', '/home/xi3k/Journal/Freunde', true, awful.placement.right, "nvim")
+              new_terminal('Life', '2', '/home/xi3k/Journal/Coco-Life', true, awful.placement.left, "nvim")
+              new_terminal('Friends', '2', '/home/xi3k/Journal/Freunde', true, awful.placement.right, "nvim")
               return
             end
             if input == 'dev' then
-              new_terminal('Notes', '3 dev', '/home/xi3k/Development', true, awful.placement.top_right, "nvim")
-              new_terminal('Terminal', '3 dev', '/home/xi3k/Development', true, awful.placement.bottom_right)
-              new_terminal('Code', '3 dev', '/home/xi3k/Development', true, awful.placement.left, "nvim")
+              new_terminal('Notes', '3', '/home/xi3k/Development', true, awful.placement.top_right, "nvim")
+              new_terminal('Terminal', '3', '/home/xi3k/Development', true, awful.placement.bottom_right)
+              new_terminal('Code', '3', '/home/xi3k/Development', true, awful.placement.left, "nvim")
               return
             end
             -- Hier weitermachen: Life und Dev spawnen
