@@ -71,9 +71,6 @@ Plug 'ferrine/md-img-paste.vim'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-pandoc/vim-pandoc-syntax'
 
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-
 " Debugging
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
@@ -92,6 +89,15 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sebdah/vim-delve'
 
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
+
+" Easy reloading of Nvim configuration.
+Plug 'famiu/nvim-reload'
+
+" Show marks and registers content.
+Plug 'folke/which-key.nvim'
+
 call plug#end()
 
 luafile ~/.config/nvim/lua/plugin/bufferline.lua
@@ -101,6 +107,8 @@ luafile ~/.config/nvim/lua/plugin/galaxyline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
 luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
 luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
+luafile ~/.config/nvim/lua/plugin/luasnip.lua
+luafile ~/.config/nvim/lua/plugin/which-key.lua
 
 
 
@@ -189,7 +197,7 @@ set nospell
 " to save the currently open buffer
 set hidden
 " Disable delay when pressing Esc
-:set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=500 ttimeoutlen=0
 " Pasting
 set pastetoggle=<F2>
 "" Show a vertical bar at column 91
@@ -579,15 +587,17 @@ let g:markdown_minlines = 50
 " 4. Disable highlighting of search results.
 augroup MARKDOWN
   autocmd!
+  " 'Get anchor' link without the filename as the link description.
+  autocmd FileType markdown nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
+                    \:let @x=expand('%:r')<CR>
+                    \:nohlsearch<CR>
+                    \:echo('Anchor copied to clipboard.')<CR>
+                    "\:let @+="(".expand('%:r')."#".@d.")"<CR>
   " Currently not used: Create a full anchor link
   "autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
   "                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
   "                  \(".@%."#".@d.")"<CR>
   "                  \:nohlsearch<CR>
-  " 'Get anchor' link without the filename as the link description.
-  autocmd FileType markdown nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
-                    \:let @+="(".expand('%:r')."#".@d.")"<CR>
-                    \:nohlsearch<CR>
   " 'Add anchor'
   autocmd FileType markdown nnoremap <Leader>aa o<a id=""></a><Esc>5hi
   " Use ge in markdown files to follow link and open in horizontal split.
