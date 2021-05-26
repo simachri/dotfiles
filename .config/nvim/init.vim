@@ -197,7 +197,7 @@ set nospell
 " to save the currently open buffer
 set hidden
 " Disable delay when pressing Esc
-set timeoutlen=500 ttimeoutlen=0
+set timeoutlen=600 ttimeoutlen=0
 " Pasting
 set pastetoggle=<F2>
 "" Show a vertical bar at column 91
@@ -292,6 +292,8 @@ set secure
 """""""""""""""""""""
 " Close current buffer
 nnoremap <C-w>d :bd<CR>
+" Close all buffers except for the current one
+nnoremap <C-w>a :bd%<CR>:e#<CR>
 " Let Y yank to end of line instead of entire line.
 nnoremap Y y$
 "" Remove DOS line endings ^M 'reformat/remove m'
