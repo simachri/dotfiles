@@ -293,7 +293,7 @@ set secure
 " Close current buffer
 nnoremap <C-w>d :bd<CR>
 " Close all buffers except for the current one
-nnoremap <C-w>a :bd%<CR>:e#<CR>
+nnoremap <C-w>a :%bd\|e#<CR>
 " Let Y yank to end of line instead of entire line.
 nnoremap Y y$
 "" Remove DOS line endings ^M 'reformat/remove m'
