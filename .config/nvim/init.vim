@@ -177,7 +177,8 @@ augroup END
 colorscheme solarized-flat
 
 " 21-03-09: Fix neovim issues with clipboard not working.
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus
+" 21-05-27: Now it is sufficient to use the unnamed clipboard.
 set clipboard+=unnamed
 set splitbelow
 set splitright
