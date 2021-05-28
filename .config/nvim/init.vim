@@ -18,7 +18,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'ishan9299/nvim-solarized-lua'
 
 " 21-03-13, go for more performant status line
-"" Theming for statusline.
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -79,8 +78,10 @@ Plug 'szw/vim-maximizer'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+" Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim'
 " Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
