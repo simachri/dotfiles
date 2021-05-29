@@ -102,7 +102,7 @@ local chosen_theme = themes[6]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 -- https://sw.kovidgoyal.net/kitty/invocation.html
-local terminal     = "kitty"
+local terminal     = "kitty --single-instance"
 local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
@@ -259,10 +259,11 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
       end
     end
     awful.spawn("kitty --title " .. term_name .. " --directory " .. dir ..
-                -- Allow external calls to the terminal to launch programs later.
-                " -o allow_remote_control=yes" ..
-                -- Listen for incoming commands.
-                " --listen-on unix:/tmp/kitty_" .. term_name,
+                " --single-instance" ..
+                -- Listen for incoming commands. This is required for being able to
+                -- receive commands from awful.spawn.shell. Otherwise, only commands from other kitty
+                -- terminals are received.
+                " --listen-on unix:@kittyIn",
                 { tag = tag_name,
                   switch_to_tags = true,
                   --placement = awful.placement.stretch(client.focus, {honor_workarea=true}),
@@ -271,8 +272,12 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
                   honor_workarea = true,
                   callback = function ()
                     if cmd then
-                      -- Start NeoVim, \x0D is "carriage return".
-                      awful.spawn.with_shell("kitty @ --to unix:/tmp/kitty_" .. term_name .. " send-text " ..
+                      --naughty.notify {
+                          --title = "Launching callback",
+                          --text = cmd .. " " .. term_name
+                      --}
+                      -- Start Command, \x0D is "carriage return".
+                      awful.spawn.with_shell("kitty @ --to unix:@kittyIn send-text --match title:" .. term_name .. " " ..
                         cmd .. "\x0D")
                     end
                   end,
@@ -308,7 +313,6 @@ local function custom_prompt()
               new_terminal('Code', '3', '/home/xi3k/Development', true, awful.placement.left, "nvim")
               return
             end
-            -- Hier weitermachen: Life und Dev spawnen
             awful.spawn(input)
         end
     }
