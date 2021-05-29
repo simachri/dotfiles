@@ -245,8 +245,10 @@ set number relativenumber
 """""""""""
 " Searching
 """"""""""""
-" Do not keep the last search result highlighted.
-set nohlsearch
+"" Do not keep the last search result highlighted.
+"set nohlsearch
+" Highligh search by default.
+set hlsearch
 " 'Toggle highlighted' search results
 nnoremap <silent> <Leader>th :set hlsearch!<CR>
 set incsearch
