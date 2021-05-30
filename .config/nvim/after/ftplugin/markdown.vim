@@ -56,3 +56,39 @@ au BufEnter *.md setlocal foldmethod=expr
 """"""""""""""""""""""""""""""""""""""
 " "Find header", previously "Find tags"
 noremap <buffer> <Leader>fh :TagbarOpenAutoClose<CR>
+" "Toggle checkbox"
+function! ToggleCb()
+  let currLineText = getline(".")
+  " If checkbox is empty: Check it.
+  let replacedText = substitute(currLineText, "- [ \\]", "- [X]", "")
+  if currLineText != replacedText
+    " Replace text.
+    call setline(".", replacedText)
+    return
+  endif
+  " If checkbox is checked: Set to invalid.
+  let replacedText = substitute(currLineText, "- [X\\]", "- [-]", "")
+  if currLineText != replacedText
+    " Replace text.
+    call setline(".", replacedText)
+    return
+  endif
+  " If checkbox is invalid: Set to follow-up.
+  let replacedText = substitute(currLineText, "- [-\\]", "- [^]", "")
+  if currLineText != replacedText
+    " Replace text.
+    call setline(".", replacedText)
+    return
+  endif
+  " If checkbox is set to follow-up: Clear it.
+  let replacedText = substitute(currLineText, "- [^\\]", "- [ ]", "")
+  if currLineText != replacedText
+    " Replace text.
+    call setline(".", replacedText)
+    return
+  endif
+  " No checkbox available yet. Add one.
+  normal I  - [ ] 
+endfunction
+command ToggleCheckBox call ToggleCb()
+nnoremap <buffer> <silent> <Leader>tc :ToggleCheckBox<CR>

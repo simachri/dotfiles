@@ -1,6 +1,21 @@
 -- https://github.com/L3MON4D3/LuaSnip
 -- Examples from https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua
 
+-- TODO: Disable automatic text-wrap on textwidth before inserting a snippet.
+--local m = {
+  --customSnipExpand = function()
+    --vim.api.nvim_call_function("<Plug>luasnip-expand-or-jump")
+  --end
+--}
+---- Temporarily disable text wrapping if it is enabled.
+--local textWrapDisabled = false
+--if string.find(vim.api.nvim_buf_get_option(0, 'fo'), 't') then
+  ---- vim.bo is the shorthand for vim.api.nvim_buf_get|set_option.
+  --vim.bo.fo = vim.bo.fo:gsub("t", "")
+  --textWrapDisabled = true
+--end
+
+--vim.api.nvim_set_keymap("i", "<C-Y>", "luasnip#expand_or_jumpable() ? v:lua.require'luasnip'.customSnipExpand() : '<C-Y>'", {expr = true, silent = true})
 vim.api.nvim_set_keymap("i", "<C-Y>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-Y>'", {expr = true, silent = true})
 vim.api.nvim_set_keymap("i", "<C-E>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", {expr = true, silent = true})
 vim.api.nvim_set_keymap("s", "<C-N>", "v:lua.require'luasnip'.jump(1)", { expr = true, noremap = true, silent = true})
@@ -37,6 +52,11 @@ end
 ls.snippets = {
     all={},
     markdown = {
+            -- Checkbox: "- [ ]", trigger is 'cb'.
+            s({trig="cb"}, {
+                    t({"- [ ] "}),
+                    i(0),
+            }),
             -- trigger is 'ref'.
             s({trig="ref"}, {
                     t({"["}),
@@ -105,3 +125,5 @@ ls.snippets = {
             })
     }
 }
+
+--return m
