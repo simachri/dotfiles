@@ -1,5 +1,8 @@
 " https://github.com/voldikss/vim-floaterm
 
+let g:floaterm_width = 0.9
+let g:floaterm_height = 0.9
+
 " Toggle terminal
 nnoremap <silent> <Leader>tt :FloatermToggle<CR>
 " Hide terminal, it will be running in the background.
