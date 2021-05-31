@@ -179,7 +179,6 @@ colorscheme solarized-flat
 
 " 21-03-09: Fix neovim issues with clipboard not working.
 "set clipboard+=unnamedplus
-" 21-05-27: Now it is sufficient to use the unnamed clipboard.
 set clipboard+=unnamed
 set splitbelow
 set splitright
@@ -245,8 +244,8 @@ set number relativenumber
 """""""""""
 " Searching
 """"""""""""
-"" Do not keep the last search result highlighted.
-"set nohlsearch
+" Do not keep the last search result highlighted.
+set nohlsearch
 " Highligh search by default.
 set hlsearch
 " 'Toggle highlighted' search results
