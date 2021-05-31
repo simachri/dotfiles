@@ -56,7 +56,7 @@ au BufEnter *.md setlocal foldmethod=expr
 """"""""""""""""""""""""""""""""""""""
 " "Find header", previously "Find tags"
 noremap <buffer> <Leader>fh :TagbarOpenAutoClose<CR>
-" "Toggle checkbox"
+" "Toggle checkbox ([Jack]box :))"
 function! ToggleCb()
   let currLineText = getline(".")
   " If checkbox is empty: Check it.
@@ -91,4 +91,4 @@ function! ToggleCb()
   normal I- [ ] 
 endfunction
 command ToggleCheckBox call ToggleCb()
-nnoremap <buffer> <silent> <Leader>tc :ToggleCheckBox<CR>
+nnoremap <buffer> <silent> <Leader>tj :ToggleCheckBox<CR>
