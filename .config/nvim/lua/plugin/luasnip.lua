@@ -57,6 +57,20 @@ ls.snippets = {
                     t({"- [ ] "}),
                     i(0),
             }),
+            -- URL in the format [<URL name>](<URL>), trigger is 'url'.
+            s({trig="url"}, {
+                    t({"["}),
+                    -- Placeholder with initial text.
+                    i(1, {"<link name>"}),
+                    t({"]("}),
+                    f(function()
+                        return {vim.api.nvim_eval("@+")}
+                      end, {}),
+
+                    -- Last Placeholder, exit Point of the snippet. EVERY 'outer' SNIPPET NEEDS Placeholder 0.
+                    i(0),
+                    t({")"}),
+            }),
             -- trigger is 'ref'.
             s({trig="ref"}, {
                     t({"["}),
