@@ -88,7 +88,7 @@ function! ToggleCb()
     return
   endif
   " No checkbox available yet. Add one.
-  normal I  - [ ] 
+  normal I- [ ] 
 endfunction
 command ToggleCheckBox call ToggleCb()
 nnoremap <buffer> <silent> <Leader>tc :ToggleCheckBox<CR>
