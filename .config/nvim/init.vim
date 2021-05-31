@@ -197,6 +197,11 @@ set nospell
 " Enable the creation of new buffers without the restriction
 " to save the currently open buffer
 set hidden
+" Yet, do not keep [No Name] buffers open. Wipe them when switchin to another buffer.
+" Source: https://stackoverflow.com/a/12328741
+if bufname('%') == ''
+  set bufhidden=wipe
+endif
 " Disable delay when pressing Esc
 set timeoutlen=600 ttimeoutlen=0
 " Pasting
@@ -295,8 +300,10 @@ set secure
 """""""""""""""""""""
 " Close current buffer
 nnoremap <C-w>d :bd<CR>
-" Close all buffers except for the current one
-nnoremap <C-w>a :%bd\|e#<CR>
+" Close all buffers except for the current one. First kill any terminals.
+" The bd# at the end deletes the [No Name] empty buffer.
+" Source: https://stackoverflow.com/a/42071865
+nnoremap <silent> <C-w>a :FloatermKill<CR>:%bd\|e#\|bd#<CR>
 " Let Y yank to end of line instead of entire line.
 nnoremap Y y$
 "" Remove DOS line endings ^M 'reformat/remove m'
