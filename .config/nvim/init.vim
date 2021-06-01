@@ -99,6 +99,10 @@ Plug 'famiu/nvim-reload'
 " Show marks and registers content.
 Plug 'folke/which-key.nvim'
 
+" Fix copy/paste to/from system clipboard.
+" Plugin is obosolete once this issue has been fixed: https://github.com/neovim/neovim/issues/1822
+Plug 'lambdalisue/pastefix.vim'
+
 call plug#end()
 
 luafile ~/.config/nvim/lua/plugin/bufferline.lua
@@ -724,14 +728,18 @@ let g:go_auto_type_info = 0
 function! PandocMdToDocx()
   " Change the working directory temporarily.
   lcd %:h
-
+  
   let src_filename = fnameescape(expand('%:p'))
-  " %:t:r - select the 'tail' of the path (filename) but without the file extension.
-  let today = strftime('%y-%m-%d')
-  let dst_filename = '~/VmHostShare/Export/'.fnameescape(expand('%:t:r')).'_'.today.'.docx'
+  let dst_filename = input('Enter filename: ' )
+  if strlen(dst_filename) == 0
+    " %:t:r - select the 'tail' of the path (filename) but without the file extension.
+    let today = strftime('%y-%m-%d')
+    let dst_filename = '~/VmHostShare/Export/'.fnameescape(expand('%:t:r')).'_'.today.'.docx'
+  end
   silent execute
-    \ "!pandoc -f markdown+task_lists+pipe_tables
-    \ --reference-doc ~/VmHostShare/_Pandoc_reference_for_export.docx
+    "\ "!pandoc -f markdown+task_lists+pipe_tables
+    \ "!pandoc -f gfm
+    \ --reference-doc ~/VmHostShare/_Pandoc_reference_21-06-01.docx
     \ -s ".src_filename." -o ".dst_filename | redraw!
   echo dst_filename.' exported.'
 
