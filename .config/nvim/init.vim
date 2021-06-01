@@ -735,6 +735,8 @@ function! PandocMdToDocx()
     " %:t:r - select the 'tail' of the path (filename) but without the file extension.
     let today = strftime('%y-%m-%d')
     let dst_filename = '~/VmHostShare/Export/'.fnameescape(expand('%:t:r')).'_'.today.'.docx'
+  else
+    let dst_filename = '~/VmHostShare/Export/'.dst_filename
   end
   silent execute
     "\ "!pandoc -f markdown+task_lists+pipe_tables
