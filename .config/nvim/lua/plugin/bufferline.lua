@@ -4,7 +4,7 @@ require'bufferline'.setup{
     -- view = "multiwindow" | "default",
     view = "default",
     -- numbers = "none" | "ordinal" | "buffer_id",
-    numbers = "buffer_id",
+    numbers = "none",
     -- number_style = "superscript" | "",
     number_style = "",
     -- mappings = true | false,
