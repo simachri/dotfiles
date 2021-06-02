@@ -181,19 +181,17 @@ augroup END
 " colorscheme solarized
 colorscheme solarized-flat
 
-" 21-03-09: Fix neovim issues with clipboard not working.
-set clipboard+=unnamedplus
-"set clipboard=unnamed
+set clipboard+=unnamedplus,unnamed
 " 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
 let g:clipboard = {
   \   'name': 'xclip',
   \   'copy': {
-  \      '+': 'xclip',
-  \      '*': 'xclip',
+  \      '*': 'xclip -i -sel primary',
+  \      '+': 'xclip -i -sel clipboard',
   \    },
   \   'paste': {
-  \      '+': 'xclip -o',
-  \      '*': 'xclip -o',
+  \      '*': 'xclip -o -sel primary',
+  \      '+': 'xclip -o -sel primary',
   \   },
   \   'cache_enabled': 1,
   \ }
