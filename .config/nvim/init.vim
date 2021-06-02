@@ -182,8 +182,21 @@ augroup END
 colorscheme solarized-flat
 
 " 21-03-09: Fix neovim issues with clipboard not working.
-"set clipboard+=unnamedplus
-set clipboard+=unnamed
+set clipboard+=unnamedplus
+"set clipboard=unnamed
+" 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
+let g:clipboard = {
+  \   'name': 'xclip',
+  \   'copy': {
+  \      '+': 'xclip',
+  \      '*': 'xclip',
+  \    },
+  \   'paste': {
+  \      '+': 'xclip -o',
+  \      '*': 'xclip -o',
+  \   },
+  \   'cache_enabled': 1,
+  \ }
 set splitbelow
 set splitright
 " 20-12-31 Disabled as it messes around with Golang omnicompletion, see below.
