@@ -102,10 +102,10 @@ local chosen_theme = themes[6]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 -- https://sw.kovidgoyal.net/kitty/invocation.html
-local terminal     = "kitty --single-instance"
+local terminal     = "kitty --single-instance --listen-on unix:@kittyIn"
 local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev   = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
-local editor       = os.getenv("EDITOR") or "nvim"
+local editor       = "nvim"
 local browser      = "brave"
 
 awful.util.terminal = terminal

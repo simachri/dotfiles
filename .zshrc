@@ -22,7 +22,12 @@ compinit
 
 # Aliases
 alias nvim=/opt/nvim.appimage
-alias ls='ls --color=auto'
+# -P p: Start plugin preview-tui on nnn startup.
+# -a: Auto NNN_FIFO
+# -o: Open files only on enter
+# -e: Use $EDITOR to open text files.
+# -D: Set colors for directories using NNN_FCOLORS
+alias ls='nnn -aDoe'
 alias ll='ls -lah --color=auto'
 function backup_journal() {
   foldername=`date +"%Y-%m-%d"`
@@ -36,7 +41,7 @@ function backup_journal() {
 }
 alias backup_journal=backup_journal
 alias update='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && zplug update'
-alias git-dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
 ## Plugins
 # Init zplug
@@ -60,8 +65,8 @@ zplug load
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Load customized dircolors.
 # https://unix.stackexchange.com/a/241735
-[ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || 
-    eval $(dircolors -b)
+# Use the solarized color palette for the 'ls' command.
+[ -e ~/.dircolors.solarized-ansi-light ] && eval $(dircolors -b ~/.dircolors.solarized-ansi-light ) || eval $(dircolors -b)
 
 # FZF
 # --files: List files that would be searched but do not search
@@ -149,6 +154,30 @@ path+=('/home/xi3k/.local/bin')
 path+=('/home/xi3k/node_modules/.bin')
 # Pyright server
 export PATH
+
 # Pipenv: Create environment in local project directory.
 # Source: https://stackoverflow.com/a/52540270
 export PIPENV_VENV_IN_PROJECT="enabled"
+
+# nnn file browser
+# Set bookmarks
+export NNN_BMS="w:$HOME/Wiki;s:$HOME/SAP;d:$HOME/Development"
+# SHow hidden files on top
+export LC_COLLATE="C"
+# Plugins
+# NNN_FIFO is required for preview-tui, https://github.com/jarun/nnn/blob/master/plugins/preview-tui
+export NNN_FIFO=/tmp/nnn.fifo
+NNN_PLUG_FZF='o:fzopen;f:fzcd'
+NNN_PLUG_DEFAULT='p:preview-tui'
+NNN_PLUG="$NNN_PLUG_FZF;$NNN_PLUG_DEFAULT"
+export NNN_PLUG
+# Set colors, currently using the values of 'Nord' theme.
+# https://github.com/jarun/nnn/wiki/Themes
+BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"
+export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+
+# Set nvim as the default editor.
+# https://unix.stackexchange.com/a/4861
+export VISUAL="/opt/nvim.appimage"
+export EDITOR="/opt/nvim.appimage"
+

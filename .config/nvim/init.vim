@@ -48,7 +48,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 
-Plug 'kyazdani42/nvim-tree.lua'
+" File manager
+" Plug 'kyazdani42/nvim-tree.lua'
+Plug 'mcchrish/nnn.vim'
 
 " Tags and outline
 Plug 'majutsushi/tagbar'
@@ -191,7 +193,7 @@ let g:clipboard = {
   \    },
   \   'paste': {
   \      '*': 'xclip -o -sel primary',
-  \      '+': 'xclip -o -sel primary',
+  \      '+': 'xclip -o -sel clipboard',
   \   },
   \   'cache_enabled': 1,
   \ }
