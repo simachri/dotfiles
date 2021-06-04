@@ -22,12 +22,14 @@ compinit
 
 # Aliases
 alias nvim=/opt/nvim.appimage
+# NNN file manager. The n () function is defined further below.
 # -P p: Start plugin preview-tui on nnn startup.
 # -a: Auto NNN_FIFO
 # -o: Open files only on enter
 # -e: Use $EDITOR to open text files.
 # -D: Set colors for directories using NNN_FCOLORS
-alias ls='nnn -aDoe'
+# -n: Type-to-nav mode
+alias ls='n -aDoe'
 alias ll='ls -lah --color=auto'
 function backup_journal() {
   foldername=`date +"%Y-%m-%d"`
@@ -167,7 +169,7 @@ export LC_COLLATE="C"
 # Plugins
 # NNN_FIFO is required for preview-tui, https://github.com/jarun/nnn/blob/master/plugins/preview-tui
 export NNN_FIFO=/tmp/nnn.fifo
-NNN_PLUG_FZF='o:fzopen;f:fzcd'
+NNN_PLUG_FZF='e:fzopen;d:finder'
 NNN_PLUG_DEFAULT='p:preview-tui'
 NNN_PLUG="$NNN_PLUG_FZF;$NNN_PLUG_DEFAULT"
 export NNN_PLUG
@@ -175,6 +177,35 @@ export NNN_PLUG
 # https://github.com/jarun/nnn/wiki/Themes
 BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+# cd into the current directory when leaving nnn.
+# https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
 
 # Set nvim as the default editor.
 # https://unix.stackexchange.com/a/4861
