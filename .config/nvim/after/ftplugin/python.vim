@@ -3,6 +3,20 @@
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
+
+" https://github.com/rafi/vim-venom#configuration
+" Do not automatically activate virtual environments.
+let g:venom_auto_activate=0
+
+""""""""""""""""""""""""""""""""""""""
+" Auto commands
+""""""""""""""""""""""""""""""""""""""
+augroup pythonFiletypeHooks
+  au!
+  " Automatically restart LSP once a virtual enviornment has been activated.
+  au User VenomActivated LspRestart
+augroup END
+
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
