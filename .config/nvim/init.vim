@@ -40,11 +40,12 @@ Plug 'hrsh7th/nvim-compe'
 " Plug 'deoplete-plugins/deoplete-lsp'
 " Python: Add import for word under cursor if already imported before.
 Plug 'tjdevries/apyrori.nvim'
+" Python: Activate virtual environments automatically.
+Plug 'rafi/vim-venom', { 'for': 'python' }
 
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'scrooloose/nerdcommenter'
-" 2020-12-04, use undotree instead as gundo does not work with python3
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 
@@ -177,7 +178,9 @@ augroup adj_solarized
   au ColorScheme * hi CursorLineNr guibg=None
   " Statusline of non-current buffers
   au ColorScheme * hi StatusLineNC guibg=#839496 guifg=#eee8d5
-  """ Treesitter: https://github.com/nvim-treesitter/nvim-treesitter/blob/master/plugin/nvim-treesitter.vim
+  " Treesitter: Fix error color group highlighting.
+  " https://github.com/nvim-treesitter/nvim-treesitter/issues/119
+  au ColorScheme * hi! link TSError Normal
 augroup END
 
 " colorscheme solarized
