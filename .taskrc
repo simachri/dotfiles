@@ -39,3 +39,10 @@ context.Moritz=project:Moritz
 context.Corinna=project:Corinna
 context.DIEHL=project:DIEHL
 context.Bosch=project:Bosch
+
+##############################
+# Set columns for reports.
+##############################
+# 'next'-report: This is the one used by taskwarrior-tui.
+report.next.columns=id,start.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.next.labels=ID,Active,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
