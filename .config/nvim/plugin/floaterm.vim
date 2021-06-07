@@ -11,3 +11,6 @@ tnoremap <silent> <C-S-d> <C-\><C-n>:FloatermKill!<CR>
 
 " Open lazygit
 nnoremap <silent> <Leader>lg :FloatermNew --autoclose=2 lazygit<CR>
+
+" Open taskwarrior-tui
+nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 taskwarrior-tui<CR>

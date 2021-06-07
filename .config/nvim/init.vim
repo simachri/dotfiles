@@ -331,8 +331,8 @@ nnoremap Y y$
 "" 'set filetype dosini'
 "nnoremap <silent> <Leader>sd :%s/\r//g<CR>
 set nowrap
-" Toggle wrap
-nnoremap <silent> <Leader>tw :set wrap!<CR>
+" " Toggle wrap
+" nnoremap <silent> <Leader>tw :set wrap!<CR>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 " Simple insertion of blank lines
