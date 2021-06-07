@@ -13,4 +13,7 @@ let g:nnn#action = {
 " -D: Set colors for directories using NNN_FCOLORS
 let g:nnn#command = 'nnn -aeD'
 
+" Open NNN in Vim's CWD.
 nnoremap <silent> <Leader>nn :NnnPicker<CR>
+" Open NNN in current buffer's directory.
+nnoremap <silent> <Leader>nf :NnnPicker %:p:h<CR>
