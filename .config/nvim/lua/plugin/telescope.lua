@@ -94,9 +94,10 @@ end
 
 function find_config()
   require('telescope.builtin').find_files {
-    prompt_title = "Find config files",
+    prompt_title = "Find Nvim config files",
     shorten_path = false,
-    cwd = "~/.config",
+    file_ignore_patterns = { "plugged" },
+    cwd = "~/.config/nvim",
   }
 end
 
@@ -171,7 +172,7 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin
 -- vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true })
 -- All Files, including the hidden ones
 vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
--- Configuration files
+-- Neovim configuration files
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { noremap = true, silent = true })
 
 -- Grep
