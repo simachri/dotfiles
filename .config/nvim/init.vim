@@ -633,9 +633,9 @@ augroup MARKDOWN
   " 'Add anchor'
   autocmd FileType markdown nnoremap <Leader>aa o<a id=""></a><Esc>5hi
   " Use ge in markdown files to follow link and open in horizontal split.
-  autocmd FileType markdown nmap <buffer> ge m'<Plug>Markdown_EditUrlUnderCursor
+  autocmd FileType markdown nmap <buffer><silent> ge m'<Plug>Markdown_EditUrlUnderCursor
   " Use gs in markdown files to follow link and open in vertical split.
-  autocmd FileType markdown nmap <buffer> gs m'<C-W>v<Plug>Markdown_EditUrlUnderCursor
+  autocmd FileType markdown nmap <buffer><silent> gs m'<C-W>v<Plug>Markdown_EditUrlUnderCursor
 
   " Paste image: 'ferrine/md-img-paste.vim'
   autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
