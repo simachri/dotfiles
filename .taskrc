@@ -60,5 +60,5 @@ context.Bosch=project:Bosch
 # Set columns for reports.
 ##############################
 # 'next'-report: This is the one used by taskwarrior-tui.
-report.next.columns=id,start.age,depends,priority,project,tags,recur,scheduled.countdown,until.remaining,description
-report.next.labels=ID,Active,Deps,P,Project,Tag,Recur,S,Until,Description
+report.next.columns=id,start.age,depends,priority,project,tags,recur,scheduled.countdown,until.remaining,wait.remaining,description
+report.next.labels=ID,Active,Deps,P,Project,Tag,Recur,S,Until,Waiting,Description
