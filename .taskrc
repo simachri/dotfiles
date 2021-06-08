@@ -61,5 +61,19 @@ context.Bosch=project:Bosch
 # Set columns for reports.
 ##############################
 # 'next'-report: This is the one used by taskwarrior-tui.
-report.next.columns=id,start.age,depends,priority,project,tags,recur,scheduled.countdown,until.remaining,wait.remaining,description
-report.next.labels=ID,Active,Deps,P,Project,Tag,Recur,S,Until,Waiting,Description
+report.next.columns=id,start.age,depends,priority,project,recur,scheduled.countdown,until.remaining,wait.remaining,description,tags
+report.next.labels=ID,Active,Deps,P,Project,Recur,S,Until,Waiting,Description,Tags
+
+
+###############################
+# UDA - use defined attributes
+###############################
+uda.jira.type=string
+uda.jira.label=Jira-Task
+
+
+##############################
+# Custom commands
+# https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
+##############################
+uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file

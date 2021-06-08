@@ -1,0 +1,8 @@
+#!/bin/bash
+# Read the first eight chars of the UUID.
+fname=${1:0:8}
+floaterm ~/.task/notes/$fname.md
+#kitty -1 --title "Edit task notes" --directory ~/.task/notes
+## Read the first eight chars of the UUID.
+#fname=${1:0:8}
+#kitty @ --to unix:@kittyIn send-text --match title:"Edit task notes" nvim $fname.md\\x0D
