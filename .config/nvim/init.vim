@@ -186,20 +186,20 @@ augroup END
 " colorscheme solarized
 colorscheme solarized-flat
 
-set clipboard+=unnamedplus,unnamed
-" 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
-let g:clipboard = {
-  \   'name': 'xclip',
-  \   'copy': {
-  \      '*': 'xclip -i -sel primary',
-  \      '+': 'xclip -i -sel clipboard',
-  \    },
-  \   'paste': {
-  \      '*': 'xclip -o -sel primary',
-  \      '+': 'xclip -o -sel clipboard',
-  \   },
-  \   'cache_enabled': 1,
-  \ }
+set clipboard+=unnamedplus
+"" 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
+"let g:clipboard = {
+"  \   'name': 'xclip',
+"  \   'copy': {
+"  \      '*': 'xclip -i -sel primary',
+"  \      '+': 'xclip -i -sel clipboard',
+"  \    },
+"  \   'paste': {
+"  \      '*': 'xclip -o -sel primary',
+"  \      '+': 'xclip -o -sel clipboard',
+"  \   },
+"  \   'cache_enabled': 1,
+"  \ }
 set splitbelow
 set splitright
 " 20-12-31 Disabled as it messes around with Golang omnicompletion, see below.
