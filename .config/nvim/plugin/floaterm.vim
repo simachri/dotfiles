@@ -7,9 +7,9 @@ let g:floaterm_height = 0.9
 let g:floaterm_opener = 'edit'
 
 " Toggle terminal
-nnoremap <silent> <Leader>tt :FloatermToggle --name shell zsh<CR>
+nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
 " Hide terminal, it will be running in the background.
-tnoremap <silent> <C-d> <C-\><C-n>:FloatermToggle zsh<CR>
+tnoremap <silent> <C-d> <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <C-S-d> <C-\><C-n>:FloatermKill!<CR>
 
 " Open lazygit
@@ -28,7 +28,19 @@ function! OpenTwTask(arg)
     exec 'normal A'
 endfunction
 command! -nargs=1 OpenTwTask call OpenTwTask(<q-args>)
-nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
+
+let g:twtui_term_launched = 0
+function! OpenTwTuiFloaterm()
+  if g:twtui_term_launched
+    FloatermToggle tw
+  else
+    FloatermNew --name=tw --autoclose=0 --opener=OpenTwTask taskwarrior-tui
+    let g:twtui_term_launched = 1
+  endif
+endfunction
+command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
+nnoremap <silent> <Leader>tw :OpenTwTuiFloaterm<CR>
+"nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
