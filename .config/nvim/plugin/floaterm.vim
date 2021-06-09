@@ -24,6 +24,8 @@ function! OpenTwTask(arg)
     let heading = "# " . substitute(path_and_heading[1], "_", " ", "g")
     exec 'edit ' . path_and_heading[0]
     exec 'normal i' . heading
+    " Add two new lines under the heading.
+    exec 'normal A'
 endfunction
 command! -nargs=1 OpenTwTask call OpenTwTask(<q-args>)
 nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
