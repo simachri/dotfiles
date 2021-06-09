@@ -6,3 +6,5 @@ description=$(task _get $1.description)
 description=${description// /_}
 cmd=~/.task/notes/$fname.md@$description
 floaterm $cmd
+# Set the indicator that the task has a note.
+task $1 modify note:X
