@@ -264,9 +264,12 @@ command Delview call MyDeleteView()
 "" 21-1-16: Try to make Vim faster in large files.
 "" Source: https://stackoverflow.com/a/378967
 "set lazyredraw
+" Use the old regex engine. Seems to be faster in markdown files.
+set regexpengine=1
 
 " Use relative line numbers
 set number relativenumber
+
 
 
 """""""""""
