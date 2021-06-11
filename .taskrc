@@ -74,6 +74,8 @@ uda.user.type=string
 uda.user.label=Assignee
 uda.notes.type=string
 uda.notes.label=Notes
+uda.cont.type=string
+uda.cont.label=Continue here
 
 
 ##############################
