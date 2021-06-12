@@ -33,6 +33,8 @@ Plug 'voldikss/vim-floaterm'
 " Language server
 Plug 'neovim/nvim-lspconfig'
 Plug 'lspcontainers/lspcontainers.nvim'
+" Python formatter as pyright does not inlcude one.
+Plug 'sbdchd/neoformat'
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'

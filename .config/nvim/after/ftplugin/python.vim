@@ -3,10 +3,13 @@
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-
 " https://github.com/rafi/vim-venom#configuration
 " Do not automatically activate virtual environments.
 let g:venom_auto_activate=0
+
+" Activate python formatter
+" https://github.com/sbdchd/neoformat
+let g:neoformat_enabled_python= ['autopep8']
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
