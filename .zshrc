@@ -51,7 +51,6 @@ source ~/.zplug/init.zsh
 # i10k theme
 zplug romkatv/powerlevel10k, as:theme, depth:1
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/fzf", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
