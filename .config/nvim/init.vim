@@ -331,7 +331,7 @@ nnoremap <C-w>d :bd<CR>
 " Close all buffers except for the current one.
 " The bd# at the end deletes the [No Name] empty buffer.
 " Source: https://stackoverflow.com/a/42071865
-nnoremap <silent> <C-w>a :%bd\|e#\|bd#<CR>
+nnoremap <silent> <C-w>a mx:%bd\|e#\|bd#<CR>`x
 " Let Y yank to end of line instead of entire line.
 nnoremap Y y$
 "" Remove DOS line endings ^M 'reformat/remove m'
