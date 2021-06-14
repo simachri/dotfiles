@@ -49,13 +49,10 @@ column.padding=3
 ###############################
 # Define projects as contexts.
 ###############################
-context.Sartorius=project:Sartorius
-context.ZEISS=project:ZEISS
-context.Grohe=project:Grohe
-context.Moritz=project:Moritz
-context.Corinna=project:Corinna
-context.DIEHL=project:DIEHL
-context.Bosch=project:Bosch
+context.Sartorius=project:Sartorius (status:pending or status:waiting)
+context.ZEISS=project:ZEISS (status:pending or status:waiting)
+context.Grohe=project:Grohe (status:pending or status:waiting)
+context.DIEHL=project:DIEHL (status:pending or status:waiting)
 
 ##############################
 # Set columns for reports.
