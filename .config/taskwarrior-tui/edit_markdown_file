@@ -1,10 +1,20 @@
 #!/bin/bash
+# Set the indicator that the task has a note.
+task $1 modify note:X
 # Read the first eight chars of the UUID.
 fname=${1:0:8}
+fpath=~/.task/notes/$fname.md
 # Read the task description and use it as heading for the markdown file.
 description=$(task _get $1.description)
 description=${description// /_}
-cmd=~/.task/notes/$fname.md@$description
+# If the file already exists omit the description.
+# This is an indicator for the floaterm command.
+if [ -f "$fpath" ]; then
+  # File exists.
+  description=
+else
+  description=$(task _get $1.description)
+  description=${description// /_}
+fi
+cmd=$fpath@$description
 floaterm $cmd
-# Set the indicator that the task has a note.
-task $1 modify note:X

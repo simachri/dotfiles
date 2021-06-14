@@ -21,8 +21,12 @@ nnoremap <silent> <Leader>lg :FloatermNew --autoclose=2 --name=lazygit --disposa
 " --opener: The command when 'floaterm' is used.
 function! OpenTwTask(arg)
     let path_and_heading = split(a:arg, "@")
-    let heading = "# " . substitute(path_and_heading[1], "_", " ", "g")
     exec 'edit ' . path_and_heading[0]
+    " Return, if the description is empty.
+    if len(path_and_heading) == 1
+      return
+    endif
+    let heading = "# " . substitute(path_and_heading[1], "_", " ", "g")
     exec 'normal i' . heading
     " Add two new lines under the heading.
     exec 'normal A'
