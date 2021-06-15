@@ -94,10 +94,18 @@ end
 
 function find_config()
   require('telescope.builtin').find_files {
-    prompt_title = "Find Nvim config files",
+    prompt_title = "Find config files",
     shorten_path = false,
-    file_ignore_patterns = { "plugged" },
-    cwd = "~/.config/nvim",
+    file_ignore_patterns = { "plugged", "lain", "themes", "freedesktop" },
+    -- Multiple search directories can be used:
+    -- https://github.com/errx/telescope.nvim/commit/cf8ec44a4299a26adbd4bdcd01e60271f1fef9d5
+    search_dirs = { "~/.config/awesome",
+                    "~/.config/kitty",
+                    "~/.config/nvim",
+                    "~/.config/taskwarrior-tui",
+                    "~/.config/nnn",
+                    "~/.config/lazygit" }
+    --cwd = "~/.config/nvim",
   }
 end
 
@@ -172,7 +180,7 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin
 -- vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true })
 -- All Files, including the hidden ones
 vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
--- Neovim configuration files
+-- Configuration files / dotfiles
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { noremap = true, silent = true })
 
 -- Grep
