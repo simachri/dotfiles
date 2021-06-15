@@ -47,12 +47,10 @@ due=1
 column.padding=3
 
 ###############################
-# Define projects as contexts.
+# Define contexts.
 ###############################
-context.Sartorius=project:Sartorius (status:pending or status:waiting)
-context.ZEISS=project:ZEISS (status:pending or status:waiting)
-context.Grohe=project:Grohe (status:pending or status:waiting)
-context.DIEHL=project:DIEHL (status:pending or status:waiting)
+context.SAP=project != Linode (status:pending or status:waiting)
+context.Private=project:Linode
 
 ##############################
 # Set columns for reports.
