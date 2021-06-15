@@ -43,8 +43,10 @@ function! OpenTwTuiFloaterm()
   endif
 endfunction
 command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
-nnoremap <silent> <Leader>tw :OpenTwTuiFloaterm<CR>
-"nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
+" 21-06-15 Keeping the taskwarrior-tui instance running
+" leads to high nvim CPU usage. So we close it everytime.
+"nnoremap <silent> <Leader>tw :OpenTwTuiFloaterm<CR>
+nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
