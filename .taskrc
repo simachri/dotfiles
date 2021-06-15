@@ -51,6 +51,7 @@ column.padding=3
 ###############################
 context.SAP=project != Linode (status:pending or status:waiting)
 context.Private=project:Linode
+context.Done=stat:completed end:today
 
 ##############################
 # Set columns for reports.
@@ -78,3 +79,4 @@ uda.cont.label=Continue here
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
 ##############################
 uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file
+context=SAP
