@@ -308,9 +308,9 @@ local function custom_prompt()
               return
             end
             if input == 'dev' then
-              new_terminal('Notes', '3', '/home/xi3k/Development', true, awful.placement.top_right, "nvim")
-              new_terminal('Terminal', '3', '/home/xi3k/Development', true, awful.placement.bottom_right)
-              new_terminal('Code', '3', '/home/xi3k/Development', true, awful.placement.left, "nvim")
+              --new_terminal('Notes', '3', '/home/xi3k/Development', true, awful.placement.top_right, "nvim")
+              --new_terminal('Terminal', '3', '/home/xi3k/Development', true, awful.placement.bottom_right)
+              new_terminal('Development', '3', '/home/xi3k/Development', true, awful.placement.stretch, "ls")
               return
             end
             awful.spawn(input)
