@@ -20,6 +20,8 @@ nnoremap <silent> <Leader>lg :FloatermNew --autoclose=2 --name=lazygit --disposa
 " --disposable: Prevents memory leakage.
 " --opener: The command when 'floaterm' is used.
 function! OpenTwTask(arg)
+    " Kill the floaterm instance to prevent memory leakage.
+    exec 'FloatermKill tw'
     let path_and_heading = split(a:arg, "@")
     exec 'edit ' . path_and_heading[0]
     " Return, if the description is empty.
@@ -46,7 +48,11 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 " 21-06-15 Keeping the taskwarrior-tui instance running
 " leads to high nvim CPU usage. So we close it everytime.
 "nnoremap <silent> <Leader>tw :OpenTwTuiFloaterm<CR>
-nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
+" FIXME: --disposable leads to an issue that :bdelete does not work if the shortcut 1 is 
+" used to edit the notes of a task.
+" Workaround: Go without --disposable and always quit taskwarrior using 'q'.
+"nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
+nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask taskwarrior-tui<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
