@@ -67,6 +67,8 @@ report.next.sort=status-,wait+,priority-,project+
 ###############################
 uda.jira.type=string
 uda.jira.label=Jira-Task
+uda.oss.type=string
+uda.oss.label=OSS-Incident
 uda.user.type=string
 uda.user.label=Assignee
 uda.notes.type=string
