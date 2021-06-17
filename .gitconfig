@@ -14,3 +14,6 @@
         cmd = /opt/nvim.appimage
 [credential]
 	helper = store
+[user]
+	name = simachri
+	email = marvin.christe@posteo.de
