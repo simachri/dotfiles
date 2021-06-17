@@ -64,7 +64,8 @@ end
 -- Using lspcontainers to run the language servers, see
 -- https://github.com/lspcontainers/lspcontainers.nvim#supported-lsps
 -- The 'on_attach' is required to have the keymappings defined in the functions above.
--- Python
+
+-- Python: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#pyright
 nvim_lsp.pyright.setup {
   before_init = function(params)
     params.processId = vim.NIL
@@ -73,6 +74,14 @@ nvim_lsp.pyright.setup {
   -- cmd = require'lspcontainers'.command('pyright'),
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
+  settings = {
+    python = {
+      analysis = {
+        -- Allow relative imports of files in a subdirectory 'app'.
+        extraPaths = { "app" }
+      }
+    }
+  }
 }
 -- Golang
 nvim_lsp.gopls.setup {
