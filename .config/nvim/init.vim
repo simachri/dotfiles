@@ -79,14 +79,15 @@ Plug 'ferrine/md-img-paste.vim'
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
 
-" Telescope
+" The following plugins are required for other nvim plugins.
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+" Telescope
 Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
-" Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" File navigation/marks
+Plug 'ThePrimeagen/harpoon'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -119,6 +120,7 @@ luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
 luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
+luafile ~/.config/nvim/lua/plugin/harpoon.lua
 
 
 
