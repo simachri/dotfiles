@@ -1,6 +1,3 @@
-[user]
-	email = marvin.christe@posteo.de
-	name = xi3k
 [core]
         editor = /opt/nvim.appimage
 [alias]
@@ -15,3 +12,5 @@
         tool = vimdiff2
 [mergetool "vimdiff2"]
         cmd = /opt/nvim.appimage
+[credential]
+	helper = store
