@@ -87,7 +87,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " File navigation/marks
-Plug 'ThePrimeagen/harpoon'
+" Plug 'ThePrimeagen/harpoon'
+Plug 'rmagatti/auto-session'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
