@@ -4,15 +4,13 @@ task $1 modify note:X
 # Read the first eight chars of the UUID.
 fname=${1:0:8}
 fpath=~/.task/notes/$fname.md
-# Read the task description and use it as heading for the markdown file.
-description=$(task _get $1.description)
-description=${description// /_}
 # If the file already exists omit the description.
 # This is an indicator for the floaterm command.
 if [ -f "$fpath" ]; then
   # File exists.
   description=
 else
+  # Read the task description and use it as heading for the markdown file.
   description=$(task _get $1.description)
   description=${description// /_}
 fi
