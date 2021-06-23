@@ -121,7 +121,7 @@ luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
 luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
-luafile ~/.config/nvim/lua/plugin/harpoon.lua
+"luafile ~/.config/nvim/lua/plugin/harpoon.lua
 
 
 
