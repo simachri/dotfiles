@@ -333,6 +333,10 @@ set secure
 """""""""""""""""""""
 " Close current buffer
 nnoremap <C-w>d :bd<CR>
+" Close all buffers.
+" The :silent! is used to omit the error message when
+" terminals are running: E89
+nnoremap <silent> <C-w>c :silent! %bd<CR>
 " Close all buffers except for the current one.
 " The bd# at the end deletes the [No Name] empty buffer.
 " Source: https://stackoverflow.com/a/42071865
