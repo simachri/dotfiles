@@ -33,6 +33,7 @@ Plug 'voldikss/vim-floaterm'
 " Language server
 Plug 'neovim/nvim-lspconfig'
 Plug 'lspcontainers/lspcontainers.nvim'
+Plug 'onsails/lspkind-nvim'
 " Python formatter as pyright does not inlcude one.
 Plug 'sbdchd/neoformat'
 
@@ -122,6 +123,7 @@ luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
 "luafile ~/.config/nvim/lua/plugin/harpoon.lua
+luafile ~/.config/nvim/lua/plugin/auto-session.lua
 
 
 

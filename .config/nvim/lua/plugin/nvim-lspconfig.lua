@@ -112,4 +112,6 @@ nvim_lsp.sumneko_lua.setup {
   }
 }
 
-
+-- Initialize lsp-kind for symbbols
+-- https://github.com/onsails/lspkind-nvim
+require('lspkind').init()
