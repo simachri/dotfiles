@@ -49,9 +49,10 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP=project != Linode (status:pending or status:waiting)
+context.SAP=project != Linode and project != YT
 context.Private=project:Linode
 context.Done=stat:completed end:today
+context.YT=project:YT
 
 ##############################
 # Set columns for reports.
