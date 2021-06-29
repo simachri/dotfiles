@@ -55,12 +55,13 @@ context.Done=stat:completed end:today
 context.YT=project:YT
 
 ##############################
-# Set columns for reports.
+# Set up reports.
 ##############################
 # 'next'-report: This is the one used by taskwarrior-tui.
 report.next.columns=id,start.age,depends,priority,project,tags,user,recur,scheduled.countdown,until.remaining,wait.remaining,notes,description
 report.next.labels=ID,Active,Deps,P,Project,Tags,Assignee,Recur,S,Until,Waiting,Notes,Description
 report.next.sort=status-,wait+,priority-,project+
+report.next.filter=status:pending
 
 
 ###############################
