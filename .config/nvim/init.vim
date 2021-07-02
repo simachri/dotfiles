@@ -68,7 +68,7 @@ Plug 'tweekmonster/startuptime.vim'
 " Markdown
 Plug 'plasticboy/vim-markdown'
 " Use installation method when node.js and yarn is already installed.
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'jszakmeister/markdown2ctags'
 Plug 'ferrine/md-img-paste.vim'
 
@@ -689,7 +689,7 @@ nnoremap <Leader>ch ^xf`x0cw## <C-[>
 " Markdown preview
 " Use commands :MarkdownPreview and :MarkdownPreviewStop instead
 " nmap <Leader>p <Plug>MarkdownPreviewToggle
-" let g:mkdp_browser = 'qutebrowser'
+let g:mkdp_browser = 'brave'
 " For additional filetype settings regarding markdown see
 " ~/.vim/after/ftplugin/markdown.vim
 
