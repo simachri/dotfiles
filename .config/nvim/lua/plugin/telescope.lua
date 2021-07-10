@@ -86,6 +86,7 @@ function grep_prompt()
   require('telescope.builtin').grep_string {
     shorten_path = false,
     search = vim.fn.input("Find: "),
+    search_dirs = { vim.api.nvim_eval("getcwd()") }
   }
 end
 
