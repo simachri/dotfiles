@@ -1,3 +1,33 @@
+-- https://github.com/crispgm/nvim-go
+-- Defaults see further below.
+require('go').setup{
+    -- auto commands
+    auto_format = true,
+    auto_lint = true,
+    -- linters: golint, errcheck, staticcheck, golangci-lint
+    linter = 'golint',
+    -- lint_prompt_style: qf (quickfix), vt (virtual text)
+    lint_prompt_style = 'qf',
+    -- formatter: goimports, gofmt, gofumpt
+    formatter = 'goimports',
+    -- test flags: -count=1 will disable cache
+    test_flags = {'-v'},
+    test_timeout = '30s',
+    test_env = {},
+    -- show test result with popup window
+    test_popup = true,
+    popup_width = 80,
+    popup_height = 10,
+    -- struct tags
+    tags_name = 'json',
+    tags_options = {'json=omitempty'},
+    tags_transform = 'snakecase',
+    tags_flags = {'-skip-unexported'},
+    -- quick type
+    quick_type_flags = {'--just-types'},
+}
+
+
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
 

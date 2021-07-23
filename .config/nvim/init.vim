@@ -97,6 +97,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " 21-05-13: Removed in favour of native lsp.
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sebdah/vim-delve'
+Plug 'crispgm/nvim-go'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
