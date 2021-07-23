@@ -107,10 +107,6 @@ Plug 'famiu/nvim-reload'
 " Show marks and registers content.
 Plug 'folke/which-key.nvim'
 
-" Fix copy/paste to/from system clipboard.
-" Plugin is obosolete once this issue has been fixed: https://github.com/neovim/neovim/issues/1822
-Plug 'lambdalisue/pastefix.vim'
-
 call plug#end()
 
 luafile ~/.config/nvim/lua/plugin/bufferline.lua
