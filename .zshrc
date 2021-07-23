@@ -153,7 +153,8 @@ x11-clip-wrap-widgets paste  $paste_widgets
 path+=('/home/xi3k/.local/bin')
 # ~/node_modules/.bin locally installed Node modules.
 path+=('/home/xi3k/node_modules/.bin')
-# Pyright server
+# Golang binaires
+path+=('/home/xi3k/go/bin')
 export PATH
 
 # Pipenv: Create environment in local project directory.
