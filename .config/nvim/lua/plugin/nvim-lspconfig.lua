@@ -115,7 +115,8 @@ nvim_lsp.pyright.setup {
 }
 -- Golang
 nvim_lsp.gopls.setup {
-  cmd = require'lspcontainers'.command('gopls'),
+  -- Do not use lspcontainers as it does not yet work with Go modules (21-07-25).
+  --cmd = require'lspcontainers'.command('gopls'),
   on_attach = on_attach,
 }
 -- Docker
