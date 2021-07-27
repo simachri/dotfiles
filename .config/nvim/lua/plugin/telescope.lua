@@ -35,7 +35,6 @@ require('telescope').setup{
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = false,
     winblend = 0,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -84,7 +83,6 @@ require('telescope').load_extension('fzf')
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function grep_prompt()
   require('telescope.builtin').grep_string {
-    shorten_path = false,
     search = vim.fn.input("Find: "),
     search_dirs = { vim.api.nvim_eval("getcwd()") }
   }
@@ -94,7 +92,6 @@ end
 function find_config()
   require('telescope.builtin').find_files {
     prompt_title = "Find config files",
-    shorten_path = false,
     file_ignore_patterns = { "plugged", "lain", "themes", "freedesktop" },
     -- Multiple search directories can be used:
     -- https://github.com/errx/telescope.nvim/commit/cf8ec44a4299a26adbd4bdcd01e60271f1fef9d5
@@ -114,7 +111,6 @@ function curbuf()
     winblend = 10,
     border = true,
     previewer = false,
-    shorten_path = false,
 
     -- layout_strategy = 'current_buffer',
   }
@@ -124,14 +120,12 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
   require('telescope.builtin').buffers {
-    shorten_path = false,
   }
 end
 
 function grep_md_anchor_refs()
   opts = {}
 
-  opts.shorten_path = true
   -- We have to omit the leading ( as the anchor might be part of a longer URL.
   opts.search = "#" .. vim.fn.expand("<cword>") .. ")"
   opts.prompt_title = "Find anchor references"
@@ -158,7 +152,6 @@ function currbufftags()
     winblend = 10,
     border = true,
     previewer = false,
-    shorten_path = false,
   }
   require('telescope.builtin').current_buffer_tags(opts)
 end
@@ -168,7 +161,6 @@ function outline()
     winblend = 10,
     border = true,
     previewer = false,
-    shorten_path = false,
   }
   require('telescope.builtin').treesitter(opts)
 end
