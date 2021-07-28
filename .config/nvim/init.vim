@@ -328,6 +328,9 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" Quickfix window: Make <C-v> open the selected item in a vertical split.
+" Source: https://stackoverflow.com/a/16743676
+autocmd! FileType qf nnoremap <buffer> <C-v> <C-w><Enter><C-w>L
 " Close current buffer
 nnoremap <C-w>d :bd<CR>
 " Close all buffers.
