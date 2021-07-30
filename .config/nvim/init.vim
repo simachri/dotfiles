@@ -328,6 +328,14 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" Undo breakpoints
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+" Jumplist mutations when doing relative movement of more than five lines.
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 " Quickfix window: Make <C-v> open the selected item in a vertical split.
 " Source: https://stackoverflow.com/a/16743676
 autocmd! FileType qf nnoremap <buffer> <C-v> <C-w><Enter><C-w>L
