@@ -281,8 +281,8 @@ set number relativenumber
 """"""""""""
 " Do not keep the last search result highlighted.
 set nohlsearch
-" Highligh search by default.
-set hlsearch
+"" Highligh search by default.
+""set hlsearch
 " 'Toggle highlighted' search results
 nnoremap <silent> <Leader>th :set hlsearch!<CR>
 set incsearch
@@ -336,6 +336,9 @@ inoremap ? ?<c-g>u
 " Jumplist mutations when doing relative movement of more than five lines.
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+" Keep the screen centered when using n & N for cycling through search results.
+nnoremap n nzz
+nnoremap N Nzz
 " Quickfix window: Make <C-v> open the selected item in a vertical split.
 " Source: https://stackoverflow.com/a/16743676
 autocmd! FileType qf nnoremap <buffer> <C-v> <C-w><Enter><C-w>L
