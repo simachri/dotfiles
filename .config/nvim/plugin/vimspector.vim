@@ -1,7 +1,7 @@
 " Example configuration: https://github.com/puremourning/vimspector/blob/master/support/custom_ui_vimrc
 " setup boilerplate to make this file usable with vim -Nu <tihs file> {{{
 
-let g:vimspector_install_gadgets = [ 'debugpy' ]
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-go' ]
 
 function! s:SwitchConsoleToStdErr()
   execute 'VimspectorShowOutput stderr'
