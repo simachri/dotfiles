@@ -7,10 +7,14 @@ let g:floaterm_height = 0.9
 let g:floaterm_opener = 'edit'
 
 " Toggle terminal
-nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
+nnoremap <silent> <Leader>tt :FloatermToggle<CR>
+" New/additional terminal
+nnoremap <silent> <Leader>tn :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
 tnoremap <silent> <C-d> <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <C-S-d> <C-\><C-n>:FloatermKill!<CR>
+" Cycle through open terminals
+tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
 
 " Open lazygit
 " --disposable: Prevents memory leakage.
