@@ -16,8 +16,8 @@ require('go').setup{
     test_env = {},
     -- show test result with popup window
     test_popup = true,
-    popup_width = 100,
-    popup_height = 200,
+    test_popup_width = 100,
+    test_popup_height = 200,
     -- struct tags
     tags_name = 'json',
     tags_options = {'json=omitempty'},
