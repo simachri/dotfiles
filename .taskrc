@@ -50,8 +50,9 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP=project != Linode
+context.SAP=project != Linode and project != Notes
 context.Development=project:Linode
+context.Wiki=project:Wiki
 context.Done=stat:completed end:today
 
 ###############################
