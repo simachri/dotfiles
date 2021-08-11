@@ -4,8 +4,8 @@ require('go').setup{
     -- auto commands
     auto_format = true,
     auto_lint = true,
-    -- linters: golint, errcheck, staticcheck, golangci-lint
-    linter = 'golint',
+    -- linters: revive, errcheck, staticcheck, golangci-lint
+    linter = 'revive',
     -- lint_prompt_style: qf (quickfix), vt (virtual text)
     lint_prompt_style = 'qf',
     -- formatter: goimports, gofmt, gofumpt
