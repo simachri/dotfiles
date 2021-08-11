@@ -191,9 +191,11 @@ augroup END
 colorscheme solarized-flat
 
 set clipboard+=unnamedplus
-" Yank to asterisk/star register.
-nnoremap <silent> <leader>y "*y
-vnoremap <silent> <leader>y "*y
+" Put the last yank explicitely into xclip when normal yanking did not work in VMware 
+" host's clipboard has not been updated.
+nnoremap <silent> <leader>y :call system('xclip', @+)<CR>
+"nnoremap <silent> <leader>y "*y
+"vnoremap <silent> <leader>y "*y
 "" 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
 "let g:clipboard = {
 "  \   'name': 'xclip',
