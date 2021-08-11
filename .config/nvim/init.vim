@@ -221,7 +221,7 @@ augroup MY_VIMRC
   autocmd GUIEnter * set visualbell t_vb=
 augroup END
 " Set spell checking language
-" set spelllang=en,de_19
+set spelllang=en,de
 set nospell
 " Enable the creation of new buffers without the restriction
 " to save the currently open buffer
@@ -330,6 +330,8 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" Toggle spellchecking
+nnoremap <leader>ts :setlocal spell!<CR>
 " Undo breakpoints
 inoremap , ,<c-g>u
 inoremap . .<c-g>u

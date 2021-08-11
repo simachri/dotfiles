@@ -196,3 +196,6 @@ vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin
 -- LSP
 -- <leader>la - LSP actions
 vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>]], { noremap = true, silent = true })
+
+-- Find spellcheck proposals.
+vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
