@@ -117,19 +117,26 @@ ls.snippets = {
                         -- For each directory level above the current file
                         -- add ../ to the result path.
                         local result = ""
-                        for currIdx = branchIdx + 1, #currFilePathElems do
-                          --vim.api.nvim_echo({{"currIdx is "..currIdx, "WarningMsg"}}, true, {}) -- default {history = true}
-                          result = result .. "../"
+                        local relPath = ""
+                        -- If the destination anchor is in the current file, no
+                        -- paths need to be adjusted. That is, only do something if the
+                        -- destination anchor is in a different file (strip the file
+                        -- extension!).
+                        if destPath ~= vim.api.nvim_eval("expand('%:r')") then
+                          for currIdx = branchIdx + 1, #currFilePathElems do
+                            --vim.api.nvim_echo({{"currIdx is "..currIdx, "WarningMsg"}}, true, {}) -- default {history = true}
+                            relPath = relPath .. "../"
+                          end
+                          -- Add each directory level of the destination file.
+                          for destIdx = branchIdx + 1, #destPathElems do
+                            --vim.api.nvim_echo({{"destIdx is "..destIdx, "WarningMsg"}}, true, {}) -- default {history = true}
+                            relPath = relPath .. destPathElems[destIdx] .. "/"
+                          end
+                          -- Remove the trailing slash.
+                          if relPath:sub(-1) == "/" then relPath = relPath:sub(1,-2) end
                         end
-                        -- Add each directory level of the destination file.
-                        for destIdx = branchIdx + 1, #destPathElems do
-                          --vim.api.nvim_echo({{"destIdx is "..destIdx, "WarningMsg"}}, true, {}) -- default {history = true}
-                          result = result .. destPathElems[destIdx] .. "/"
-                        end
-                        -- Remove the trailing slash.
-                        if result:sub(-1) == "/" then result = result:sub(1,-2) end
                         -- Add the anchor.
-                        result = result .. "#" .. anchor
+                        result = relPath .. "#" .. anchor
                         return {result}
                       end, {}),
 
