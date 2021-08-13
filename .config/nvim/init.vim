@@ -420,9 +420,10 @@ vnoremap <Leader>f :!tidy -xml -q -i --show-errors 0 --indent-attributes 1 -<CR>
 " nnoremap k :m .-2<CR>==
 " vnoremap j :m '>+1<CR>gv=gv
 " vnoremap k :m '<-2<CR>gv=gv
-" Align all visually selected lines at the given character
-" Note: A pipe | needs to be escaped, that is, \|
-vnoremap <Leader>df :Tabularize/
+" Align all visually selected lines at the given character ("reformat: align")
+" :Tablularize /<char to be used as alignmend>
+" Note: A pipe | needs NOT to be escaped.
+vnoremap <Leader>ra :Tabularize /
 " Remap the q: (command history) for the use with FZF
 nnoremap q: :History:<CR>
 " Remap the q/ (search history) for the use with FZF
