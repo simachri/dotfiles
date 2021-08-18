@@ -158,6 +158,16 @@ function currbufftags()
   require('telescope.builtin').current_buffer_tags(opts)
 end
 
+
+function search_currbuf_contents()
+  local opts = themes.get_dropdown {
+    winblend = 10,
+    border = true,
+    previewer = false,
+  }
+  require('telescope.builtin').current_buffer_fuzzy_find(opts)
+end
+
 function outline()
   local opts = themes.get_dropdown {
     winblend = 10,
@@ -192,6 +202,8 @@ vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua buffers()<cr>]], { noremap
 vim.api.nvim_set_keymap('n', '<leader>fo', [[<cmd>lua outline()<cr>]], { noremap = true, silent = true })
 -- Explorer/file browser
 vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true })
+-- Buffer fuzzy find: Headers
+vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
 
 -- LSP
 -- <leader>la - LSP actions
