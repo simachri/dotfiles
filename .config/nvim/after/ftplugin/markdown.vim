@@ -57,8 +57,20 @@ au BufEnter *.md setlocal foldmethod=expr
 " "Find header", previously "Find tags"
 noremap <buffer> <Leader>fh :TagbarOpenAutoClose<CR>
 " "Toggle checkbox ([Jack]box :))"
-function! ToggleCb()
+function! ToggleCb(option)
   let currLineText = getline(".")
+  " If an option is given, evaluate it directly.
+  if a:option == "done"
+    call setline(".", substitute(currLineText, "- [.*\\]", "- [X]", ""))
+    return
+  elseif a:option == "open"
+    call setline(".", substitute(currLineText, "- [.*\\]", "- [ ]", ""))
+    return
+  elseif a:option == "up"
+    call setline(".", substitute(currLineText, "- [.*\\]", "- [^]", ""))
+    return
+  endif
+
   " If checkbox is empty: Check it.
   let replacedText = substitute(currLineText, "- [ \\]", "- [X]", "")
   if currLineText != replacedText
@@ -66,6 +78,7 @@ function! ToggleCb()
     call setline(".", replacedText)
     return
   endif
+
   " If checkbox is checked: Set to invalid.
   let replacedText = substitute(currLineText, "- [X\\]", "- [-]", "")
   if currLineText != replacedText
@@ -73,6 +86,7 @@ function! ToggleCb()
     call setline(".", replacedText)
     return
   endif
+
   " If checkbox is invalid: Set to follow-up.
   let replacedText = substitute(currLineText, "- [-\\]", "- [^]", "")
   if currLineText != replacedText
@@ -80,6 +94,7 @@ function! ToggleCb()
     call setline(".", replacedText)
     return
   endif
+
   " If checkbox is set to follow-up: Clear it.
   let replacedText = substitute(currLineText, "- [^\\]", "- [ ]", "")
   if currLineText != replacedText
@@ -87,8 +102,15 @@ function! ToggleCb()
     call setline(".", replacedText)
     return
   endif
+
   " No checkbox available yet. Add one.
   normal I- [ ] 
 endfunction
-command ToggleCheckBox call ToggleCb()
-nnoremap <buffer> <silent> <Leader>tj :ToggleCheckBox<CR>
+command ToggleCheckBox call ToggleCb('')
+command SetCheckBoxDone call ToggleCb('done')
+command SetCheckBoxOpen call ToggleCb('open')
+command SetCheckBoxUp call ToggleCb('up')
+nnoremap <buffer> <silent> <Leader>tjn :ToggleCheckBox<CR>
+nnoremap <buffer> <silent> <Leader>tjd :SetCheckBoxDone<CR>
+nnoremap <buffer> <silent> <Leader>tjo :SetCheckBoxOpen<CR>
+nnoremap <buffer> <silent> <Leader>tju :SetCheckBoxUp<CR>
