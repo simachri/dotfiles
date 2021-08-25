@@ -120,6 +120,7 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
   require('telescope.builtin').buffers {
+    sort_lastused = true,
   }
 end
 
@@ -187,7 +188,8 @@ vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua search_all_files()<cr>]], 
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { noremap = true, silent = true })
 
 -- Grep
-vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], { noremap = true, silent = true })
 -- Grep word under cursor
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
 -- Grep markdown anchor references
