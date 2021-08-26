@@ -50,10 +50,10 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP=project != Linode and project != Notes
+context.SAP=project != Linode and project != Wiki
 context.Development=project:Linode
 context.Wiki=project:Wiki
-context.Done=stat:completed end:today
+#context.Done=stat:completed end:today
 
 ###############################
 # UDA - use defined attributes
