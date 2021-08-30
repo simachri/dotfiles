@@ -193,7 +193,7 @@ colorscheme solarized-flat
 set clipboard+=unnamedplus
 " Put the last yank explicitely into xclip when normal yanking did not work in VMware 
 " host's clipboard has not been updated.
-nnoremap <silent> <leader>y :call system('xclip', @+)<CR>
+nnoremap <silent> <leader>yy :call system('xclip', @+)<CR>
 "nnoremap <silent> <leader>y "*y
 "vnoremap <silent> <leader>y "*y
 "" 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
@@ -401,10 +401,10 @@ nnoremap <silent> <Leader>s :update!<CR>
 " Switch to next and previous buffer.
 nnoremap <C-H> :bp<CR>
 nnoremap <C-L> :bn<CR>
-" 'Get path': Yank the full filepath into the clipboard.
-nnoremap <Leader>gp :let @+=expand('%:p')<CR>
-" 'Get CWD': Yank the current working directory into the clipboard.
-nnoremap <Leader>gc :let @+=getcwd()<CR>
+" 'Yank path': Yank the full filepath into the clipboard.
+nnoremap <Leader>yp :let @+=expand('%:p')<CR>
+" 'Yank CWD': Yank the current working directory into the clipboard.
+nnoremap <Leader>yc :let @+=getcwd()<CR>
 " For XML files use a specific formatter for
 " gg=G  (format everything)
 " " Requires 'xmllint' (sudo apt-get install libxml2-utils)
