@@ -4,11 +4,9 @@ require'bufferline'.setup{
     -- view = "multiwindow" | "default",
     view = "default",
     -- numbers = "none" | "ordinal" | "buffer_id",
-    numbers = "none",
-    -- number_style = "superscript" | "",
-    number_style = "",
-    -- mappings = true | false,
-    mappings = false,
+    numbers = function(opts)
+                return ""
+              end,
     -- buffer_close_icon= '',
     buffer_close_icon= '',
     modified_icon = '●',
