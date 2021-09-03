@@ -258,12 +258,12 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
         if cl.name == term_name then cl:jump_to() return end
       end
     end
-    awful.spawn("kitty --title " .. term_name .. " --directory " .. dir ..
-                " --single-instance" ..
+    awful.spawn("kitty --title " .. term_name .. " --directory " .. dir
+                --.. " --single-instance"
                 -- Listen for incoming commands. This is required for being able to
                 -- receive commands from awful.spawn.shell. Otherwise, only commands from other kitty
                 -- terminals are received.
-                " --listen-on unix:@kittyIn",
+                .. " --listen-on unix:@kitty_" .. term_name,
                 { tag = tag_name,
                   switch_to_tags = true,
                   --placement = awful.placement.stretch(client.focus, {honor_workarea=true}),
@@ -277,8 +277,10 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
                           --text = cmd .. " " .. term_name
                       --}
                       -- Start Command, \x0D is "carriage return".
-                      awful.spawn.with_shell("kitty @ --to unix:@kittyIn send-text --match title:" .. term_name .. " " ..
-                        cmd .. "\x0D")
+                      awful.spawn.with_shell("kitty @ --to unix:@kitty_" .. term_name .. " send-text "
+                                             .. "--match title:" .. term_name
+                                             .. " " ..
+                                             cmd .. "\x0D")
                     end
                   end,
                 })
