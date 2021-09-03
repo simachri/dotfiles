@@ -278,7 +278,7 @@ local function new_terminal(term_name, tag_name, dir, switch_if_exists, placemen
                       --}
                       -- Start Command, \x0D is "carriage return".
                       awful.spawn.with_shell("kitty @ --to unix:@kitty_" .. term_name .. " send-text "
-                                             .. "--match title:" .. term_name
+                                             --.. "--match title:" .. term_name
                                              .. " " ..
                                              cmd .. "\x0D")
                     end
