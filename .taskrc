@@ -50,9 +50,10 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP=project != Linode and project != Wiki
+context.SAP=project != Linode and project != Wiki and project != CL
 context.Development=project:Linode
 context.Wiki=project:Wiki
+context.CocoLife=project:CL
 #context.Done=stat:completed end:today
 
 ###############################
@@ -107,4 +108,4 @@ urgency.user.project.Zeiterfassung.coefficient=-7.0 # assigned to project:"Zeite
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
 ##############################
 uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file
-context=SAP
+context=CocoLife
