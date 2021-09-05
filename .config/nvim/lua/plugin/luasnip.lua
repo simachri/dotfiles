@@ -81,6 +81,9 @@ ls.snippets = {
                         local destPath = vim.api.nvim_eval("@x")
                         local currFileParentDirPath = vim.api.nvim_eval("expand('%:h')")
                         local anchor = vim.api.nvim_eval("@y")
+                        local function starts_with(entireStr, startStr)
+                            return entireStr:sub(1,#startStr) == startStr
+                        end
                         -- Example:
                         -- destPath = SAP/ECTR/Documents/Solutions
                         -- currFileParentDirPath = SAP/ECTR/CAD/Cloning/API
@@ -89,7 +92,10 @@ ls.snippets = {
                         --vim.api.nvim_echo({{destPath, "WarningMsg"}}, true, {}) -- default {history = true}
                         --vim.api.nvim_echo({{currFileParentDirPath, "WarningMsg"}}, true, {}) -- default {history = true}
 
-                        -- Split the paths into their directories.
+                        -- Remove any leading './'
+                        if starts_with(destPath, './') then destPath = string.sub(destPath, 3, #destPath) end
+                        if starts_with(currFileParentDirPath, './') then currFileParentDirPath = string.sub(currFileParentDirPath, 3, #currFileParentDirPath) end
+                         -- Split the paths into their directories.
                         local destPathElems = splitPath(destPath)
                         local currFilePathElems = splitPath(currFileParentDirPath)
                         -- Identify the first elements of the path that are identical.
