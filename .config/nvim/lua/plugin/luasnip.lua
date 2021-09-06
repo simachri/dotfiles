@@ -95,6 +95,7 @@ ls.snippets = {
                         -- Remove any leading './'
                         if starts_with(destPath, './') then destPath = string.sub(destPath, 3, #destPath) end
                         if starts_with(currFileParentDirPath, './') then currFileParentDirPath = string.sub(currFileParentDirPath, 3, #currFileParentDirPath) end
+
                          -- Split the paths into their directories.
                         local destPathElems = splitPath(destPath)
                         local currFilePathElems = splitPath(currFileParentDirPath)
@@ -114,7 +115,9 @@ ls.snippets = {
                         --vim.api.nvim_echo({{"branchIdx is "..branchIdx, "WarningMsg"}}, true, {}) -- default {history = true}
 
                         -- When there are no identical elements, set the branchIdx to 1.
-                        if branchIdx == 0 then branchIdx = 1 end
+                        -- Fix: Don't do this as it will break cases when there is no
+                        -- common root branch.
+                        -- if branchIdx == 0 then branchIdx = 1 end
 
                         --vim.api.nvim_echo({{"branchIdx is "..branchIdx, "WarningMsg"}}, true, {}) -- default {history = true}
                         --vim.api.nvim_echo({{"Length of currFilePathElems is "..#currFilePathElems, "WarningMsg"}}, true, {}) -- default {history = true}
