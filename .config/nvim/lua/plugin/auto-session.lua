@@ -3,12 +3,12 @@
 -- a 'bwipe 1' error when restoring a session.
 vim.api.nvim_set_keymap("n", "<Leader>rs", "<cmd>silent! RestoreSession<CR>", {})
 local opts = {
-  log_level = 'info',
+  log_level = 'error',
   auto_session_enable_last_session = false,
   auto_session_root_dir = "/home/xi3k/.config/nvim/sessions/",
   auto_session_enabled = true,
   auto_save_enabled = true,
-  auto_restore_enabled = false,
+  auto_restore_enabled = true,
   auto_session_suppress_dirs = nil
 }
 require('auto-session').setup(opts)
