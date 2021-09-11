@@ -50,6 +50,8 @@ fi
 
 # Set keymap to German.
 setxkbmap de nodeadkeys
+# Activate numlock
+numlockx &
 # Disable the bell.
 xset b off
 # Set keyboard delay and repeat rate.
