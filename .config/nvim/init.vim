@@ -36,6 +36,9 @@ Plug 'lspcontainers/lspcontainers.nvim'
 Plug 'onsails/lspkind-nvim'
 " Python formatter as pyright does not inlcude one.
 Plug 'sbdchd/neoformat'
+" TypeScript
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'
