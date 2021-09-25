@@ -187,7 +187,7 @@ gls.right[3] = {
     condition = condition.check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.violet,colors.bg,'bold'},
+    highlight = {colors.fg,colors.bg,'bold'},
   }
 }
 
@@ -195,7 +195,7 @@ gls.right[4] = {
   GitBranch = {
     provider = 'GitBranch',
     condition = condition.check_git_workspace,
-    highlight = {colors.violet,colors.bg,'bold'},
+    highlight = {colors.fg,colors.bg,'bold'},
   }
 }
 
@@ -204,7 +204,7 @@ gls.right[5] = {
     provider = 'DiffAdd',
     condition = condition.hide_in_width,
     icon = '  ',
-    highlight = {colors.green,colors.bg},
+    highlight = {colors.fg,colors.bg},
   }
 }
 gls.right[6] = {
@@ -212,7 +212,7 @@ gls.right[6] = {
     provider = 'DiffModified',
     condition = condition.hide_in_width,
     icon = ' 柳',
-    highlight = {colors.orange,colors.bg},
+    highlight = {colors.fg,colors.bg},
   }
 }
 gls.right[7] = {
@@ -220,7 +220,7 @@ gls.right[7] = {
     provider = 'DiffRemove',
     condition = condition.hide_in_width,
     icon = '  ',
-    highlight = {colors.red,colors.bg},
+    highlight = {colors.fg,colors.bg},
   }
 }
 
