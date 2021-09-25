@@ -120,7 +120,7 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
   require('telescope.builtin').buffers {
-    sort_lastused = true,
+    sort_lastused = false,
   }
 end
 
