@@ -2,7 +2,7 @@
 -- Defaults see further below.
 require('go').setup{
     -- auto commands
-    auto_format = true,
+    auto_format = false,
     auto_lint = true,
     -- linters: revive, errcheck, staticcheck, golangci-lint
     linter = 'revive',
