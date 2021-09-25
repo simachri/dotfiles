@@ -33,8 +33,10 @@ augroup END
 " Debugger remaps
 nnoremap <leader>m :MaximizerToggle!<CR>
 nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dr :call vimspector#LaunchWithSettings( #{ configuration: 'run' } )<CR>
+nnoremap <leader>dt :call vimspector#LaunchWithSettings( #{ configuration: 'test' } )<CR>
 nnoremap <leader>dc :call win_gotoid(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call win_gotoid(g:vimspector_session_windows.tagpage)<CR>
+" nnoremap <leader>dt :call win_gotoid(g:vimspector_session_windows.tagpage)<CR>
 nnoremap <leader>dv :call win_gotoid(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>dw :call win_gotoid(g:vimspector_session_windows.watches)<CR>
 nnoremap <leader>ds :call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>
