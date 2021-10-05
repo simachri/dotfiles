@@ -1,0 +1,1 @@
+/home/xi3k/.config/zsh/.zprezto/runcoms/zshenv
