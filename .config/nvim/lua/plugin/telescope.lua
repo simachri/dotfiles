@@ -92,8 +92,8 @@ end
 function find_config()
   require('telescope.builtin').find_files {
     prompt_title = "Find config files",
-    file_ignore_patterns = { "plugged", "lain", "themes", "freedesktop", ".zprezto" },
-    follow = true,
+    file_ignore_patterns = { "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
+    follow = false,
     hidden = true,
     -- Multiple search directories can be used:
     -- https://github.com/errx/telescope.nvim/commit/cf8ec44a4299a26adbd4bdcd01e60271f1fef9d5
