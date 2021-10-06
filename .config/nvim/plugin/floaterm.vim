@@ -64,5 +64,7 @@ nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenT
 augroup floatermHooks
   au!
   "au User FloatermOpen nmap <buffer><silent> gf echo("hello")
+  " Automatically launch a terminal in the background when Vim is started.
+  autocmd VimEnter * FloatermNew --silent
 augroup END
 
