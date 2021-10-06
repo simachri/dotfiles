@@ -46,6 +46,7 @@ function backup_journal() {
 alias backup_journal=backup_journal
 alias update='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && zprezto-update'
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias ws='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
 
 # Custom key bindings
 # Accept the autosuggestion: <Ctrl-n>
