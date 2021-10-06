@@ -1,0 +1,14 @@
+# /home/xi3k/.config/tmuxinator/wiki.yml
+
+name: workspace
+root: ~/
+
+windows:
+  - wiki: cd ~/wiki && nvim
+  - sap: cd ~/SAP && nvim
+  - dev:
+      layout: ebc9,272x47,0,0{114x47,0,0,1,157x47,115,0,4}
+      panes:
+        - cd ~/Development && ls
+        - cd ~/Development && nvim Project_Ideas.md
+  - journal: cd ~/Journal && ls
