@@ -103,6 +103,7 @@ function find_config()
                     "~/.config/taskwarrior-tui",
                     "~/.config/nnn",
                     "~/.config/zsh",
+                    "~/.config/tmux",
                     "~/.config/lazygit" }
     --cwd = "~/.config/nvim",
   }
