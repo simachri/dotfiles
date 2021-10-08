@@ -7,7 +7,7 @@ let g:floaterm_height = 0.9
 let g:floaterm_opener = 'edit'
 
 " Toggle terminal
-nnoremap <silent> <Leader>tt :FloatermToggle<CR>
+nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
 " New/additional terminal
 nnoremap <silent> <Leader>tn :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
@@ -56,7 +56,9 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 " used to edit the notes of a task.
 " Workaround: Go without --disposable and always quit taskwarrior using 'q'.
 "nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
-nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask taskwarrior-tui<CR>
+" 21-10-8: Temporarily use the commandline taskwarrior until tui is fixed.
+"nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask taskwarrior-tui<CR>
+nnoremap <silent> <Leader>tw :FloatermSend! --name=tw clear && task next user:<CR>:FloatermToggle tw<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
@@ -65,6 +67,7 @@ augroup floatermHooks
   au!
   "au User FloatermOpen nmap <buffer><silent> gf echo("hello")
   " Automatically launch a terminal in the background when Vim is started.
-  autocmd VimEnter * FloatermNew --silent
+  autocmd VimEnter * FloatermNew --name=zsh --title=zsh --silent
+  autocmd VimEnter * FloatermNew --name=tw --title=Taskwarrior --silent
 augroup END
 
