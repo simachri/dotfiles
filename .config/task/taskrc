@@ -10,6 +10,8 @@
 
 # Use the command 'task show' to see all defaults and overrides
 
+news.version=2.6.0
+
 # Files
 data.location=~/.task
 
@@ -50,10 +52,14 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP=project != Linode and project != Wiki and project != CL
-context.Development=project:Linode
-context.Wiki=project:Wiki
-context.CocoLife=project:CL
+context.SAP.write=project != Linode and project != Wiki and project != CL
+context.SAP.read=project != Linode and project != Wiki and project != CL
+context.Development.read=project:Linode
+context.Development.write=project:Linode
+context.Wiki.read=project:Wiki
+context.Wiki.write=project:Wiki
+context.CocoLife.read=project:CL
+context.CocoLife.write=project:CL
 #context.Done=stat:completed end:today
 
 ###############################
@@ -104,8 +110,12 @@ urgency.user.project.Zeiterfassung.coefficient=-7.0 # assigned to project:"Zeite
 
 
 ##############################
+# taskwarrior-tui
+##############################
+# Set default report to be shown
+# https://github.com/kdheepak/taskwarrior-tui/blob/main/docs/configuration/advanced.md
+# uda.taskwarrior-tui.task-report.next.filter=$(task show report.next.filter)
 # Custom commands
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
-##############################
 uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file
-context=Development
+context=SAP
