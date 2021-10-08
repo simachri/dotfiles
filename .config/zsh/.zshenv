@@ -15,6 +15,8 @@ fi
 export VISUAL="/opt/nvim.appimage"
 export EDITOR="/opt/nvim.appimage"
 # Add to path:
+# Only keep the first occurrence of each duplicated value. https://superuser.com/a/598924
+typeset -U path
 # ~/.local/bin contains locally installed Python modules. The most prominent one is 
 path+=('/home/xi3k/.local/bin')
 # ~/node_modules/.bin locally installed Node modules.
