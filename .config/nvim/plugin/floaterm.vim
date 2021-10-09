@@ -18,7 +18,7 @@ tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
 
 " Open lazygit
 " --disposable: Prevents memory leakage.
-nnoremap <silent> <Leader>lg :FloatermNew --autoclose=2 --name=lazygit --disposable lazygit<CR>
+" nnoremap <silent> <Leader>lg :FloatermNew --autoclose=2 --name=lazygit --disposable lazygit<CR>
 
 " Open taskwarrior-tui
 " --disposable: Prevents memory leakage.
