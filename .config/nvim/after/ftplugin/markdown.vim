@@ -110,7 +110,7 @@ command ToggleCheckBox call ToggleCb('')
 command SetCheckBoxDone call ToggleCb('done')
 command SetCheckBoxOpen call ToggleCb('open')
 command SetCheckBoxUp call ToggleCb('up')
-nnoremap <buffer> <silent> <Leader>tjn :ToggleCheckBox<CR>
-nnoremap <buffer> <silent> <Leader>tjd :SetCheckBoxDone<CR>
-nnoremap <buffer> <silent> <Leader>tjo :SetCheckBoxOpen<CR>
-nnoremap <buffer> <silent> <Leader>tju :SetCheckBoxUp<CR>
+nnoremap <buffer> <silent> <Leader>jn :ToggleCheckBox<CR>
+nnoremap <buffer> <silent> <Leader>jd :SetCheckBoxDone<CR>
+nnoremap <buffer> <silent> <Leader>jo :SetCheckBoxOpen<CR>
+nnoremap <buffer> <silent> <Leader>ju :SetCheckBoxUp<CR>
