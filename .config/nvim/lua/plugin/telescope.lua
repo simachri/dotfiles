@@ -83,8 +83,18 @@ require('telescope').load_extension('fzf')
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function grep_prompt()
   require('telescope.builtin').grep_string {
-    search = vim.fn.input("Find: "),
-    search_dirs = { vim.api.nvim_eval("getcwd()") }
+    search = vim.fn.input("Grep (including hidden): "),
+    search_dirs = { vim.api.nvim_eval("getcwd()") },
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+    },
   }
 end
 
