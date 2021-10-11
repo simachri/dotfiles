@@ -24,6 +24,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=29'
 
 # Aliases
 # alias nvim=/opt/nvim.appimage
+alias tw="clear && task next user:"
 # NNN file manager. The n () function is defined further below.
 # -P p: Start plugin preview-tui on nnn startup.
 # -a: Auto NNN_FIFO
