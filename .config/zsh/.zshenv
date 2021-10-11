@@ -10,10 +10,6 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-# Set nvim as the default editor.
-# https://unix.stackexchange.com/a/4861
-export VISUAL="nvim"
-export EDITOR="nvim"
 # Add to path:
 # Only keep the first occurrence of each duplicated value. https://superuser.com/a/598924
 typeset -U path
@@ -43,35 +39,6 @@ export LC_COLLATE="C"
 # https://github.com/jarun/nnn/wiki/Themes
 BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
-# cd into the current directory when leaving nnn.
-# https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
 ## FZF
 # 21-10-04: Is done in .zpreztorc
 ## --files: List files that would be searched but do not search

@@ -24,8 +24,8 @@ fi
 
 # Set nvim as the default editor.
 # https://unix.stackexchange.com/a/4861
-export VISUAL="/opt/nvim.appimage"
-export EDITOR="/opt/nvim.appimage"
+export VISUAL="nvim"
+export EDITOR="nvim"
 export PAGER='less'
 
 #

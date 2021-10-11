@@ -25,7 +25,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=29'
 # Aliases
 # alias nvim=/opt/nvim.appimage
 alias tw="clear && task next user:"
-# NNN file manager. The n () function is defined further below.
+alias vim=nvim
+# NNN file manager.
 # -P p: Start plugin preview-tui on nnn startup.
 # -a: Auto NNN_FIFO
 # -o: Open files only on enter
@@ -33,6 +34,8 @@ alias tw="clear && task next user:"
 # -D: Set colors for directories using NNN_FCOLORS
 # -n: Type-to-nav mode
 alias ls='n -aDoe'
+# The n () function is defined further below.
+# alias ls='n -aDo'
 alias ll='ls -lah --color=auto'
 function backup_journal() {
   foldername=`date +"%Y-%m-%d"`
@@ -94,3 +97,33 @@ x11-clip-wrap-widgets paste  $paste_widgets
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# NNN: cd into the current directory when leaving nnn only on ^G.
+# https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    #export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
