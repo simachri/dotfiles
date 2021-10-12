@@ -373,7 +373,7 @@ set nowrap
 " " Toggle wrap
 " nnoremap <silent> <Leader>tw :set wrap!<CR>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
+nnoremap <leader>ww :!sudo tee > /dev/null %
 " Simple insertion of blank lines
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
@@ -401,8 +401,8 @@ vnoremap <silent> <Leader>rrw "sy:%s/<C-r>s//gI<Left><Left><Left>
 " Remap the join lines J command, such that the cursor remains at the position
 " Source: https://stackoverflow.com/questions/9505198/join-two-lines-in-vim-without-moving-cursor
 :nnoremap <silent> J :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
-" Set save key mapping.
-nnoremap <silent> <Leader>s :update!<CR>
+"" Set save key mapping.
+"nnoremap <silent> <Leader>s :update!<CR>
 " Switch to next and previous buffer.
 nnoremap <C-H> :bp<CR>
 nnoremap <C-L> :bn<CR>
