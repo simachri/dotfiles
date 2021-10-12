@@ -16,6 +16,7 @@ let mapleader=" "
 call plug#begin('~/.config/nvim/plugged')
 " Colorscheme
 Plug 'ishan9299/nvim-solarized-lua'
+Plug 'gruvbox-community/gruvbox'
 
 " 21-03-13, go for more performant status line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
