@@ -35,20 +35,20 @@ Plug 'voldikss/vim-floaterm'
 Plug 'neovim/nvim-lspconfig'
 Plug 'lspcontainers/lspcontainers.nvim'
 Plug 'onsails/lspkind-nvim'
-" Python formatter as pyright does not inlcude one.
-Plug 'sbdchd/neoformat'
 " TypeScript
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+" Python: Add import for word under cursor if already imported before.
+Plug 'tjdevries/apyrori.nvim', { 'for': 'python' }
+" Python: Activate virtual environments automatically.
+Plug 'rafi/vim-venom', { 'for': 'python' }
+" Python: formatter as pyright does not inlcude one.
+Plug 'sbdchd/neoformat', { 'for': 'python' }
 
 " Autocomplete
 Plug 'hrsh7th/nvim-compe'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'deoplete-plugins/deoplete-lsp'
-" Python: Add import for word under cursor if already imported before.
-Plug 'tjdevries/apyrori.nvim'
-" Python: Activate virtual environments automatically.
-Plug 'rafi/vim-venom', { 'for': 'python' }
 
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
@@ -57,7 +57,6 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 
 " File manager
-" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mcchrish/nnn.vim'
 
 " Tags and outline
@@ -107,7 +106,7 @@ Plug 'crispgm/nvim-go'
 Plug 'L3MON4D3/LuaSnip'
 
 " Easy reloading of Nvim configuration.
-Plug 'famiu/nvim-reload'
+"Plug 'famiu/nvim-reload'
 
 " Show marks and registers content.
 Plug 'folke/which-key.nvim'
