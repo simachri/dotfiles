@@ -249,10 +249,10 @@ set conceallevel=0
 
 " 21-02-15 - disabled as it seems to open multiple buffers when using in the markdown 
 " context
-"" Create 'views' when exiting a window and load it when entering it.
-"set viewoptions=cursor
-"au BufWinLeave *.* mkview
-"au BufWinEnter *.* silent loadview
+" Create 'views' when exiting a window and load it when entering it.
+set viewoptions=cursor
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent! loadview
 " Custom command :Delview to delete the view: https://stackoverflow.com/a/28460676
 " # Function to permanently delete views created by 'mkview'
 function! MyDeleteView()
