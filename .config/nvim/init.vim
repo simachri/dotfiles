@@ -111,6 +111,8 @@ Plug 'L3MON4D3/LuaSnip'
 " Show marks and registers content.
 Plug 'folke/which-key.nvim'
 
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 luafile ~/.config/nvim/lua/plugin/bufferline.lua
