@@ -20,7 +20,7 @@ require('telescope').setup{
     sorting_strategy = "descending",
     layout_strategy = "horizontal",
     layout_config = {
-      prompt_position = "bottom",
+      prompt_position = "top",
       width = 0.9,
       preview_cutoff = 120,
       horizontal = {
@@ -38,7 +38,7 @@ require('telescope').setup{
     winblend = 0,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = false,
+    color_devicons = true,
     use_less = true,
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
@@ -56,6 +56,20 @@ require('telescope').setup{
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
+  },
+  pickers = {
+    find_files = {
+      -- Search on the bottom part of the screen.
+      theme = "ivy",
+    },
+    grep_string = {
+      -- Search on the bottom part of the screen.
+      theme = "ivy",
+    },
+    live_grep = {
+      -- Search on the bottom part of the screen.
+      theme = "ivy",
+    }
   },
   extensions = {
     -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
@@ -122,11 +136,8 @@ end
 
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function curbuf()
-  local opts = themes.get_dropdown {
-    winblend = 10,
-    border = true,
+  local opts = {
     previewer = false,
-
     -- layout_strategy = 'current_buffer',
   }
   require('telescope.builtin').current_buffer_fuzzy_find(opts)
@@ -166,9 +177,7 @@ function currbufftags()
   -- Do not sort, that is, show the tags in the sequence as they occur in the file.
   os.execute("ctags" .. ' --sort=no ' .. vim.fn.expand("%"))
 
-  local opts = themes.get_dropdown {
-    winblend = 10,
-    border = true,
+  local opts = {
     previewer = false,
   }
   require('telescope.builtin').current_buffer_tags(opts)
@@ -176,18 +185,14 @@ end
 
 
 function search_currbuf_contents()
-  local opts = themes.get_dropdown {
-    winblend = 10,
-    border = true,
+  local opts = {
     previewer = false,
   }
   require('telescope.builtin').current_buffer_fuzzy_find(opts)
 end
 
 function outline()
-  local opts = themes.get_dropdown {
-    winblend = 10,
-    border = true,
+  local opts = {
     previewer = false,
   }
   require('telescope.builtin').treesitter(opts)
