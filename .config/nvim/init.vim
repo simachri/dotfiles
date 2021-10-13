@@ -609,7 +609,9 @@ let g:mdip_imgname = 'img'
 nnoremap <Leader>ac qfq:s/{#\zs.*\ze}/\=setreg('f', submatch(0))/n<CR>
           \:s/{#.*}/<a id=\"<C-r>f\"><\/a>/<CR>
           \:nohlsearch<CR>
-
+" 'Toggle outline
+" Provided by plugin https://github.com/simrat39/symbols-outline.nvim
+nnoremap <Leader>to :SymbolsOutline<CR>
 " Keymap to sync syntax highlighting again if it is broken.
 nnoremap <silent> <Leader>e mx:e<CR>:syntax sync fromstart<CR>`x
 

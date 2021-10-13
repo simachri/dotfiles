@@ -54,8 +54,8 @@ au BufEnter *.md setlocal foldmethod=expr
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
-" "Find header", previously "Find tags"
-noremap <buffer> <Leader>fh :TagbarOpenAutoClose<CR>
+" Toggle outline
+noremap <buffer> <Leader>to :TagbarToggle<CR>
 " "Toggle checkbox ([Jack]box :))"
 function! ToggleCb(option)
   let currLineText = getline(".")
