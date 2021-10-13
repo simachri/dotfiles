@@ -590,7 +590,8 @@ augroup MARKDOWN
   autocmd FileType markdown nmap <buffer><silent> ge m'<Plug>Markdown_EditUrlUnderCursor
   " Use gs in markdown files to follow link and open in vertical split.
   autocmd FileType markdown nmap <buffer><silent> gs m'<C-W>v<Plug>Markdown_EditUrlUnderCursor
-
+  autocmd FileType markdown nmap <buffer> <silent> [c <Plug>Markdown_MoveToCurHeader
+  autocmd FileType markdown nmap <buffer> <silent> [p <Plug>Markdown_MoveToParentHeader
   " Paste image: 'ferrine/md-img-paste.vim'
   autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
 augroup END
