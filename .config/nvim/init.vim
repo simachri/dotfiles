@@ -167,8 +167,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 "" 21-1-19, Use this to make colors in Vim work with rxvt-unicode.
 "set t_Co=256
-" Taken from: https://github.com/hrsh7th/nvim-cmp
-set completeopt=menu,menuone,noselect
 set background=light
 " Adjust solarized8 colorscheme. Needs to be located BEFORE the colorscheme is loaded.
 augroup adj_solarized

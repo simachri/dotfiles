@@ -1,12 +1,5 @@
 -- https://github.com/hrsh7th/nvim-cmp
--- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
-
 local cmp = require'cmp'
-local mapping = require('cmp.config.mapping')
 local luasnip = require('luasnip')
 cmp.setup({
   -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/default.lua
@@ -16,39 +9,30 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
+  completion = {
+    -- Select first item automatically.
+    completeopt = 'menu,menuone,noinsert',
+  },
   mapping = {
-    ['<C-k>'] = function(fallback)
-                  if cmp.visible() then
-                    cmp.mapping.scroll_docs(-4)
-                  else
-                    fallback() -- The fallback function is treated as original mapped key. In this case, it might be `<Tab>`.
-                  end
-                end,
-    ['<C-j>'] = function(fallback)
-                  if cmp.visible() then
-                    cmp.mapping.scroll_docs(4)
-                  else
-                    fallback() -- The fallback function is treated as original mapped key. In this case, it might be `<Tab>`.
-                  end
-                end,
-    ['<C-n>'] = mapping(mapping.select_next_item(), { 'i' }),
-    ['<C-p>'] = mapping(mapping.select_prev_item(), { 'i' }),
+    ['<C-k>'] = cmp.mapping(function(fallback)
+                            if cmp.visible() then
+                              cmp.mapping.scroll_docs(-4)
+                            else
+                              fallback() -- The fallback function is treated as original mapped key. In this case, it might be `<Tab>`.
+                            end
+                          end, { 'i' }),
+    ['<C-j>'] = cmp.mapping(function(fallback)
+                            if cmp.visible() then
+                              cmp.mapping.scroll_docs(4)
+                            else
+                              fallback() -- The fallback function is treated as original mapped key. In this case, it might be `<Tab>`.
+                            end
+                          end, { 'i' }),
+    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i' }),
+    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i' }),
     ['<C-Space>'] = cmp.mapping.complete(),
-    -- ['<C-e>'] = cmp.mapping.close(), -- not required. <C-c> will do that.
-    ["<C-y>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.mapping.confirm {
-              behavior = cmp.ConfirmBehavior.Insert,
-              select = true,
-            }
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-y>'] = cmp.mapping.confirm(),
   },
   sources = {
     { name = 'nvim_lsp' },
