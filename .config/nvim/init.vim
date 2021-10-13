@@ -478,20 +478,6 @@ let g:tagbar_width = 80
 set tags=./tags;,tags;
 
 
-"""""""""""
-"" Deoplete
-"""""""""""
-"let g:deoplete#enable_at_startup = 1
-"" call deoplete#custom#option('auto_complete_delay', 200)
-"" Disable when showing TelescopePrompt
-"augroup disable_deoplete
-"  autocmd!
-"  autocmd FileType TelescopePrompt call deoplete#disable()
-"      \| autocmd BufLeave <buffer> call deoplete#enable()
-"augroup END
-"" Configuration of 'deoplete-plugins/deoplete-lsp':
-"let g:deoplete#lsp#use_icons_for_candidates = v:true
-
 """"""""""""""""
 " Vim table-mode
 """"""""""""""""
@@ -502,70 +488,6 @@ let g:table_mode_header_fillchar='-'
 let g:table_mode_syntax = 0
 " Table format
 let g:table_mode_tableize_map = '<Leader>tf'
-
-""""""
-"" fzf
-""""""
-"" Set runtime path
-"set rtp+=~/.fzf
-"" By default fzf will spawn a popup window in an own terminal session. This is rather slow.
-"" Make it spawn at the bottom instead, which is much faster:
-"" let g:fzf_layout = { 'down': '40%' }
-"" let g:fzf_prefer_tmux = 1
-"" Remove status line in results window
-"augroup fzf
-"  autocmd! FileType fzf
-"  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-"    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-"augroup END
-"" Mapping selecting mappings
-"nmap <leader><tab> <plug>(fzf-maps-n)
-"xmap <leader><tab> <plug>(fzf-maps-x)
-"omap <leader><tab> <plug>(fzf-maps-o)
-""" Insert mode completion
-""imap <c-x><c-k> <plug>(fzf-complete-word)
-""" inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': -1.2, 'height': 0.9, 'xoffset': 1 }})
-""imap <c-x><c-f> <plug>(fzf-complete-path)
-"" Use this complex command to prevent the issue that a blank space is inserted in front of the word.
-"" imap <c-x><c-j> <plug>(fzf-complete-file)
-"inoremap <expr> <c-x><c-j> fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print \| sed 's:^..::'")
-""imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
-"" Add <C-c> keymap to yank the filename in an fzf result list to default register +
-"let g:fzf_action = {
-"      \ 'ctrl-t': 'tab split',
-"      \ 'ctrl-x': 'split',
-"      \ 'ctrl-v': 'vsplit',
-"      \ 'ctrl-c': {lines -> setreg('+', join(lines, "\n"))}}
-"nnoremap <Leader>tf :Files .<CR>
-"nnoremap <Leader>tb :Buffer<CR>
-"" fzf: ripgrep wrapper
-"" --column: Show column number
-"" --line-number: Show line number
-"" --no-heading: Do not show file headings in results
-"" --fixed-strings: Search term as a literal string
-"" --ignore-case: Case insensitive search
-"" --no-ignore: Do not respect .gitignore, etc...
-"" --hidden: Search hidden files and folders
-"" --follow: Follow symlinks
-"" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-"" --color: Search color options
-"" Source: https://github.com/junegunn/fzf.vim
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --line-number --no-heading --color=always --ignore-case -- %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-"command! -nargs=* -bang Find call RipgrepFzf(<q-args>, <bang>0)
-"" Grep
-"nnoremap <Leader>tg :Find 
-""" Find word under cursor - note: conflicts with 'toggle wrap'
-""nnoremap <Leader>tw :Find <C-r><C-w><CR>
-"" Find anchor
-"nnoremap <Leader>ta :Find id="<C-r><C-w><CR>
-"" Find visual selection
-"vnoremap <Leader>fs "sy:Find <C-r>s<CR>
 
 """"""""""
 " Markdown
@@ -637,20 +559,6 @@ let g:vim_markdown_folding_level = 4
 " Set the syntax highlighting to work on larger fenced code blocks.
 let g:markdown_minlines = 50
 
-" Backup: Create a complete anchor link for the current header when the header has format
-" # This is a header text {#anchor}
-" 1. Clear register d
-" 2. Search for the anchor in the current line, that is, {#anchor-name} and match
-"    everything between {# and }.
-" 3. Yank everything between the first # (beginning of header) and the {# into register f.
-" 4. Yank the match to register d.
-" 5. Disable highlighting of search results.
-" nnoremap <Leader>a qdq:s/{#\zs.*\ze}/\=setreg('d', submatch(0))/n<CR>
-"          \0wvt{be"fy
-"          \:let
-"          \@+="[".@f."]
-"          \(".@%."#".@d.")"<CR>
-"          \:nohlsearch<CR>
 " Create a complete anchor link of format [filename wo ext](#anchor-link)
 " 1. Clear register d
 " 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and match
