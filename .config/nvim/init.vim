@@ -34,6 +34,7 @@ Plug 'voldikss/vim-floaterm'
 " Language server
 Plug 'neovim/nvim-lspconfig'
 Plug 'lspcontainers/lspcontainers.nvim'
+" Icons for LSP items
 Plug 'onsails/lspkind-nvim'
 " TypeScript
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -45,8 +46,14 @@ Plug 'rafi/vim-venom', { 'for': 'python' }
 " Python: formatter as pyright does not inlcude one.
 Plug 'sbdchd/neoformat', { 'for': 'python' }
 
-" Autocomplete
-Plug 'hrsh7th/nvim-compe'
+" Completion engine with completion sources
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'saadparwaiz1/cmp_luasnip'
+" Plug 'hrsh7th/nvim-compe' " deprecated
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'deoplete-plugins/deoplete-lsp'
 
@@ -120,7 +127,7 @@ luafile ~/.config/nvim/lua/plugin/telescope.lua
 luafile ~/.config/nvim/lua/plugin/treesitter.lua
 luafile ~/.config/nvim/lua/plugin/galaxyline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
-luafile ~/.config/nvim/lua/plugin/nvim-compe.lua
+luafile ~/.config/nvim/lua/plugin/nvim-cmp.lua
 luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
@@ -160,7 +167,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 "" 21-1-19, Use this to make colors in Vim work with rxvt-unicode.
 "set t_Co=256
-
+" Taken from: https://github.com/hrsh7th/nvim-cmp
+set completeopt=menu,menuone,noselect
 set background=light
 " Adjust solarized8 colorscheme. Needs to be located BEFORE the colorscheme is loaded.
 augroup adj_solarized

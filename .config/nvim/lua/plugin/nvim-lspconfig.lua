@@ -104,6 +104,8 @@ nvim_lsp.pyright.setup {
   -- cmd = require'lspcontainers'.command('pyright'),
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
+  -- https://github.com/hrsh7th/nvim-cmp
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   settings = {
     python = {
       analysis = {
@@ -117,6 +119,8 @@ nvim_lsp.pyright.setup {
 nvim_lsp.gopls.setup {
   -- Do not use lspcontainers as it does not yet work with Go modules (21-07-25).
   --cmd = require'lspcontainers'.command('gopls'),
+  -- https://github.com/hrsh7th/nvim-cmp
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = on_attach,
 }
 -- Docker
@@ -124,6 +128,8 @@ nvim_lsp.dockerls.setup {
   before_init = function(params)
     params.processId = vim.NIL
   end,
+  -- https://github.com/hrsh7th/nvim-cmp
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   cmd = require'lspcontainers'.command('dockerls'),
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
@@ -132,6 +138,8 @@ nvim_lsp.dockerls.setup {
 nvim_lsp.sumneko_lua.setup {
   cmd = require'lspcontainers'.command('sumneko_lua'),
   on_attach = on_attach,
+  -- https://github.com/hrsh7th/nvim-cmp
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   -- Add 'vim' to globals to prevent message 'Undefined global `vim`.'
   -- https://www.reddit.com/r/neovim/comments/khk335/lua_configuration_global_vim_is_undefined/gglrg7k?utm_source=share&utm_medium=web2x&context=3
   settings = {
@@ -148,6 +156,8 @@ nvim_lsp.sumneko_lua.setup {
 require("null-ls").config {}
 nvim_lsp["null-ls"].setup {}
 nvim_lsp.tsserver.setup {
+    -- https://github.com/hrsh7th/nvim-cmp
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = function(client)
         -- disable tsserver formatting if you plan on formatting via null-ls
         client.resolved_capabilities.document_formatting = false
