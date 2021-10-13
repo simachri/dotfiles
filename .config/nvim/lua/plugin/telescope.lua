@@ -1,4 +1,3 @@
-local themes = require('telescope.themes')
 local actions = require('telescope.actions')
 
 require('telescope').setup{
@@ -20,11 +19,12 @@ require('telescope').setup{
     sorting_strategy = "descending",
     layout_strategy = "horizontal",
     layout_config = {
-      prompt_position = "top",
-      width = 0.9,
-      preview_cutoff = 120,
+      prompt_position = "bottom",
+      preview_cutoff = 90, -- preview will be disabled when Vim buffer has less columns
       horizontal = {
         mirror = false,
+        height= 0.8,
+        width = 0.9,
       },
       vertical = {
         mirror = false,
@@ -44,6 +44,12 @@ require('telescope').setup{
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+    cache_picker = {
+      -- Store the last search.
+      num_pickers = 1,
+      -- Only keep 50 search results of the last search.
+      limit_entries = 50,
+    },
     mappings = {
       i = {
         -- Default mappings: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua
@@ -51,6 +57,8 @@ require('telescope').setup{
         ["<esc>"] = actions.close,
         -- Override default C-q to 'smart' add to quickfix list.
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<C-j>"] = require('telescope.actions').cycle_history_next,
+        ["<C-k>"] = require('telescope.actions').cycle_history_prev,
       },
     },
 
@@ -60,15 +68,19 @@ require('telescope').setup{
   pickers = {
     find_files = {
       -- Search on the bottom part of the screen.
-      theme = "ivy",
+      --theme = "ivy",
     },
     grep_string = {
       -- Search on the bottom part of the screen.
-      theme = "ivy",
+      --theme = "ivy",
+    },
+    buffers = {
+      -- Search on the bottom part of the screen.
+      --theme = "ivy",
     },
     live_grep = {
       -- Search on the bottom part of the screen.
-      theme = "ivy",
+      --theme = "ivy",
     }
   },
   extensions = {
@@ -218,15 +230,17 @@ vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua grep_md_anchor_refs()<cr>]
 ---- CurrBuf
 --vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
 -- Buffers
-vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
 -- -- Tags: Use tagbar instead.
 -- vim.api.nvim_set_keymap('n', '<leader>ft', [[<cmd>lua currbufftags()<cr>]], { noremap = true, silent = true })
 -- Outline/treesitter
 vim.api.nvim_set_keymap('n', '<leader>fo', [[<cmd>lua outline()<cr>]], { noremap = true, silent = true })
--- Explorer/file browser
-vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true })
--- Buffer fuzzy find: Headers
-vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
+-- Find last - continue search
+vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin').resume()<cr>]], { noremap = true, silent = true })
+-- -- Explorer/file browser
+-- vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true })
+-- -- Buffer fuzzy find: Headers
+-- vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
 
 -- LSP
 -- <leader>la - LSP actions
