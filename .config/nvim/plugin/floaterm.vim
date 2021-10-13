@@ -1,10 +1,13 @@
 " https://github.com/voldikss/vim-floaterm
 
-let g:floaterm_width = 0.9
-let g:floaterm_height = 0.9
+let g:floaterm_width = 0.6
+let g:floaterm_height = 0.7
 " By default, open a file as a new buffer in the existing Neovim instance
 " when using the 'floaterm' command on the commandline.
 let g:floaterm_opener = 'edit'
+" Make floaterm appear on the top.
+let g:floaterm_wintype = 'float'
+let g:floaterm_position = 'topright'
 
 " Toggle terminal
 nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
