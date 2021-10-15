@@ -26,7 +26,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tpope/vim-repeat'
 
 " Bufferline
-Plug 'akinsho/nvim-bufferline.lua'
+"Plug 'akinsho/nvim-bufferline.lua'
 
 " Terminal
 Plug 'voldikss/vim-floaterm'
@@ -98,7 +98,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " File navigation/marks
-" Plug 'ThePrimeagen/harpoon'
+Plug 'ThePrimeagen/harpoon'
 Plug 'rmagatti/auto-session'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -122,7 +122,7 @@ Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-luafile ~/.config/nvim/lua/plugin/bufferline.lua
+"luafile ~/.config/nvim/lua/plugin/bufferline.lua
 luafile ~/.config/nvim/lua/plugin/telescope.lua
 luafile ~/.config/nvim/lua/plugin/treesitter.lua
 luafile ~/.config/nvim/lua/plugin/galaxyline.lua
@@ -131,7 +131,7 @@ luafile ~/.config/nvim/lua/plugin/nvim-cmp.lua
 luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
-"luafile ~/.config/nvim/lua/plugin/harpoon.lua
+luafile ~/.config/nvim/lua/plugin/harpoon.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
 
 
@@ -341,6 +341,8 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" Jump to alternate file.
+nnoremap <C-e> :b#<CR>
 " Toggle spellchecking
 nnoremap <leader>ts :setlocal spell!<CR>
 " Undo breakpoints

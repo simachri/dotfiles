@@ -68,7 +68,15 @@ gls.left[4] ={
 gls.left[5] = {
   FileName = {
     --provider = 'FileName',
-    provider = function () return vim.fn.expand('%') end,
+    -- provider = function () return vim.fn.expand('%') end,
+    provider = function ()
+                 if vim.bo.modifiable then
+                   if vim.bo.modified then
+                     return vim.fn.expand('%') .. ' ●'
+                   end
+                 end
+                 return vim.fn.expand('%') .. '  '
+                end,
     condition = condition.buffer_not_empty,
     -- highlight = {colors.fg,colors.bg,'bold'}
     highlight = {colors.fg,colors.bg},
@@ -78,21 +86,36 @@ gls.left[5] = {
 }
 
 gls.left[6] = {
-  LineInfo = {
-    provider = 'LineColumn',
+  HarpoonMark = {
+    provider = function ()
+                  local status = require("harpoon.mark").status()
+                  if status == "" then
+                      status = " "
+                  end
+
+                  return string.format("%s", status)
+              end,
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.fg,colors.bg},
+    highlight = {colors.fg,colors.bg, 'bold'},
   },
 }
 
 gls.left[7] = {
-  PerCent = {
-    provider = 'LinePercent',
+  BufferCount = {
+    provider = function ()
+                  local bCntModif = vim.fn.len(vim.fn.getbufinfo({bufmodified=1, buflisted=1}))
+                  local bCntList = vim.fn.len(vim.fn.getbufinfo({buflisted=1}))
+                  if bCntModif > 0 then
+                    return bCntList .. " (" .. bCntModif .. ")"
+                  else
+                    return bCntList .. "   "
+                  end
+                end,
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
     highlight = {colors.fg,colors.bg},
-  }
+  },
 }
 
 gls.left[8] = {
@@ -224,8 +247,36 @@ gls.right[7] = {
   }
 }
 
--- padding right
 gls.right[8] = {
+  pwd = {
+    provider = function () return vim.fn.getcwd() end,
+    separator = '   ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.fg,colors.bg},
+  },
+}
+
+gls.right[9] = {
+  LineInfo = {
+    provider = 'LineColumn',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.fg,colors.bg},
+  },
+}
+
+gls.right[10] = {
+  PerCent = {
+    provider = 'LinePercent',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.fg,colors.bg},
+  }
+}
+
+
+-- padding right
+gls.right[11] = {
   RainbowBlue = {
     provider = function() return ' ' end,
     highlight = {colors.fg,colors.bg}
