@@ -79,8 +79,8 @@ uda.cont.label=Continue here
 report.next.columns=id,start.age,depends,priority,project,tags,user,recur,scheduled.countdown,until.remaining,wait.remaining,notes,description.truncated
 report.next.labels=ID,Active,Deps,P,Project,Tags,Assignee,Recur,S,Until,Waiting,Notes,Description
 report.next.filter=status:pending
-report.list.columns=id,start.age,depends,priority,project,tags,user,recur,scheduled.countdown,until.remaining,wait.remaining,notes,description.truncated
-report.list.labels=ID,Active,Deps,P,Project,Tags,Assignee,Recur,S,Until,Waiting,Notes,Description
+report.list.columns=id,start.age,depends,priority,project,tags,user,recur,scheduled.countdown,until.remaining,wait.remaining,notes,description.truncated,jira
+report.list.labels=ID,Active,Deps,P,Project,Tags,Assignee,Recur,S,Until,Waiting,Notes,Description,Jira
 report.list.filter=status:pending or +WAITING
 # The 'next'-report is always sorted by urgency
 # report.next.sort=status-,wait+,priority-,project+
