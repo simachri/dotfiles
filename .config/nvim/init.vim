@@ -642,6 +642,7 @@ function! CreateScratchBuffer()
     noswapfile hide enew
     setlocal buftype=nofile
     setlocal bufhidden=hide
+    setlocal tw=0
     "setlocal ft=pandoc
     setlocal ft=markdown
     "lcd ~
