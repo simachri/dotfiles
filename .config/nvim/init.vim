@@ -360,8 +360,9 @@ nnoremap N Nzz
 " Source: https://stackoverflow.com/a/16743676
 autocmd! FileType qf nnoremap <buffer> <C-v> <C-w><Enter><C-w>L
 " Close current buffer
-command! Wd write|bdelete
-nnoremap <C-w>d :Wd<CR>
+" command! Wd write|bdelete
+" nnoremap <C-w>d :Wd<CR>
+nnoremap <C-w>d :bd<CR>
 " Close all buffers.
 " The :silent! is used to omit the error message when
 " terminals are running: E89
