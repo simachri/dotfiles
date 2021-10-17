@@ -72,10 +72,10 @@ gls.left[5] = {
     provider = function ()
                  if vim.bo.modifiable then
                    if vim.bo.modified then
-                     return vim.fn.expand('%') .. ' ●'
+                     return vim.fn.fnamemodify(vim.fn.expand('%'), ':p:~') .. ' ●'
                    end
                  end
-                 return vim.fn.expand('%') .. '  '
+                 return vim.fn.fnamemodify(vim.fn.expand('%'), ':p:~') .. '  '
                 end,
     condition = condition.buffer_not_empty,
     -- highlight = {colors.fg,colors.bg,'bold'}
@@ -249,7 +249,7 @@ gls.right[7] = {
 
 gls.right[8] = {
   pwd = {
-    provider = function () return vim.fn.getcwd() end,
+    provider = function () return vim.fn.fnamemodify('.', ':p:h:t') end,
     separator = '   ',
     separator_highlight = {'NONE',colors.bg},
     highlight = {colors.fg,colors.bg},
