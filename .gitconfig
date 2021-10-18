@@ -17,3 +17,5 @@
 [user]
 	name = simachri
 	email = marvin.christe@posteo.de
+[pull]
+	rebase = false
