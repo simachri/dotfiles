@@ -18,8 +18,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'ishan9299/nvim-solarized-lua'
 Plug 'gruvbox-community/gruvbox'
 
-" 21-03-13, go for more performant status line
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+" Statusline
+Plug 'famiu/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " Repeat plugin commands, such as vim-surround
@@ -122,10 +122,12 @@ Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-"luafile ~/.config/nvim/lua/plugin/bufferline.lua
+" Needs to be called before feline.
+set termguicolors
+
 luafile ~/.config/nvim/lua/plugin/telescope.lua
 luafile ~/.config/nvim/lua/plugin/treesitter.lua
-luafile ~/.config/nvim/lua/plugin/galaxyline.lua
+luafile ~/.config/nvim/lua/plugin/feline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
 luafile ~/.config/nvim/lua/plugin/nvim-cmp.lua
 luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
@@ -164,7 +166,6 @@ set noswapfile
 set nobackup
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
 "" 21-1-19, Use this to make colors in Vim work with rxvt-unicode.
 "set t_Co=256
 set background=light
