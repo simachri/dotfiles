@@ -7,7 +7,7 @@ local comps = {
   -- Active buffer
   active = {},
   -- Inactive buffer
-  incative = {},
+  inactive = {},
 }
 -----------------
 -- Active buffer
@@ -103,7 +103,7 @@ comps.active[2] = {
     {
         provider = function () return vim.fn.fnamemodify('.', ':p:h:t') end,
         left_sep = ' ',
-        right_sep = ' ',
+        right_sep = '  ',
     },
     {
         provider = 'git_branch',
@@ -128,9 +128,13 @@ comps.active[2] = {
     },
     {
         provider = 'position',
+        left_sep = ' ',
+        right_sep = ' ',
     },
     {
         provider = 'line_percentage',
+        left_sep = ' ',
+        right_sep = '',
     },
     {
         provider = ' ▊',
@@ -144,6 +148,31 @@ comps.active[2] = {
 -----------------
 -- Inactive buffer
 -----------------
+comps.inactive[1] = {
+    {
+        provider = ' ',
+        hl = {
+          bg = 'beige',
+        },
+    },
+      {
+        -- https://github.com/famiu/feline.nvim/blob/master/USAGE.md#file-info
+        provider = {
+          name = 'file_info',
+          opts = {
+            colored_icon = false,
+            type = 'relative',
+          },
+        },
+        hl = {
+          fg = 'bg',
+          bg = 'beige',
+        },
+      },
+}
+
+
+
 fl.setup({
   components = comps,
   colors = {

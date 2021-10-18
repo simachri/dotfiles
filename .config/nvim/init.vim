@@ -193,7 +193,7 @@ augroup adj_solarized
   " hi CursorLineNr guifg=#cb4b16 guibg=#073642 gui=bold cterm=bold
   au ColorScheme * hi CursorLineNr guibg=None
   " Statusline of non-current buffers
-  au ColorScheme * hi StatusLineNC guibg=#839496 guifg=#eee8d5
+  " au ColorScheme * hi StatusLineNC guibg=#839496 guifg=#eee8d5
   " Treesitter: Fix error color group highlighting.
   " https://github.com/nvim-treesitter/nvim-treesitter/issues/119
   au ColorScheme * hi! link TSError Normal
