@@ -40,7 +40,7 @@ comps.active[1] = {
           type = 'relative',
         },
       },
-      hl = { style = 'bold' },
+      --hl = { style = 'bold' },
       left_sep = '  ',
       right_sep = '  ',
     },
