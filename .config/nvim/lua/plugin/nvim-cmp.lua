@@ -61,6 +61,10 @@ cmp.setup({
   },
 })
 
+-- https://github.com/onsails/lspkind-nvim/issues/24
+-- Do not display an icon for plain text in the buffer autocompletion used by nvim-cmp.
+require('lspkind').presets['default']['Text']=''
+
 vim.api.nvim_exec([[
   augroup cmp_aucmds
     " Set up sources for filetypes.
