@@ -20,17 +20,17 @@ comps.active[1] = {
           fg = 'bg',
         },
     },
-    {
-        provider = 'vi_mode',
-        hl = function()
-            return {
-                name = vi_mode_utils.get_mode_highlight_name(),
-                fg = vi_mode_utils.get_mode_color(),
-                style = 'bold'
-            }
-        end,
-        right_sep = ' ',
-    },
+    --{
+        --provider = 'vi_mode',
+        --hl = function()
+            --return {
+                --name = vi_mode_utils.get_mode_highlight_name(),
+                --fg = vi_mode_utils.get_mode_color(),
+                --style = 'bold'
+            --}
+        --end,
+        --right_sep = ' ',
+    --},
     {
       -- https://github.com/famiu/feline.nvim/blob/master/USAGE.md#file-info
       provider = {
@@ -41,23 +41,22 @@ comps.active[1] = {
         },
       },
       --hl = { style = 'bold' },
-      left_sep = '  ',
+      --left_sep = '  ',
       right_sep = '  ',
     },
     {
       provider = function ()
                     local status = require("harpoon.mark").status()
                     if status == "" then
-                        status = " "
+                        return " "
                     end
-
-                    return string.format("%s", status)
+                    return string.format("%s -", status)
                 end,
       type = 'relative',
       hl = {
         style = 'bold'
       },
-      left_sep = '  ',
+      left_sep = ' ',
       right_sep = ' ',
     },
     {
@@ -71,7 +70,7 @@ comps.active[1] = {
                     end
                   end,
       type = 'relative',
-      right_sep = '  ',
+      right_sep = ' ',
     },
     {
         provider = 'diagnostic_errors',
