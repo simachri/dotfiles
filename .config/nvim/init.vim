@@ -86,6 +86,10 @@ Plug 'ferrine/md-img-paste.vim'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-pandoc/vim-pandoc-syntax'
 
+" Cheat Sheet
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-cheat.sh'
+
 " Debugging
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
