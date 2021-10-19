@@ -14,8 +14,9 @@ nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
 " New/additional terminal
 nnoremap <silent> <Leader>tn :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
-tnoremap <silent> <C-d> <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent> <C-S-d> <C-\><C-n>:FloatermKill!<CR>
+" 21-10-19: Do not use Ctrl-D as it interferes with default 'scroll half page down.'
+tnoremap <silent> <C-q> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent> <C-S-q> <C-\><C-n>:FloatermKill!<CR>
 " Cycle through open terminals
 tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
 
