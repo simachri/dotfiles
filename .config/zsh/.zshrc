@@ -114,14 +114,11 @@ n ()
     # stty lwrap undef
     # stty lnext undef
 
-    nnn "$@"
-
     # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, either remove the "export" as in:
-    #    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    #    (or, to a custom path: NNN_TMPFILE=/tmp/.lastd)
-    # or, export NNN_TMPFILE after nnn invocation
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # To cd on quit only on ^G do NOT export NNN_TMPFILE
+    #export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    nnn "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
