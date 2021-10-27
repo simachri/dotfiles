@@ -114,6 +114,8 @@ set indentkeys=
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
+" Remove the "insert checkbox" keymapping
+iunmap <buffer> <C-k>
 " Remap the folding to standard za
 " https://github.com/ixru/nvim-markdown/blob/master/ftplugin/markdown.vim
 nmap <buffer> za <cmd>lua require("markdown").normal_tab()<CR>
