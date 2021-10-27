@@ -1,5 +1,5 @@
 [core]
-        editor = /opt/nvim.appimage
+        editor = nvim
 [alias]
         d = difftool
 [diff]
@@ -7,11 +7,11 @@
 [difftool]
         prompt = false
 [difftool "nvimdiff"]
-	cmd = /opt/nvim.appimage -d $LOCAL $REMOTE
+	cmd = nvim -d $LOCAL $REMOTE
 [merge]
         tool = vimdiff2
 [mergetool "vimdiff2"]
-        cmd = /opt/nvim.appimage
+        cmd = nvim
 [credential]
 	helper = store
 [user]
