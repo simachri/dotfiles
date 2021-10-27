@@ -1,7 +1,7 @@
 " https://github.com/voldikss/vim-floaterm
 
-let g:floaterm_width = 0.6
-let g:floaterm_height = 0.7
+let g:floaterm_width = 0.7
+let g:floaterm_height = 0.9
 " By default, open a file as a new buffer in the existing Neovim instance
 " when using the 'floaterm' command on the commandline.
 let g:floaterm_opener = 'edit'
@@ -9,6 +9,9 @@ let g:floaterm_opener = 'edit'
 let g:floaterm_wintype = 'float'
 let g:floaterm_position = 'topright'
 
+" Terminal mode: Leave insert mode - default C-\ C-N does not work with WSL and Windows 
+" Terminal. For some reason, C-\ cannot be sent.
+tnoremap <C-z> <C-\><C-n>
 " Toggle terminal
 nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
 " New/additional terminal
@@ -61,7 +64,7 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 " Workaround: Go without --disposable and always quit taskwarrior using 'q'.
 "nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
 " 21-10-8: Temporarily use the commandline taskwarrior until tui is fixed.
-"nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask taskwarrior-tui<CR>
+" nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask ~/Downloads/taskwarrior-tui<CR>
 nnoremap <silent> <Leader>tw :FloatermSend! --name=tw clear && task next user:<CR>:FloatermToggle tw<CR>
 
 """"""""""""""""""""""""""""""""""""""

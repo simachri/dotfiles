@@ -347,9 +347,6 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
-" Terminal mode: Leave insert mode - default C-\ C-N does not work with WSL and Windows 
-" Terminal. For some reason, C-\ cannot be sent.
-tnoremap <C-y> <C-\><C-n>
 " Provided by plugin https://github.com/simrat39/symbols-outline.nvim
 nnoremap <Leader>to :SymbolsOutline<CR>
 " Keymap to sync syntax highlighting again if it is broken.
