@@ -57,37 +57,6 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 " 21-10-27: WSL has better performance. Disable it.
 " let g:markdown_minlines = 50
 
-" Create a complete anchor link of format [filename wo ext](#anchor-link)
-" 1. Clear register d
-" 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and match
-"    everything in the double quotes.
-" 3. Yank the match to register d.
-" 4. Disable highlighting of search results.
-augroup MARKDOWN
-  autocmd!
-  " 'Get anchor' link without the filename as the link description.
-  autocmd FileType markdown nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
-                    \:let @x=expand('%:r')<CR>
-                    \:nohlsearch<CR>
-                    \:echo('Anchor copied to clipboard.')<CR>
-                    "\:let @+="(".expand('%:r')."#".@d.")"<CR>
-  " Currently not used: Create a full anchor link
-  "autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
-  "                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
-  "                  \(".@%."#".@d.")"<CR>
-  "                  \:nohlsearch<CR>
-  " 'Add anchor'
-  autocmd FileType markdown nnoremap <Leader>aa o<a id=""></a><Esc>5hi
-  " Use ge in markdown files to follow link and open in horizontal split.
-  autocmd FileType markdown nmap <buffer><silent> ge m'<Plug>Markdown_EditUrlUnderCursor
-  " Use gs in markdown files to follow link and open in vertical split.
-  autocmd FileType markdown nmap <buffer><silent> gs m'<C-W>v<Plug>Markdown_EditUrlUnderCursor
-  autocmd FileType markdown nmap <buffer> <silent> [c <Plug>Markdown_MoveToCurHeader
-  autocmd FileType markdown nmap <buffer> <silent> [p <Plug>Markdown_MoveToParentHeader
-  " Paste image: 'ferrine/md-img-paste.vim'
-  autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
-augroup END
-
 " Follow anchors, that is, the `ge` command will jump to the anchor <file>#<anchor>.
 let g:vim_markdown_follow_anchor=1
 " Paste image: 'ferrine/md-img-paste.vim'
@@ -142,40 +111,12 @@ setlocal formatoptions=Mwjlnt
 " See also: ~/.config/nvim/plugged/vim-markdown/indent/markdown.vim
 set indentkeys=
 
-" Disable plugin folding as it dramatically slows down performance.
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_override_foldtext=1
-let g:vim_markdown_folding_style_pythonic=0
-let g:vim_markdown_folding_level = 4
-" Allow folding
-" Source: https://stackoverflow.com/a/4677454
-function! MarkdownLevel()
-    if getline(v:lnum) =~ '^# .*$'
-        return ">1"
-    endif
-    if getline(v:lnum) =~ '^## .*$'
-        return ">2"
-    endif
-    if getline(v:lnum) =~ '^### .*$'
-        return ">3"
-    endif
-    if getline(v:lnum) =~ '^#### .*$'
-        return ">4"
-    endif
-    if getline(v:lnum) =~ '^##### .*$'
-        return ">5"
-    endif
-    if getline(v:lnum) =~ '^###### .*$'
-        return ">6"
-    endif
-    return "=" 
-endfunction
-au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
-au BufEnter *.md setlocal foldmethod=expr   
-
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
+" Remap the folding to standard za
+" https://github.com/ixru/nvim-markdown/blob/master/ftplugin/markdown.vim
+nmap <buffer> za <cmd>lua require("markdown").normal_tab()<CR>
 " Toggle outline
 " noremap <buffer> <Leader>to :TagbarToggle<CR>
 " https://github.com/ixru/nvim-markdown
@@ -238,3 +179,152 @@ nnoremap <buffer> <silent> <Leader>jn :ToggleCheckBox<CR>
 nnoremap <buffer> <silent> <Leader>jd :SetCheckBoxDone<CR>
 nnoremap <buffer> <silent> <Leader>jo :SetCheckBoxOpen<CR>
 nnoremap <buffer> <silent> <Leader>ju :SetCheckBoxUp<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Take over functionality to jump to anchor from the old plugin.
+" https://github.com/plasticboy/vim-markdown/blob/master/ftplugin/markdown.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:FindCornerOfSyntax(lnum, col, step)
+    let l:col = a:col
+    let l:syn = synIDattr(synID(a:lnum, l:col, 1), 'name')
+    while synIDattr(synID(a:lnum, l:col, 1), 'name') ==# l:syn
+        let l:col += a:step
+    endwhile
+    return l:col - a:step
+endfunction
+function! s:FindCornersOfSyntax(lnum, col)
+    return [<sid>FindLeftOfSyntax(a:lnum, a:col), <sid>FindRightOfSyntax(a:lnum, a:col)]
+endfunction
+function! s:FindRightOfSyntax(lnum, col)
+    return <sid>FindCornerOfSyntax(a:lnum, a:col, 1)
+endfunction
+function! s:FindLeftOfSyntax(lnum, col)
+    return <sid>FindCornerOfSyntax(a:lnum, a:col, -1)
+endfunction
+function! s:FindNextSyntax(lnum, col, name)
+    let l:col = a:col
+    let l:step = 1
+    while synIDattr(synID(a:lnum, l:col, 1), 'name') !=# a:name
+        let l:col += l:step
+    endwhile
+    return [a:lnum, l:col]
+endfunction
+function! s:Markdown_GetUrlForPosition(lnum, col)
+    let l:lnum = a:lnum
+    let l:col = a:col
+    let l:syn = synIDattr(synID(l:lnum, l:col, 1), 'name')
+
+    if l:syn ==# 'mkdInlineURL' || l:syn ==# 'mkdURL' || l:syn ==# 'mkdLinkDefTarget'
+        " Do nothing.
+    elseif l:syn ==# 'mkdLink'
+        let [l:lnum, l:col] = <sid>FindNextSyntax(l:lnum, l:col, 'mkdURL')
+        let l:syn = 'mkdURL'
+    elseif l:syn ==# 'mkdDelimiter'
+        let l:line = getline(l:lnum)
+        let l:char = l:line[col - 1]
+        if l:char ==# '<'
+            let l:col += 1
+        elseif l:char ==# '>' || l:char ==# ')'
+            let l:col -= 1
+        elseif l:char ==# '[' || l:char ==# ']' || l:char ==# '('
+            let [l:lnum, l:col] = <sid>FindNextSyntax(l:lnum, l:col, 'mkdURL')
+        else
+            return ''
+        endif
+    else
+        return ''
+    endif
+
+    let [l:left, l:right] = <sid>FindCornersOfSyntax(l:lnum, l:col)
+    return getline(l:lnum)[l:left - 1 : l:right - 1]
+endfunction
+" We need a definition guard because we invoke 'edit' which will reload this
+" script while this function is running. We must not replace it.
+if !exists('*s:EditUrlUnderCursor')
+    function s:EditUrlUnderCursor()
+        let l:url = s:Markdown_GetUrlForPosition(line('.'), col('.'))
+        if l:url != ''
+            if get(g:, 'vim_markdown_autowrite', 0)
+                write
+            endif
+            let l:anchor = ''
+            if get(g:, 'vim_markdown_follow_anchor', 0)
+                let l:parts = split(l:url, '#', 1)
+                if len(l:parts) == 2
+                    let [l:url, l:anchor] = parts
+                    let l:anchorexpr = get(g:, 'vim_markdown_anchorexpr', '')
+                    if l:anchorexpr != ''
+                        let l:anchor = eval(substitute(
+                            \ l:anchorexpr, 'v:anchor',
+                            \ escape('"'.l:anchor.'"', '"'), ''))
+                    endif
+                endif
+            endif
+            if l:url != ''
+                let l:ext = ''
+                if get(g:, 'vim_markdown_no_extensions_in_markdown', 0)
+                    " use another file extension if preferred
+                    if exists('g:vim_markdown_auto_extension_ext')
+                        let l:ext = '.'.g:vim_markdown_auto_extension_ext
+                    else
+                        let l:ext = '.md'
+                    endif
+                endif
+                let l:url = fnameescape(fnamemodify(expand('%:h').'/'.l:url.l:ext, ':.'))
+                let l:editmethod = ''
+                " determine how to open the linked file (split, tab, etc)
+                if exists('g:vim_markdown_edit_url_in')
+                  if g:vim_markdown_edit_url_in == 'tab'
+                    let l:editmethod = 'tabnew'
+                  elseif g:vim_markdown_edit_url_in == 'vsplit'
+                    let l:editmethod = 'vsp'
+                  elseif g:vim_markdown_edit_url_in == 'hsplit'
+                    let l:editmethod = 'sp'
+                  else
+                    let l:editmethod = 'edit'
+                  endif
+                else
+                  " default to current buffer
+                  let l:editmethod = 'edit'
+                endif
+                execute l:editmethod l:url
+            endif
+            if l:anchor != ''
+                silent! execute '/'.l:anchor
+            endif
+        else
+            echomsg 'The cursor is not on a link.'
+        endif
+    endfunction
+endif
+
+augroup MARKDOWN
+  autocmd!
+  " 'Get anchor' link without the filename as the link description.
+  " 1. Clear register d
+  " 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and match
+  "    everything in the double quotes.
+  " 3. Yank the match to register d.
+  " 4. Disable highlighting of search results.
+  autocmd FileType markdown nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
+                    \:let @x=expand('%:r')<CR>
+                    \:nohlsearch<CR>
+                    \:echo('Anchor copied to clipboard.')<CR>
+                    "\:let @+="(".expand('%:r')."#".@d.")"<CR>
+  " Currently not used: Create a full anchor link
+  "autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
+  "                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
+  "                  \(".@%."#".@d.")"<CR>
+  "                  \:nohlsearch<CR>
+  " 'Add anchor'
+  autocmd FileType markdown nnoremap <Leader>aa o<a id=""></a><Esc>5hi
+  " Use ge in markdown files to follow link and open in horizontal split.
+  autocmd FileType markdown nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
+  " Use gs in markdown files to follow link and open in vertical split.
+  autocmd FileType markdown nmap <buffer><silent> gs m'<C-W>v:call <sid>EditUrlUnderCursor()<cr>
+  autocmd FileType markdown nmap <buffer> <silent> [c <Plug>Markdown_MoveToCurHeader
+  autocmd FileType markdown nmap <buffer> <silent> [p <Plug>Markdown_MoveToParentHeader
+  " Paste image: 'ferrine/md-img-paste.vim'
+  autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
+augroup END
+
