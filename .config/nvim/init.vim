@@ -16,7 +16,7 @@ let mapleader=" "
 call plug#begin('~/.config/nvim/plugged')
 " Colorscheme
 Plug 'ishan9299/nvim-solarized-lua'
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
 
 " Statusline
 Plug 'famiu/feline.nvim'
@@ -33,7 +33,7 @@ Plug 'voldikss/vim-floaterm'
 
 " Language server
 Plug 'neovim/nvim-lspconfig'
-Plug 'lspcontainers/lspcontainers.nvim'
+"Plug 'lspcontainers/lspcontainers.nvim'
 " Icons for LSP items
 Plug 'onsails/lspkind-nvim'
 " TypeScript
@@ -70,7 +70,7 @@ Plug 'mcchrish/nnn.vim'
 " Plug 'majutsushi/tagbar'
 Plug 'simrat39/symbols-outline.nvim'
 
-Plug 'alvan/vim-closetag'
+"Plug 'alvan/vim-closetag'
 Plug 'Chiel92/vim-autoformat'
 " Easier profiling of Vim startup time:
 Plug 'tweekmonster/startuptime.vim'
@@ -78,9 +78,9 @@ Plug 'tweekmonster/startuptime.vim'
 " Markdown
 " Plug 'plasticboy/vim-markdown'
 Plug 'ixru/nvim-markdown'
-" Use installation method when node.js and yarn is already installed.
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'jszakmeister/markdown2ctags'
+"" Use installation method when node.js and yarn is already installed.
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'jszakmeister/markdown2ctags'
 Plug 'ferrine/md-img-paste.vim'
 
 "" Pandoc
@@ -508,10 +508,6 @@ let g:table_mode_header_fillchar='-'
 let g:table_mode_syntax = 0
 " Table format
 let g:table_mode_tableize_map = '<Leader>tf'
-
-""""""""""
-" Markdown
-""""""""""
 
 
 """"""""""""""""
