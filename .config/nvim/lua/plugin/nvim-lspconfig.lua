@@ -91,9 +91,11 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- Using lspcontainers to run the language servers, see
--- https://github.com/lspcontainers/lspcontainers.nvim#supported-lsps
--- The 'on_attach' is required to have the keymappings defined in the functions above.
+-- JSON
+-- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls
+require'lspconfig'.jsonls.setup {
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
 
 -- Python: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#pyright
 nvim_lsp.pyright.setup {
@@ -115,6 +117,7 @@ nvim_lsp.pyright.setup {
     }
   }
 }
+
 -- Golang
 nvim_lsp.gopls.setup {
   -- Do not use lspcontainers as it does not yet work with Go modules (21-07-25).
@@ -123,6 +126,7 @@ nvim_lsp.gopls.setup {
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = on_attach,
 }
+
 -- Docker
 nvim_lsp.dockerls.setup {
   before_init = function(params)
@@ -130,26 +134,54 @@ nvim_lsp.dockerls.setup {
   end,
   -- https://github.com/hrsh7th/nvim-cmp
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  cmd = require'lspcontainers'.command('dockerls'),
+  -- cmd = require'lspcontainers'.command('dockerls'),
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
 }
--- Lua
+
+-- SQL
+-- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sqlls
+require'lspconfig'.sqlls.setup{
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
+
+-- Lua https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 nvim_lsp.sumneko_lua.setup {
-  cmd = require'lspcontainers'.command('sumneko_lua'),
+  -- cmd = require'lspcontainers'.command('sumneko_lua'),
+  cmd = {'/opt/lua-language-server/bin/Linux/lua-language-server', "-E", '/opt/lua-language-server/bin/Linux/main.lua'};
   on_attach = on_attach,
   -- https://github.com/hrsh7th/nvim-cmp
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   -- Add 'vim' to globals to prevent message 'Undefined global `vim`.'
   -- https://www.reddit.com/r/neovim/comments/khk335/lua_configuration_global_vim_is_undefined/gglrg7k?utm_source=share&utm_medium=web2x&context=3
   settings = {
-      Lua = {
-          diagnostics = {
-              globals = { 'vim' }
-          }
-      }
-  }
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 }
+
 -- TypeScript
 -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 -- https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
