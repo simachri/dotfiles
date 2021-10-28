@@ -114,6 +114,31 @@ set indentkeys=
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
+" Remove the "insert checkbox" keymapping
+inoremap <buffer> <C-k> <C-k>
+" Remove the behaviour when pressing 'Enter' or 'o'/'O'.
+inoremap <buffer> <CR> <CR>
+nnoremap <buffer> o o
+nnoremap <buffer> O O
+" Currently not used: Create a full anchor link
+"autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
+"                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
+"                  \(".@%."#".@d.")"<CR>
+"                  \:nohlsearch<CR>
+" 'Add anchor'
+nnoremap <Leader>aa o<a id=""></a><Esc>5hi
+" 'Get anchor' link without the filename as the link description.
+" 1. Clear register d
+" 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and match
+"    everything in the double quotes.
+" 3. Yank the match to register d.
+" 4. Disable highlighting of search results.
+nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
+                  \:let @x=expand('%:r')<CR>
+                  \:nohlsearch<CR>
+                  \:echo('Anchor copied to clipboard.')<CR>
+                  "\:let @+="(".expand('%:r')."#".@d.")"<CR>
+
 " Remap the folding to standard za
 " https://github.com/ixru/nvim-markdown/blob/master/ftplugin/markdown.vim
 nmap <buffer> za <cmd>lua require("markdown").normal_tab()<CR>
@@ -300,33 +325,12 @@ endif
 
 augroup MARKDOWN
   autocmd!
-  " 'Get anchor' link without the filename as the link description.
-  " 1. Clear register d
-  " 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and match
-  "    everything in the double quotes.
-  " 3. Yank the match to register d.
-  " 4. Disable highlighting of search results.
-  autocmd FileType markdown nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
-                    \:let @x=expand('%:r')<CR>
-                    \:nohlsearch<CR>
-                    \:echo('Anchor copied to clipboard.')<CR>
-                    "\:let @+="(".expand('%:r')."#".@d.")"<CR>
-  " Currently not used: Create a full anchor link
-  "autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
-  "                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
-  "                  \(".@%."#".@d.")"<CR>
-  "                  \:nohlsearch<CR>
-  " 'Add anchor'
-  autocmd FileType markdown nnoremap <Leader>aa o<a id=""></a><Esc>5hi
   " Use ge in markdown files to follow link and open in horizontal split.
   autocmd FileType markdown nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
   " Use gs in markdown files to follow link and open in vertical split.
   autocmd FileType markdown nmap <buffer><silent> gs m'<C-W>v:call <sid>EditUrlUnderCursor()<cr>
-  autocmd FileType markdown nmap <buffer> <silent> [c <Plug>Markdown_MoveToCurHeader
-  autocmd FileType markdown nmap <buffer> <silent> [p <Plug>Markdown_MoveToParentHeader
+  autocmd FileType markdown nmap <buffer><silent> [c <Plug>Markdown_MoveToCurHeader
+  autocmd FileType markdown nmap <buffer><silent> [p <Plug>Markdown_MoveToParentHeader
   " Paste image: 'ferrine/md-img-paste.vim'
-  autocmd FileType markdown nmap <buffer><silent> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
-" Remove the "insert checkbox" keymapping
-  autocmd FileType markdown iunmap <buffer> <C-k>
+  autocmd FileType markdown nmap <buffer> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
 augroup END
-
