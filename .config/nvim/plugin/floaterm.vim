@@ -64,8 +64,8 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 " Workaround: Go without --disposable and always quit taskwarrior using 'q'.
 "nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
 " 21-10-8: Temporarily use the commandline taskwarrior until tui is fixed.
-" nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask ~/Downloads/taskwarrior-tui<CR>
-nnoremap <silent> <Leader>tw :FloatermSend! --name=tw clear && task next user:<CR>:FloatermToggle tw<CR>
+nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --opener=OpenTwTask taskwarrior-tui<CR>
+" nnoremap <silent> <Leader>tw :FloatermSend! --name=tw clear && task next user:<CR>:FloatermToggle tw<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
