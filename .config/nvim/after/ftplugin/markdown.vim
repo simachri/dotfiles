@@ -114,6 +114,14 @@ set indentkeys=
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
+" Use ge in markdown files to follow link and open in horizontal split.
+nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
+" Use gs in markdown files to follow link and open in vertical split.
+nmap <buffer><silent> gs m'<C-W>v:call <sid>EditUrlUnderCursor()<cr>
+nmap <buffer><silent> [c <Plug>Markdown_MoveToCurHeader
+nmap <buffer><silent> [p <Plug>Markdown_MoveToParentHeader
+" Paste image: 'ferrine/md-img-paste.vim'
+nmap <buffer> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
 " Remove the "insert checkbox" keymapping
 inoremap <buffer> <C-k> <C-k>
 " Remove the behaviour when pressing 'Enter' or 'o'/'O'.
@@ -322,15 +330,3 @@ if !exists('*s:EditUrlUnderCursor')
         endif
     endfunction
 endif
-
-augroup MARKDOWN
-  autocmd!
-  " Use ge in markdown files to follow link and open in horizontal split.
-  autocmd FileType markdown nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
-  " Use gs in markdown files to follow link and open in vertical split.
-  autocmd FileType markdown nmap <buffer><silent> gs m'<C-W>v:call <sid>EditUrlUnderCursor()<cr>
-  autocmd FileType markdown nmap <buffer><silent> [c <Plug>Markdown_MoveToCurHeader
-  autocmd FileType markdown nmap <buffer><silent> [p <Plug>Markdown_MoveToParentHeader
-  " Paste image: 'ferrine/md-img-paste.vim'
-  autocmd FileType markdown nmap <buffer> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
-augroup END
