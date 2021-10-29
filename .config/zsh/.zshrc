@@ -33,7 +33,8 @@ alias vim=nvim
 # -e: Use $EDITOR to open text files.
 # -D: Set colors for directories using NNN_FCOLORS
 # -n: Type-to-nav mode
-alias ls='n -aDoe'
+# -H: Show hidden files
+alias ls='n -aDoeH'
 # The n () function is defined further below.
 # alias ls='n -aDo'
 alias ll='ls -lah --color=auto'
