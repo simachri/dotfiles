@@ -114,6 +114,10 @@ set indentkeys=
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
+" Make text italic.
+nmap <buffer><silent> <C-i> ysiW_
+" Make text bold.
+nmap <buffer><silent> <C-b> ysiW_.
 " Use ge in markdown files to follow link and open in horizontal split.
 nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
 " Use gs in markdown files to follow link and open in vertical split.
