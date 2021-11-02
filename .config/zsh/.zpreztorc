@@ -43,7 +43,8 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'autosuggestions' \
   'syntax-highlighting' \
-  'fzf'
+  'fzf' \
+  'zsh-abbr'
 
 #
 # Autosuggestions

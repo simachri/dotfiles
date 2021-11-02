@@ -1,0 +1,3 @@
+abbr dfc="df commit -m"
+abbr dfp="df push"
+abbr dfs="df status"
