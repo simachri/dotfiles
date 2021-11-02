@@ -141,11 +141,13 @@ luafile ~/.config/nvim/lua/plugin/which-key.lua
 luafile ~/.config/nvim/lua/plugin/harpoon.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
 
-
-
 """"""""""""""""""""""
 " General Vim settings
 """"""""""""""""""""""
+" Show trailing spaces and tabs
+set list
+set listchars=tab:▶\ ,trail:·
+"set listchars=tab:▶\ ,trail:⋅
 " Always use the block cursor
 set guicursor=
 " Some servers have issues with backup files, see #649.
