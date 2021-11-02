@@ -55,7 +55,7 @@ alias ws='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
 
 # Custom key bindings
 # Accept the autosuggestion: <Ctrl-n>
-bindkey '^n' autosuggest-accept
+bindkey '^y' autosuggest-accept
 # Use <space> in command mode to open the current line in Vim
 # https://unix.stackexchange.com/a/6622
 autoload edit-command-line; zle -N edit-command-line
