@@ -146,7 +146,8 @@ luafile ~/.config/nvim/lua/plugin/auto-session.lua
 """"""""""""""""""""""
 " Show trailing spaces and tabs
 set list
-set listchars=tab:▶\ ,trail:·
+set listchars=tab:▶\ 
+"set listchars=tab:▶\ ,trail:·
 "set listchars=tab:▶\ ,trail:⋅
 " Always use the block cursor
 set guicursor=
