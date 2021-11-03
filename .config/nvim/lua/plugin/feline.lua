@@ -95,6 +95,16 @@ comps.active[1] = {
         hl = { style = 'bold' },
         left_sep = ' ',
         right_sep = ' ',
+    },
+    {
+        provider = function()
+            return vim.fn["nvim_treesitter#statusline"](90)
+        end,
+        enabled = function()
+            return vim.NIL ~= vim.fn["nvim_treesitter#statusline"](90)
+        end,
+        left_sep = ' ',
+        right_sep = ' ',
     }
 }
 -- right
