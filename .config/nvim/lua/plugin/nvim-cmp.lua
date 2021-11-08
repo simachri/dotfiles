@@ -14,20 +14,8 @@ cmp.setup({
     completeopt = 'menu,menuone,noinsert',
   },
   mapping = {
-    ['<C-k>'] = cmp.mapping(function(fallback)
-                            if cmp.visible() then
-                              cmp.mapping.scroll_docs(-4)
-                            else
-                              fallback() -- The fallback function is treated as original mapped key. In this case, it might be `<Tab>`.
-                            end
-                          end, { 'i' }),
-    ['<C-j>'] = cmp.mapping(function(fallback)
-                            if cmp.visible() then
-                              cmp.mapping.scroll_docs(4)
-                            else
-                              fallback() -- The fallback function is treated as original mapped key. In this case, it might be `<Tab>`.
-                            end
-                          end, { 'i' }),
+    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i' }),
     ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i' }),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -51,13 +39,14 @@ cmp.setup({
   formatting = {
     fields = { 'abbr', 'kind', 'menu' },
     -- Show LSP icons from lspkind-nvim.
-    format = require("lspkind").cmp_format({with_text = false}),
-    --format = require("lspkind").cmp_format({with_text = true, menu = ({
-        --buffer = "[Buf]",
-        --nvim_lsp = "[LSP]",
-        --luasnip = "[LuaSnip]",
-        --nvim_lua = "[Lua]",
-      --})}),
+    --format = require("lspkind").cmp_format({with_text = false}),
+    format = require("lspkind").cmp_format({with_text = false, menu = ({
+        buffer = "B",
+        nvim_lsp = "LSP",
+        luasnip = "Snip",
+        nvim_lua = "Lua",
+        cmp_tabnine = "TN",
+      })}),
   },
 })
 
@@ -65,11 +54,22 @@ cmp.setup({
 -- Do not display an icon for plain text in the buffer autocompletion used by nvim-cmp.
 require('lspkind').presets['default']['Text']=''
 
+-- https://github.com/tzachar/cmp-tabnine
+local tabnine = require('cmp_tabnine.config')
+tabnine:setup({
+        max_lines = 1000;
+        max_num_results = 20;
+        sort = true;
+	run_on_every_keystroke = true;
+	snippet_placeholder = '..';
+})
+
 vim.api.nvim_exec([[
   augroup cmp_aucmds
     " Set up sources for filetypes.
     autocmd FileType lua lua require'cmp'.setup.buffer {
     \   sources = {
+    \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lua' },
     \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
@@ -87,6 +87,38 @@ vim.api.nvim_exec([[
     autocmd FileType markdown lua require'cmp'.setup.buffer {
     \   sources = {
     \     { name = 'luasnip' },
+    \     { name = 'nvim_lsp' },
+    \     { name = 'buffer',
+    \       keyword_length = 3,
+    \       max_item_count = 5,
+    \       opts = {
+    \         get_bufnrs = function()
+    \                       return vim.api.nvim_list_bufs()
+    \                     end
+    \       },
+    \     },
+    \     { name = 'path' },
+    \   },
+    \ }
+    autocmd FileType python lua require'cmp'.setup.buffer {
+    \   sources = {
+    \     { name = 'cmp_tabnine' },
+    \     { name = 'nvim_lsp' },
+    \     { name = 'buffer',
+    \       keyword_length = 3,
+    \       max_item_count = 5,
+    \       opts = {
+    \         get_bufnrs = function()
+    \                       return vim.api.nvim_list_bufs()
+    \                     end
+    \       },
+    \     },
+    \     { name = 'path' },
+    \   },
+    \ }
+    autocmd FileType go lua require'cmp'.setup.buffer {
+    \   sources = {
+    \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
     \       keyword_length = 3,
