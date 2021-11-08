@@ -53,6 +53,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 " Plug 'hrsh7th/nvim-compe' " deprecated
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'deoplete-plugins/deoplete-lsp'
@@ -71,7 +72,7 @@ Plug 'mcchrish/nnn.vim'
 Plug 'simrat39/symbols-outline.nvim'
 
 "Plug 'alvan/vim-closetag'
-Plug 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat', { 'for': 'python' }
 " Easier profiling of Vim startup time:
 Plug 'tweekmonster/startuptime.vim'
 
@@ -125,6 +126,8 @@ Plug 'folke/which-key.nvim'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 call plug#end()
 
 " Needs to be called before feline.
@@ -144,11 +147,10 @@ luafile ~/.config/nvim/lua/plugin/auto-session.lua
 """"""""""""""""""""""
 " General Vim settings
 """"""""""""""""""""""
-" Show trailing spaces and tabs
-set list
-set listchars=tab:▶\ 
+"" Show trailing spaces and tabs
+"set list
+"set listchars=tab:▶\ 
 "set listchars=tab:▶\ ,trail:·
-"set listchars=tab:▶\ ,trail:⋅
 " Always use the block cursor
 set guicursor=
 " Some servers have issues with backup files, see #649.
@@ -604,3 +606,51 @@ function! PandocMdToDocx()
   lcd -
 endfunction
 command ToDocx call PandocMdToDocx()
+
+""""""""""
+" Firenvim
+""""""""""
+" https://github.com/glacambre/firenvim
+let g:firenvim_config = { 
+    \ 'globalSettings': {
+        \ 'alt': 'all',
+    \  },
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'neovim',
+            \ 'content': 'text',
+            \ 'priority': 0,
+            \ 'selector': 'textarea',
+            \ 'takeover': 'never',
+            \ 'filename': '/tmp/{pathname%32}.{extension}',
+        \ },
+    \ }
+\ }
+function! OnUIEnter(event) abort
+  if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
+    " To create mappings for increasing and decreasing the font size through a key mapping, 
+    " see https://github.com/glacambre/firenvim/issues/972#issuecomment-843733076.
+    let s:fontsize = 16
+    function! AdjustFontSizeF(amount)
+      let s:fontsize = s:fontsize+a:amount
+      "execute "set guifont=SauceCodePro\\ NF:h" . s:fontsize
+      execute "set guifont=MesloLGLDZ\\ NF:h" . s:fontsize
+      call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
+    endfunction
+
+    nnoremap  <C-+> :call AdjustFontSizeF(1)<CR>
+    nnoremap  <C--> :call AdjustFontSizeF(-1)<CR>
+   " set guifont=SauceCodePro\ NF:h16
+    set guifont=MesloLGLDZ\ NF:h16
+    set lines=70
+    set columns=110
+    " Do not use automatic wrapping as the Jira syntax
+    " takes over linebreakes into the rendered result.
+    " Use warpping instead.
+    "" Automatically wrap on textwidth.
+    "set fo+=t
+    set wrap
+    set ft=markdown
+  endif
+endfunction
+autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
