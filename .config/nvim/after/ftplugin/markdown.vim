@@ -128,6 +128,8 @@ nmap <buffer><silent> [p <Plug>Markdown_MoveToParentHeader
 nmap <buffer> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
 " Remove the "insert checkbox" keymapping
 inoremap <buffer> <C-k> <C-k>
+" Remove/overwrite the "make link" keymapping
+nnoremap <buffer> <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " Remove the behaviour when pressing 'Enter' or 'o'/'O'.
 inoremap <buffer> <CR> <CR>
 nnoremap <buffer> o o
