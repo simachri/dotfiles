@@ -355,6 +355,7 @@ set secure
 " Provided by plugin https://github.com/simrat39/symbols-outline.nvim
 nnoremap <Leader>to :SymbolsOutline<CR>
 " Keymap to sync syntax highlighting again if it is broken.
+" See :h redrawtime
 nnoremap <silent> <Leader>e mx:e<CR>:syntax sync fromstart<CR>`x
 " Jump to alternate file.
 nnoremap <C-e> :b#<CR>
@@ -428,9 +429,9 @@ vnoremap <silent> <Leader>rrw "sy:%s/<C-r>s//gI<Left><Left><Left>
 :nnoremap <silent> J :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
 "" Set save key mapping.
 "nnoremap <silent> <Leader>s :update!<CR>
-" Switch to next and previous buffer.
-nnoremap <C-H> :bp<CR>
-nnoremap <C-L> :bn<CR>
+"" Switch to next and previous buffer.
+"nnoremap <C-H> :bp<CR>
+"nnoremap <C-L> :bn<CR>
 " 'Yank path': Yank the full filepath into the clipboard.
 nnoremap <Leader>yp :let @+=expand('%:p')<CR>
 " 'Yank CWD': Yank the current working directory into the clipboard.
