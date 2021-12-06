@@ -130,10 +130,11 @@ nmap <buffer> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
 inoremap <buffer> <C-k> <C-k>
 " Remove/overwrite the "make link" keymapping
 nnoremap <buffer> <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
-" Remove the behaviour when pressing 'Enter' or 'o'/'O'.
+" Remove the behaviour when pressing 'Enter' or 'o'/'O' or <C-i>.
 inoremap <buffer> <CR> <CR>
 nnoremap <buffer> o o
 nnoremap <buffer> O O
+nnoremap <buffer> <C-i> <C-i>
 " Currently not used: Create a full anchor link
 "autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
 "                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
