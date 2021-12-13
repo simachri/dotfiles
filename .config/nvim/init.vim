@@ -36,11 +36,12 @@ Plug 'neovim/nvim-lspconfig'
 "Plug 'lspcontainers/lspcontainers.nvim'
 " Icons for LSP items
 Plug 'onsails/lspkind-nvim'
+Plug 'leafOfTree/vim-svelte-plugin'
 " TypeScript
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-" Python: Add import for word under cursor if already imported before.
-Plug 'tjdevries/apyrori.nvim', { 'for': 'python' }
+"" Python: Add import for word under cursor if already imported before.
+"Plug 'tjdevries/apyrori.nvim', { 'for': 'python' }
 " Python: Activate virtual environments automatically.
 Plug 'rafi/vim-venom', { 'for': 'python' }
 " Python: formatter as pyright does not inlcude one.
