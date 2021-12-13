@@ -7,7 +7,7 @@ require('go').setup{
     -- linters: revive, errcheck, staticcheck, golangci-lint
     linter = 'revive',
     -- lint_prompt_style: qf (quickfix), vt (virtual text)
-    lint_prompt_style = 'qf',
+    lint_prompt_style = 'vt',
     -- formatter: goimports, gofmt, gofumpt
     formatter = 'goimports',
     -- test flags: -count=1 will disable cache
@@ -26,7 +26,6 @@ require('go').setup{
     -- quick type
     quick_type_flags = {'--just-types'},
 }
-
 
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
@@ -173,6 +172,9 @@ nvim_lsp.sumneko_lua.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        -- fix: Do you need to configure your work environment as `LÖVE`?
+        -- https://github.com/sumneko/lua-language-server/issues/679#issuecomment-960478223
+        checkThirdPart = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -185,8 +187,6 @@ nvim_lsp.sumneko_lua.setup {
 -- TypeScript
 -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
 -- https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
-require("null-ls").config {}
-nvim_lsp["null-ls"].setup {}
 nvim_lsp.tsserver.setup {
     -- https://github.com/hrsh7th/nvim-cmp
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
