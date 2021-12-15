@@ -149,23 +149,23 @@ gls.left[11] = {
   }
 }
 
-gls.right[1] = {
-  TreesitterLocInfo = {
-    provider = function ()
-      --return vim.api.nvim_command('call nvim_treesitter#statusline(50)')
-      return vim.fn["nvim_treesitter#statusline"]("50")
-    end,
-    condition = function ()
-      local tbl = {['python'] = true}
-      if tbl[vim.bo.filetype] then
-        return true
-      end
-      return false
-    end,
-    icon = '  ',
-    highlight = {colors.fg,colors.bg}
-  }
-}
+--gls.right[1] = {
+  --TreesitterLocInfo = {
+    --provider = function ()
+      ----return vim.api.nvim_command('call nvim_treesitter#statusline(50)')
+      --return vim.fn["nvim_treesitter#statusline"]("50")
+    --end,
+    --condition = function ()
+      --local tbl = {['python'] = true}
+      --if tbl[vim.bo.filetype] then
+        --return true
+      --end
+      --return false
+    --end,
+    --icon = '  ',
+    --highlight = {colors.fg,colors.bg}
+  --}
+--}
 
 --gls.right[2] = {
   --ShowLspClient = {
