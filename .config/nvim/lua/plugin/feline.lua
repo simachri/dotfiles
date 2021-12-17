@@ -1,7 +1,6 @@
 -- https://github.com/famiu/feline.nvim/blob/master/USAGE.md
 -- https://github.com/famiu/feline.nvim/blob/master/lua/feline/presets/default.lua
 local fl = require('feline')
-local vi_mode_utils = require('feline.providers.vi_mode')
 
 local comps = {
   -- Active buffer
@@ -50,7 +49,8 @@ comps.active[1] = {
                     if status == "" then
                         return " "
                     end
-                    return string.format("%s -", status)
+                    --return string.format("%s -", status)
+                    return string.format("%s", status)
                 end,
       type = 'relative',
       hl = {
@@ -59,19 +59,19 @@ comps.active[1] = {
       left_sep = ' ',
       right_sep = ' ',
     },
-    {
-      provider = function ()
-                    local bCntModif = vim.fn.len(vim.fn.getbufinfo({bufmodified=1, buflisted=1}))
-                    local bCntList = vim.fn.len(vim.fn.getbufinfo({buflisted=1}))
-                    if bCntModif > 0 then
-                      return bCntList .. " (" .. bCntModif .. ")"
-                    else
-                      return bCntList .. "   "
-                    end
-                  end,
-      type = 'relative',
-      right_sep = ' ',
-    },
+    --{
+      --provider = function ()
+                    --local bCntModif = vim.fn.len(vim.fn.getbufinfo({bufmodified=1, buflisted=1}))
+                    --local bCntList = vim.fn.len(vim.fn.getbufinfo({buflisted=1}))
+                    --if bCntModif > 0 then
+                      --return bCntList .. " (" .. bCntModif .. ")"
+                    --else
+                      --return bCntList .. "   "
+                    --end
+                  --end,
+      --type = 'relative',
+      --right_sep = ' ',
+    --},
     {
         provider = 'diagnostic_errors',
         hl = { style = 'bold' },
@@ -96,42 +96,22 @@ comps.active[1] = {
         left_sep = ' ',
         right_sep = ' ',
     },
-    {
-        provider = function()
-            return vim.fn["nvim_treesitter#statusline"](90)
-        end,
-        enabled = function()
-            return vim.NIL ~= vim.fn["nvim_treesitter#statusline"](90)
-        end,
-        left_sep = ' ',
-        right_sep = ' ',
-    }
+    --{
+        --provider = function()
+            --return vim.fn["nvim_treesitter#statusline"](90)
+        --end,
+        --enabled = function()
+            --return vim.NIL ~= vim.fn["nvim_treesitter#statusline"](90)
+        --end,
+        --left_sep = ' ',
+        --right_sep = ' ',
+    --}
 }
 -- right
 comps.active[2] = {
+    -- Current working directory
     {
         provider = function () return vim.fn.fnamemodify('.', ':p:h:t') end,
-        left_sep = ' ',
-        right_sep = '  ',
-    },
-    {
-        provider = 'git_branch',
-        hl = { style = 'bold' },
-        left_sep = ' ',
-        right_sep = ' ',
-    },
-    {
-        provider = 'git_diff_added',
-        left_sep = ' ',
-        right_sep = ' ',
-    },
-    {
-        provider = 'git_diff_changed',
-        left_sep = ' ',
-        right_sep = ' ',
-    },
-    {
-        provider = 'git_diff_removed',
         left_sep = ' ',
         right_sep = '  ',
     },
