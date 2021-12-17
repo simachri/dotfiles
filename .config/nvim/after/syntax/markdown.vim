@@ -1,4 +1,4 @@
-" Note: The syntax highlighting is defined in ~/.config/nvim/plugged/vim-markdown/syntax/markdown.vim
+" Note: The syntax highlighting is defined in ~/.config/nvim/plugged/nvim-markdown/syntax/markdown.vim
 " See also: [Vim Colorscheme Solutions](Vim__Colorscheme__Solutions.md#md-italic)
 " See Colorscheme.md for the respective colors.
 " Make bold text simply bold without color change.
