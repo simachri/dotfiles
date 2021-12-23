@@ -164,7 +164,7 @@ comps.inactive[1] = {
 
 fl.setup({
   components = comps,
-  colors = {
+  theme = {
     bg = '#586e75',
     fg = '#fdf6e3',
     yellow = '#b58900',
