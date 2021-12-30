@@ -52,10 +52,10 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP.read=project != Linode and project != Wiki and project != CL and project != AoC
-context.Development.read=(project:Linode or project:AoC)
+context.SAP.read=project != Linode and project != Wiki and project != Private and project != AoC and project != Vim
+context.Development.read=(project:Linode or project:AoC or project:Vim)
 context.Wiki.read=project:Wiki
-context.CocoLife.read=project:CL
+context.Private.read=project:Private
 #context.Done=stat:completed end:today
 
 ###############################
