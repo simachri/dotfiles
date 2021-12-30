@@ -26,7 +26,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     -- https://github.com/hrsh7th/cmp-buffer
     { name = 'buffer',
-      keyword_length = 3, -- start completion after 5 chars.
+      keyword_length = 1, -- start completion after n chars.
       max_item_count = 5, -- only show up to 5 items.
       options = {
         get_bufnrs = function()
@@ -73,7 +73,7 @@ vim.api.nvim_exec([[
     \     { name = 'nvim_lua' },
     \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
-    \       keyword_length = 3,
+    \       keyword_length = 1,
     \       max_item_count = 5,
     \       options = {
     \         get_bufnrs = function()
@@ -89,7 +89,7 @@ vim.api.nvim_exec([[
     \     { name = 'luasnip' },
     \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
-    \       keyword_length = 3,
+    \       keyword_length = 1,
     \       max_item_count = 5,
     \       options = {
     \         get_bufnrs = function()
@@ -105,7 +105,7 @@ vim.api.nvim_exec([[
     \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
-    \       keyword_length = 3,
+    \       keyword_length = 1,
     \       max_item_count = 5,
     \       options = {
     \         get_bufnrs = function()
@@ -121,7 +121,7 @@ vim.api.nvim_exec([[
     \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
-    \       keyword_length = 3,
+    \       keyword_length = 1,
     \       max_item_count = 5,
     \       options = {
     \         get_bufnrs = function()
