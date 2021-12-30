@@ -109,6 +109,7 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'rmagatti/auto-session'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 " Golang
 " 21-05-13: Removed in favour of native lsp.

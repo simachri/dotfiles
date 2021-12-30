@@ -118,8 +118,9 @@ set indentkeys=
 nmap <buffer><silent> <leader>fi ysiW_
 " Make text bold.
 nmap <buffer><silent> <leader>fb ysiW_.
-" Use ge in markdown files to follow link and open in horizontal split.
-nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
+" 21-12-29: Is remapped further below.
+"" Use ge in markdown files to follow link and open in horizontal split.
+"nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
 " Use gs in markdown files to follow link and open in vertical split.
 nmap <buffer><silent> gs m'<C-W>v:call <sid>EditUrlUnderCursor()<cr>
 nmap <buffer><silent> [c <Plug>Markdown_MoveToCurHeader
@@ -337,3 +338,10 @@ if !exists('*s:EditUrlUnderCursor')
         endif
     endfunction
 endif
+
+"""""""""""""""""""""""""""""""""""""""""
+" Treesitter: Implement 'ge' - go to URL
+"""""""""""""""""""""""""""""""""""""""""
+" Is implemented in ../../lua/plugin/markdown-enhancements.lua
+command! MarkdownJumpToURL lua require'plugin.markdown-enhancements'.jump_to_file_with_anchor() 
+nmap <buffer> <silent> ge :MarkdownJumpToURL<CR>
