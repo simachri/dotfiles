@@ -49,19 +49,28 @@ local function jump_to_file_with_anchor ()
   end
   local tab_cnt = 0
   for _ in pairs(t) do tab_cnt = tab_cnt + 1 end
-  if not tab_cnt == 2 then
-    print("Only links in the format 'FILEPATH#ANCHOR' work.")
+  if tab_cnt ~= 1 and tab_cnt ~= 2 then
+    print("Only links in the format '[FILEPATH]#ANCHOR' work.")
     return
   end
 
-  -- Transform the relative filepath to a filepath relative to the CWD.
-  -- Vimscript command: fnameescape(fnamemodify(expand('%:h').'/'.l:url.'.md', ':.'))
-  -- ':.' Reduces the file name to be relative to the current directory.
-  local fname = vim.fn.fnameescape(vim.fn.fnamemodify(vim.fn.expand('%:h') .. '/' .. t[1] .. '.md', ':.'))
-  vim.cmd('edit ' .. fname)
+  -- RELATIVE_FILEPATH can be empty.
+  if tab_cnt == 2 then
+    -- Transform the relative filepath to a filepath relative to the CWD.
+    -- Vimscript command: fnameescape(fnamemodify(expand('%:h').'/'.l:url.'.md', ':.'))
+    -- ':.' Reduces the file name to be relative to the current directory.
+    local fname = vim.fn.fnameescape(vim.fn.fnamemodify(vim.fn.expand('%:h') .. '/' .. t[1] .. '.md', ':.'))
+    vim.cfd('edit ' .. fname)
+  end
 
   -- Jump to the anchor.
-  vim.cmd('/id="' .. t[2])
+  local anchor
+  if tab_cnt == 2 then
+    anchor = t[2]
+  else
+    anchor = t[1]
+  end
+  vim.cmd('/id="' .. anchor)
 end
 
 return { jump_to_file_with_anchor = jump_to_file_with_anchor }
