@@ -35,7 +35,10 @@ include /usr/share/doc/task/rc/solarized-dark-256.theme
 ###############################
 # Overwrite some colors.
 ###############################
-#color.due=
+# Color due tasks green.
+color.due=color2
+# Do not color recurring tasks.
+color.recurring=
 #color.due.today=
 #color.overdue=color4
 # When using the 'next' tag, mark the task in blue.
@@ -52,10 +55,10 @@ column.padding=3
 ###############################
 # Define contexts.
 ###############################
-context.SAP.read=project != Linode and project != Wiki and project != Private and project != AoC and project != Vim
+context.SAP.read=project != Linode and project != Wiki and project != AoC and project != Vim and project != ""
 context.Development.read=(project:Linode or project:AoC or project:Vim)
 context.Wiki.read=project:Wiki
-context.Private.read=project:Private
+context.Private.read=project:
 #context.Done=stat:completed end:today
 
 ###############################
@@ -118,4 +121,14 @@ urgency.user.project.Zeiterfassung.coefficient=-7.0 # assigned to project:"Zeite
 # Custom commands
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
 uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file
+
+
+##############################
+# taskserver
+##############################
+taskd.server=localhost:53589
+taskd.certificate=~/.task/wsl.cert.pem
+taskd.key=~/.task/wsl.key.pem
+taskd.ca=~/.task/ca.cert.pem
+taskd.credentials=Public/wsl/f7bb91c3-27e5-4319-8404-67868057985f
 context=SAP
