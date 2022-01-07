@@ -121,7 +121,9 @@ urgency.user.project.Zeiterfassung.coefficient=-7.0 # assigned to project:"Zeite
 # Custom commands
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
 uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file
-
+uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-add=false
+uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-annotate=true
+uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-log=true
 
 ##############################
 # taskserver
