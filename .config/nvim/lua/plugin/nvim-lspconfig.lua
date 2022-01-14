@@ -91,12 +91,12 @@ local on_attach = function(client, bufnr)
 end
 
 -- JSON
--- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonls
 require'lspconfig'.jsonls.setup {
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
--- Python: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#pyright
+-- Python: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
 nvim_lsp.pyright.setup {
   before_init = function(params)
     params.processId = vim.NIL
@@ -127,6 +127,7 @@ nvim_lsp.gopls.setup {
 }
 
 -- Docker
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dockerls
 nvim_lsp.dockerls.setup {
   before_init = function(params)
     params.processId = vim.NIL
@@ -139,12 +140,12 @@ nvim_lsp.dockerls.setup {
 }
 
 -- SQL
--- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sqlls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sqlls
 require'lspconfig'.sqlls.setup{
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
--- Lua https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
+-- Lua https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
