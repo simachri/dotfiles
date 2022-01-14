@@ -98,6 +98,7 @@ vim.api.nvim_exec([[
     \       },
     \     },
     \     { name = 'path' },
+    \     { name = 'calc' },
     \   },
     \ }
     autocmd FileType python lua require'cmp'.setup.buffer {

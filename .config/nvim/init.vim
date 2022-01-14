@@ -53,6 +53,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-calc'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 " Plug 'hrsh7th/nvim-compe' " deprecated
