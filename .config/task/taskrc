@@ -128,9 +128,9 @@ uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-log=true
 ##############################
 # taskserver
 ##############################
-taskd.server=localhost:53589
+taskd.server=coco-life.de:53589
 taskd.certificate=~/.task/wsl.cert.pem
 taskd.key=~/.task/wsl.key.pem
 taskd.ca=~/.task/ca.cert.pem
-taskd.credentials=Public/wsl/f7bb91c3-27e5-4319-8404-67868057985f
+taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
 context=SAP
