@@ -1,0 +1,4 @@
+#!/bin/bash
+# Yank the Jira URL of the task to the clipboard.
+url=$(task _get $1.jira)
+explorer.exe $url
