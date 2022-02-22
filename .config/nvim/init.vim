@@ -37,7 +37,7 @@ Plug 'neovim/nvim-lspconfig'
 " Icons for LSP items
 Plug 'onsails/lspkind-nvim'
 Plug 'leafOfTree/vim-svelte-plugin'
-" TypeScript
+" JavaScript/TypeScript
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 "" Python: Add import for word under cursor if already imported before.
