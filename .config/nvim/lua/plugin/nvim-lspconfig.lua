@@ -194,21 +194,28 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
         silent = true,
     })
 end
-nvim_lsp.tsserver.setup {
+nvim_lsp.tsserver.setup({
     -- https://github.com/hrsh7th/nvim-cmp
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
+    init_options = require("nvim-lsp-ts-utils").init_options,
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
         local ts_utils = require("nvim-lsp-ts-utils")
-        ts_utils.setup({})
+        ts_utils.setup({
+            -- Filter message 'File is a CommonJS module; it may be converted to an ES6
+            -- module
+            -- Source: https://stackoverflow.com/a/70294761
+            filter_out_diagnostics_by_code = { 80001 },
+        })
         ts_utils.setup_client(client)
         buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
         buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
         buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
         on_attach(client, bufnr)
     end,
-}
+})
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
