@@ -6,9 +6,11 @@ root: ~/
 windows:
   - Wiki: cd ~/Wiki && nvim
   - SAP: cd ~/SAP && nvim
-  - Dev:
-      layout: ebc9,272x47,0,0{114x47,0,0,1,157x47,115,0,4}
-      panes:
-        - cd ~/Development && ls
-        - cd ~/Development && nvim Project_Ideas.md
+  - Code: cd ~/Development && ls
+  - zsh:
+  #- Dev:
+  #    layout: ebc9,272x47,0,0{114x47,0,0,1,157x47,115,0,4}
+  #    panes:
+  #      - cd ~/Development && ls
+  #      - cd ~/Development && nvim Project_Ideas.md
   - Journal: cd ~/Journal && ls
