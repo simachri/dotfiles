@@ -10,7 +10,8 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,              -- false will disable the whole extension
-    disable = { "go" }          -- disable for go as it somehow breaks indent when typing a colon, e.g. a := Type, see :set indentexpr?
+    disable = { "go", "typescript" }  -- disable for go as it breaks indent when typing a colon, e.g. a := Type, see :set indentexpr?
+                                      -- disable for typescript as it breaks indent when in a class method
   },
   incremental_selection = {
     enable = true,              -- false will disable the whole extension
