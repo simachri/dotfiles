@@ -204,10 +204,12 @@ nvim_lsp.tsserver.setup({
         client.resolved_capabilities.document_range_formatting = false
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup({
-            -- Filter message 'File is a CommonJS module; it may be converted to an ES6
-            -- module
+            -- Filter messages:
+              -- 'File is a CommonJS module; it may be converted to an ES6 module'
+              -- ''{0}' is declared but its value is never read.'
             -- Source: https://stackoverflow.com/a/70294761
-            filter_out_diagnostics_by_code = { 80001 },
+            -- List of codes: https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
+            filter_out_diagnostics_by_code = { 80001, 6133 },
         })
         ts_utils.setup_client(client)
         buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
