@@ -9,7 +9,7 @@ require'nvim-treesitter.configs'.setup {
     disable = {"markdown"}
   },
   indent = {
-    enable = true,              -- false will disable the whole extension
+    enable = false,              -- there are also issues with lua, so disable it.
     disable = { "go", "typescript" }  -- disable for go as it breaks indent when typing a colon, e.g. a := Type, see :set indentexpr?
                                       -- disable for typescript as it breaks indent when in a class method
   },
