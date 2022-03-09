@@ -49,7 +49,7 @@ function backup_journal() {
   rsync -a ~/Wiki $folderpath
   rsync -a ~/Journal $folderpath
   rsync -a ~/SAP $folderpath
-  rsync -a ~/Development $folderpath --exclude .venv
+  rsync -a ~/Development $folderpath --exclude={.venv,node_modules,taskd}
   rsync -a ~/.task $folderpath
   echo "Backup finished."
 }
