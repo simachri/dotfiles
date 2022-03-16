@@ -14,9 +14,6 @@
         cmd = nvim
 [credential]
 	helper = store
-[user]
-	name = simachri
-	email = marvin.christe@posteo.de
 [pull]
 	rebase = false
 [init]
