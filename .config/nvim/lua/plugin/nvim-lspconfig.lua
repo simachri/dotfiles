@@ -227,12 +227,21 @@ null_ls.setup({
     sources = {
         null_ls.builtins.diagnostics.eslint_d.with({
           filetypes = { "javascript", "typescript" },
+          -- Only use ESLint when project contains an ESLint executable.
+          -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils#configuring-sources
+          only_local = "node_modules/.bin",
         }),
         null_ls.builtins.code_actions.eslint_d.with({
           filetypes = { "javascript", "typescript" },
+          -- Only use ESLint when project contains an ESLint executable.
+          -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils#configuring-sources
+          only_local = "node_modules/.bin",
         }),
         null_ls.builtins.formatting.prettier.with({
           filetypes = { "javascript", "typescript" },
+          -- Only use Prettier when project contains a Prettier executable.
+          -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils#configuring-sources
+          only_local = "node_modules/.bin",
         }),
     },
     on_attach = on_attach
