@@ -249,3 +249,8 @@ vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua require('telescope.builtin
 
 -- Find spellcheck proposals.
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
+
+-- Harpoon
+-- https://github.com/ThePrimeagen/harpoon
+require("telescope").load_extension('harpoon')
+vim.api.nvim_set_keymap('n', '<leader>hg', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
