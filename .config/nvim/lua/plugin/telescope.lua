@@ -222,7 +222,9 @@ vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { nor
 
 -- Grep
 vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true})<cr>]], { noremap = true, silent = true })
+-- Grep markdown headers
+vim.api.nvim_set_keymap('n', '<leader>gh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text = '## .*', prompt_title = "Find header"})<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>go', [[<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>]], { noremap = true, silent = true })
 -- Grep word under cursor
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
