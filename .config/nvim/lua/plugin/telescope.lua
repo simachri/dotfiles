@@ -178,9 +178,10 @@ end
 function search_all_files()
   require('telescope.builtin').find_files {
     -- --no-ignore-vcs does not take .gitingore rules into account.
-    find_command = { 'rg', '--no-ignore-vcs', '--hidden', '--files', },
+    -- Ignore node_mdules: https://github.com/nvim-telescope/telescope.nvim/issues/1769#issuecomment-1067459702
+    find_command = { 'rg', '--no-ignore-vcs', '--hidden', '--files', '-g', '!*node_modules'},
     follow = true,
-    prompt_title = "Search files - including hidden ones"
+    prompt_title = "Search files - including hidden"
   }
 end
 
@@ -222,10 +223,11 @@ vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { nor
 
 -- Grep
 vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true})<cr>]], { noremap = true, silent = true })
 -- Grep markdown headers
-vim.api.nvim_set_keymap('n', '<leader>gh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text = '## .*', prompt_title = "Find header"})<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>go', [[<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>go', [[<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true, disable_coordinates=true, prompt_title='Grep in open buffers'})<cr>]], { noremap = true, silent = true })
 -- Grep word under cursor
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
 -- Grep markdown anchor references
