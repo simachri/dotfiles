@@ -253,7 +253,7 @@ vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin
 -- Harpoon
 -- https://github.com/ThePrimeagen/harpoon
 require("telescope").load_extension('harpoon')
-vim.api.nvim_set_keymap('n', '<leader>hg', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
 
 -- Quickfix list
 vim.api.nvim_set_keymap('n', '<leader>fq', [[<cmd>lua require('telescope.builtin').quickfix()<cr>]], { noremap = true, silent = true })
