@@ -56,9 +56,9 @@ Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-calc'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-" Plug 'hrsh7th/nvim-compe' " deprecated
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'deoplete-plugins/deoplete-lsp'
+Plug 'tzachar/fuzzy.nvim' " requires 'nvim-telescope/telescope-fzf-native.nvim', see below
+Plug 'tzachar/cmp-fuzzy-buffer'
+Plug 'petertriho/cmp-git'
 
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
@@ -70,21 +70,22 @@ Plug 'tpope/vim-surround'
 Plug 'mcchrish/nnn.vim'
 
 " Tags and outline
-" Plug 'majutsushi/tagbar'
 Plug 'simrat39/symbols-outline.nvim'
 
-"Plug 'alvan/vim-closetag'
 Plug 'Chiel92/vim-autoformat', { 'for': 'python' }
 " Easier profiling of Vim startup time:
 Plug 'tweekmonster/startuptime.vim'
 
 " Markdown
-" Plug 'plasticboy/vim-markdown'
 Plug 'ixru/nvim-markdown'
-"" Use installation method when node.js and yarn is already installed.
-"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"Plug 'jszakmeister/markdown2ctags'
 Plug 'ferrine/md-img-paste.vim'
+" Preview: Does not work with WSL
+"function! BuildComposer(info)
+"  if a:info.status != 'unchanged' || a:info.force
+"      !cargo build --release --locked
+"  endif
+"endfunction
+"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 "" Pandoc
 "Plug 'vim-pandoc/vim-pandoc'
@@ -103,7 +104,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 " Telescope
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " File navigation/marks
 Plug 'ThePrimeagen/harpoon'

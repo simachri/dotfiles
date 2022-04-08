@@ -35,6 +35,7 @@ cmp.setup({
       },
     },
     { name = 'path' },
+    { name = "cmp_git" },
   },
   formatting = {
     fields = { 'abbr', 'kind', 'menu' },
@@ -49,6 +50,14 @@ cmp.setup({
       })}),
   },
 })
+-- https://github.com/tzachar/cmp-fuzzy-buffer
+cmp.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'fuzzy_buffer' }
+  })
+})
+-- https://github.com/petertriho/cmp-git
+require("cmp_git").setup()
 
 -- https://github.com/onsails/lspkind-nvim/issues/24
 -- Do not display an icon for plain text in the buffer autocompletion used by nvim-cmp.
