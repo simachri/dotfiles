@@ -25,9 +25,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Repeat plugin commands, such as vim-surround
 Plug 'tpope/vim-repeat'
 
-" Bufferline
-"Plug 'akinsho/nvim-bufferline.lua'
-
 " Terminal
 Plug 'voldikss/vim-floaterm'
 
@@ -57,7 +54,7 @@ Plug 'hrsh7th/cmp-calc'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'tzachar/fuzzy.nvim' " requires 'nvim-telescope/telescope-fzf-native.nvim', see below
-Plug 'tzachar/cmp-fuzzy-buffer'
+"Plug 'tzachar/cmp-fuzzy-buffer'
 Plug 'petertriho/cmp-git'
 
 Plug 'godlygeek/tabular'
@@ -121,15 +118,15 @@ Plug 'crispgm/nvim-go'
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
 
-" Easy reloading of Nvim configuration.
-"Plug 'famiu/nvim-reload'
-
 " Show marks and registers content.
 Plug 'folke/which-key.nvim'
 
 Plug 'tpope/vim-fugitive'
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+" Indenting lines
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 
@@ -185,7 +182,7 @@ set background=light
 " Adjust solarized8 colorscheme. Needs to be located BEFORE the colorscheme is loaded.
 augroup adj_solarized
   au!
-  " ~/.config/nvim/plugged/vim-solarized8/colors/solarized8.vim
+  " ~/.config/nvim/plugged/nvim-solarized-lua/colors/solarized-flat.lua
   " Default colors:
   " - green - `Statement`: `#859900`
   " - red - `Title`:  #cb4b16
@@ -215,6 +212,18 @@ augroup END
 " colorscheme solarized
 colorscheme solarized-flat
 
+" Indenting configuration
+" https://github.com/lukas-reineke/indent-blankline.nvim
+let g:indent_blankline_filetype_exclude = [ 'markdown', 'lspinfo', 'packer', 'checkhealth', 'help', '', ]
+highlight IndentBlanklineIndent1 guifg=#eee8d5 gui=nocombine
+highlight Visual guifg=#fdf6e3 guibg=#93a1a1 gui=nocombine
+lua << EOF
+require("indent_blankline").setup {
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+    },
+}
+EOF
 set clipboard+=unnamedplus
 " Put the last yank explicitely into xclip when normal yanking did not work in VMware 
 " host's clipboard has not been updated.

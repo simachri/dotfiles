@@ -73,25 +73,20 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
   end
 
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec([[
-      " Default color is LightYellow
-      " Brown background and light foreground
-      "hi LspReferenceRead cterm=bold ctermbg=red guibg=#9d8c78 guifg=#fff8f3
-      "hi LspReferenceText cterm=bold ctermbg=red guibg=#9d8c78 guifg=#fff8f3
-      "hi LspReferenceWrite cterm=bold ctermbg=red guibg=#9d8c78 guifg=#fff8f3
-      " Light background
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=#efe0d3
-      hi LspReferenceText cterm=bold ctermbg=red guibg=#efe0d3
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#efe0d3
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
-  end
+  ---- Set autocommands conditional on server_capabilities
+  ---- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
+  --if client.resolved_capabilities.document_highlight then
+    --vim.cmd [[
+      --hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+      --hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+      --hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+      --augroup lsp_document_highlight
+        --autocmd! * <buffer>
+        --autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        --autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      --augroup END
+    --]]
+  --end
 end
 
 -- JSON

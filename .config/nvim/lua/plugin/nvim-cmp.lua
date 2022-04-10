@@ -50,12 +50,13 @@ cmp.setup({
       })}),
   },
 })
--- https://github.com/tzachar/cmp-fuzzy-buffer
-cmp.setup.cmdline('/', {
-  sources = cmp.config.sources({
-    { name = 'fuzzy_buffer' }
-  })
-})
+-- -- https://github.com/tzachar/cmp-fuzzy-buffer
+-- cmp.setup.cmdline('/', {
+--   sources = cmp.config.sources({
+--     { name = 'fuzzy_buffer',
+--       max_item_count = 3, }
+--   })
+-- })
 -- https://github.com/petertriho/cmp-git
 require("cmp_git").setup()
 
@@ -127,6 +128,22 @@ vim.api.nvim_exec([[
     \   },
     \ }
     autocmd FileType go lua require'cmp'.setup.buffer {
+    \   sources = {
+    \     { name = 'cmp_tabnine' },
+    \     { name = 'nvim_lsp' },
+    \     { name = 'buffer',
+    \       keyword_length = 1,
+    \       max_item_count = 5,
+    \       options = {
+    \         get_bufnrs = function()
+    \                       return vim.api.nvim_list_bufs()
+    \                     end
+    \       },
+    \     },
+    \     { name = 'path' },
+    \   },
+    \ }
+    autocmd FileType typescript,javascript lua require'cmp'.setup.buffer {
     \   sources = {
     \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
