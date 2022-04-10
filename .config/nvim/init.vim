@@ -309,6 +309,8 @@ set regexpengine=1
 
 " Use relative line numbers
 set number relativenumber
+" Always show sign column of width 3.
+set scl=yes:3
 
 
 
