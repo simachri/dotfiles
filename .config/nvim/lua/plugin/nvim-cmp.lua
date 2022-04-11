@@ -96,8 +96,6 @@ vim.api.nvim_exec([[
     \ }
     autocmd FileType markdown lua require'cmp'.setup.buffer {
     \   sources = {
-    \     { name = 'luasnip' },
-    \     { name = 'nvim_lsp' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
@@ -145,8 +143,8 @@ vim.api.nvim_exec([[
     \ }
     autocmd FileType typescript,javascript lua require'cmp'.setup.buffer {
     \   sources = {
-    \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
+    \     { name = 'cmp_tabnine' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,

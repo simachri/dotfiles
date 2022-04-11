@@ -112,10 +112,14 @@ setlocal formatoptions=Mwjlnt
 " See also: ~/.config/nvim/plugged/vim-markdown/indent/markdown.vim
 set indentkeys=
 
-" Disable relative line numbers.
-setlocal nonumber norelativenumber
-" Set width of sign column to 1.
-set scl=yes:1
+"" Disable relative line numbers.
+"setlocal nonumber norelativenumber
+"" Set width of sign column to 1.
+"set scl=yes:1
+" Disable sign column.
+set scl=no
+" Set minimal line number column width.
+set numberwidth=6
 
 """"""""""""""""""""""""""""""""""""""
 " Keymaps

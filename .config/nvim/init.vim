@@ -214,7 +214,8 @@ colorscheme solarized-flat
 
 " Indenting configuration
 " https://github.com/lukas-reineke/indent-blankline.nvim
-let g:indent_blankline_filetype_exclude = [ 'markdown', 'lspinfo', 'packer', 'checkhealth', 'help', '', ]
+let g:indent_blankline_filetype_exclude = [ 'markdown', 'taskedit', 'lspinfo', 'packer', 'checkhealth', 'help', '', ]
+let g:indent_blankline_show_first_indent_level = v:false
 highlight IndentBlanklineIndent1 guifg=#eee8d5 gui=nocombine
 highlight Visual guifg=#fdf6e3 guibg=#93a1a1 gui=nocombine
 lua << EOF
@@ -307,7 +308,7 @@ command Delview call MyDeleteView()
 " Use the old regex engine. Seems to be faster in markdown files.
 set regexpengine=1
 
-" Use relative line numbers
+" Use relative line numbers.
 set number relativenumber
 " Always show sign column of width 2.
 set scl=yes:2
