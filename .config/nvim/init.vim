@@ -666,13 +666,13 @@ function! OnUIEnter(event) abort
     " Use warpping instead.
     "" Automatically wrap on textwidth.
     "set fo+=t
-    set wrap
+    setlocal wrap
     " Setting the filetype here has no effect as it is derived from the (temporary) file 
     " that is being created and edited.
     " set ft=markdown
     " https://github.com/glacambre/firenvim#using-different-settings-depending-on-the-pageelement-being-edited
     au BufEnter *.txt set filetype=confluencewiki
-    set tw=0
+    setlocal tw=0
   endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))

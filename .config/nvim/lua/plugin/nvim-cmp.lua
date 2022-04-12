@@ -96,6 +96,7 @@ vim.api.nvim_exec([[
     \ }
     autocmd FileType markdown lua require'cmp'.setup.buffer {
     \   sources = {
+    \     { name = 'luasnip' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
