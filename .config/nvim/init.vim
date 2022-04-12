@@ -366,6 +366,8 @@ set secure
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" Prevent <leader><CR> to convert the word under cursor into a link (for some reason).
+nnoremap <Leader><CR> <Esc>
 " Provided by plugin https://github.com/simrat39/symbols-outline.nvim
 nnoremap <Leader>to :SymbolsOutline<CR>
 " Keymap to sync syntax highlighting again if it is broken.
@@ -665,7 +667,12 @@ function! OnUIEnter(event) abort
     "" Automatically wrap on textwidth.
     "set fo+=t
     set wrap
-    set ft=markdown
+    " Setting the filetype here has no effect as it is derived from the (temporary) file 
+    " that is being created and edited.
+    " set ft=markdown
+    " https://github.com/glacambre/firenvim#using-different-settings-depending-on-the-pageelement-being-edited
+    au BufEnter *.txt set filetype=markdown
+    set tw=0
   endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
