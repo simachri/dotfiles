@@ -671,7 +671,7 @@ function! OnUIEnter(event) abort
     " that is being created and edited.
     " set ft=markdown
     " https://github.com/glacambre/firenvim#using-different-settings-depending-on-the-pageelement-being-edited
-    au BufEnter *.txt set filetype=markdown
+    au BufEnter *.txt set filetype=confluencewiki
     set tw=0
   endif
 endfunction
