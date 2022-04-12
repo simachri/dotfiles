@@ -128,7 +128,7 @@ end
 function find_config()
   require('telescope.builtin').find_files {
     prompt_title = "Find config files",
-    file_ignore_patterns = { "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
+    file_ignore_patterns = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
     follow = false,
     hidden = true,
     -- Multiple search directories can be used:
