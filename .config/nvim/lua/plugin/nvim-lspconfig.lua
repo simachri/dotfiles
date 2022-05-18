@@ -59,10 +59,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>li', ':TSLspImportAll<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
-  if client.resolved_capabilities.document_range_formatting then
+  if client.server_capabilities.document_range_formatting then
     buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
   -- 21-06-12, add formatter for python as pyright does not provide one.
@@ -75,7 +75,7 @@ local on_attach = function(client, bufnr)
 
   ---- Set autocommands conditional on server_capabilities
   ---- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-  --if client.resolved_capabilities.document_highlight then
+  --if client.server_capabilities.document_highlight then
     --vim.cmd [[
       --hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
       --hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
@@ -198,8 +198,8 @@ nvim_lsp.tsserver.setup({
     -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
     init_options = require("nvim-lsp-ts-utils").init_options,
     on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup({
             -- Filter messages:
