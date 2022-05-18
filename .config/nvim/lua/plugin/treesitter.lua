@@ -4,9 +4,9 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css', 'markdown', 'yaml'}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
-   -- 22-1-4: Enabling 'markdown' is slow on large files. Further investigation is
-   -- required.
-    disable = {"markdown"}
+   -- 22-4-19: Enabling 'markdown' is slow on large files in edit mode. Further 
+   -- investigation is required.
+   disable = {"markdown"}
   },
   indent = {
     enable = false,              -- there are also issues with lua, so disable it.

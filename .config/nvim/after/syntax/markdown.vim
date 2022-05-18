@@ -40,12 +40,12 @@ highlight TSTitle guifg=#268bd2 gui=bold
 " Title: red
 "highlight TSTitle guifg=#cd6a46 gui=bold
 highlight TSLiteral guifg=#2aa198
-"" Punctuations: green
-"highlight TSPunctSpecial guifg=#859900
+" Punctuations: green
+highlight TSPunctSpecial guifg=#859900
 "" Punctuations: blue
 "highlight TSPunctSpecial guifg=#268bd2
-" Punctuations: red
-highlight TSPunctSpecial guifg=#cd6a46
+"" Punctuations: red
+"highlight TSPunctSpecial guifg=#cd6a46
 "" Punctuations: grey
 "highlight TSPunctSpecial guifg=#889792 
 highlight TSURI gui=italic guifg=#93a1a1

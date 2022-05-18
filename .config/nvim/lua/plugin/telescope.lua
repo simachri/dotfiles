@@ -223,15 +223,15 @@ vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { nor
 
 -- Grep
 vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
-
 vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true})<cr>]], { noremap = true, silent = true })
--- Grep markdown headers
-vim.api.nvim_set_keymap('n', '<leader>gh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
+-- Grep in open buffers
 vim.api.nvim_set_keymap('n', '<leader>go', [[<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true, disable_coordinates=true, prompt_title='Grep in open buffers'})<cr>]], { noremap = true, silent = true })
 -- Grep word under cursor
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
--- Grep markdown anchor references
+-- Find markdown anchor references
 vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
+-- Find markdown headers
+vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
 ---- CurrBuf
 --vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
 -- Buffers
@@ -254,10 +254,10 @@ vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua require('telescope.builtin
 -- Find spellcheck proposals.
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
 
--- Harpoon
--- https://github.com/ThePrimeagen/harpoon
-require("telescope").load_extension('harpoon')
-vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
+---- Harpoon
+---- https://github.com/ThePrimeagen/harpoon
+--require("telescope").load_extension('harpoon')
+--vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
 
 -- Quickfix list
 vim.api.nvim_set_keymap('n', '<leader>fq', [[<cmd>lua require('telescope.builtin').quickfix()<cr>]], { noremap = true, silent = true })

@@ -661,18 +661,11 @@ function! OnUIEnter(event) abort
     set guifont=MesloLGLDZ\ NF:h16
     set lines=70
     set columns=110
-    " Do not use automatic wrapping as the Jira syntax
-    " takes over linebreakes into the rendered result.
-    " Use warpping instead.
-    "" Automatically wrap on textwidth.
-    "set fo+=t
-    setlocal wrap
     " Setting the filetype here has no effect as it is derived from the (temporary) file 
     " that is being created and edited.
     " set ft=markdown
     " https://github.com/glacambre/firenvim#using-different-settings-depending-on-the-pageelement-being-edited
     au BufEnter *.txt set filetype=confluencewiki
-    setlocal tw=0
   endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))

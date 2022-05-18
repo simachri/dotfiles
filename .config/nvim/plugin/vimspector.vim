@@ -3,18 +3,18 @@
 
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-go' ]
 
-function! s:SwitchConsoleToStdErr()
-  execute 'VimspectorShowOutput stderr'
-  " Go back to 'code' window.
-  call win_gotoid(g:vimspector_session_windows.code)
-endfunction
+"function! s:SwitchConsoleToStdErr()
+  "execute 'VimspectorShowOutput stderr'
+  "" Go back to 'code' window.
+  "call win_gotoid(g:vimspector_session_windows.code)
+"endfunction
 
-augroup CustomizeUI
-  autocmd!
-  " Switch the console window to stderr.
-  " NOTE: Does not yet work for some reason.
-  autocmd User VimspectorUICreated call s:SwitchConsoleToStdErr()
-augroup END
+"augroup CustomizeUI
+  "autocmd!
+  "" Switch the console window to stderr.
+  "" NOTE: Does not yet work for some reason.
+  "autocmd User VimspectorUICreated call s:SwitchConsoleToStdErr()
+"augroup END
 
 "let s:maximized = 0
 "fun! GotoWindow(id, maximize)
