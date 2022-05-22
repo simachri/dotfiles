@@ -105,6 +105,7 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('dap')
 
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function grep_prompt()

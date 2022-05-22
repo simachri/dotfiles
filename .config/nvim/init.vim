@@ -93,8 +93,14 @@ Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
 
 " Debugging
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
+" Debugging: Since NeoVim 0.6, there is a native DAP support.
+" Migrate from Vimspector to DAP.
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
 
 " The following plugins are required for other nvim plugins.
 Plug 'nvim-lua/popup.nvim'
@@ -107,13 +113,15 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'rmagatti/auto-session'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
+" Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Golang
 " 21-05-13: Removed in favour of native lsp.
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sebdah/vim-delve'
-Plug 'crispgm/nvim-go'
+Plug 'ray-x/go.nvim'
+Plug 'ray-x/guihua.lua' " float term, codeaction and codelens gui support
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
@@ -143,6 +151,8 @@ luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
 luafile ~/.config/nvim/lua/plugin/harpoon.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
+luafile ~/.config/nvim/lua/plugin/nvim-dap.lua
+luafile ~/.config/nvim/lua/plugin/go-nvim.lua
 
 """"""""""""""""""""""
 " General Vim settings
@@ -565,26 +575,6 @@ function! SendToGKE()
    \ | redraw!
 endfunction
 command SendToGKE call SendToGKE()
-
-
-"""""""""""""""""""""""""
-" Go syntax highlighting
-"""""""""""""""""""""""""
-" We set this here to have the syntax highlighting properly applied when the file is 
-" opened.
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_types = 1
-" Auto formatting on save
-let g:go_fmt_autosave = 1
-" Run :GoImports on save
-let g:go_fmt_command = "goimports"
-" Disable automatic types/signatures info for the word under the cursor.
-let g:go_auto_type_info = 0
-
 
 """"""""
 " Pandoc

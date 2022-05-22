@@ -1,32 +1,3 @@
--- https://github.com/crispgm/nvim-go
--- Defaults see further below.
-require('go').setup{
-    -- auto commands
-    auto_format = false,
-    auto_lint = true,
-    -- linters: revive, errcheck, staticcheck, golangci-lint
-    linter = 'revive',
-    -- lint_prompt_style: qf (quickfix), vt (virtual text)
-    lint_prompt_style = 'vt',
-    -- formatter: goimports, gofmt, gofumpt
-    formatter = 'goimports',
-    -- test flags: -count=1 will disable cache
-    test_flags = {'-v'},
-    test_timeout = '30s',
-    test_env = {},
-    -- show test result with popup window
-    test_popup = true,
-    test_popup_width = 200,
-    test_popup_height = 200,
-    -- struct tags
-    tags_name = 'json',
-    tags_options = {'json=omitempty'},
-    tags_transform = 'snakecase',
-    tags_flags = {'-skip-unexported'},
-    -- quick type
-    quick_type_flags = {'--just-types'},
-}
-
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
 
@@ -58,12 +29,17 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>li', ':TSLspImportAll<CR>', opts)
 
+  buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+  buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+  buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  -- buf_set_keymap("n", "<space>ca", '<cmd>lua require"go.lsp".telescope_code_actions()<CR>', opts)
+
   -- Set some keybinds conditional on server capabilities
   if client.server_capabilities.document_formatting then
-    buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
   end
   if client.server_capabilities.document_range_formatting then
-    buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_format()<CR>", opts)
   end
   -- 21-06-12, add formatter for python as pyright does not provide one.
   -- https://www.reddit.com/r/neovim/comments/kpkc7o/how_to_leverage_neovims_vimlspbufformatting/ghy9550?utm_source=share&utm_medium=web2x&context=3
