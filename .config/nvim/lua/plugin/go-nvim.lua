@@ -8,7 +8,7 @@ require('go').setup({
   goimport='gopls', -- goimport command, can be gopls[default] or goimport
   fillstruct = 'gopls', -- can be nil (use fillstruct, slower) and gopls
   gofmt = 'gofumpt', --gofmt cmd,
-  max_line_len = 89, -- max line length in goline format
+  max_line_len = 120, -- max line length in goline format
   tag_transform = false, -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
   gotests_template = "", -- sets gotests -template parameter (check gotests for details)
   gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
@@ -40,7 +40,7 @@ require('go').setup({
   gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
   gopls_remote_auto = true, -- add -remote=auto to gopls
   dap_debug = true, -- set to false to disable dap
-  dap_debug_keymap = true, -- true: use keymap for debugger defined in go/dap.lua
+  dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
                            -- false: do not use keymap in go/dap.lua.  you must define your own.
   dap_debug_gui = true, -- set to true to enable dap gui, highly recommand
   dap_debug_vt = true, -- set to true to enable dap virtual text

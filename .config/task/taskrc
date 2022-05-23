@@ -133,4 +133,4 @@ taskd.certificate=~/.task/wsl.cert.pem
 taskd.key=~/.task/wsl.key.pem
 taskd.ca=~/.task/ca.cert.pem
 taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
-context=Private
+context=SAP

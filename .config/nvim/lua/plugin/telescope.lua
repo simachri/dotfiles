@@ -106,6 +106,7 @@ require('telescope').setup{
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('dap')
+require("telescope").load_extension("ui-select")
 
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function grep_prompt()
@@ -250,7 +251,7 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin
 
 -- LSP
 -- <leader>la - LSP actions
-vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true, silent = true })
 
 -- Find spellcheck proposals.
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })

@@ -108,6 +108,7 @@ Plug 'nvim-lua/plenary.nvim'
 " Telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 " File navigation/marks
 Plug 'ThePrimeagen/harpoon'
 Plug 'rmagatti/auto-session'
