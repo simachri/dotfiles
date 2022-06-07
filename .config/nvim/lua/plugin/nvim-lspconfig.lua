@@ -149,8 +149,8 @@ nvim_lsp.sumneko_lua.setup {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
         -- fix: Do you need to configure your work environment as `LÖVE`?
-        -- https://github.com/sumneko/lua-language-server/issues/679#issuecomment-960478223
-        checkThirdPart = false,
+        -- https://github.com/sumneko/lua-language-server/issues/783#issuecomment-1042800532
+        checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
