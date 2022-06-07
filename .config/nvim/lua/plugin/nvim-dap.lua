@@ -128,7 +128,16 @@ dap.adapters.go = function(callback, config)
   -- Wait for delve to start
   vim.defer_fn(
     function()
-      callback({type = "server", host = host, port = port})
+      callback({type = "server",
+                host = host,
+                port = port,
+                --enrich_config = function(cfg, on_config)
+                  --local final_config = vim.deepcopy(cfg)
+                  --final_config.request = "attach"
+                  --final_config.mode = "remote"
+                  --on_config(final_config)
+                --end,
+                })
     end,
     100)
 end
