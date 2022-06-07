@@ -448,9 +448,9 @@ function! RepeatChar(char, count)
    return repeat(a:char, a:count)
 endfunction
 " 'refactor: replace word' word under cursor
-nnoremap <silent> <Leader>rrw :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
+nnoremap <silent> <Leader>rr :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 " Replace selection
-vnoremap <silent> <Leader>rrw "sy:%s/<C-r>s//gI<Left><Left><Left>
+vnoremap <silent> <Leader>rr "sy:%s/<C-r>s//gI<Left><Left><Left>
 " Remap the join lines J command, such that the cursor remains at the position
 " Source: https://stackoverflow.com/questions/9505198/join-two-lines-in-vim-without-moving-cursor
 :nnoremap <silent> J :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
@@ -481,7 +481,9 @@ vnoremap <Leader>f :!tidy -xml -q -i --show-errors 0 --indent-attributes 1 -<CR>
 " Align all visually selected lines at the given character ("reformat: align")
 " :Tablularize /<char to be used as alignmend>
 " Note: A pipe | needs NOT to be escaped.
-vnoremap <Leader>ra :Tabularize /
+" 22-06-07: Disabled as almost never used and <leader>r maps are now the refactoring 
+" mappings.
+" vnoremap <Leader>ra :Tabularize /
 " Remap the q: (command history) for the use with FZF
 nnoremap q: :History:<CR>
 " Remap the q/ (search history) for the use with FZF

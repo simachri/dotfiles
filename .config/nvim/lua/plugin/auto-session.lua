@@ -1,7 +1,7 @@
 -- https://github.com/rmagatti/auto-session
 -- 21-07-31: The key remapping is required to suppress
 -- a 'bwipe 1' error when restoring a session.
-vim.api.nvim_set_keymap("n", "<Leader>rs", "<cmd>silent! RestoreSession<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>sr", "<cmd>silent! RestoreSession<CR>", {})
 local opts = {
   log_level = 'error',
   auto_session_enable_last_session = false,
