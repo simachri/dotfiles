@@ -66,3 +66,5 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 #}
 #_gen_fzf_default_opts
 
+# User Docker BuildKit
+export DOCKER_BUILDKIT=1
