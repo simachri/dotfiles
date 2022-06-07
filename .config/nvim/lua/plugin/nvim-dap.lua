@@ -1,3 +1,5 @@
+require('telescope').load_extension('dap')
+
 -- Continue is also used for starting a new debug session.
 vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"dap".continue()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>d<space>', [[<cmd>lua require"dap".continue()<cr>]], { noremap = true, silent = true })
