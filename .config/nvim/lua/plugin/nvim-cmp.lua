@@ -35,7 +35,7 @@ cmp.setup({
       },
     },
     { name = 'path' },
-    { name = "cmp_git" },
+    { name = "git" },
   },
   formatting = {
     fields = { 'abbr', 'kind', 'menu' },

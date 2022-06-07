@@ -73,3 +73,95 @@ require("dapui").setup({
     max_type_length = nil, -- Can be integer or nil.
   }
 })
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+
+-- Golang
+dap.adapters.go = function(callback, config)
+  local stdout = vim.loop.new_pipe(false)
+  local handle
+  local pid_or_err
+  local host = config.host or "127.0.0.1"
+  local port = config.port or "38697"
+  local addr = string.format("%s:%s", host, port)
+  if (config.request == "attach" and config.mode == "remote") then
+    -- Not starting delve server automatically in "Attach remote."
+    -- Will connect to delve server that is listening to [host]:[port] instead.
+    -- Users can use this with delve headless mode:
+    --
+    -- dlv debug -l 127.0.0.1:38697 --headless ./cmd/main.go
+    --
+    local msg = string.format("connecting to server at '%s'...", addr)
+    print(msg)
+  else
+    local opts = {
+      stdio = {nil, stdout},
+      args = {"dap", "-l", addr},
+      detached = true
+    }
+    handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
+      stdout:close()
+      handle:close()
+      if code ~= 0 then
+        print('dlv exited with code', code)
+      end
+    end)
+    assert(handle, 'Error running dlv: ' .. tostring(pid_or_err))
+    stdout:read_start(function(err, chunk)
+      assert(not err, err)
+      if chunk then
+        vim.schedule(function()
+          require('dap.repl').append(chunk)
+        end)
+      end
+    end)
+  end
+
+  -- Wait for delve to start
+  vim.defer_fn(
+    function()
+      callback({type = "server", host = host, port = port})
+    end,
+    100)
+end
+-- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+dap.configurations.go = {
+  {
+    type = "go",
+    name = "Debug current file",
+    request = "launch",
+    program = "${relativeFile}"
+  },
+  {
+    type = "go",
+    name = "Attach to remote",
+    request = "attach",
+    mode = "remote",
+    remotePath = "/src",
+    port = 4040,
+    host = "127.0.0.1"
+  },
+  --{
+    --type = "go",
+    --name = "Debug test", -- configuration for debugging test files
+    --request = "launch",
+    --mode = "test",
+    --program = "${file}"
+  --},
+  ---- works with go.mod packages and sub packages
+  --{
+    --type = "go",
+    --name = "Debug test (go.mod)",
+    --request = "launch",
+    --mode = "test",
+    --program = "./${relativeFileDirname}"
+  --}
+}

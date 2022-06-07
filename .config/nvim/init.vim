@@ -94,7 +94,7 @@ Plug 'RishabhRD/nvim-cheat.sh'
 
 " Debugging
 "Plug 'puremourning/vimspector'
-Plug 'szw/vim-maximizer'
+"Plug 'szw/vim-maximizer'
 " Debugging: Since NeoVim 0.6, there is a native DAP support.
 " Migrate from Vimspector to DAP.
 Plug 'mfussenegger/nvim-dap'
