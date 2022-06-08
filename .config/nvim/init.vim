@@ -117,6 +117,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
+Plug 'ThePrimeagen/refactoring.nvim'
+
 " Golang
 " 21-05-13: Removed in favour of native lsp.
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -154,6 +156,7 @@ luafile ~/.config/nvim/lua/plugin/harpoon.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
 luafile ~/.config/nvim/lua/plugin/nvim-dap.lua
 luafile ~/.config/nvim/lua/plugin/go-nvim.lua
+luafile ~/.config/nvim/lua/plugin/refactoring.lua
 
 """"""""""""""""""""""
 " General Vim settings
