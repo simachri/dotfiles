@@ -47,10 +47,10 @@ require('go').setup({
   dap_debug_gui = true, -- set to true to enable dap gui, highly recommand
   dap_debug_vt = true, -- set to true to enable dap virtual text
   build_tags = "tag1,tag2", -- set default build tags
-  textobjects = true, -- enable default text jobects through treesittter-text-objects
+  textobjects = false, -- enable default text jobects through treesittter-text-objects
   test_runner = 'go', -- richgo, go test, richgo, dlv, ginkgo
   verbose_tests = true, -- set to add verbose flag to tests
-  run_in_floaterm = true, -- set to true to run in float window. :GoTermClose closes the floatterm
+  run_in_floaterm = false, -- set to true to run in float window. :GoTermClose closes the floatterm
                            -- float term recommand if you use richgo/ginkgo with terminal color
 })
 

@@ -27,6 +27,7 @@ require'nvim-treesitter.configs'.setup {
   textobjects = {
     -- syntax-aware textobjects
     enable = true,
+    disable = {"markdown"},
     lsp_interop = {
       enable = true,
       peek_definition_code = {
