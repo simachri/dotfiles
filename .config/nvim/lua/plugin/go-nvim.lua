@@ -1,5 +1,8 @@
 -- https://github.com/ray-x/go.nvim
-vim.cmd("autocmd FileType go nmap <leader>rf :GoImport<CR>")
+
+-- Organize imports
+vim.cmd("autocmd FileType go nmap <leader>ro :GoImport<CR>")
+vim.cmd("autocmd FileType go nmap <leader>rf :GoFmt<CR>")
 --vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"go.dap".run()<cr>]], { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader>dq', [[<cmd>lua require"go.dap".stop()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dap-go".debug_test()<cr>]], { noremap = true, silent = true })
