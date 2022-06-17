@@ -156,7 +156,7 @@ dap.configurations.go = {
     name = "Attach to remote",
     request = "attach",
     mode = "remote",
-    remotePath = "/src",
+    remotePath = "/app",
     port = 4040,
     host = "127.0.0.1"
   },

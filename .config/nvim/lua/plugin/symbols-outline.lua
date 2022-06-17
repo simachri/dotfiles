@@ -28,7 +28,7 @@ vim.g.symbols_outline = {
                          --'Class',
                          --'Method',
                          'Property',
-                         --'Field',
+                         'Field',
                          --'Constructor',
                          --'Enum',
                          --'Interface',
