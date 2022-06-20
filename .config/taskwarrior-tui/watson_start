@@ -1,0 +1,5 @@
+#!/bin/bash
+task_guid_short=${1:0:8}
+jira_task_id=$(task _get $1.jira | grep -oP '(?:[^\/](?!\/))+$')
+watson start $(task _get $1.project) +$task_guid_short +$jira_task_id
+task start $1

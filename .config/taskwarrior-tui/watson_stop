@@ -1,0 +1,4 @@
+#!/bin/bash
+watson stop
+task stop $1
+watson edit
