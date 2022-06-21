@@ -285,8 +285,6 @@ endif
 set timeoutlen=600 ttimeoutlen=0
 " Pasting
 set pastetoggle=<F2>
-"" Show a vertical bar at column 91
-" set colorcolumn=91
 
 " Concealing/appearance
 " 21-01-16: Set this to 0 instead of 2 for better performance.
@@ -362,6 +360,8 @@ set shiftwidth=2
 set shiftround
 set expandtab
 set textwidth=89   " width of document (used by gq)
+" Show a vertical bar at column X
+set colorcolumn=90
 " The following options have no effect when visual wrapping is disabled.
 " set linebreak " Only break at the 'breakat' option 
 " set breakindent
