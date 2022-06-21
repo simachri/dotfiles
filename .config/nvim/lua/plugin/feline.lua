@@ -39,6 +39,7 @@ comps.active[1] = {
           type = 'relative',
         },
       },
+      icon = '',
       --hl = { style = 'bold' },
       --left_sep = '  ',
       right_sep = '  ',
@@ -52,11 +53,9 @@ comps.active[1] = {
                     --return string.format("%s -", status)
                     return string.format("%s", status)
                 end,
-      type = 'relative',
       hl = {
         style = 'bold'
       },
-      left_sep = ' ',
       right_sep = ' ',
     },
     --{

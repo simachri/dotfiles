@@ -34,13 +34,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
   -- buf_set_keymap("n", "<space>ca", '<cmd>lua require"go.lsp".telescope_code_actions()<CR>', opts)
 
-  -- Set some keybinds conditional on server capabilities
-  if client.server_capabilities.document_formatting then
-    buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
-  end
-  if client.server_capabilities.document_range_formatting then
-    buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_format()<CR>", opts)
-  end
+  buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
+  buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_format()<CR>", opts)
   -- 21-06-12, add formatter for python as pyright does not provide one.
   -- https://www.reddit.com/r/neovim/comments/kpkc7o/how_to_leverage_neovims_vimlspbufformatting/ghy9550?utm_source=share&utm_medium=web2x&context=3
   if client.name == "pyright" then

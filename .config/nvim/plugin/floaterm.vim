@@ -1,13 +1,14 @@
 " https://github.com/voldikss/vim-floaterm
 
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.9
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.95
 " By default, open a file as a new buffer in the existing Neovim instance
 " when using the 'floaterm' command on the commandline.
 let g:floaterm_opener = 'edit'
 " Make floaterm appear on the top.
 let g:floaterm_wintype = 'float'
-let g:floaterm_position = 'topright'
+let g:floaterm_position = 'center'
+"let g:floaterm_position = 'topright'
 
 " Terminal mode: Leave insert mode - default C-\ C-N does not work with WSL and Windows 
 " Terminal. For some reason, C-\ cannot be sent.

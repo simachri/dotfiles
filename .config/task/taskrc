@@ -136,3 +136,10 @@ taskd.key=~/.task/wsl.key.pem
 taskd.ca=~/.task/ca.cert.pem
 taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
 context=SAP
+
+##############################
+# Remap keys
+# https://kdheepak.com/taskwarrior-tui/configuration/keys/
+##############################
+# Disable default start/stop and use 4 and 5 instead, see above.
+uda.taskwarrior-tui.keyconfig.start-stop=)
