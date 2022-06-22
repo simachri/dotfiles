@@ -142,6 +142,7 @@ function find_config()
                     "~/.config/zsh",
                     "~/.config/tmux",
                     "~/.config/task",
+                    "~/.config/watson",
                     "~/.config/lazygit" }
     --cwd = "~/.config/nvim",
   }
