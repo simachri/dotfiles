@@ -3,6 +3,7 @@
 reverse_log = false
 log_current = true
 report_current = true
+pager = false
 # https://strftime.org/
 # time_format = %H:%M
 # date_format = %y%m%d # 220517 -> 2022-05-17
