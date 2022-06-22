@@ -552,19 +552,29 @@ let g:table_mode_tableize_map = '<Leader>tf'
 """"""""""""""""
 " Scratch buffer
 """"""""""""""""
-function! CreateScratchBuffer()
-    vsplit
-    noswapfile hide enew
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal tw=0
-    "setlocal ft=pandoc
-    setlocal ft=markdown
-    "lcd ~
-    file scratch
+function! OpenScratchBuffer()
+" Check if a scratch buffer already exists.
+lua << EOF
+      if vim.fn.bufnr("scratch") ~= -1 then
+        vim.cmd("e scratch")
+        return
+      else
+        vim.cmd([[
+          "vsplit
+          noswapfile hide enew
+          setlocal buftype=nofile
+          setlocal bufhidden=hide
+          setlocal tw=0
+          "setlocal ft=pandoc
+          setlocal ft=markdown
+          "lcd ~
+          file scratch
+          ]])
+      end
+EOF
 endfunction
-command! NewScratchBuf call CreateScratchBuffer()
-nnoremap <Leader>i :NewScratchBuf<CR>
+command! OpenScratchBuffer call OpenScratchBuffer()
+nnoremap <Leader>i :OpenScratchBuffer<CR>
 
 
 """""""""""""""""
