@@ -216,3 +216,5 @@ null_ls.setup({
 -- Initialize lsp-kind for symbbols
 -- https://github.com/onsails/lspkind-nvim
 require('lspkind').init()
+
+require'lspconfig'.svelte.setup{}
