@@ -42,7 +42,8 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 " Python: Activate virtual environments automatically.
 Plug 'rafi/vim-venom', { 'for': 'python' }
 " Python: formatter as pyright does not inlcude one.
-Plug 'sbdchd/neoformat', { 'for': 'python' }
+" HTML: formatter
+Plug 'sbdchd/neoformat'
 
 " Completion engine with completion sources
 Plug 'hrsh7th/nvim-cmp'

@@ -217,4 +217,7 @@ null_ls.setup({
 -- https://github.com/onsails/lspkind-nvim
 require('lspkind').init()
 
-require'lspconfig'.svelte.setup{}
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#svelte
+nvim_lsp.svelte.setup({
+  on_attach = on_attach
+})
