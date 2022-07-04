@@ -44,6 +44,8 @@ Plug 'rafi/vim-venom', { 'for': 'python' }
 " Python: formatter as pyright does not inlcude one.
 " HTML: formatter
 Plug 'sbdchd/neoformat'
+" HTML: Auto-close tags - is enabled through the treesitter configuration.
+Plug 'windwp/nvim-ts-autotag'
 
 " Completion engine with completion sources
 Plug 'hrsh7th/nvim-cmp'
