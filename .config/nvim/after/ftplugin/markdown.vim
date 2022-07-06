@@ -124,6 +124,9 @@ set numberwidth=6
 """"""""""""""""""""""""""""""""""""""
 " Keymaps
 """"""""""""""""""""""""""""""""""""""
+" Unmap the plugin mapping of nvim-markdown 'follow link' which causes in normal mode 
+" that the word under the cursor is transformed into a URL.
+nunmap <buffer><CR>
 " Make text italic.
 nmap <buffer><silent> <leader>fi ysiW_
 " Make text bold.
@@ -147,15 +150,18 @@ nnoremap <buffer> o o
 nnoremap <buffer> O O
 nnoremap <buffer> <C-i> <C-i>
 " Currently not used: Create a full anchor link
-"autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', submatch(0))/n<CR>
-"                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), "_", " ", "g"), ".md", "", "")."]
+"autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', 
+"submatch(0))/n<CR>
+"                  \:let @+="[".substitute(substitute(substitute(@%, "__", " ", "g"), 
+"                  "_", " ", "g"), ".md", "", "")."]
 "                  \(".@%."#".@d.")"<CR>
 "                  \:nohlsearch<CR>
 " 'Add anchor'
 nnoremap <Leader>aa o<a id=""></a><Esc>5hi
 " 'Get anchor' link without the filename as the link description.
 " 1. Clear register d
-" 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and match
+" 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and 
+"    match
 "    everything in the double quotes.
 " 3. Yank the match to register d.
 " 4. Disable highlighting of search results.

@@ -119,10 +119,10 @@ urgency.user.project.Zeiterfassung.coefficient=-7.0 # assigned to project:"Zeite
 # uda.taskwarrior-tui.task-report.next.filter=$(task show report.next.filter)
 # Custom commands
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
-# uda.taskwarrior-tui.shortcuts.1=~/.config/taskwarrior-tui/edit_markdown_file
 uda.taskwarrior-tui.shortcuts.2=~/.config/taskwarrior-tui/open_jira_url
 uda.taskwarrior-tui.shortcuts.4=~/.config/taskwarrior-tui/watson_start
 uda.taskwarrior-tui.shortcuts.5=~/.config/taskwarrior-tui/watson_stop
+uda.taskwarrior-tui.shortcuts.9=~/.config/taskwarrior-tui/edit_markdown_file
 uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-add=false
 uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-annotate=true
 uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-log=true
