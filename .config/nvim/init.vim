@@ -161,6 +161,7 @@ luafile ~/.config/nvim/lua/plugin/auto-session.lua
 luafile ~/.config/nvim/lua/plugin/nvim-dap.lua
 luafile ~/.config/nvim/lua/plugin/go-nvim.lua
 luafile ~/.config/nvim/lua/plugin/refactoring.lua
+luafile ~/.config/nvim/lua/plugin/nvim-web-devicons.lua
 
 """"""""""""""""""""""
 " General Vim settings
