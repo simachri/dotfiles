@@ -145,19 +145,27 @@ dap.adapters.go = function(callback, config)
                 --enrich_config = function(cfg, on_config)
                   --local final_config = vim.deepcopy(cfg)
                   --final_config.request = "attach"
-                  --final_config.mode = "remote"
+                  --final_config.mode = "exec"
                   --on_config(final_config)
                 --end,
                 })
     end,
-    100)
+    1000)
 end
 -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
 dap.configurations.go = {
   {
     type = "go",
+    name = "Debug compiled binary './app'",
+    request = "launch",
+    mode = "exec",
+    program = "./app"
+  },
+  {
+    type = "go",
     name = "Debug current file",
     request = "launch",
+    mode = "debug",
     program = "${relativeFile}"
   },
   {
