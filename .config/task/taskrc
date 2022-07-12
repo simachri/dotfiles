@@ -135,7 +135,6 @@ taskd.certificate=~/.task/wsl.cert.pem
 taskd.key=~/.task/wsl.key.pem
 taskd.ca=~/.task/ca.cert.pem
 taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
-context=SAP
 
 ##############################
 # Remap keys
@@ -143,3 +142,6 @@ context=SAP
 ##############################
 # Disable default start/stop and use 4 and 5 instead, see above.
 uda.taskwarrior-tui.keyconfig.start-stop=)
+uda.ms_todo_id.label=ToDo-ID
+uda.ms_todo_id.type=string
+context=SAP

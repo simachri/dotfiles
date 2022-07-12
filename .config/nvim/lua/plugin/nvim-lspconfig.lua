@@ -44,6 +44,11 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
   end
 
+  if client.name == "gopls" then
+    buf_set_keymap("n", "<leader>rf", "<cmd>GoFmt<CR>", opts)
+    buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
+  end
+
   ---- Set autocommands conditional on server_capabilities
   ---- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
   --if client.server_capabilities.document_highlight then

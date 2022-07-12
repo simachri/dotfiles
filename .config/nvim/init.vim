@@ -46,6 +46,8 @@ Plug 'rafi/vim-venom', { 'for': 'python' }
 Plug 'sbdchd/neoformat'
 " HTML: Auto-close tags - is enabled through the treesitter configuration.
 Plug 'windwp/nvim-ts-autotag'
+" Automatically insert matching bracket.
+Plug 'windwp/nvim-autopairs'
 
 " Completion engine with completion sources
 Plug 'hrsh7th/nvim-cmp'
@@ -166,6 +168,9 @@ luafile ~/.config/nvim/lua/plugin/nvim-web-devicons.lua
 """"""""""""""""""""""
 " General Vim settings
 """"""""""""""""""""""
+lua << EOF
+require("nvim-autopairs").setup {}
+EOF
 "" Show trailing spaces and tabs
 "set list
 "set listchars=tab:▶\ 

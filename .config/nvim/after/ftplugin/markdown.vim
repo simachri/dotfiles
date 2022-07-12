@@ -126,7 +126,7 @@ set numberwidth=6
 """"""""""""""""""""""""""""""""""""""
 " Unmap the plugin mapping of nvim-markdown 'follow link' which causes in normal mode 
 " that the word under the cursor is transformed into a URL.
-nunmap <buffer><CR>
+nmap <buffer><CR> <CR>
 " Make text italic.
 nmap <buffer><silent> <leader>fi ysiW_
 " Make text bold.
