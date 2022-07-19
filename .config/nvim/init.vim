@@ -138,7 +138,11 @@ Plug 'L3MON4D3/LuaSnip'
 " Show marks and registers content.
 Plug 'folke/which-key.nvim'
 
-Plug 'tpope/vim-fugitive'
+" Git
+" Plug 'tpope/vim-fugitive'
+Plug 'sindrets/diffview.nvim'
+Plug 'TimUntersberger/neogit'
+
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
@@ -164,6 +168,7 @@ luafile ~/.config/nvim/lua/plugin/nvim-dap.lua
 luafile ~/.config/nvim/lua/plugin/go-nvim.lua
 luafile ~/.config/nvim/lua/plugin/refactoring.lua
 luafile ~/.config/nvim/lua/plugin/nvim-web-devicons.lua
+luafile ~/.config/nvim/lua/plugin/git.lua
 
 """"""""""""""""""""""
 " General Vim settings

@@ -136,3 +136,12 @@ n ()
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
+
+# Rename tmux window to current directory.
+# Source: https://stackoverflow.com/q/29723307, https://stackoverflow.com/a/56568134
+#precmd () {
+#    tmux_conf_theme_window_status_format='#F#I:#W:#(tmux_pwd="#{pane_current_path}"; echo "${tmux_pwd//*\//}")'
+#    tmux_conf_theme_window_status_current_format='#F[#I:#W:#(tmux_pwd="#{pane_current_path}"; echo "${tmux_pwd//*\//}")]'
+#    tmux set-window-option -qg window-status-format ${tmux_conf_theme_window_status_format}
+#    tmux set-window-option -qg window-status-current-format ${tmux_conf_theme_window_status_current_format}
+#}
