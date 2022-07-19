@@ -62,7 +62,7 @@ local function splitPath(path)
   return elems
 end
 
-ls.add_snippets("markdown",
+ls.add_snippets("all",
                 {
                   -- Checkbox: "- [ ]", trigger is 'cb'.
                   s({trig="cb", name="Insert checkbox"}, {
@@ -83,6 +83,11 @@ ls.add_snippets("markdown",
                           i(0),
                           t({")"}),
                   }),
+                }
+)
+
+ls.add_snippets("markdown",
+                {
                   -- trigger is 'ref'.
                   s({trig="ref", name="Insert reference link"}, {
                           t({"["}),
@@ -144,7 +149,7 @@ ls.add_snippets("markdown",
                               -- destination anchor is in a different file (strip the file
                               -- extension!).
                               if destPath ~= vim.api.nvim_eval("expand('%:r')") then
-                                for currIdx = branchIdx + 1, #currFilePathElems do
+                                for _ = branchIdx + 1, #currFilePathElems do
                                   --vim.api.nvim_echo({{"currIdx is "..currIdx, "WarningMsg"}}, true, {}) -- default {history = true}
                                   relPath = relPath .. "../"
                                 end

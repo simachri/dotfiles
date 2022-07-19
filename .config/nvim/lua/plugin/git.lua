@@ -129,7 +129,7 @@ neogit.setup {
   disable_builtin_notifications = false,
   use_magit_keybindings = false,
   -- Change the default way of opening neogit
-  kind = "tab",
+  kind = "replace",
   -- Change the default way of opening the commit popup
   commit_popup = {
     kind = "split",
@@ -171,7 +171,7 @@ neogit.setup {
       folded = false
     },
     recent = {
-      folded = true
+      folded = false
     },
   },
   -- override/add mappings
