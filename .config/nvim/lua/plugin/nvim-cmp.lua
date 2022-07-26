@@ -27,14 +27,14 @@ cmp.setup({
     -- https://github.com/hrsh7th/cmp-buffer
     { name = 'buffer',
       keyword_length = 1, -- start completion after n chars.
-      max_item_count = 5, -- only show up to 5 items.
+      max_item_count = 10, -- show up to 10 items.
       options = {
         get_bufnrs = function()
                        return vim.api.nvim_list_bufs()
                      end
       },
     },
-    { name = 'path' },
+    -- { name = 'path' },
     { name = 'git' },
     { name = 'luasnip' },
   },
