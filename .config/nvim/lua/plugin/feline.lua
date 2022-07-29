@@ -108,6 +108,12 @@ comps.active[1] = {
 }
 -- right
 comps.active[2] = {
+    -- Git branch
+    {
+        provider = 'git_branch',
+        left_sep = ' ',
+        right_sep = '  ',
+    },
     -- Current working directory
     {
         provider = function () return vim.fn.fnamemodify('.', ':p:h:t') end,

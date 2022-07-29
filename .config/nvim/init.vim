@@ -142,7 +142,7 @@ Plug 'folke/which-key.nvim'
 " Plug 'tpope/vim-fugitive'
 Plug 'sindrets/diffview.nvim'
 Plug 'TimUntersberger/neogit'
-
+Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
