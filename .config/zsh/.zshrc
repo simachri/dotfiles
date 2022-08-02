@@ -34,7 +34,8 @@ alias vim=nvim
 # -D: Set colors for directories using NNN_FCOLORS
 # -n: Type-to-nav mode
 # -H: Show hidden files
-alias ls='n -aDoeH'
+# -A: Disable auto enter directory on unique filter match
+alias ls='n -aADoeH'
 # The n () function is defined further below.
 # alias ls='n -aDo'
 alias ll='ls -lah --color=auto'
