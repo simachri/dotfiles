@@ -391,6 +391,8 @@ let &showbreak = '>  '
 " Use directory-specific .vimrc-files. They are sourced when opening a file in there.
 set exrc
 set secure
+" Disable the mouse such that 'select-to-copy' works.
+set mouse=
 
 """""""""""""""""""""
 " Custom key mappings
