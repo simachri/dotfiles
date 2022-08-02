@@ -251,12 +251,18 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin
 -- -- Buffer fuzzy find: Headers
 -- vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
 
--- LSP
--- <leader>la - LSP actions
+-- LSP: Actions
 vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true, silent = true })
+-- LSP: Find workspace symbols (here: functions and methods only)
+vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols( { symbols = {'function', 'method'} } )<cr>]], { noremap = true, silent = true })
+
+-- Grep Search history - use <C-e> for the entry to populate the search prompt.
+vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })
+-- Grep Command  history - use <C-e> for the entry to populate the command prompt.
+vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').command_history()<cr>]], { noremap = true, silent = true })
 
 -- Find spellcheck proposals.
-vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
 
 ---- Harpoon
 ---- https://github.com/ThePrimeagen/harpoon

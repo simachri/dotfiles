@@ -398,7 +398,7 @@ set secure
 " Prevent <leader><CR> to convert the word under cursor into a link (for some reason).
 nnoremap <Leader><CR> <Esc>
 " Provided by plugin https://github.com/simrat39/symbols-outline.nvim
-nnoremap <Leader>to :SymbolsOutline<CR>
+nnoremap <silent> <Leader>to :SymbolsOutline<CR>
 " Keymap to sync syntax highlighting again if it is broken.
 " See :h redrawtime
 nnoremap <silent> <Leader>e mx:e<CR>:syntax sync fromstart<CR>`x
