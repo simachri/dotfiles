@@ -61,6 +61,7 @@ Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'tzachar/fuzzy.nvim' " requires 'nvim-telescope/telescope-fzf-native.nvim', see below
 "Plug 'tzachar/cmp-fuzzy-buffer'
 Plug 'petertriho/cmp-git'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'

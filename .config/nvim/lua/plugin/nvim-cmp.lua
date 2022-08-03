@@ -24,6 +24,7 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
     -- https://github.com/hrsh7th/cmp-buffer
     { name = 'buffer',
       keyword_length = 1, -- start completion after n chars.
