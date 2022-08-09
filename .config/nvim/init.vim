@@ -505,10 +505,6 @@ vnoremap <Leader>f :!tidy -xml -q -i --show-errors 0 --indent-attributes 1 -<CR>
 " 22-06-07: Disabled as almost never used and <leader>r maps are now the refactoring 
 " mappings.
 " vnoremap <Leader>ra :Tabularize /
-" Remap the q: (command history) for the use with FZF
-nnoremap q: :History:<CR>
-" Remap the q/ (search history) for the use with FZF
-nnoremap q/ :History/<CR>
 " Trigger omnicomplete
 " Note: We cannot map this to <C-Space> as this is used as the Prexif for tmux.
 " inoremap <C-Space> <C-x><C-o>

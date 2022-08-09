@@ -1,4 +1,9 @@
+# Dotfiles
 abbr dfa="df add"
 abbr dfc="df commit -m"
 abbr dfp="df push"
 abbr dfs="df status"
+
+# Git
+abbr glo="git --no-pager log --oneline -15"
+abbr glg="git log --graph --decorate --oneline --all"

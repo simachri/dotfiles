@@ -84,6 +84,7 @@ vim.api.nvim_exec([[
     \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lua' },
     \     { name = 'nvim_lsp' },
+    \     { name = 'nvim_lsp_signature_help' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
@@ -116,6 +117,7 @@ vim.api.nvim_exec([[
     \   sources = {
     \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
+    \     { name = 'nvim_lsp_signature_help' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
@@ -132,6 +134,7 @@ vim.api.nvim_exec([[
     \   sources = {
     \     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
+    \     { name = 'nvim_lsp_signature_help' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
@@ -147,6 +150,7 @@ vim.api.nvim_exec([[
     autocmd FileType typescript,javascript lua require'cmp'.setup.buffer {
     \   sources = {
     \     { name = 'nvim_lsp' },
+    \     { name = 'nvim_lsp_signature_help' },
     \     { name = 'cmp_tabnine' },
     \     { name = 'buffer',
     \       keyword_length = 1,

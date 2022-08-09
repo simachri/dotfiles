@@ -12,7 +12,12 @@ let g:floaterm_position = 'center'
 
 " Terminal mode: Leave insert mode - default C-\ C-N does not work with WSL and Windows 
 " Terminal. For some reason, C-\ cannot be sent.
-tnoremap <C-z> <C-\><C-n>
+" tnoremap <C-z> <C-\><C-n>
+" Use almost the same mapping as in tmux. In tmux it is <C-PREFIX>[
+tnoremap <C-e>[ <C-\><C-n>
+" When in normal mode in the terminal (after insert mode of terminal has been left), go 
+" back to insert mode: Use 'q' which is the same mapping as in tmux.
+" <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
 " Toggle terminal
 nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
 " New/additional terminal
