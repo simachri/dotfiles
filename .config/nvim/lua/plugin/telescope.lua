@@ -250,6 +250,8 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin
 -- vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true })
 -- -- Buffer fuzzy find: Headers
 -- vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
+-- Find Vim commands
+vim.api.nvim_set_keymap('n', '<leader>fv', [[<cmd>lua require('telescope.builtin').commands()<cr>]], { noremap = true, silent = true })
 
 -- LSP: Actions
 vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true, silent = true })
@@ -259,7 +261,7 @@ vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin
 
 -- Grep Search history - use <C-e> for the entry to populate the search prompt.
 vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })
--- Grep Command  history - use <C-e> for the entry to populate the command prompt.
+-- Grep Command history - use <C-e> for the entry to populate the command prompt.
 vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').command_history()<cr>]], { noremap = true, silent = true })
 
 -- Find spellcheck proposals.

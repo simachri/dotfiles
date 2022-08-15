@@ -29,7 +29,7 @@ cmp.setup({
     { name = 'buffer',
       keyword_length = 1, -- start completion after n chars.
       max_item_count = 10, -- show up to 10 items.
-      options = {
+      option = {
         get_bufnrs = function()
                        return vim.api.nvim_list_bufs()
                      end
@@ -88,7 +88,7 @@ vim.api.nvim_exec([[
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
-    \       options = {
+    \       option = {
     \         get_bufnrs = function()
     \                       return vim.api.nvim_list_bufs()
     \                     end
@@ -102,8 +102,8 @@ vim.api.nvim_exec([[
     \     { name = 'luasnip' },
     \     { name = 'buffer',
     \       keyword_length = 1,
-    \       max_item_count = 5,
-    \       options = {
+    \       max_item_count = 10,
+    \       option = {
     \         get_bufnrs = function()
     \                       return vim.api.nvim_list_bufs()
     \                     end
@@ -121,7 +121,7 @@ vim.api.nvim_exec([[
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
-    \       options = {
+    \       option = {
     \         get_bufnrs = function()
     \                       return vim.api.nvim_list_bufs()
     \                     end
@@ -138,7 +138,7 @@ vim.api.nvim_exec([[
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
-    \       options = {
+    \       option = {
     \         get_bufnrs = function()
     \                       return vim.api.nvim_list_bufs()
     \                     end
@@ -155,7 +155,7 @@ vim.api.nvim_exec([[
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
-    \       options = {
+    \       option = {
     \         get_bufnrs = function()
     \                       return vim.api.nvim_list_bufs()
     \                     end

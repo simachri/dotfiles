@@ -14,7 +14,9 @@ let g:floaterm_position = 'center'
 " Terminal. For some reason, C-\ cannot be sent.
 " tnoremap <C-z> <C-\><C-n>
 " Use almost the same mapping as in tmux. In tmux it is <C-PREFIX>[
-tnoremap <C-e>[ <C-\><C-n>
+" 2022-08-15: Cannot use <C-e> as it is used in Taskwarrior TUI for scrolling and cannot 
+" be remapped.
+tnoremap <C-r>[ <C-\><C-n>
 " When in normal mode in the terminal (after insert mode of terminal has been left), go 
 " back to insert mode: Use 'q' which is the same mapping as in tmux.
 " <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim

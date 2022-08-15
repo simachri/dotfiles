@@ -112,12 +112,15 @@ dap.adapters.go = function(callback, config)
     --
     local msg = string.format("connecting to server at '%s'...", addr)
     print(msg)
+
   else
     local opts = {
-      stdio = {nil, stdout},
+      stdio = {nil, stdout, stdout},
       args = {"dap", "-l", addr},
       detached = true
     }
+    local msg = string.format("spawning server to listen at '%s'...", addr)
+    print(msg)
     handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
       stdout:close()
       handle:close()

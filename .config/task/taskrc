@@ -145,3 +145,7 @@ uda.taskwarrior-tui.keyconfig.start-stop=)
 uda.ms_todo_id.label=ToDo-ID
 uda.ms_todo_id.type=string
 context=SAP
+uda.ms_todo_listid.type=string
+uda.ms_todo_listid.label=MS To-Do List ID
+uda.ms_todo_taskid.type=string
+uda.ms_todo_taskid.label=MS To-Do Task ID

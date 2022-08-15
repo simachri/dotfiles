@@ -7,3 +7,8 @@ abbr dfs="df status"
 # Git
 abbr glo="git --no-pager log --oneline -15"
 abbr glg="git log --graph --decorate --oneline --all"
+
+# Watson
+abbr wl="watson log"
+abbr we="watson edit"
+abbr wa="watson add --from '' --to ''"
