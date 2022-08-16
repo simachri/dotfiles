@@ -16,6 +16,8 @@ let mapleader=" "
 call plug#begin('~/.config/nvim/plugged')
 " Colorscheme
 Plug 'ishan9299/nvim-solarized-lua'
+" Alternative to be checked out later:
+" https://github.com/shaunsingh/solarized.nvim
 " Plug 'gruvbox-community/gruvbox'
 
 " Statusline
@@ -57,7 +59,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-calc'
 Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+"Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'tzachar/fuzzy.nvim' " requires 'nvim-telescope/telescope-fzf-native.nvim', see below
 "Plug 'tzachar/cmp-fuzzy-buffer'
 Plug 'petertriho/cmp-git'
@@ -98,15 +100,13 @@ Plug 'ferrine/md-img-paste.vim'
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
 
-" Debugging
-"Plug 'puremourning/vimspector'
-"Plug 'szw/vim-maximizer'
 " Debugging: Since NeoVim 0.6, there is a native DAP support.
 " Migrate from Vimspector to DAP.
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
+Plug 'yriveiro/dap-go.nvim'
 
 " The following plugins are required for other nvim plugins.
 Plug 'nvim-lua/popup.nvim'

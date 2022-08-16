@@ -5,8 +5,9 @@ abbr dfp="df push"
 abbr dfs="df status"
 
 # Git
-abbr glo="git --no-pager log --oneline -15"
-abbr glg="git log --graph --decorate --oneline --all"
+abbr gl="git --no-pager log --oneline -15"
+abbr gg="git log --graph --decorate --oneline --all"
+abbr gs="git status"
 
 # Watson
 abbr wl="watson log"

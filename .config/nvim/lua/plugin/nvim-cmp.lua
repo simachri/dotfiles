@@ -67,21 +67,21 @@ require("cmp_git").setup()
 require('lspkind').presets['default']['Text']=''
 
 -- https://github.com/tzachar/cmp-tabnine
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
-        max_lines = 1000;
-        max_num_results = 20;
-        sort = true;
-	run_on_every_keystroke = true;
-	snippet_placeholder = '..';
-})
+--local tabnine = require('cmp_tabnine.config')
+--tabnine:setup({
+--        max_lines = 1000;
+--        max_num_results = 20;
+--        sort = true;
+--	run_on_every_keystroke = true;
+--	snippet_placeholder = '..';
+--})
 
 vim.api.nvim_exec([[
   augroup cmp_aucmds
     " Set up sources for filetypes.
     autocmd FileType lua lua require'cmp'.setup.buffer {
     \   sources = {
-    \     { name = 'cmp_tabnine' },
+    "\     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lua' },
     \     { name = 'nvim_lsp' },
     \     { name = 'nvim_lsp_signature_help' },
@@ -115,7 +115,7 @@ vim.api.nvim_exec([[
     \ }
     autocmd FileType python lua require'cmp'.setup.buffer {
     \   sources = {
-    \     { name = 'cmp_tabnine' },
+    "\     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
     \     { name = 'nvim_lsp_signature_help' },
     \     { name = 'buffer',
@@ -132,7 +132,7 @@ vim.api.nvim_exec([[
     \ }
     autocmd FileType go lua require'cmp'.setup.buffer {
     \   sources = {
-    \     { name = 'cmp_tabnine' },
+    "\     { name = 'cmp_tabnine' },
     \     { name = 'nvim_lsp' },
     \     { name = 'nvim_lsp_signature_help' },
     \     { name = 'buffer',
@@ -151,7 +151,7 @@ vim.api.nvim_exec([[
     \   sources = {
     \     { name = 'nvim_lsp' },
     \     { name = 'nvim_lsp_signature_help' },
-    \     { name = 'cmp_tabnine' },
+    "\     { name = 'cmp_tabnine' },
     \     { name = 'buffer',
     \       keyword_length = 1,
     \       max_item_count = 5,
