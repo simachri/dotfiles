@@ -13,6 +13,7 @@ vim.api.nvim_exec(
     " - red - `Title`:  #cb4b16
     " - orange - `Type`: `#b58900`
     " - purple - `Underlined`: `#6c71c4`
+    " - magenta - `#d33682`
     " - blue - `Identifier`: `#268bd2`
     " - cyan - `Constant`: `#2aa198`
     " - grey - `Comment`: `#93a1a1` 
@@ -37,22 +38,22 @@ vim.api.nvim_exec(
     " Treesitter: Make some items italic
     au ColorScheme * hi TSFunction guifg=#b58900
     au ColorScheme * hi TSMethod guifg=#b58900
-    au ColorScheme * hi TSKeywordFunction guifg=#859900
-    au ColorScheme * hi TSParameter guifg=#859900
-    au ColorScheme * hi TSParameterReference guifg=#859900
-    au ColorScheme * hi TSPunctBracket guifg=#586e75
-    au ColorScheme * hi TSPunctDelimiter guifg=#586e75
-    au ColorScheme * hi TSOperator guifg=#586e75
-    au ColorScheme * hi TSProperty guifg=#6c71c4
-    au ColorScheme * hi TSField guifg=#6c71c4
-    au ColorScheme * hi TSNamespace guifg=#586e75
+    au ColorScheme * hi TSKeywordFunction guifg=#b58900
+    au ColorScheme * hi TSParameter guifg=#657b83
+    au ColorScheme * hi TSParameterReference guifg=#657b83
+    au ColorScheme * hi TSPunctBracket guifg=#657b83
+    au ColorScheme * hi TSPunctDelimiter guifg=#657b83
+    au ColorScheme * hi TSOperator guifg=#657b83
+    au ColorScheme * hi TSProperty guifg=#657b83
+    au ColorScheme * hi TSField guifg=#657b83
+    au ColorScheme * hi TSNamespace guifg=#d33682 
     au ColorScheme * hi TSMethodCall guifg=#b58900 gui=italic
     au ColorScheme * hi TSFunctionCall guifg=#b58900 gui=italic
     au ColorScheme * hi TSVariable guifg=#268bd2
-    au ColorScheme * hi TSType guifg=#586e75 gui=italic
+    au ColorScheme * hi TSType guifg=#657b83 gui=italic
     au ColorScheme * hi TSKeywordReturn gui=bold
     au ColorScheme * hi TSTypeBuiltin guifg=#b58900 gui=italic
-    au ColorScheme * hi TSConstant guifg=#d33682
+    au ColorScheme * hi TSConstant guifg=#6c71c4
 
     " Search
     au ColorScheme * hi Search guifg=#eee8d5 guibg=#657b83
