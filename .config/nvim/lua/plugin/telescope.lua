@@ -127,7 +127,7 @@ function grep_prompt()
 end
 
 
-function find_config()
+function find_dotfiles()
   require('telescope.builtin').find_files {
     prompt_title = "Find config files",
     file_ignore_patterns = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
@@ -220,9 +220,9 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').git_files()<cr>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true })
 -- All Files, including the hidden ones
-vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
 -- Configuration files / dotfiles
-vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua find_config()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua find_dotfiles()<cr>]], { noremap = true, silent = true })
 
 -- Grep
 vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
@@ -230,17 +230,17 @@ vim.api.nvim_set_keymap('n', '<leader>gg', [[<cmd>lua require('telescope.builtin
 -- Grep in open buffers
 vim.api.nvim_set_keymap('n', '<leader>go', [[<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true, disable_coordinates=true, prompt_title='Grep in open buffers'})<cr>]], { noremap = true, silent = true })
 -- Grep word under cursor
-vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
 -- Find markdown anchor references
-vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fmr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
 -- Find markdown headers
-vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fmh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
 -- Find help tags
 vim.api.nvim_set_keymap('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], { noremap = true, silent = true })
 ---- CurrBuf
 --vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
--- Buffers
-vim.api.nvim_set_keymap('n', '<leader>bb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
+-- Find buffer
+vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
 -- -- Tags: Use tagbar instead.
 -- vim.api.nvim_set_keymap('n', '<leader>ft', [[<cmd>lua currbufftags()<cr>]], { noremap = true, silent = true })
 -- Outline/treesitter
@@ -252,18 +252,18 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin
 -- -- Buffer fuzzy find: Headers
 -- vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
 -- Find Vim commands
-vim.api.nvim_set_keymap('n', '<leader>fv', [[<cmd>lua require('telescope.builtin').commands()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').commands()<cr>]], { noremap = true, silent = true })
 
 -- LSP: Actions
 vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true, silent = true })
--- LSP: Find workspace symbols (here: functions and methods only)
+-- LSP: Grep workspace symbols (here: functions and methods only)
 --vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols( { symbols = {'function', 'method'} } )<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]], { noremap = true, silent = true })
 
 -- Grep Search history - use <C-e> for the entry to populate the search prompt.
-vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ghs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })
 -- Grep Command history - use <C-e> for the entry to populate the command prompt.
-vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').command_history()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ghc', [[<cmd>lua require('telescope.builtin').command_history()<cr>]], { noremap = true, silent = true })
 
 -- Find spellcheck proposals.
 --vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
@@ -273,5 +273,5 @@ vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin
 --require("telescope").load_extension('harpoon')
 --vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
 
--- Quickfix list
-vim.api.nvim_set_keymap('n', '<leader>fq', [[<cmd>lua require('telescope.builtin').quickfix()<cr>]], { noremap = true, silent = true })
+-- Grep Quickfix list
+vim.api.nvim_set_keymap('n', '<leader>gq', [[<cmd>lua require('telescope.builtin').quickfix()<cr>]], { noremap = true, silent = true })

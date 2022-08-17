@@ -1,6 +1,6 @@
 -- https://github.com/ray-x/go.nvim
---vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"go.dap".run()<cr>]], { noremap = true, silent = true })
---vim.api.nvim_set_keymap('n', '<leader>dq', [[<cmd>lua require"go.dap".stop()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"go.dap".run()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dq', [[<cmd>lua require"go.dap".stop()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dap-go".debug_test()<cr>]], { noremap = true, silent = true })
 
 require('go').setup({
@@ -39,8 +39,7 @@ require('go').setup({
   -- false if you want to use other formatter tool(e.g. efm, nulls)
   gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
   gopls_remote_auto = true, -- add -remote=auto to gopls
-  dap_debug = false, -- set to false to disable dap
-                     -- 22-06-06: I use nvim-dap-go instead.
+  dap_debug = true, -- set to false to disable dap
   dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
                            -- false: do not use keymap in go/dap.lua.  you must define your own.
   dap_debug_gui = true, -- set to true to enable dap gui, highly recommand

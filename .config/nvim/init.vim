@@ -16,8 +16,8 @@ let mapleader=" "
 call plug#begin('~/.config/nvim/plugged')
 " Colorscheme
 Plug 'ishan9299/nvim-solarized-lua'
-" Alternative to be checked out later:
-" https://github.com/shaunsingh/solarized.nvim
+" Alternative:
+"Plug 'shaunsingh/solarized.nvim'
 " Plug 'gruvbox-community/gruvbox'
 
 " Statusline
@@ -106,7 +106,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
-Plug 'yriveiro/dap-go.nvim'
+"Plug 'yriveiro/dap-go.nvim'
 
 " The following plugins are required for other nvim plugins.
 Plug 'nvim-lua/popup.nvim'
@@ -120,7 +120,7 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'rmagatti/auto-session'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
@@ -170,6 +170,7 @@ luafile ~/.config/nvim/lua/plugin/go-nvim.lua
 luafile ~/.config/nvim/lua/plugin/refactoring.lua
 luafile ~/.config/nvim/lua/plugin/nvim-web-devicons.lua
 luafile ~/.config/nvim/lua/plugin/git.lua
+luafile ~/.config/nvim/lua/plugin/colorscheme.lua
 
 """"""""""""""""""""""
 " General Vim settings
@@ -206,41 +207,6 @@ set noswapfile
 set nobackup
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"" 21-1-19, Use this to make colors in Vim work with rxvt-unicode.
-"set t_Co=256
-set background=light
-" Adjust solarized8 colorscheme. Needs to be located BEFORE the colorscheme is loaded.
-augroup adj_solarized
-  au!
-  " ~/.config/nvim/plugged/nvim-solarized-lua/colors/solarized-flat.lua
-  " Default colors:
-  " - green - `Statement`: `#859900`
-  " - red - `Title`:  #cb4b16
-  " - orange - `Type`: `#b58900`
-  " - purple - `Underlined`: `#6c71c4`
-  " - blue - `Identifier`: `#268bd2`
-  " - cyan - `Constant`: `#2aa198`
-  " - grey - `Comment`: `#93a1a1` 
-  " Adjust 'blue'
-  " au ColorScheme * hi Identifier guifg=#507da9
-  " Adjust 'red'
-  au ColorScheme * hi Title guifg=#cd6a46 guibg=NONE gui=bold cterm=bold
-  "" Adjust 'cyan'
-  "au ColorScheme * hi Constant guifg=#298a81
-  "" Override background color of the line number bar
-  " highlight LineNr guifg=#839496 guibg=#eee8d5
-  au ColorScheme * hi clear LineNr
-  " hi CursorLineNr guifg=#cb4b16 guibg=#073642 gui=bold cterm=bold
-  au ColorScheme * hi CursorLineNr guibg=None
-  " Statusline of non-current buffers
-  " au ColorScheme * hi StatusLineNC guibg=#839496 guifg=#eee8d5
-  " Treesitter: Fix error color group highlighting.
-  " https://github.com/nvim-treesitter/nvim-treesitter/issues/119
-  au ColorScheme * hi! link TSError Normal
-augroup END
-
-" colorscheme solarized
-colorscheme solarized-flat
 
 " Indenting configuration
 " https://github.com/lukas-reineke/indent-blankline.nvim

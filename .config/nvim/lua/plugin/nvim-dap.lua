@@ -1,5 +1,3 @@
-require('telescope').load_extension('dap')
-
 -- Continue is also used for starting a new debug session.
 vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"dap".continue()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>d<space>', [[<cmd>lua require"dap".continue()<cr>]], { noremap = true, silent = true })
@@ -21,11 +19,11 @@ vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dap".up()<cr>]], {
 vim.api.nvim_set_keymap('n', '<leader>di', [[<cmd>lua require"dapui".eval()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>di', [[<cmd>lua require"dapui".eval()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dc', [[<cmd>lua require"dapui".float_element()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dw', [[<cmd>lua require"dapui".float_element("watches")<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>do', [[<cmd>lua require"dapui".float_element("scopes")<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ds', [[<cmd>lua require"dapui".float_element("stacks")<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dw', [[<cmd>lua require"dapui".float_element("watches", { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>do', [[<cmd>lua require"dapui".float_element("scopes", { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ds', [[<cmd>lua require"dapui".float_element("stacks", { enter = true })<cr>]], { noremap = true, silent = true })
 -- REPL: Debug console
-vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dapui".float_element("repl")<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dapui".float_element("repl", { enter = true })<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dapui".float_element("breakpoints")<cr>]], { noremap = true, silent = true })
 
 require("dapui").setup({
@@ -91,136 +89,6 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
-
--- Golang
--- 2022-08-16: Disabled in favor of https://github.com/yriveiro/dap-go.nvim
-require('dap-go').setup({
-  external_config = {
-    enabled = true,
-  }
-})
--- Example of a dap-go.json file:
---{
-  --"Custom config": {
-    --"type": "go",
-    --"name": "Debug custom",
-    --"request": "launch",
-    --"program": "${file}",
-    --"args": [
-      --"--foo",
-      --"bar"
-    --],
-    --"options": {
-      --"env": {
-        --"FOO": "bar"
-      --}
-    --}
-  --}
---}
---dap.adapters.go = function(callback, config)
-  --local stdout = vim.loop.new_pipe(false)
-  --local handle
-  --local pid_or_err
------@diagnostic disable-next-line: undefined-field
-  --local host = config.host or "127.0.0.1"
------@diagnostic disable-next-line: undefined-field
-  --local port = config.port or "38697"
-  --local addr = string.format("%s:%s", host, port)
-
------@diagnostic disable-next-line: undefined-field
-  --if (config.request == "attach") then
-    ---- Not starting delve server automatically in "Attach remote."
-    ---- Will connect to delve server that is listening to [host]:[port] instead.
-    ---- Users can use this with delve headless mode:
-    ----
-    ---- dlv debug -l 127.0.0.1:38697 --headless ./cmd/main.go
-    ----
-    --local msg = string.format("connecting to server at '%s'...", addr)
-    --print(msg)
-
-  --else
-    --local opts = {
-      --stdio = {nil, stdout, stdout},
-      --args = {"dap", "-l", addr},
-      --detached = true
-    --}
-    --local msg = string.format("spawning server to listen at '%s'...", addr)
-    --print(msg)
-    --handle, pid_or_err = vim.loop.spawn("dlv", opts, function(code)
-      --stdout:close()
-      --handle:close()
-      --if code ~= 0 then
-        --print('dlv exited with code', code)
-      --end
-    --end)
-    --assert(handle, 'Error running dlv: ' .. tostring(pid_or_err))
-    --stdout:read_start(function(err, chunk)
-      --assert(not err, err)
-      --if chunk then
-        --vim.schedule(function()
-          --require('dap.repl').append(chunk)
-        --end)
-      --end
-    --end)
-  --end
-
-  ---- Wait for delve to start
-  --vim.defer_fn(
-    --function()
-      --callback({type = "server",
-                --host = host,
-                --port = port,
-                ----enrich_config = function(cfg, on_config)
-                  ----local final_config = vim.deepcopy(cfg)
-                  ----final_config.request = "attach"
-                  ----final_config.mode = "exec"
-                  ----on_config(final_config)
-                ----end,
-                --})
-    --end,
-    --1000)
---end
----- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
---dap.configurations.go = {
-  --{
-    --type = "go",
-    --name = "Debug compiled binary './dist/app'",
-    --request = "launch",
-    --mode = "exec",
-    --program = "./dist/app",
-  --},
-  --{
-    --type = "go",
-    --name = "Debug current file",
-    --request = "launch",
-    --mode = "debug",
-    --program = "${relativeFile}"
-  --},
-  --{
-    --type = "go",
-    --name = "Attach to local delve session",
-    --request = "attach",
-    --mode = "local",
-    ----remotePath = "/app",
-    --port = 4040,
-    --host = "127.0.0.1"
-  --},
-  ----{
-    ----type = "go",
-    ----name = "Debug test", -- configuration for debugging test files
-    ----request = "launch",
-    ----mode = "test",
-    ----program = "${file}"
-  ----},
-  ------ works with go.mod packages and sub packages
-  ----{
-    ----type = "go",
-    ----name = "Debug test (go.mod)",
-    ----request = "launch",
-    ----mode = "test",
-    ----program = "./${relativeFileDirname}"
-  ----}
---}
 
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
 dap.adapters.node2 = {
