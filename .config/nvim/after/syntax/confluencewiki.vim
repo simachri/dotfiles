@@ -211,3 +211,6 @@ endif
 let b:current_syntax = "confluencewiki"
 
 " vim:fdm=marker
+
+" xi3k: Fix search syntax highlighting.
+hi IncSearch guifg=#eee8d5 guibg=#cb4b16

@@ -32,27 +32,33 @@ vim.api.nvim_exec(
     " Statusline of non-current buffers
     " au ColorScheme * hi StatusLineNC guibg=#839496 guifg=#eee8d5
 
-    " Treesitter: Fix error color group highlighting.
+    " Treesitter
+    " Fix error color group highlighting.
     " https://github.com/nvim-treesitter/nvim-treesitter/issues/119
     au ColorScheme * hi! link TSError Normal
-    " Treesitter: Make some items italic
+    " Orange
     au ColorScheme * hi TSFunction guifg=#b58900
     au ColorScheme * hi TSMethod guifg=#b58900
-    au ColorScheme * hi TSKeywordFunction guifg=#b58900
-    au ColorScheme * hi TSParameter guifg=#657b83
-    au ColorScheme * hi TSParameterReference guifg=#657b83
-    au ColorScheme * hi TSPunctBracket guifg=#657b83
-    au ColorScheme * hi TSPunctDelimiter guifg=#657b83
-    au ColorScheme * hi TSOperator guifg=#657b83
-    au ColorScheme * hi TSProperty guifg=#657b83
-    au ColorScheme * hi TSField guifg=#657b83
-    au ColorScheme * hi TSNamespace guifg=#d33682 
     au ColorScheme * hi TSMethodCall guifg=#b58900 gui=italic
     au ColorScheme * hi TSFunctionCall guifg=#b58900 gui=italic
-    au ColorScheme * hi TSVariable guifg=#268bd2
-    au ColorScheme * hi TSType guifg=#657b83 gui=italic
-    au ColorScheme * hi TSKeywordReturn gui=bold
     au ColorScheme * hi TSTypeBuiltin guifg=#b58900 gui=italic
+    au ColorScheme * hi TSFuncBuiltin guifg=#b58900 gui=italic
+    " Blue
+    au ColorScheme * hi TSVariable guifg=#268bd2
+    au ColorScheme * hi TSParameter guifg=#268bd2
+    au ColorScheme * hi TSParameterReference guifg=#268bd2
+    " Red
+    au ColorScheme * hi TSOperator guifg=#cb4b16
+    " Default text font (grey)
+    au ColorScheme * hi TSPunctBracket guifg=#657b83
+    au ColorScheme * hi TSPunctDelimiter guifg=#657b83
+    au ColorScheme * hi TSProperty guifg=#657b83
+    au ColorScheme * hi TSField guifg=#657b83
+    au ColorScheme * hi TSType guifg=#657b83 gui=italic
+    au ColorScheme * hi TSKeywordFunction guifg=#657b83 gui=bold
+    au ColorScheme * hi TSKeywordReturn guifg=#657b83 gui=bold
+    " Purple
+    au ColorScheme * hi TSNamespace guifg=#6c71c4 
     au ColorScheme * hi TSConstant guifg=#6c71c4
 
     " Search
