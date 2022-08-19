@@ -67,6 +67,30 @@ vim.api.nvim_exec(
     au ColorScheme * hi Search guifg=#eee8d5 guibg=#657b83
     au ColorScheme * hi Error gui=underline
 
+    " DAP UI adjustments
+    " https://github.com/rcarriga/nvim-dap-ui/blob/master/lua/dapui/config/highlights.lua
+    " Orange
+    au ColorScheme * hi DapUIScope guifg=#b58900
+    au ColorScheme * hi DapUIModifiedValue guifg=#b58900 gui=bold
+    au ColorScheme * hi DapUIDecoration guifg=#b58900
+    au ColorScheme * hi DapUIBreakpointsPath guifg=#b58900
+    au ColorScheme * hi DapUIBreakpointsLine guifg=#b58900
+    au ColorScheme * hi DapUIBreakpointsInfo guifg=#b58900
+    au ColorScheme * hi DapUIBreakpointsCurrentLine guifg=#b58900
+    " Blue
+    au ColorScheme * hi DapUIType guifg=#268bd2
+    au ColorScheme * hi DapUISource guifg=#268bd2
+    au ColorScheme * hi DapUIWatchesValue guifg=#268bd2
+    " Green
+    au ColorScheme * hi DapUILineNumber guifg=#859900
+    au ColorScheme * hi DapUIThread guifg=#859900
+    " Magenta
+    au ColorScheme * hi DapUIWatchesEmpty guifg=#d33682
+    " Red
+    au ColorScheme * hi DapUIWatchesError guifg=#cb4b16
+    " Cyan
+    au ColorScheme * hi DapUIStoppedThread guifg=#2aa198
+
   augroup END
 ]]
 , false)
