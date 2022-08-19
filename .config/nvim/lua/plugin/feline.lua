@@ -125,11 +125,11 @@ comps.active[2] = {
         left_sep = ' ',
         right_sep = ' ',
     },
-    {
-        provider = 'line_percentage',
-        left_sep = ' ',
-        right_sep = '',
-    },
+    --{
+        --provider = 'line_percentage',
+        --left_sep = ' ',
+        --right_sep = '',
+    --},
     {
         provider = ' ▊',
         hl = {

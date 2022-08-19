@@ -1,7 +1,7 @@
 -- https://github.com/ray-x/go.nvim
 vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"go.dap".run()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dq', [[<cmd>lua require"go.dap".stop()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dap-go".debug_test()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>GoDebug test<cr>]], { noremap = true, silent = true })
 
 require('go').setup({
   go='go', -- go command, can be go[default] or go1.18beta1

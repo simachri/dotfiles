@@ -75,7 +75,7 @@ Plug 'tpope/vim-surround'
 Plug 'mcchrish/nnn.vim'
 
 " Tags and outline
-Plug 'simrat39/symbols-outline.nvim'
+" Plug 'simrat39/symbols-outline.nvim'
 
 Plug 'Chiel92/vim-autoformat', { 'for': 'python' }
 " Easier profiling of Vim startup time:
@@ -160,7 +160,8 @@ luafile ~/.config/nvim/lua/plugin/treesitter.lua
 luafile ~/.config/nvim/lua/plugin/feline.lua
 luafile ~/.config/nvim/lua/plugin/nvim-lspconfig.lua
 luafile ~/.config/nvim/lua/plugin/nvim-cmp.lua
-luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
+" Superseded by Telescope function:
+"luafile ~/.config/nvim/lua/plugin/symbols-outline.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
 luafile ~/.config/nvim/lua/plugin/harpoon.lua
@@ -366,8 +367,8 @@ set mouse=
 """""""""""""""""""""
 " Prevent <leader><CR> to convert the word under cursor into a link (for some reason).
 nnoremap <Leader><CR> <Esc>
-" Provided by plugin https://github.com/simrat39/symbols-outline.nvim
-nnoremap <silent> <Leader>to :SymbolsOutline<CR>
+"" Provided by plugin https://github.com/simrat39/symbols-outline.nvim
+"nnoremap <silent> <Leader>to :SymbolsOutline<CR>
 " Keymap to sync syntax highlighting again if it is broken.
 " See :h redrawtime
 nnoremap <silent> <Leader>e mx:e<CR>:syntax sync fromstart<CR>`x

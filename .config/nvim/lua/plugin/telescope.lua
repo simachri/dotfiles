@@ -220,7 +220,7 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').git_files()<cr>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true })
 -- All Files, including the hidden ones
-vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fa', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
 -- Configuration files / dotfiles
 vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua find_dotfiles()<cr>]], { noremap = true, silent = true })
 
@@ -236,11 +236,11 @@ vim.api.nvim_set_keymap('n', '<leader>fmr', [[<cmd>lua grep_md_anchor_refs()<cr>
 -- Find markdown headers
 vim.api.nvim_set_keymap('n', '<leader>fmh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
 -- Find help tags
-vim.api.nvim_set_keymap('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], { noremap = true, silent = true })
 ---- CurrBuf
 --vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
 -- Find buffer
-vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
 -- -- Tags: Use tagbar instead.
 -- vim.api.nvim_set_keymap('n', '<leader>ft', [[<cmd>lua currbufftags()<cr>]], { noremap = true, silent = true })
 -- Outline/treesitter
@@ -259,6 +259,16 @@ vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<
 -- LSP: Grep workspace symbols (here: functions and methods only)
 --vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols( { symbols = {'function', 'method'} } )<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]], { noremap = true, silent = true })
+-- LSP: Show type definition(s) for word under cursor
+vim.api.nvim_set_keymap('n', 'gt', [[<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>]], { noremap = true, silent = true })
+-- LSP: Document symbols -> toggle outline
+vim.api.nvim_set_keymap('n', '<leader>to', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({symbol_width=60})<cr>]], { noremap = true, silent = true })
+-- LSP: Go to definition(s)
+vim.api.nvim_set_keymap('n', 'gd', [[<cmd>lua require('telescope.builtin').lsp_definitions()<cr>]], { noremap = true, silent = true })
+-- LSP: Go to implementaion(s)
+vim.api.nvim_set_keymap('n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<cr>]], { noremap = true, silent = true })
+-- LSP: Go to reference(s)
+vim.api.nvim_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references({fname_width=60, show_line=false})<cr>]], { noremap = true, silent = true })
 
 -- Grep Search history - use <C-e> for the entry to populate the search prompt.
 vim.api.nvim_set_keymap('n', '<leader>ghs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })

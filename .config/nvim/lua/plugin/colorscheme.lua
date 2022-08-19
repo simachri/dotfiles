@@ -47,22 +47,25 @@ vim.api.nvim_exec(
     au ColorScheme * hi TSVariable guifg=#268bd2
     au ColorScheme * hi TSParameter guifg=#268bd2
     au ColorScheme * hi TSParameterReference guifg=#268bd2
+    au ColorScheme * hi yamlTSField guifg=#268bd2
     " Red
     au ColorScheme * hi TSOperator guifg=#cb4b16
+    au ColorScheme * hi yamlTSPunctDelimiter guifg=#cb4b16
     " Default text font (grey)
     au ColorScheme * hi TSPunctBracket guifg=#657b83
     au ColorScheme * hi TSPunctDelimiter guifg=#657b83
     au ColorScheme * hi TSProperty guifg=#657b83
     au ColorScheme * hi TSField guifg=#657b83
-    au ColorScheme * hi TSType guifg=#657b83 gui=italic
+    au ColorScheme * hi TSType guifg=#657b83
     au ColorScheme * hi TSKeywordFunction guifg=#657b83 gui=bold
     au ColorScheme * hi TSKeywordReturn guifg=#657b83 gui=bold
     " Purple
     au ColorScheme * hi TSNamespace guifg=#6c71c4 
     au ColorScheme * hi TSConstant guifg=#6c71c4
 
-    " Search
+    " Other adjustments
     au ColorScheme * hi Search guifg=#eee8d5 guibg=#657b83
+    au ColorScheme * hi Error gui=underline
 
   augroup END
 ]]

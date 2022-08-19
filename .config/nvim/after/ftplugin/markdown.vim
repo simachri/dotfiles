@@ -177,7 +177,7 @@ nmap <buffer> za <cmd>lua require("markdown").normal_tab()<CR>
 " Toggle outline
 " noremap <buffer> <Leader>to :TagbarToggle<CR>
 " https://github.com/ixru/nvim-markdown
-noremap <buffer> <Leader>to :Toc<CR>
+noremap <buffer> <Leader>to :Toc<CR>/
 " "Toggle checkbox ([Jack]box :))"
 function! ToggleCb(option)
   let currLineText = getline(".")
