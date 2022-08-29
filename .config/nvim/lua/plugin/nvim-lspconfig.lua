@@ -67,7 +67,7 @@ end
 
 -- JSON
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonls
-require'lspconfig'.jsonls.setup {
+nvim_lsp.jsonls.setup {
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
@@ -116,7 +116,7 @@ nvim_lsp.dockerls.setup {
 
 -- SQL
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sqlls
-require'lspconfig'.sqlls.setup{
+nvim_lsp.sqlls.setup{
   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
@@ -224,5 +224,10 @@ require('lspkind').init()
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#svelte
 nvim_lsp.svelte.setup({
+  on_attach = on_attach
+})
+
+-- Rust
+nvim_lsp.rust_analyzer.setup({
   on_attach = on_attach
 })

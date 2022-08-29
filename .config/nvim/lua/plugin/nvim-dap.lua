@@ -1,9 +1,9 @@
 -- Continue is also used for starting a new debug session.
 vim.api.nvim_set_keymap('n', '<leader>dd', [[<cmd>lua require"dap".continue()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>d<space>', [[<cmd>lua require"dap".continue()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dr', [[<cmd>lua require"dap".run('run')<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dap".run('test')<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d_', [[<cmd>lua require"dap".run_last()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>drr', [[<cmd>lua require"dap".run('run')<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>drt', [[<cmd>lua require"dap".run('test')<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>drl', [[<cmd>lua require"dap".run_last()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dq', [[<cmd>lua require"dap".terminate()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dap".pause()<cr>]], { noremap = true, silent = true })
 
@@ -18,13 +18,13 @@ vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dap".up()<cr>]], {
 
 vim.api.nvim_set_keymap('n', '<leader>di', [[<cmd>lua require"dapui".eval()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>di', [[<cmd>lua require"dapui".eval()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dc', [[<cmd>lua require"dapui".float_element()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dw', [[<cmd>lua require"dapui".float_element("watches", { enter = true })<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>do', [[<cmd>lua require"dapui".float_element("scopes", { enter = true })<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ds', [[<cmd>lua require"dapui".float_element("stacks", { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dwl', [[<cmd>lua require"dapui".float_element()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dww', [[<cmd>lua require"dapui".float_element("watches", { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dwv', [[<cmd>lua require"dapui".float_element("scopes", { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dws', [[<cmd>lua require"dapui".float_element("stacks", { enter = true })<cr>]], { noremap = true, silent = true })
 -- REPL: Debug console
-vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dapui".float_element("repl", { enter = true })<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dapui".float_element("breakpoints")<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dwr', [[<cmd>lua require"dapui".float_element("repl", { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dwb', [[<cmd>lua require"dapui".float_element("breakpoints")<cr>]], { noremap = true, silent = true })
 
 require("dapui").setup({
   icons = { expanded = "▾", collapsed = "▸" },
@@ -60,7 +60,8 @@ require("dapui").setup({
     {
       elements = {
         "repl",
-        "console",
+        -- 2022-08-19: Disable console. At least for Go, REPL is sufficient.
+        --"console",
       },
       size = 10,
       position = "bottom",

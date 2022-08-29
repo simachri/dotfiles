@@ -1,7 +1,7 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require'nvim-treesitter.configs'.setup {
    --ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css' }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css', 'markdown', 'yaml', 'svelte', 'html'}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css', 'markdown', 'yaml', 'svelte', 'html', 'rust'}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   -- https://github.com/windwp/nvim-ts-autotag
   autotag = {
     enable = true,

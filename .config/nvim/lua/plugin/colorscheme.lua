@@ -38,19 +38,23 @@ vim.api.nvim_exec(
     au ColorScheme * hi! link TSError Normal
     " Orange
     au ColorScheme * hi TSFunction guifg=#b58900
+    au ColorScheme * hi Function guifg=#b58900
     au ColorScheme * hi TSMethod guifg=#b58900
     au ColorScheme * hi TSMethodCall guifg=#b58900 gui=italic
     au ColorScheme * hi TSFunctionCall guifg=#b58900 gui=italic
     au ColorScheme * hi TSTypeBuiltin guifg=#b58900 gui=italic
     au ColorScheme * hi TSFuncBuiltin guifg=#b58900 gui=italic
+    au ColorScheme * hi rustFuncCall guifg=#b58900 gui=italic
     " Blue
     au ColorScheme * hi TSVariable guifg=#268bd2
     au ColorScheme * hi TSParameter guifg=#268bd2
     au ColorScheme * hi TSParameterReference guifg=#268bd2
     au ColorScheme * hi yamlTSField guifg=#268bd2
+    au ColorScheme * hi special guifg=#268bd2
     " Red
     au ColorScheme * hi TSOperator guifg=#cb4b16
     au ColorScheme * hi yamlTSPunctDelimiter guifg=#cb4b16
+    au ColorScheme * hi TSFuncMacro guifg=#cb4b16
     " Default text font (grey)
     au ColorScheme * hi TSPunctBracket guifg=#657b83
     au ColorScheme * hi TSPunctDelimiter guifg=#657b83
@@ -62,6 +66,8 @@ vim.api.nvim_exec(
     " Purple
     au ColorScheme * hi TSNamespace guifg=#6c71c4 
     au ColorScheme * hi TSConstant guifg=#6c71c4
+    au ColorScheme * hi Include guifg=#6c71c4
+    au ColorScheme * hi Constant guifg=#6c71c4
 
     " Other adjustments
     au ColorScheme * hi Search guifg=#eee8d5 guibg=#657b83
