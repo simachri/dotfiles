@@ -148,7 +148,7 @@ nnoremap <buffer> <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 inoremap <buffer> <CR> <CR>
 nnoremap <buffer> o o
 nnoremap <buffer> O O
-nnoremap <buffer> <C-i> <C-i>
+nnoremap <buffer> <TAB> <TAB> " also fixes <C-i> as this translates to <TAB>
 " Currently not used: Create a full anchor link
 "autocmd FileType markdown nnoremap <Leader>al qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('d', 
 "submatch(0))/n<CR>
