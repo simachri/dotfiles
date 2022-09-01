@@ -9,6 +9,9 @@ let g:floaterm_opener = 'edit'
 let g:floaterm_wintype = 'float'
 let g:floaterm_position = 'center'
 "let g:floaterm_position = 'topright'
+" Disable automatically entering insert mode as this makes the terminal jump to the 
+" bottom which is not desired when scrolled to another position previously.
+let g:floaterm_autoinsert = 0
 
 " Terminal mode: Leave insert mode - default C-\ C-N does not work with WSL and Windows 
 " Terminal. For some reason, C-\ cannot be sent.
@@ -22,11 +25,20 @@ tnoremap <C-r>[ <C-\><C-n>
 " <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
 " Toggle terminal
 nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
+function! OpenFloatermAndToggleInsertMode()
+  let g:floaterm_autoinsert = 1
+  FloatermToggle zsh
+  let g:floaterm_autoinsert = 0
+endfunction
+command! OpenFloatermAndToggleInsertMode call OpenFloatermAndToggleInsertMode()
+nnoremap <silent> <Leader>ti :OpenFloatermAndToggleInsertMode<CR>
 " New/additional terminal
-nnoremap <silent> <Leader>tn :FloatermNew<CR>
+nnoremap <silent> <Leader>ta :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
 " 21-10-19: Do not use Ctrl-D as it interferes with default 'scroll half page down.'
 tnoremap <silent> <C-q> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent> <C-q> :FloatermToggle<CR>
+vnoremap <silent> <C-q> :FloatermToggle<CR>
 tnoremap <silent> <C-S-q> <C-\><C-n>:FloatermKill!<CR>
 " Cycle through open terminals
 tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
