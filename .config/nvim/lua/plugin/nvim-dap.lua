@@ -138,6 +138,29 @@ dap.configurations.javascript = {
   },
 }
 
+-- Rust
+-- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-lldb-vscode
+-- First, codelldb --port 13000 has to be executed.
+dap.adapters.lldb = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 13000
+}
+dap.configurations.rust = {
+    {
+        type = 'lldb',
+        request = 'launch',
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        terminal = 'integrated',
+        sourceLanguages = { 'rust' },
+        stopOnEntry = false,
+        args = {},
+    }
+}
+
 require("nvim-dap-virtual-text").setup {
     enabled = true,                        -- enable this plugin (the default)
     enabled_commands = true,               -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)

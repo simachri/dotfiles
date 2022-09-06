@@ -9,9 +9,6 @@ let g:floaterm_opener = 'edit'
 let g:floaterm_wintype = 'float'
 let g:floaterm_position = 'center'
 "let g:floaterm_position = 'topright'
-" Disable automatically entering insert mode as this makes the terminal jump to the 
-" bottom which is not desired when scrolled to another position previously.
-let g:floaterm_autoinsert = 0
 
 " Terminal mode: Leave insert mode - default C-\ C-N does not work with WSL and Windows 
 " Terminal. For some reason, C-\ cannot be sent.
@@ -24,14 +21,16 @@ tnoremap <C-r>[ <C-\><C-n>
 " back to insert mode: Use 'q' which is the same mapping as in tmux.
 " <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
 " Toggle terminal
-nnoremap <silent> <Leader>tt :FloatermToggle zsh<CR>
-function! OpenFloatermAndToggleInsertMode()
-  let g:floaterm_autoinsert = 1
-  FloatermToggle zsh
+nnoremap <silent> <Leader>ti :FloatermToggle zsh<CR>
+function! OpenFloatermWithoutEnteringInsertMode()
+  " Disable automatically entering insert mode as this makes the terminal jump to the 
+  " bottom which is not desired when scrolled to another position previously.
   let g:floaterm_autoinsert = 0
+  FloatermToggle zsh
+  let g:floaterm_autoinsert = 1
 endfunction
-command! OpenFloatermAndToggleInsertMode call OpenFloatermAndToggleInsertMode()
-nnoremap <silent> <Leader>ti :OpenFloatermAndToggleInsertMode<CR>
+command! OpenFloatermWithoutEnteringInsertMode call OpenFloatermWithoutEnteringInsertMode()
+nnoremap <silent> <Leader>tt :OpenFloatermWithoutEnteringInsertMode<CR>
 " New/additional terminal
 nnoremap <silent> <Leader>ta :FloatermNew<CR>
 " Hide terminal, it will be running in the background.

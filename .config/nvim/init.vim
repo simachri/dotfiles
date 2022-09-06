@@ -140,9 +140,9 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'folke/which-key.nvim'
 
 " Git
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'sindrets/diffview.nvim'
-Plug 'TimUntersberger/neogit'
+" Plug 'TimUntersberger/neogit' 2022-09-05: Still not as good as fugitive.
 Plug 'lewis6991/gitsigns.nvim'
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
