@@ -268,7 +268,7 @@ vim.api.nvim_set_keymap('n', 'gd', [[<cmd>lua require('telescope.builtin').lsp_d
 -- LSP: Go to implementaion(s)
 vim.api.nvim_set_keymap('n', 'gi', [[<cmd>lua require('telescope.builtin').lsp_implementations()<cr>]], { noremap = true, silent = true })
 -- LSP: Go to reference(s)
-vim.api.nvim_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references({fname_width=60, show_line=false})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_references({include_declaration=false, fname_width=60, show_line=false})<cr>]], { noremap = true, silent = true })
 
 -- Grep Search history - use <C-e> for the entry to populate the search prompt.
 vim.api.nvim_set_keymap('n', '<leader>ghs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })
