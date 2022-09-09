@@ -37,7 +37,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
 Plug 'leafOfTree/vim-svelte-plugin'
 " JavaScript/TypeScript
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'jose-elias-alvarez/typescript.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 "" Python: Add import for word under cursor if already imported before.
 "Plug 'tjdevries/apyrori.nvim', { 'for': 'python' }

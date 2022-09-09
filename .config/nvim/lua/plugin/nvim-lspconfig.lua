@@ -161,37 +161,24 @@ nvim_lsp.sumneko_lua.setup {
 }
 
 -- JavaScript/TypeScript
--- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
--- https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
+-- https://github.com/jose-elias-alvarez/typescript.nvim
 local buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
         silent = true,
     })
 end
-nvim_lsp.tsserver.setup({
-    -- https://github.com/hrsh7th/nvim-cmp
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
-    init_options = require("nvim-lsp-ts-utils").init_options,
-    on_attach = function(client, bufnr)
-        client.server_capabilities.document_formatting = false
-        client.server_capabilities.document_range_formatting = false
-        local ts_utils = require("nvim-lsp-ts-utils")
-        ts_utils.setup({
-            -- Filter messages:
-              -- 80001 - 'File is a CommonJS module; it may be converted to an ES6 module'
-              -- 6133 - ''{0}' is declared but its value is never read.'
-              -- 6196 - '{0}' is declared but never used.
-            -- Source: https://stackoverflow.com/a/70294761
-            -- List of codes: https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
-            filter_out_diagnostics_by_code = { 80001, 6133, 6196 },
-        })
-        ts_utils.setup_client(client)
-        buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-        buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
-        buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-        on_attach(client, bufnr)
-    end,
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    server = { -- pass options to lspconfig's setup method
+      on_attach = function(client, bufnr)
+          client.server_capabilities.document_formatting = false
+          client.server_capabilities.document_range_formatting = false
+          buf_map(bufnr, "n", "ro", ":TypescriptOrganizeImports<CR>")
+          buf_map(bufnr, "n", "rr", ":TypescriptRenameFile<CR>")
+          on_attach(client, bufnr)
+      end,
+    },
 })
 local null_ls = require("null-ls")
 null_ls.setup({
