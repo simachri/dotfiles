@@ -179,7 +179,8 @@ vim.api.nvim_set_keymap('n', '<leader>vo', [[<cmd>Git<cr>]], { noremap = true, s
 -- DiffviewOpen -uno: Hide untracked files.
 vim.api.nvim_set_keymap('n', '<leader>vd', [[<cmd>DiffviewOpen<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>vq', [[<cmd>DiffviewClose<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>vh', [[<cmd>DiffviewFileHistory<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>vh', [[<cmd>DiffviewFileHistory %<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>vl', [[<cmd>DiffviewFileHistory<cr>]], { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader>dgl', [[<cmd>diffget //3<cr>]], { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<leader>dgh', [[<cmd>diffget //2<cr>]], { noremap = true, silent = true })
 

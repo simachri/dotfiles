@@ -136,7 +136,11 @@ nmap <buffer><silent> <leader>fb ysiW_.
 nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
 " Use gs in markdown files to follow link and open in vertical split.
 nmap <buffer><silent> gs m'<C-W>v:call <sid>EditUrlUnderCursor()<cr>
-nmap <buffer><silent> [c <Plug>Markdown_MoveToCurHeader
+" Disable [c and ]c as they interfere with diffmode mappings when diffing a markdown 
+" file.
+nmap <buffer> [c [c
+nmap <buffer> ]c ]c
+nmap <buffer><silent> [u <Plug>Markdown_MoveToCurHeader
 nmap <buffer><silent> [p <Plug>Markdown_MoveToParentHeader
 " Paste image: 'ferrine/md-img-paste.vim'
 nmap <buffer> <leader>pi :call mdip#MarkdownClipboardImage()<CR>
