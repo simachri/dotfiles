@@ -104,7 +104,7 @@ require("diffview").setup({
     diff2 = { --[[ Mappings in 2-way diff layouts ]] },
     diff3 = {
       -- Mappings in 3-way diff layouts
-      { { "n", "x" }, "<leader>vgr", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
+      { { "n", "x" }, "<leader>vgh", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
       --{ { "n", "x" }, "2do", actions.diffget("ours") },   -- Obtain the diff hunk from the OURS version of the file
       { { "n", "x" }, "<leader>vgl", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file
       --{ { "n", "x" }, "3do", actions.diffget("theirs") }, -- Obtain the diff hunk from the THEIRS version of the file

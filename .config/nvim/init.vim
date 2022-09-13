@@ -201,7 +201,7 @@ set shortmess+=c
 set undodir=~/.vim/undodir
 set undofile
 "" Highlight the current line.
-"set cursorline
+set cursorline
 " Make it so there are always eight lines below my cursor
 set scrolloff=8
 set noswapfile
@@ -365,6 +365,9 @@ set mouse=
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+" New mapping to not override the buffer when pasting.
+" https://stackoverflow.com/a/3837845
+xnoremap <Leader>p "_dP
 " Prevent <leader><CR> to convert the word under cursor into a link (for some reason).
 nnoremap <Leader><CR> <Esc>
 "" Provided by plugin https://github.com/simrat39/symbols-outline.nvim
