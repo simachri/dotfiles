@@ -457,14 +457,6 @@ vnoremap <silent> <Leader>rr "sy:%s/<C-r>s//gI<Left><Left><Left>
 nnoremap <Leader>yp :let @+=expand('%:p')<CR>
 " 'Yank CWD': Yank the current working directory into the clipboard.
 nnoremap <Leader>yc :let @+=getcwd()<CR>
-" For XML files use a specific formatter for
-" gg=G  (format everything)
-" " Requires 'xmllint' (sudo apt-get install libxml2-utils)
-" au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-" autocmd FileType xml setlocal equalprg=tidy\ -quiet\ --show-errors\ 0 2>/dev/null
-" autocmd FileType xml let g:formatprg_args_expr_xml .= '." --indent-attributes 1"'
-" Format selection
-vnoremap <Leader>f :!tidy -xml -q -i --show-errors 0 --indent-attributes 1 -<CR>
 " Moving lines up and down
 " 2020-12-18, Disable this as this somehow conflicts when using `ESCAPE` which causes a 
 " delay.

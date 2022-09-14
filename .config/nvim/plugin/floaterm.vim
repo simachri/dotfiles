@@ -30,7 +30,7 @@ function! OpenFloatermWithoutEnteringInsertMode()
   let g:floaterm_autoinsert = 1
 endfunction
 command! OpenFloatermWithoutEnteringInsertMode call OpenFloatermWithoutEnteringInsertMode()
-nnoremap <silent> <Leader>tt :OpenFloatermWithoutEnteringInsertMode<CR>
+nnoremap <silent> <Leader>to :OpenFloatermWithoutEnteringInsertMode<CR>
 " New/additional terminal
 nnoremap <silent> <Leader>ta :FloatermNew<CR>
 " Hide terminal, it will be running in the background.

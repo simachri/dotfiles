@@ -128,9 +128,9 @@ set numberwidth=6
 " that the word under the cursor is transformed into a URL.
 nmap <buffer><CR> <CR>
 " Make text italic.
-nmap <buffer><silent> <leader>fi ysiW_
+nmap <buffer><silent> <leader>ri ysiW_
 " Make text bold.
-nmap <buffer><silent> <leader>fb ysiW_.
+nmap <buffer><silent> <leader>rb ysiW_.
 " 21-12-29: Is remapped further below.
 " Use ge in markdown files to follow link and open in horizontal split.
 nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
@@ -181,7 +181,7 @@ nmap <buffer> za <cmd>lua require("markdown").normal_tab()<CR>
 " Toggle outline
 " noremap <buffer> <Leader>to :TagbarToggle<CR>
 " https://github.com/ixru/nvim-markdown
-noremap <buffer> <Leader>to :Toc<CR>/
+noremap <buffer> <Leader>fo :Toc<CR>/
 " "Toggle checkbox ([Jack]box :))"
 function! ToggleCb(option)
   let currLineText = getline(".")
