@@ -16,8 +16,8 @@ vim.api.nvim_set_keymap('n', '<leader>drc', [[<cmd>lua require"dap".run_to_curso
 vim.api.nvim_set_keymap('n', '<leader>dn', [[<cmd>lua require"dap".down()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dap".up()<cr>]], { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>di', [[<cmd>lua require"dapui".eval()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<leader>di', [[<cmd>lua require"dapui".eval()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>di', [[<cmd>lua require"dapui".eval(nil, { enter = true })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>di', [[<cmd>lua require"dapui".eval(nil, { enter = true })<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dwl', [[<cmd>lua require"dapui".float_element()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dww', [[<cmd>lua require"dapui".float_element("watches", { enter = true })<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dwv', [[<cmd>lua require"dapui".float_element("scopes", { enter = true })<cr>]], { noremap = true, silent = true })

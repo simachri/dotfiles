@@ -133,6 +133,9 @@ Plug 'sebdah/vim-delve'
 Plug 'ray-x/go.nvim'
 Plug 'ray-x/guihua.lua' " float term, codeaction and codelens gui support
 
+" Rust
+Plug 'simrat39/rust-tools.nvim'
+
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
 
