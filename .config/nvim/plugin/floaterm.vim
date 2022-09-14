@@ -31,13 +31,13 @@ function! OpenFloatermWithoutEnteringInsertMode()
 endfunction
 command! OpenFloatermWithoutEnteringInsertMode call OpenFloatermWithoutEnteringInsertMode()
 nnoremap <silent> <Leader>to :OpenFloatermWithoutEnteringInsertMode<CR>
-" New/additional terminal
-nnoremap <silent> <Leader>ta :FloatermNew<CR>
+"" New/additional terminal
+"nnoremap <silent> <Leader>ta :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
 " 21-10-19: Do not use Ctrl-D as it interferes with default 'scroll half page down.'
 tnoremap <silent> <C-q> <C-\><C-n>:FloatermToggle<CR>
-nnoremap <silent> <C-q> :FloatermToggle<CR>
-vnoremap <silent> <C-q> :FloatermToggle<CR>
+nnoremap <silent> <C-q> :FloatermHide!<CR>
+vnoremap <silent> <C-q> :FloatermHide!<CR>
 tnoremap <silent> <C-S-q> <C-\><C-n>:FloatermKill!<CR>
 " Cycle through open terminals
 tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
@@ -70,7 +70,7 @@ function! OpenTwTuiFloaterm()
   if g:twtui_term_launched
     FloatermToggle tw
   else
-    FloatermNew --name=tw --autoclose=0 --opener=OpenTwTask taskwarrior-tui
+    FloatermNew --name=tw --autoclose=0 --opener=OpenTwTask --title=Taskwarrior taskwarrior-tui
     let g:twtui_term_launched = 1
   endif
 endfunction
@@ -84,7 +84,8 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 "nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --disposable --opener=OpenTwTask taskwarrior-tui<CR>
 " 21-10-8: Temporarily use the commandline taskwarrior until tui is fixed.
 " nnoremap <silent> <Leader>tw :FloatermSend! --name=tw clear && task next user:<CR>:FloatermToggle tw<CR>
-nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --title=Taskwarrior --opener=OpenTwTask taskwarrior-tui<CR>
+"nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --title=Taskwarrior --opener=OpenTwTask taskwarrior-tui<CR>
+nnoremap <silent> <Leader>tw :FloatermToggle tw<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
@@ -94,6 +95,7 @@ augroup floatermHooks
   "au User FloatermOpen nmap <buffer><silent> gf echo("hello")
   " Automatically launch a terminal in the background when Vim is started.
   autocmd VimEnter * FloatermNew --name=zsh --title=zsh --silent
-  " autocmd VimEnter * FloatermNew --name=tw --title=Taskwarrior --silent
+  " Automatically launch Taskwarrior in the background when Vim is started.
+  autocmd VimEnter * FloatermNew --name=tw --title=Taskwarrior --silent taskwarrior-tui
 augroup END
 
