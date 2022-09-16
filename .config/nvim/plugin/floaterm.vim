@@ -21,7 +21,7 @@ tnoremap <C-r>[ <C-\><C-n>
 " back to insert mode: Use 'q' which is the same mapping as in tmux.
 " <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
 " Toggle terminal
-nnoremap <silent> <Leader>ti :FloatermToggle zsh<CR>
+nnoremap <silent> <Leader>ti :FloatermShow zsh<CR>
 function! OpenFloatermWithoutEnteringInsertMode()
   " Disable automatically entering insert mode as this makes the terminal jump to the 
   " bottom which is not desired when scrolled to another position previously.
@@ -35,7 +35,7 @@ nnoremap <silent> <Leader>to :OpenFloatermWithoutEnteringInsertMode<CR>
 "nnoremap <silent> <Leader>ta :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
 " 21-10-19: Do not use Ctrl-D as it interferes with default 'scroll half page down.'
-tnoremap <silent> <C-q> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent> <C-q> <C-\><C-n>:FloatermHide!<CR>
 nnoremap <silent> <C-q> :FloatermHide!<CR>
 vnoremap <silent> <C-q> :FloatermHide!<CR>
 tnoremap <silent> <C-S-q> <C-\><C-n>:FloatermKill!<CR>
@@ -85,7 +85,7 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 " 21-10-8: Temporarily use the commandline taskwarrior until tui is fixed.
 " nnoremap <silent> <Leader>tw :FloatermSend! --name=tw clear && task next user:<CR>:FloatermToggle tw<CR>
 "nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --title=Taskwarrior --opener=OpenTwTask taskwarrior-tui<CR>
-nnoremap <silent> <Leader>tw :FloatermToggle tw<CR>
+nnoremap <silent> <Leader>tw :FloatermShow tw<CR>
 
 """"""""""""""""""""""""""""""""""""""
 " Auto commands

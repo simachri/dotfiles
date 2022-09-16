@@ -117,7 +117,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 " File navigation/marks
 Plug 'ThePrimeagen/harpoon'
-Plug 'rmagatti/auto-session'
+Plug 'folke/persistence.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
@@ -153,6 +153,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Indenting lines
 Plug 'lukas-reineke/indent-blankline.nvim'
 
+Plug 'ahmedkhalf/project.nvim'
 call plug#end()
 
 " Needs to be called before feline.
@@ -175,6 +176,7 @@ luafile ~/.config/nvim/lua/plugin/refactoring.lua
 luafile ~/.config/nvim/lua/plugin/nvim-web-devicons.lua
 luafile ~/.config/nvim/lua/plugin/git.lua
 luafile ~/.config/nvim/lua/plugin/colorscheme.lua
+luafile ~/.config/nvim/lua/plugin/project.lua
 
 """"""""""""""""""""""
 " General Vim settings

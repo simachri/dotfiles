@@ -145,6 +145,8 @@ taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
 ##############################
 # Disable default start/stop and use 4 and 5 instead, see above.
 uda.taskwarrior-tui.keyconfig.start-stop=)
+# Disable default 'quit' key mapping as it interferes with Floaterm in Nvim.
+uda.taskwarrior-tui.keyconfig.quit=(
 uda.ms_todo_id.label=ToDo-ID
 uda.ms_todo_id.type=string
 uda.ms_todo_listid.type=string

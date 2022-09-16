@@ -54,12 +54,18 @@ require('telescope').setup{
       i = {
         -- Default mappings: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua
         -- close directly without switching to normal mode.
-        ["<esc>"] = actions.close,
+        ["<C-q>"] = actions.close,
         -- Override default C-q to 'smart' add to quickfix list.
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-j>"] = require('telescope.actions').cycle_history_next,
         ["<C-k>"] = require('telescope.actions').cycle_history_prev,
       },
+      n = {
+        -- Default mappings: https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua
+        -- close directly without switching to normal mode.
+        ["<C-q>"] = actions.close,
+        ["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      }
     },
 
     -- Developer configurations: Not meant for general override
@@ -214,10 +220,17 @@ function outline()
   require('telescope.builtin').treesitter(opts)
 end
 
+-- Find Git files and - if not in a Git repo - find files.
+-- Recipe for configuration: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+function Project_files()
+  local ok = pcall(require"telescope.builtin".git_files, { use_git_root = false, show_untracked = true })
+  if not ok then require"telescope.builtin".find_files({ follow = true }) end
+end
+
+
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/mappings.lua
--- Find files, following symlinks
-vim.api.nvim_set_keymap('n', '<leader>fj', [[<cmd>lua require('telescope.builtin').find_files({ follow = true })<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin').git_files()<cr>]], { noremap = true, silent = true })
+-- Find Git files and - if not in a Git repo - find files.
+vim.api.nvim_set_keymap('n', '<leader>fj', [[<cmd>lua Project_files()<cr>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true })
 -- All Files, including the hidden ones
 vim.api.nvim_set_keymap('n', '<leader>fk', [[<cmd>lua search_all_files()<cr>]], { noremap = true, silent = true })
@@ -240,8 +253,8 @@ vim.api.nvim_set_keymap('n', '<leader>fmh', [[<cmd>lua require('telescope.builti
 vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], { noremap = true, silent = true })
 ---- CurrBuf
 --vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
--- Find buffer
-vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
+-- List buffers
+vim.api.nvim_set_keymap('n', '<leader>lb', [[<cmd>lua buffers()<cr>]], { noremap = true, silent = true })
 ---- Outline
 --vim.api.nvim_set_keymap('n', '<leader>fo', [[<cmd>lua outline()<cr>]], { noremap = true, silent = true })
 -- Find last - continue search
@@ -257,8 +270,9 @@ vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({symbol_width=60})<cr>]], { noremap = true, silent = true })
--- LSP: Find workspace symbols - here: functions and methods only
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols( { symbols = {'function', 'method'} } )<cr>]], { noremap = true, silent = true })
+-- LSP: Find Document symbols - only functions and methods
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width=60, symbols = {'function', 'method'} })<cr>]], { noremap = true, silent = true })
+-- LSP: Find workspace symbols
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]], { noremap = true, silent = true })
 -- LSP: Show type definition(s) for word under cursor
 vim.api.nvim_set_keymap('n', 'gt', [[<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>]], { noremap = true, silent = true })
@@ -273,6 +287,10 @@ vim.api.nvim_set_keymap('n', 'gr', [[<cmd>lua require('telescope.builtin').lsp_r
 vim.api.nvim_set_keymap('n', '<leader>ghs', [[<cmd>lua require('telescope.builtin').search_history()<cr>]], { noremap = true, silent = true })
 -- Grep Command history - use <C-e> for the entry to populate the command prompt.
 vim.api.nvim_set_keymap('n', '<leader>ghc', [[<cmd>lua require('telescope.builtin').command_history()<cr>]], { noremap = true, silent = true })
+
+-- Find projects
+-- See /home/xi3k/.config/nvim/lua/plugin/project.lua
+-- vim.api.nvim_set_keymap('n', '<leader>fp', [[<cmd>Telescope projects<cr>]], { noremap = true, silent = true })
 
 -- Find spellcheck proposals.
 --vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
