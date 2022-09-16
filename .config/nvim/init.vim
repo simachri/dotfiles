@@ -117,7 +117,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 " File navigation/marks
 Plug 'ThePrimeagen/harpoon'
-Plug 'folke/persistence.nvim'
+Plug 'rmagatti/auto-session'
+"Plug 'folke/persistence.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
@@ -169,7 +170,6 @@ luafile ~/.config/nvim/lua/plugin/nvim-cmp.lua
 luafile ~/.config/nvim/lua/plugin/luasnip.lua
 luafile ~/.config/nvim/lua/plugin/which-key.lua
 luafile ~/.config/nvim/lua/plugin/harpoon.lua
-luafile ~/.config/nvim/lua/plugin/auto-session.lua
 luafile ~/.config/nvim/lua/plugin/nvim-dap.lua
 luafile ~/.config/nvim/lua/plugin/go-nvim.lua
 luafile ~/.config/nvim/lua/plugin/refactoring.lua
@@ -177,6 +177,7 @@ luafile ~/.config/nvim/lua/plugin/nvim-web-devicons.lua
 luafile ~/.config/nvim/lua/plugin/git.lua
 luafile ~/.config/nvim/lua/plugin/colorscheme.lua
 luafile ~/.config/nvim/lua/plugin/project.lua
+luafile ~/.config/nvim/lua/plugin/auto-session.lua
 
 """"""""""""""""""""""
 " General Vim settings

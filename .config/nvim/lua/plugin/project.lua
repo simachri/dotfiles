@@ -43,7 +43,6 @@ local entry_display = require("telescope.pickers.entry_display")
 local history = require("project_nvim.utils.history")
 local finders = require("telescope.finders")
 local state = require("telescope.actions.state")
-local telescope = require("telescope")
 local project = require("project_nvim.project")
 local config = require("project_nvim.config")
 local builtin = require("telescope.builtin")
@@ -146,6 +145,7 @@ function Projects_custom(opts)
 
       local on_project_selected = function()
         change_working_directory(prompt_bufnr)
+        vim.cmd('silent! RestoreSession')
       end
       actions.select_default:replace(on_project_selected)
       return true
