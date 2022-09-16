@@ -1,6 +1,6 @@
 " https://github.com/voldikss/vim-floaterm
 
-let g:floaterm_width = 0.8
+let g:floaterm_width = 0.85
 let g:floaterm_height = 0.95
 " By default, open a file as a new buffer in the existing Neovim instance
 " when using the 'floaterm' command on the commandline.

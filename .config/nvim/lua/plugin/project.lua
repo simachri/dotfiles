@@ -2,7 +2,7 @@
 require("project_nvim").setup {
   -- Manual mode doesn't automatically change your root directory, so you have
   -- the option to manually do so using `:ProjectRoot` command.
-  manual_mode = false,
+  manual_mode = true,
 
   -- Methods of detecting the root directory. **"lsp"** uses the native neovim
   -- lsp, while **"pattern"** uses vim-rooter like glob pattern matching. Here
@@ -146,6 +146,8 @@ function Projects_custom(opts)
       local on_project_selected = function()
         change_working_directory(prompt_bufnr)
         vim.cmd('silent! RestoreSession')
+        vim.cmd('FloatermNew --name=zsh --title=zsh --silent')
+        vim.cmd('FloatermNew --name=tw --title=Taskwarrior --silent taskwarrior-tui')
       end
       actions.select_default:replace(on_project_selected)
       return true
