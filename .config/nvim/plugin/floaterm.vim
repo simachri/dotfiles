@@ -17,6 +17,7 @@ let g:floaterm_position = 'center'
 " 2022-08-15: Cannot use <C-e> as it is used in Taskwarrior TUI for scrolling and cannot 
 " be remapped.
 tnoremap <C-r>[ <C-\><C-n>
+tnoremap <C-e> <C-\><C-n>
 " When in normal mode in the terminal (after insert mode of terminal has been left), go 
 " back to insert mode: Use 'q' which is the same mapping as in tmux.
 " <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
@@ -32,7 +33,7 @@ endfunction
 command! OpenFloatermWithoutEnteringInsertMode call OpenFloatermWithoutEnteringInsertMode()
 nnoremap <silent> <Leader>to :OpenFloatermWithoutEnteringInsertMode<CR>
 "" New/additional terminal
-"nnoremap <silent> <Leader>ta :FloatermNew<CR>
+nnoremap <silent> <Leader>ta :FloatermNew<CR>
 " Hide terminal, it will be running in the background.
 " 21-10-19: Do not use Ctrl-D as it interferes with default 'scroll half page down.'
 tnoremap <silent> <C-q> <C-\><C-n>:FloatermHide!<CR>

@@ -156,3 +156,12 @@ function Projects_custom(opts)
 end
 
 vim.api.nvim_set_keymap('n', '<leader>fp', [[<cmd>lua Projects_custom()<cr>]], { noremap = true, silent = true })
+
+-- https://github.com/ahmedkhalf/project.nvim/issues/43
+function _ADD_CURR_DIR_TO_PROJECTS()
+  local historyfile = require("project_nvim.utils.path").historyfile
+  --local curr_directory = vim.fn.expand("%:p:h")
+  local cwd = vim.fn.getcwd()
+  vim.cmd("!echo " .. cwd .. " >> " .. historyfile)
+end
+vim.cmd("command! ProjectAdd lua _ADD_CURR_DIR_TO_PROJECTS()")

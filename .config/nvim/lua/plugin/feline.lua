@@ -149,20 +149,20 @@ comps.inactive[1] = {
           bg = 'beige',
         },
     },
-      {
-        -- https://github.com/famiu/feline.nvim/blob/master/USAGE.md#file-info
-        provider = {
-          name = 'file_info',
-          opts = {
-            colored_icon = false,
-            type = 'relative',
-          },
-        },
-        hl = {
-          fg = 'bg',
-          bg = 'beige',
+    {
+      -- https://github.com/famiu/feline.nvim/blob/master/USAGE.md#file-info
+      provider = {
+        name = 'file_info',
+        opts = {
+          colored_icon = false,
+          type = 'relative',
         },
       },
+      hl = {
+        fg = 'bg',
+        bg = 'beige',
+      },
+    },
 }
 
 
