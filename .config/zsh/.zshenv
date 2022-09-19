@@ -68,3 +68,5 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 
 # User Docker BuildKit
 export DOCKER_BUILDKIT=1
+
+export BROWSER='/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe'
