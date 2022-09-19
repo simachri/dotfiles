@@ -42,6 +42,8 @@ vnoremap <silent> <C-q> :FloatermHide!<CR>
 tnoremap <silent> <C-S-q> <C-\><C-n>:FloatermKill!<CR>
 " Cycle through open terminals
 tnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
+" <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
+" nnoremap <silent> <C-h> <C-\><C-n>:FloatermPrev<CR>
 
 " Open lazygit
 " --disposable: Prevents memory leakage.

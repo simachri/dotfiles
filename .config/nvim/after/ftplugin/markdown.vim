@@ -128,9 +128,9 @@ set numberwidth=6
 " that the word under the cursor is transformed into a URL.
 nmap <buffer><CR> <CR>
 " Make text italic.
-nmap <buffer><silent> <leader>ri ysiW_
+nmap <buffer><silent> <leader>mi ysiW_
 " Make text bold.
-nmap <buffer><silent> <leader>rb ysiW_.
+nmap <buffer><silent> <leader>mb ysiW_.
 " 21-12-29: Is remapped further below.
 " Use ge in markdown files to follow link and open in horizontal split.
 nmap <buffer><silent> ge m':call <sid>EditUrlUnderCursor()<cr>
@@ -182,64 +182,6 @@ nmap <buffer> za <cmd>lua require("markdown").normal_tab()<CR>
 " noremap <buffer> <Leader>to :TagbarToggle<CR>
 " https://github.com/ixru/nvim-markdown
 noremap <buffer> <Leader>fo :Toc<CR>/
-" "Toggle checkbox ([Jack]box :))"
-function! ToggleCb(option)
-  let currLineText = getline(".")
-  " If an option is given, evaluate it directly.
-  if a:option == "done"
-    call setline(".", substitute(currLineText, "- [.*\\]", "- [X]", ""))
-    return
-  elseif a:option == "open"
-    call setline(".", substitute(currLineText, "- [.*\\]", "- [ ]", ""))
-    return
-  elseif a:option == "up"
-    call setline(".", substitute(currLineText, "- [.*\\]", "- [^]", ""))
-    return
-  endif
-
-  " If checkbox is empty: Check it.
-  let replacedText = substitute(currLineText, "- [ \\]", "- [X]", "")
-  if currLineText != replacedText
-    " Replace text.
-    call setline(".", replacedText)
-    return
-  endif
-
-  " If checkbox is checked: Set to invalid.
-  let replacedText = substitute(currLineText, "- [X\\]", "- [-]", "")
-  if currLineText != replacedText
-    " Replace text.
-    call setline(".", replacedText)
-    return
-  endif
-
-  " If checkbox is invalid: Set to follow-up.
-  let replacedText = substitute(currLineText, "- [-\\]", "- [^]", "")
-  if currLineText != replacedText
-    " Replace text.
-    call setline(".", replacedText)
-    return
-  endif
-
-  " If checkbox is set to follow-up: Clear it.
-  let replacedText = substitute(currLineText, "- [^\\]", "- [ ]", "")
-  if currLineText != replacedText
-    " Replace text.
-    call setline(".", replacedText)
-    return
-  endif
-
-  " No checkbox available yet. Add one.
-  normal I- [ ] 
-endfunction
-command ToggleCheckBox call ToggleCb('')
-command SetCheckBoxDone call ToggleCb('done')
-command SetCheckBoxOpen call ToggleCb('open')
-command SetCheckBoxUp call ToggleCb('up')
-nnoremap <buffer> <silent> <Leader>jn :ToggleCheckBox<CR>
-nnoremap <buffer> <silent> <Leader>jd :SetCheckBoxDone<CR>
-nnoremap <buffer> <silent> <Leader>jo :SetCheckBoxOpen<CR>
-nnoremap <buffer> <silent> <Leader>ju :SetCheckBoxUp<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Take over functionality to jump to anchor from the old plugin.
