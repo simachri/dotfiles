@@ -12,7 +12,8 @@ let g:nnn#action = {
 " -e: Use $EDITOR to open text files.
 " -D: Set colors for directories using NNN_FCOLORS
 " -H: Show hidden files.
-let g:nnn#command = 'nnn -aeDH'
+" -A: Disable auto enter directory on unique filter match
+let g:nnn#command = 'nnn -aeDHA'
 
 " Open NNN in Vim's CWD.
 nnoremap <silent> <Leader>nn :NnnPicker<CR>

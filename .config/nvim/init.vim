@@ -423,7 +423,7 @@ set nowrap
 " " Toggle wrap
 " nnoremap <silent> <Leader>tw :set wrap!<CR>
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-nnoremap <leader>ww :!sudo tee > /dev/null %
+" nnoremap <leader>ww :!sudo tee > /dev/null %
 " Simple insertion of blank lines
 nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
