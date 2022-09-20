@@ -90,15 +90,26 @@ command! OpenTwTuiFloaterm call OpenTwTuiFloaterm()
 "nnoremap <silent> <Leader>tw :FloatermNew --autoclose=2 --name=tw --title=Taskwarrior --opener=OpenTwTask taskwarrior-tui<CR>
 nnoremap <silent> <Leader>tw :FloatermShow tw<CR>
 
+function s:floatermSettings()
+  " Skip the settings for Taskwarrior window.
+  if exists('b:floaterm_name') && b:floaterm_name == 'tw'
+    return
+  endif
+
+  " Enable relative line numbers.
+  setlocal number rnu
+endfunction
+
 """"""""""""""""""""""""""""""""""""""
 " Auto commands
 """"""""""""""""""""""""""""""""""""""
 augroup floatermHooks
   au!
-  "au User FloatermOpen nmap <buffer><silent> gf echo("hello")
   " Automatically launch a terminal in the background when Vim is started.
   autocmd VimEnter * FloatermNew --name=zsh --title=zsh --silent
   " Automatically launch Taskwarrior in the background when Vim is started.
   autocmd VimEnter * FloatermNew --name=tw --title=Taskwarrior --silent taskwarrior-tui
+
+  autocmd User FloatermOpen call s:floatermSettings()
 augroup END
 
