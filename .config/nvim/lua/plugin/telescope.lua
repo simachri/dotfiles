@@ -57,6 +57,7 @@ require('telescope').setup{
         ["<C-q>"] = actions.close,
         -- Override default C-q to 'smart' add to quickfix list.
         ["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        ["<C-e>"] = actions.to_fuzzy_refine,
         ["<C-j>"] = require('telescope.actions').cycle_history_next,
         ["<C-k>"] = require('telescope.actions').cycle_history_prev,
       },
