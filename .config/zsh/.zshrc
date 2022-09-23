@@ -55,7 +55,8 @@ function backup_journal() {
   echo "Backup finished."
 }
 alias backup_journal=backup_journal
-alias update='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && zprezto-update'
+alias update_sys='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && zprezto-update'
+alias update_go_npm='gup update && cd ~ && npm update -D && npm audit fix --force && npm outdated -D'
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias ws='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
 function www() {
