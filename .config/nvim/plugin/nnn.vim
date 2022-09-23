@@ -2,7 +2,7 @@
 " NNN opener
 " Disable default mappings
 let g:nnn#set_default_mappings = 0
-let g:nnn#layout = { 'window': { 'width': 0.5, 'height': 0.8, 'highlight': 'Debug' } }
+let g:nnn#layout = { 'window': { 'width': 0.8, 'height': 0.8, 'highlight': 'Debug' } }
 let g:nnn#action = {
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
