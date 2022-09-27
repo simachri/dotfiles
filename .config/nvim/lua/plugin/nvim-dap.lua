@@ -12,7 +12,7 @@ vim.api.nvim_set_keymap('n', '<leader>db', [[<cmd>lua require"dap".toggle_breakp
 vim.api.nvim_set_keymap('n', '<leader>dl', [[<cmd>lua require"dap".step_into()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dj', [[<cmd>lua require"dap".step_over()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dh', [[<cmd>lua require"dap".step_out()<cr>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>drc', [[<cmd>lua require"dap".run_to_cursor()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>dt', [[<cmd>lua require"dap".run_to_cursor()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dn', [[<cmd>lua require"dap".down()<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dp', [[<cmd>lua require"dap".up()<cr>]], { noremap = true, silent = true })
 

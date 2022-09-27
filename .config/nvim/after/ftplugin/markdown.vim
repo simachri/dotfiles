@@ -307,3 +307,7 @@ endif
 "" Is implemented in ../../lua/plugin/markdown-enhancements.lua
 "command! MarkdownJumpToURL lua require'plugin.markdown-enhancements'.jump_to_file_with_anchor() 
 "nmap <buffer> <silent> ge :MarkdownJumpToURL<CR>
+
+
+" Current buffer fuzzy find
+nnoremap <buffer><silent> <leader>fm :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header"})<cr>
