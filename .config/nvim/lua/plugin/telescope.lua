@@ -223,9 +223,14 @@ end
 
 -- Find Git files and - if not in a Git repo - find files.
 -- Recipe for configuration: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+-- https://github.com/nvim-telescope/telescope.nvim/blob/a09df82861944aab86c74648b1a570ff8ff73f82/lua/telescope/builtin/__git.lua
 function Project_files()
-  local ok = pcall(require"telescope.builtin".git_files, { use_git_root = false, show_untracked = true })
-  if not ok then require"telescope.builtin".find_files({ follow = true }) end
+  local is_git_repo = pcall(require"telescope.utils".get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" }, vim.loop.cwd()))
+  if is_git_repo then
+    require"telescope.builtin".git_files({ use_git_root = false, show_untracked = true })
+  else
+    require"telescope.builtin".find_files({ follow = true })
+  end
 end
 
 
@@ -268,7 +273,7 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').commands()<cr>]], { noremap = true, silent = true })
 
 -- LSP: Actions
-vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({symbol_width=60})<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols - only functions and methods

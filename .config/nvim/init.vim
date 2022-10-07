@@ -67,9 +67,9 @@ Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'scrooloose/nerdcommenter'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
+Plug 'numToStr/Comment.nvim'
 
 " File manager
 Plug 'mcchrish/nnn.vim'
@@ -83,18 +83,6 @@ Plug 'tweekmonster/startuptime.vim'
 
 " Markdown
 Plug 'ixru/nvim-markdown'
-Plug 'ferrine/md-img-paste.vim'
-" Preview: Does not work with WSL
-"function! BuildComposer(info)
-"  if a:info.status != 'unchanged' || a:info.force
-"      !cargo build --release --locked
-"  endif
-"endfunction
-"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-
-"" Pandoc
-"Plug 'vim-pandoc/vim-pandoc'
-"Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Cheat Sheet
 Plug 'RishabhRD/popfix'
@@ -178,6 +166,7 @@ luafile ~/.config/nvim/lua/plugin/git.lua
 luafile ~/.config/nvim/lua/plugin/colorscheme.lua
 luafile ~/.config/nvim/lua/plugin/project.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
+luafile ~/.config/nvim/lua/plugin/comments.lua
 
 """"""""""""""""""""""
 " General Vim settings
@@ -302,12 +291,6 @@ function! MyDeleteView()
 endfunction
 " # Command Delview (and it's abbreviation 'delview')
 command Delview call MyDeleteView()
-
-"" 21-1-16: Try to make Vim faster in large files.
-"" Source: https://stackoverflow.com/a/378967
-"set lazyredraw
-" Use the old regex engine. Seems to be faster in markdown files.
-set regexpengine=1
 
 " Use relative line numbers.
 set number relativenumber
