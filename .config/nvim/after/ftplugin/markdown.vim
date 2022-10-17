@@ -54,9 +54,7 @@ nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR
                   \:echo('Anchor copied to clipboard.')<CR>
                   "\:let @+="(".expand('%:r')."#".@d.")"<CR>
 
-" Current buffer fuzzy find
 nnoremap <buffer><silent> <leader>fm :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header"})<cr>
-
 
 " Paste image
 nnoremap <buffer><silent> <leader>mi :PasteImg<cr>

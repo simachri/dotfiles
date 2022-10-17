@@ -64,8 +64,8 @@ end
 
 ls.add_snippets("all",
                 {
-                  -- Checkbox: "- [ ]", trigger is 'cb'.
-                  s({trig="cb", name="Insert checkbox"}, {
+                  -- Checkbox Insert: "- [ ]", trigger is 'cb'.
+                  s({trig="ci", name="Insert checkbox"}, {
                           t({"- [ ] "}),
                           i(0),
                   }),
