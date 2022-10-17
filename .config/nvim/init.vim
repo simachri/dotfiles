@@ -85,6 +85,7 @@ Plug 'tweekmonster/startuptime.vim'
 " Plug 'ixru/nvim-markdown'
 Plug 'jakewvincent/mkdnflow.nvim'
 Plug 'ekickx/clipboard-image.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 " Cheat Sheet
 Plug 'RishabhRD/popfix'
@@ -442,8 +443,6 @@ nnoremap <Leader>yc :let @+=getcwd()<CR>
 " Trigger omnicomplete
 " Note: We cannot map this to <C-Space> as this is used as the Prexif for tmux.
 " inoremap <C-Space> <C-x><C-o>
-" Paste image
-nmap <leader>pi :PasteImg<CR>
 "#### Development key mappings
 " Location list: Next and previos
 nnoremap <Leader>dn :lnext<CR>

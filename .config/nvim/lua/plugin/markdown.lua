@@ -98,3 +98,7 @@ require'clipboard-image'.setup {
     img_dir_txt = {".img"},
   }
 }
+-- To make this work, adjust the following in /home/xi3k/.config/nvim/plugged/clipboard-image.nvim/lua/clipboard-image/utils.lua:
+---- cmd_paste = "$content = " .. cmd_check .. ";$content.Save('%s', 'png')"
+-- cmd_paste = "(" .. cmd_check .. ").Save('%s', 'png')"
+
