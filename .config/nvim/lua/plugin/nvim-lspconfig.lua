@@ -66,7 +66,7 @@ end
 -- JSON
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonls
 nvim_lsp.jsonls.setup {
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
 -- Python: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
@@ -79,7 +79,7 @@ nvim_lsp.pyright.setup {
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
   -- https://github.com/hrsh7th/nvim-cmp
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   settings = {
     python = {
       analysis = {
@@ -95,7 +95,7 @@ nvim_lsp.gopls.setup {
   -- Do not use lspcontainers as it does not yet work with Go modules (21-07-25).
   --cmd = require'lspcontainers'.command('gopls'),
   -- https://github.com/hrsh7th/nvim-cmp
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = on_attach,
 }
 
@@ -106,7 +106,7 @@ nvim_lsp.dockerls.setup {
     params.processId = vim.NIL
   end,
   -- https://github.com/hrsh7th/nvim-cmp
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   -- cmd = require'lspcontainers'.command('dockerls'),
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   on_attach = on_attach,
@@ -115,7 +115,7 @@ nvim_lsp.dockerls.setup {
 -- SQL
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sqlls
 nvim_lsp.sqlls.setup{
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
 -- Lua https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
@@ -128,7 +128,7 @@ nvim_lsp.sumneko_lua.setup {
   cmd = {'/opt/lua-language-server/bin/Linux/lua-language-server', "-E", '/opt/lua-language-server/bin/Linux/main.lua'};
   on_attach = on_attach,
   -- https://github.com/hrsh7th/nvim-cmp
-  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   -- Add 'vim' to globals to prevent message 'Undefined global `vim`.'
   -- https://www.reddit.com/r/neovim/comments/khk335/lua_configuration_global_vim_is_undefined/gglrg7k?utm_source=share&utm_medium=web2x&context=3
   settings = {

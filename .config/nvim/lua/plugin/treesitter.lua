@@ -1,16 +1,14 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require'nvim-treesitter.configs'.setup {
    --ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css' }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css', 'markdown', 'yaml', 'svelte', 'html', 'rust'}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {'python', 'go', 'lua', 'javascript', 'typescript', 'css', 'markdown', 'markdown_inline', 'yaml', 'svelte', 'html', 'rust'}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   -- https://github.com/windwp/nvim-ts-autotag
   autotag = {
     enable = true,
   },
   highlight = {
     enable = true,              -- false will disable the whole extension
-   -- 22-4-19: Enabling 'markdown' is slow on large files in edit mode. Further
-   -- investigation is required.
-   disable = {"markdown"}
+   -- disable = {"markdown"}
   },
   indent = {
     enable = true,
@@ -33,7 +31,7 @@ require'nvim-treesitter.configs'.setup {
     -- syntax-aware textobjects
     lsp_interop = {
       enable = true,
-      disable = {"markdown"},
+      -- disable = {"markdown"},
       border = 'none',
       peek_definition_code = {
         ["<leader>df"] = "@function.outer",
@@ -42,7 +40,7 @@ require'nvim-treesitter.configs'.setup {
     },
     move = {
       enable = true,
-      disable = {"markdown"},
+      disable = {"markdown", "markdown_inline"},
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         ["]f"] = "@function.outer",
@@ -63,7 +61,7 @@ require'nvim-treesitter.configs'.setup {
     },
     select = {
       enable = true,
-      disable = {"markdown"},
+      -- disable = {"markdown"},
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm

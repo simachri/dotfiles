@@ -82,7 +82,9 @@ Plug 'Chiel92/vim-autoformat', { 'for': 'python' }
 Plug 'tweekmonster/startuptime.vim'
 
 " Markdown
-Plug 'ixru/nvim-markdown'
+" Plug 'ixru/nvim-markdown'
+Plug 'jakewvincent/mkdnflow.nvim'
+Plug 'ekickx/clipboard-image.nvim'
 
 " Cheat Sheet
 Plug 'RishabhRD/popfix'
@@ -167,6 +169,7 @@ luafile ~/.config/nvim/lua/plugin/colorscheme.lua
 luafile ~/.config/nvim/lua/plugin/project.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
 luafile ~/.config/nvim/lua/plugin/comments.lua
+luafile ~/.config/nvim/lua/plugin/markdown.lua
 
 """"""""""""""""""""""
 " General Vim settings
@@ -218,28 +221,8 @@ require("indent_blankline").setup {
 }
 EOF
 set clipboard+=unnamedplus
-" Put the last yank explicitely into xclip when normal yanking did not work in VMware 
-" host's clipboard has not been updated.
-nnoremap <silent> <leader>yy :call system('xclip', @+)<CR>
-"nnoremap <silent> <leader>y "*y
-"vnoremap <silent> <leader>y "*y
-"" 21-06-02: When yanking from and pasting to NeoVim, use the plus register with xclip:
-"let g:clipboard = {
-"  \   'name': 'xclip',
-"  \   'copy': {
-"  \      '*': 'xclip -i -sel primary',
-"  \      '+': 'xclip -i -sel clipboard',
-"  \    },
-"  \   'paste': {
-"  \      '*': 'xclip -o -sel primary',
-"  \      '+': 'xclip -o -sel clipboard',
-"  \   },
-"  \   'cache_enabled': 1,
-"  \ }
 set splitbelow
 set splitright
-" 20-12-31 Disabled as it messes around with Golang omnicompletion, see below.
-" set omnifunc=syntaxcomplete#Complete " set default omnicompletion
 set showcmd
 set laststatus=2
 set noerrorbells visualbell t_vb=
@@ -459,7 +442,8 @@ nnoremap <Leader>yc :let @+=getcwd()<CR>
 " Trigger omnicomplete
 " Note: We cannot map this to <C-Space> as this is used as the Prexif for tmux.
 " inoremap <C-Space> <C-x><C-o>
-
+" Paste image
+nmap <leader>pi :PasteImg<CR>
 "#### Development key mappings
 " Location list: Next and previos
 nnoremap <Leader>dn :lnext<CR>
