@@ -54,7 +54,8 @@ nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR
                   \:echo('Anchor copied to clipboard.')<CR>
                   "\:let @+="(".expand('%:r')."#".@d.")"<CR>
 
-nnoremap <buffer><silent> <leader>fm :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="top",}})<cr>
+nnoremap <buffer><silent> <leader>fm :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", preview=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_strategy="center", layout_config={height=0.7, width=0.8}})<cr>
+" nnoremap <buffer><silent> <leader>fm :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", preview=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="bottom",}})<cr>
 
 " Paste image
 nnoremap <buffer><silent> <leader>mi :PasteImg<cr>
