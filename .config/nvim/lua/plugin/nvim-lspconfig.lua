@@ -149,6 +149,9 @@ nvim_lsp.sumneko_lua.setup {
         -- fix: Do you need to configure your work environment as `LÖVE`?
         -- https://github.com/sumneko/lua-language-server/issues/783#issuecomment-1042800532
         checkThirdParty = false,
+        -- fix: "Preloaded files has reached an upper limit..."
+        -- https://github.com/sumneko/lua-language-server/issues/1594
+        maxPreload = 3000,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {

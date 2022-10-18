@@ -195,8 +195,11 @@ set cmdheight=1
 "" delays and poor user experience.
 "set updatetime=50
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+" c: Don't pass messages to |ins-completion-menu|.
+" s: don't give "search hit BOTTOM, continuing at TOP" or "search
+"    hit TOP, continuing at BOTTOM" messages; when using the search
+"    count do not show "W" after the count message (see S below)
+set shortmess+=cs
 set undodir=~/.vim/undodir
 set undofile
 "" Highlight the current line.
