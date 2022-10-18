@@ -62,9 +62,11 @@ nnoremap <buffer><silent> <leader>ff :lua require('telescope.builtin').current_b
 " -> see /home/xi3k/.config/nvim/lua/plugin/telescope.lua
 
 " Paste image
-nnoremap <buffer><silent> <leader>mp :PasteImg<cr>
+nnoremap <buffer><silent> <leader><leader>p :PasteImg<cr>
 " Start preview
-nnoremap <buffer><silent> <leader>ms :MarkdownPreview<cr>
+nnoremap <buffer><silent> <leader>mps :MarkdownPreview<cr>
+" Close preview
+nnoremap <buffer><silent> <leader>mpc :MarkdownPreviewStop<cr>
 
 " Jump to file anchor.
 " Function is implemented in /home/xi3k/.config/nvim/lua/plugin/markdown.lua
