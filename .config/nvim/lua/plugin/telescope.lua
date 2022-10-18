@@ -252,9 +252,9 @@ vim.api.nvim_set_keymap('n', '<leader>go', [[<cmd>lua require('telescope.builtin
 -- Grep word under cursor
 vim.api.nvim_set_keymap('n', '<leader>gw', [[<cmd>lua require('telescope.builtin').grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>]], { noremap = true, silent = true })
 -- Find markdown wiki anchor references
-vim.api.nvim_set_keymap('n', '<leader>wr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fmr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
 -- Find markdown wiki headers
-vim.api.nvim_set_keymap('n', '<leader>wh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fmf', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
 -- Find help tags
 vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], { noremap = true, silent = true })
 ---- CurrBuf
@@ -277,7 +277,7 @@ vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action({ 
 -- LSP: Find Document symbols
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({symbol_width=60})<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols - only functions and methods
-vim.api.nvim_set_keymap('n', '<leader>fm', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width=60, symbols = {'function', 'method'} })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width=60, symbols = {'function', 'method'} })<cr>]], { noremap = true, silent = true })
 -- LSP: Find workspace symbols
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]], { noremap = true, silent = true })
 -- LSP: Show type definition(s) for word under cursor

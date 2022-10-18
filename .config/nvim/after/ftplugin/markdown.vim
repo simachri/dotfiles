@@ -54,9 +54,18 @@ nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR
                   \:echo('Anchor copied to clipboard.')<CR>
                   "\:let @+="(".expand('%:r')."#".@d.")"<CR>
 
-nnoremap <buffer><silent> <leader>fm :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", previewer=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="bottom", height=0.5, width=0.7,}})<cr>
+" Find markdown headers in current buffer
+nnoremap <buffer><silent> <leader>ff :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", previewer=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="bottom", height=0.7, width=0.7,}})<cr>
+" Find markdown wiki anchor references
+" -> see /home/xi3k/.config/nvim/lua/plugin/telescope.lua
+" Find markdown wiki headers in all files
+" -> see /home/xi3k/.config/nvim/lua/plugin/telescope.lua
 
 " Paste image
-nnoremap <buffer><silent> <leader>mi :PasteImg<cr>
+nnoremap <buffer><silent> <leader>mp :PasteImg<cr>
 " Start preview
-nnoremap <buffer><silent> <leader>mp :MarkdownPreview<cr>
+nnoremap <buffer><silent> <leader>ms :MarkdownPreview<cr>
+
+" Jump to file anchor.
+" Function is implemented in /home/xi3k/.config/nvim/lua/plugin/markdown.lua
+nnoremap <buffer><silent> ge :lua Jump_to_file_with_anchor()<cr>
