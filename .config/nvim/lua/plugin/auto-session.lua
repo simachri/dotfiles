@@ -22,8 +22,12 @@ local opts = {
     restore_upcoming_session = false, -- already the default, no need to specify like this, only here as an example
     pre_cwd_changed_hook = nil, -- already the default, no need to specify like this, only here as an example
     post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
-      vim.cmd("silent! RestoreSession<CR>")
+      -- 22-10-22: Disable this setting as it closes the plug update result screen.
+      -- Restoring the session seems to work anyhow when switching a project.
+      -- vim.cmd("silent! RestoreSession<CR>")
     end,
   },
 }
 require('auto-session').setup(opts)
+
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"

@@ -109,7 +109,6 @@ Plug 'nvim-telescope/telescope-ui-select.nvim'
 " File navigation/marks
 Plug 'ThePrimeagen/harpoon'
 Plug 'rmagatti/auto-session'
-"Plug 'folke/persistence.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
