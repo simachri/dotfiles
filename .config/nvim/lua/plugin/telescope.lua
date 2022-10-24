@@ -277,7 +277,7 @@ vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action({ 
 -- LSP: Find Document symbols
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({symbol_width=60})<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols - only functions and methods
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width=60, symbols = {'function', 'method'} })<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width = 60, symbols = {'function', 'method'}, prompt_title = "Find functions & methods" })<cr>]], { noremap = true, silent = true })
 -- LSP: Find workspace symbols
 vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>]], { noremap = true, silent = true })
 -- LSP: Show type definition(s) for word under cursor

@@ -1,6 +1,23 @@
 local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
 
+function Rename_file()
+    local source_file, target_file
+
+    source_file = vim.api.nvim_buf_get_name(0)
+    vim.ui.input({
+        prompt = "New filename: ",
+        completion = "file",
+        default = source_file
+    },
+        function(input)
+            target_file = input
+        end
+    )
+
+    vim.lsp.util.rename(source_file, target_file)
+end
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -25,7 +42,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-  buf_set_keymap('n', '<leader>rr', '<cmd>lua vim.lsp.util.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>rr', '<cmd>lua Rename_file()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 
   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
@@ -45,6 +62,10 @@ local on_attach = function(client, bufnr)
   if client.name == "gopls" then
     buf_set_keymap("n", "<leader>rf", "<cmd>GoFmt<CR>", opts)
     buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
+  end
+
+  if client.name == "typescript" then
+    buf_set_keymap("n", "gd", ":TypescriptGoToSourceDefinition<CR>", opts)
   end
 
   ---- Set autocommands conditional on server_capabilities
@@ -171,6 +192,9 @@ end
 require("typescript").setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
     debug = false, -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true, -- fall back to standard LSP definition on failure
+    },
     server = { -- pass options to lspconfig's setup method
       on_attach = function(client, bufnr)
           client.server_capabilities.document_formatting = false

@@ -56,7 +56,8 @@ function backup_journal() {
 }
 alias backup_journal=backup_journal
 alias update_sys='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && zprezto-update'
-alias update_go_npm='gup update && cd ~ && npm update -D && npm audit fix --force && npm outdated -D && pip list --outdated --format=freeze'
+alias update_go='gup update'
+alias update_npm='cd ~ && npm update -D && npm audit fix --force && npm outdated -D && pip list --outdated --format=freeze'
 alias update_pip="cd ~ && pip list --outdated --format=freeze | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias ws='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
