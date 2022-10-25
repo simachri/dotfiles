@@ -64,10 +64,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
   end
 
-  if client.name == "typescript" then
-    buf_set_keymap("n", "gd", ":TypescriptGoToSourceDefinition<CR>", opts)
-  end
-
   ---- Set autocommands conditional on server_capabilities
   ---- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
   --if client.server_capabilities.document_highlight then
@@ -193,15 +189,16 @@ require("typescript").setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
     debug = false, -- enable debug logging for commands
     go_to_source_definition = {
-        fallback = true, -- fall back to standard LSP definition on failure
+        fallback = false, -- fall back to standard LSP definition on failure
     },
     server = { -- pass options to lspconfig's setup method
       on_attach = function(client, bufnr)
           client.server_capabilities.document_formatting = false
           client.server_capabilities.document_range_formatting = false
+          on_attach(client, bufnr)
           buf_map(bufnr, "n", "ro", ":TypescriptOrganizeImports<CR>")
           buf_map(bufnr, "n", "rr", ":TypescriptRenameFile<CR>")
-          on_attach(client, bufnr)
+          buf_map(bufnr, "n", "gd", ":TypescriptGoToSourceDefinition<CR>")
       end,
     },
 })
