@@ -102,6 +102,11 @@ vim.api.nvim_exec(
 , false)
 vim.cmd('colorscheme solarized-flat')
 
+-- Terminal
+-- fix that a specific dark color is the same as the background color and thus not visible.
+-- caused by: g.terminal_color_8 = colors.base03[1] -- '#002b36'
+-- in: /home/xi3k/.config/nvim/plugged/nvim-solarized-lua/lua/solarized/solarized-flat/highlights.lua
+vim.g.terminal_color_8 = '#073642'
 
 -- The following refers to Plug 'shaunsingh/solarized.nvim'
 -- vim.g.solarized_italic_comments = true

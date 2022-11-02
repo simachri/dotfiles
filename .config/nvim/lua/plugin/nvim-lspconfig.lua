@@ -37,10 +37,13 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
   -- Show diagnostic of current line:
-  buf_set_keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '<leader>ls', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>ldq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>ldc', '<cmd>lua vim.diagnostic.disable()<CR>', opts)
+  buf_set_keymap('n', '<leader>lda', '<cmd>lua vim.diagnostic.enable()<CR>', opts)
 
   buf_set_keymap('n', '<leader>rr', '<cmd>lua Rename_file()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -78,6 +81,20 @@ local on_attach = function(client, bufnr)
       --augroup END
     --]]
   --end
+end
+
+-- Filter/modify the way how specific diagonistics are shown.
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, ...)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+
+    -- https://github.com/jose-elias-alvarez/typescript.nvim/issues/19#issuecomment-1193335686
+    if client and client.name == "tsserver" then
+        result.diagnostics = vim.tbl_filter(function(diagnostic)
+            return not diagnostic.message:find("is declared but its value is never read.")
+        end, result.diagnostics)
+    end
+
+    return vim.lsp.diagnostic.on_publish_diagnostics(nil, result, ctx, ...)
 end
 
 -- JSON
@@ -189,15 +206,15 @@ require("typescript").setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
     debug = false, -- enable debug logging for commands
     go_to_source_definition = {
-        fallback = false, -- fall back to standard LSP definition on failure
+        fallback = true, -- fall back to standard LSP definition on failure
     },
     server = { -- pass options to lspconfig's setup method
       on_attach = function(client, bufnr)
           client.server_capabilities.document_formatting = false
           client.server_capabilities.document_range_formatting = false
           on_attach(client, bufnr)
-          buf_map(bufnr, "n", "ro", ":TypescriptOrganizeImports<CR>")
-          buf_map(bufnr, "n", "rr", ":TypescriptRenameFile<CR>")
+          buf_map(bufnr, "n", "<leader>ro", ":TypescriptOrganizeImports<CR>")
+          buf_map(bufnr, "n", "<leader>rr", ":TypescriptRenameFile<CR>")
           buf_map(bufnr, "n", "gd", ":TypescriptGoToSourceDefinition<CR>")
       end,
     },

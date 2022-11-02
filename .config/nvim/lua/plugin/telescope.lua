@@ -272,8 +272,8 @@ vim.api.nvim_set_keymap('n', '<leader>fl', [[<cmd>lua require('telescope.builtin
 -- Find Vim commands
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').commands()<cr>]], { noremap = true, silent = true })
 
--- LSP: Actions
-vim.api.nvim_set_keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>]], { noremap = true, silent = true })
+-- LSP: Fix actions
+vim.api.nvim_set_keymap('n', '<leader>lf', [[<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols
 vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').lsp_document_symbols({symbol_width=60})<cr>]], { noremap = true, silent = true })
 -- LSP: Find Document symbols - only functions and methods
