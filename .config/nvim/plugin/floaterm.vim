@@ -21,13 +21,27 @@ tnoremap <C-e> <C-\><C-n>
 " When in normal mode in the terminal (after insert mode of terminal has been left), go 
 " back to insert mode: Use 'q' which is the same mapping as in tmux.
 " <<< this mapping is defined in /home/xi3k/.config/nvim/after/ftplugin/floaterm.vim
-" Toggle terminal
-nnoremap <silent> <Leader>ti :FloatermShow zsh<CR>
+" Toggle terminal: Float
+function! OpenFloatermBottomFloat()
+  FloatermShow zsh
+  FloatermUpdate --wintype=float --position=center
+endfunction
+command! OpenFloatermBottomFloat call OpenFloatermBottomFloat()
+nnoremap <silent> <Leader>ti :OpenFloatermBottomFloat<CR>
+
+" Toggle terminal: Bottom horizontal split
+function! OpenFloatermBottomSplit()
+  FloatermShow zsh
+  FloatermUpdate --wintype=split --position=split
+endfunction
+command! OpenFloatermBottomSplit call OpenFloatermBottomSplit()
+nnoremap <silent> <Leader>ts :OpenFloatermBottomSplit<CR>
+
 function! OpenFloatermWithoutEnteringInsertMode()
   " Disable automatically entering insert mode as this makes the terminal jump to the 
   " bottom which is not desired when scrolled to another position previously.
   let g:floaterm_autoinsert = 0
-  FloatermToggle zsh
+  FloatermShow zsh
   let g:floaterm_autoinsert = 1
 endfunction
 command! OpenFloatermWithoutEnteringInsertMode call OpenFloatermWithoutEnteringInsertMode()

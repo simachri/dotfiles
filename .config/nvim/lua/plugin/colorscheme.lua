@@ -108,6 +108,10 @@ vim.cmd('colorscheme solarized-flat')
 -- in: /home/xi3k/.config/nvim/plugged/nvim-solarized-lua/lua/solarized/solarized-flat/highlights.lua
 vim.g.terminal_color_8 = '#073642'
 
+-- Markdown fix: Disable @text.title highlight as for some reason it overwrites the
+-- @md.hN_text definitions.
+vim.api.nvim_set_hl(0, '@text.title', {})
+
 -- The following refers to Plug 'shaunsingh/solarized.nvim'
 -- vim.g.solarized_italic_comments = true
 -- vim.g.solarized_italic_keywords = false

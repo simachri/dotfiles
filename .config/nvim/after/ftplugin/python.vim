@@ -26,3 +26,6 @@ augroup END
 " 'Add import' for word under cursor.
 " Works only if it has been already imported in another project file.
 nnoremap <leader>ai <plug>ApyroriInsert
+
+" It is set to 2 for some reason. Currently unknown where this comes from.
+set conceallevel=0
