@@ -8,6 +8,9 @@ abbr dfs="df status"
 abbr gl="git --no-pager log --oneline -15"
 abbr gg="git log --graph --decorate --oneline --all"
 abbr gs="git status"
+# Open remote in browser
+# https://mihan007.medium.com/how-to-open-github-repository-from-the-command-line-gremote-81502fad0ef0
+abbr gor=alias git remote -v | head -n 1 | awk -F " " '{print $2}' | xargs www-browser
 
 # Watson
 abbr wl="watson log"
