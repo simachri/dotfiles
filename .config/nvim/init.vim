@@ -340,6 +340,7 @@ set mouse=
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
+nnoremap <silent> gx :!www-browser <C-r><C-a><CR><CR>
 " New mapping to not override the buffer when pasting.
 " https://stackoverflow.com/a/3837845
 xnoremap <Leader>p "_dP

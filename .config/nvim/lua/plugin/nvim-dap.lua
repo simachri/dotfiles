@@ -29,7 +29,7 @@ vim.api.nvim_set_keymap('n', '<leader>dwr', [[<cmd>lua require"dapui".float_elem
 vim.api.nvim_set_keymap('n', '<leader>dwb', [[<cmd>lua require"dapui".float_element("breakpoints")<cr>]], { noremap = true, silent = true })
 
 require("dapui").setup({
-  icons = { expanded = "▾", collapsed = "▸" },
+  icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
   mappings = {
     -- Use a table to apply multiple mappings
     expand = { "<CR>", "<2-LeftMouse>" },
@@ -39,12 +39,22 @@ require("dapui").setup({
     repl = "r",
     toggle = "t",
   },
+  -- Use this to override mappings for specific elements
+  element_mappings = {
+    -- Example:
+    -- stacks = {
+    --   open = "<CR>",
+    --   expand = "o",
+    -- }
+  },
   -- Expand lines larger than the window
   -- Requires >= 0.7
-  expand_lines = vim.fn.has("nvim-0.7"),
+  expand_lines = vim.fn.has("nvim-0.7") == 1,
   -- Layouts define sections of the screen to place windows.
   -- The position can be "left", "right", "top" or "bottom".
-  -- The size specifies the height/width depending on position.
+  -- The size specifies the height/width depending on position. It can be an Int
+  -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
+  -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
   -- Elements are the elements shown in the layout (in order).
   -- Layouts are opened in order so that earlier layouts take priority in window sizing.
   layouts = {
@@ -56,17 +66,32 @@ require("dapui").setup({
         "stacks",
         "watches",
       },
-      size = 40,
+      size = 40, -- 40 columns
       position = "left",
     },
     {
       elements = {
         "repl",
-        -- 2022-08-19: Disable console. At least for Go, REPL is sufficient.
-        --"console",
+        "console",
       },
-      size = 10,
+      size = 0.25, -- 25% of total lines
       position = "bottom",
+    },
+  },
+  controls = {
+    -- Requires Neovim nightly (or 0.8 when released)
+    enabled = false,
+    -- Display controls in this element
+    element = "repl",
+    icons = {
+      pause = "",
+      play = "",
+      step_into = "",
+      step_over = "",
+      step_out = "",
+      step_back = "",
+      run_last = "",
+      terminate = "",
     },
   },
   floating = {
@@ -80,6 +105,7 @@ require("dapui").setup({
   windows = { indent = 1 },
   render = {
     max_type_length = nil, -- Can be integer or nil.
+    max_value_lines = 100, -- Can be integer or nil.
   }
 })
 local dap, dapui = require("dap"), require("dapui")
@@ -92,6 +118,7 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
 
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
 dap.adapters.node2 = {

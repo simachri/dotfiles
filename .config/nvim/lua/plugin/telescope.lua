@@ -254,7 +254,7 @@ vim.api.nvim_set_keymap('n', '<leader>gw', [[<cmd>lua require('telescope.builtin
 -- Find markdown wiki anchor references
 vim.api.nvim_set_keymap('n', '<leader>fmr', [[<cmd>lua grep_md_anchor_refs()<cr>]], { noremap = true, silent = true })
 -- Find markdown wiki headers
-vim.api.nvim_set_keymap('n', '<leader>fmf', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fmh', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true, default_text='## .*', prompt_title="Find header"})<cr>]], { noremap = true, silent = true })
 -- Find help tags
 vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], { noremap = true, silent = true })
 ---- CurrBuf
