@@ -49,7 +49,8 @@ Plug 'sbdchd/neoformat'
 " HTML: Auto-close tags - is enabled through the treesitter configuration.
 Plug 'windwp/nvim-ts-autotag'
 " Automatically insert matching bracket.
-Plug 'windwp/nvim-autopairs'
+" 2022-11-25 disabled as it requires frequent deletion of brackets.
+" Plug 'windwp/nvim-autopairs'
 
 " Completion engine with completion sources
 Plug 'hrsh7th/nvim-cmp'
@@ -64,6 +65,7 @@ Plug 'tzachar/fuzzy.nvim' " requires 'nvim-telescope/telescope-fzf-native.nvim',
 "Plug 'tzachar/cmp-fuzzy-buffer'
 Plug 'petertriho/cmp-git'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'zbirenbaum/copilot.lua'
 
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
@@ -91,13 +93,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'RishabhRD/popfix'
 Plug 'RishabhRD/nvim-cheat.sh'
 
-" Debugging: Since NeoVim 0.6, there is a native DAP support.
-" Migrate from Vimspector to DAP.
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
-"Plug 'yriveiro/dap-go.nvim'
 
 " The following plugins are required for other nvim plugins.
 Plug 'nvim-lua/popup.nvim'
@@ -170,13 +169,11 @@ luafile ~/.config/nvim/lua/plugin/project.lua
 luafile ~/.config/nvim/lua/plugin/auto-session.lua
 luafile ~/.config/nvim/lua/plugin/comments.lua
 luafile ~/.config/nvim/lua/plugin/markdown.lua
+luafile ~/.config/nvim/lua/plugin/copilot.lua
 
 """"""""""""""""""""""
 " General Vim settings
 """"""""""""""""""""""
-lua << EOF
-require("nvim-autopairs").setup {}
-EOF
 "" Show trailing spaces and tabs
 "set list
 "set listchars=tab:▶\ 
@@ -340,7 +337,12 @@ set mouse=
 """""""""""""""""""""
 " Custom key mappings
 """""""""""""""""""""
-nnoremap <silent> gx :!www-browser <C-r><C-a><CR><CR>
+" Move lines up or down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <silent> gx :call system('www-browser <C-r><C-a>')<CR>
 " New mapping to not override the buffer when pasting.
 " https://stackoverflow.com/a/3837845
 xnoremap <Leader>p "_dP

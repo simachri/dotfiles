@@ -181,11 +181,11 @@ dap.configurations.rust = {
         type = 'lldb',
         request = 'launch',
         program = function()
-          if Last_debug_path == "" then
+          -- if Last_debug_path == "" then
             Last_debug_path = vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
-          else
-            Last_debug_path = vim.fn.input('Path to executable: ', Last_debug_path, 'file')
-          end
+          -- else
+            -- Last_debug_path = vim.fn.input('Path to executable: ', Last_debug_path, 'file')
+          -- end
           return Last_debug_path
         end,
         cwd = '${workspaceFolder}',

@@ -244,7 +244,7 @@ vim.api.nvim_set_keymap('n', '<leader>fk', [[<cmd>lua search_all_files()<cr>]], 
 vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua find_dotfiles()<cr>]], { noremap = true, silent = true })
 
 -- Grep prompt
-vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gk', [[<cmd>lua grep_prompt()<cr>]], { noremap = true, silent = true })
 -- Grep live
 vim.api.nvim_set_keymap('n', '<leader>gj', [[<cmd>lua require('telescope.builtin').live_grep({disable_coordinates=true})<cr>]], { noremap = true, silent = true })
 -- Grep in open buffers
