@@ -1,9 +1,9 @@
 -- 21-1-19, Use this to make colors in Vim work with rxvt-unicode.
 -- set t_Co=256
-vim.api.nvim_set_option('background', 'light')
+vim.opt.background = 'light'
 
 -- The following refers to Plug 'ishan9299/nvim-solarized-lua'
-vim.api.nvim_exec(
+vim.cmd(
 [[
   augroup adj_solarized
     au!
@@ -98,8 +98,11 @@ vim.api.nvim_exec(
     au ColorScheme * hi DapUIStoppedThread guifg=#2aa198
 
   augroup END
+
+  highlight Visual guifg=#fdf6e3 guibg=#93a1a1 gui=nocombine
 ]]
 , false)
+
 vim.cmd('colorscheme solarized-flat')
 
 -- Terminal
@@ -111,13 +114,3 @@ vim.g.terminal_color_8 = '#073642'
 -- Markdown fix: Disable @text.title highlight as for some reason it overwrites the
 -- @md.hN_text definitions.
 vim.api.nvim_set_hl(0, '@text.title', {})
-
--- The following refers to Plug 'shaunsingh/solarized.nvim'
--- vim.g.solarized_italic_comments = true
--- vim.g.solarized_italic_keywords = false
--- vim.g.solarized_italic_functions = true
--- vim.g.solarized_italic_variables = false
--- vim.g.solarized_contrast = false
--- vim.g.solarized_borders = false
--- vim.g.solarized_disable_background = false
--- require('solarized').set()

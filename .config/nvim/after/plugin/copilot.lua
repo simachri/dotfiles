@@ -16,7 +16,7 @@ vim.defer_fn(function()
       auto_trigger = true,
       debounce = 75,
       keymap = {
-      accept = "<C-u>",
+      accept = "<C-j>",
       next = "<M-n>",
       prev = "<M-j>",
       dismiss = "<C-]>",
