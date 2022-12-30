@@ -5,15 +5,12 @@ function OpenScratchBuffer()
       return
     else
       vim.cmd([[
-        "vsplit
         noswapfile hide enew
+        file scratch
         setlocal buftype=nofile
         setlocal bufhidden=hide
         setlocal tw=0
-        "setlocal ft=pandoc
         setlocal ft=markdown
-        "lcd ~
-        file scratch
         ]])
     end
 end
