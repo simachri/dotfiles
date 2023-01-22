@@ -173,4 +173,31 @@ function Jump_to_file_with_anchor ()
   vim.cmd('/id="' .. anchor)
 end
 
+function Open_URL ()
+  local row = vim.fn.line(".") - 1
+  local col = vim.fn.col(".") - 1
+  local selected_node = vim.treesitter.get_node_at_pos(0, row, col, {ignore_injections=false})
 
+  local node_type = selected_node:type()
+  if not (string.match(node_type, "inline_link") or
+          string.match(node_type, "link_text") or
+          string.match(node_type, "link_destination") ) then
+          print("Cursor is not on a link.")
+          return
+  end
+
+  local dest_node = {}
+  if string.match(node_type, "link_destination") then
+    dest_node = selected_node
+  end
+  if string.match(node_type, "inline_link") then
+    dest_node = selected_node:named_child(1)
+  end
+  if string.match(node_type, "link_text") then
+    dest_node = selected_node:next_named_sibling()
+  end
+  local url = vim.treesitter.query.get_node_text(dest_node, 0)
+
+  -- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
+  vim.cmd('call system(\'www-browser '..url..'\')')
+end

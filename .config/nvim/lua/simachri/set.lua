@@ -78,6 +78,7 @@ vim.opt.comments = "s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:**"
 
 -- Indicate that a line has been wrapped.
 vim.opt.showbreak = '>  '
+vim.opt.wrap = false
 
 -- Disable the mouse such that 'select-to-copy' works.
 vim.opt.mouse = ""

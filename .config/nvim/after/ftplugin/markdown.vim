@@ -34,6 +34,11 @@ set scl=no
 " Set minimal line number column width.
 set numberwidth=6
 
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
 " Make text italic.
 nmap <buffer><silent> <leader>mi ysiW_
 " Make text bold.
@@ -71,3 +76,7 @@ nnoremap <buffer><silent> <leader>mpc :MarkdownPreviewStop<cr>
 " Jump to file anchor.
 " Function is implemented in /home/xi3k/.config/nvim/lua/plugin/markdown.lua
 nnoremap <buffer><silent> ge :lua Jump_to_file_with_anchor()<cr>
+
+nnoremap <buffer><silent> gx :lua Open_URL()<cr>
+
+
