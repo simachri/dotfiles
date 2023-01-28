@@ -1,8 +1,16 @@
 -- https://github.com/hrsh7th/nvim-cmp
 local cmp = require'cmp'
 local luasnip = require('luasnip')
+
 cmp.setup({
-  -- https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/default.lua
+  window = {
+      documentation = {
+          border = "rounded",
+      },
+      completion = {
+          border = "rounded",
+      },
+  },
   snippet = {
     expand = function(args)
       -- For `luasnip` user.
@@ -52,29 +60,13 @@ cmp.setup({
       })}),
   },
 })
--- -- https://github.com/tzachar/cmp-fuzzy-buffer
--- cmp.setup.cmdline('/', {
---   sources = cmp.config.sources({
---     { name = 'fuzzy_buffer',
---       max_item_count = 3, }
---   })
--- })
+
 -- https://github.com/petertriho/cmp-git
 require("cmp_git").setup()
 
 -- https://github.com/onsails/lspkind-nvim/issues/24
 -- Do not display an icon for plain text in the buffer autocompletion used by nvim-cmp.
 require('lspkind').presets['default']['Text']=''
-
--- https://github.com/tzachar/cmp-tabnine
---local tabnine = require('cmp_tabnine.config')
---tabnine:setup({
---        max_lines = 1000;
---        max_num_results = 20;
---        sort = true;
---	run_on_every_keystroke = true;
---	snippet_placeholder = '..';
---})
 
 vim.api.nvim_exec([[
   augroup cmp_aucmds
@@ -164,17 +156,17 @@ vim.api.nvim_exec([[
     \     { name = 'path' },
     \   },
     \ }
-
-    " Disable for Telescope prompt. - not required as disabled by the default config.
-    " See https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/default.lua
-    " autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
-
-    " Completion menu: Use the same colors as galaxyline.
-    au ColorScheme * hi link Pmenu StatsLineNC
-    au ColorScheme * hi link CmpItemAbbr Pmenu
-    au ColorScheme * hi link CmpItemKind Pmenu
-    au ColorScheme * hi link CmpItemMenu Pmenu
-    au ColorScheme * hi CmpItemAbbrMatch guifg=#268bd2
-    au ColorScheme * hi link CmpItemAbbrMatchFuzzy CmptItemAbbrMatch
   augroup END
 ]], false)
+
+cmp.setup.cmdline("/", {
+    sources = {
+        { name = "buffer" },
+    },
+})
+
+cmp.setup.cmdline(":", {
+    sources = {
+        { name = "cmdline" },
+    },
+})

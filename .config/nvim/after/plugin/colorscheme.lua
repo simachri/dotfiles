@@ -97,9 +97,16 @@ vim.cmd(
     " Cyan
     au ColorScheme * hi DapUIStoppedThread guifg=#2aa198
 
+    au ColorScheme * hi Visual guifg=#fdf6e3 guibg=#93a1a1 gui=nocombine
+
+    " Highlight floating windows borders.
+    " https://vi.stackexchange.com/a/39075
+    au ColorScheme * hi FloatBorder ctermfg=NONE ctermbg=NONE cterm=NONE
+
+    " Popup menu
+    au ColorScheme * hi Pmenu guibg=none
   augroup END
 
-  highlight Visual guifg=#fdf6e3 guibg=#93a1a1 gui=nocombine
 ]]
 , false)
 

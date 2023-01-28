@@ -67,20 +67,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
   end
 
-  ---- Set autocommands conditional on server_capabilities
-  ---- https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
-  --if client.server_capabilities.document_highlight then
-    --vim.cmd [[
-      --hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      --hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      --hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-      --augroup lsp_document_highlight
-        --autocmd! * <buffer>
-        --autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        --autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      --augroup END
-    --]]
-  --end
 end
 
 -- Filter/modify the way how specific diagonistics are shown.
@@ -257,3 +243,22 @@ nvim_lsp.svelte.setup({
 nvim_lsp.rust_analyzer.setup({
   on_attach = on_attach
 })
+
+-- Rounded borders for help windows (hover and signature help).
+-- Source: https://vi.stackexchange.com/a/39075
+-- The highlight for FloatBorder is defined in /home/xi3k/.config/nvim/after/plugin/colorscheme.lua
+local _border = "rounded"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = 'rounded'
+    }
+)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+      border = _border
+    }
+)
+vim.diagnostic.config{
+    float = { border = _border}
+}
+
