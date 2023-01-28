@@ -26,9 +26,9 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i' }),
     ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i' }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<C-y>'] = cmp.mapping.confirm(),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-e>'] = cmp.mapping(cmp.mapping.close(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.mapping(cmp.mapping.confirm(), { 'i', 'c' }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -159,14 +159,25 @@ vim.api.nvim_exec([[
   augroup END
 ]], false)
 
-cmp.setup.cmdline("/", {
-    sources = {
-        { name = "buffer" },
-    },
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
 })
 
-cmp.setup.cmdline(":", {
-    sources = {
-        { name = "cmdline" },
-    },
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
 })

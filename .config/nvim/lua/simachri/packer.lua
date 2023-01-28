@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-calc'
+  use 'hrsh7th/cmp-cmdline'
   use 'saadparwaiz1/cmp_luasnip'
   use 'tzachar/fuzzy.nvim' -- requires 'nvim-telescope/telescope-fzf-native.nvim', see below
   use 'petertriho/cmp-git'
