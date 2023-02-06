@@ -82,3 +82,11 @@ vim.opt.wrap = false
 
 -- Disable the mouse such that 'select-to-copy' works.
 vim.opt.mouse = ""
+
+-- Wider statuscolumn to the left.
+-- https://github.com/neovim/neovim/pull/20621#issuecomment-1376041943
+-- vim.opt.statuscolumn = '%C%l%=%s'
+
+-- Disalbe netrw in favour of nvim-tree.
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

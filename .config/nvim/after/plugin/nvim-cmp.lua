@@ -167,17 +167,23 @@ cmp.setup.cmdline('/', {
   }
 })
 
--- `:` cmdline setup.
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    {
-      name = 'cmdline',
-      option = {
-        ignore_cmds = { 'Man', '!' }
-      }
-    }
-  })
-})
+-- 2022-01-30: Disabled as it breaks the 'tab' behavior.
+-- -- `:` cmdline setup.
+-- cmp.setup.cmdline(':', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     {
+--         name = 'path',
+--         keyword_length = 3,
+--     }
+--   },
+--   {
+--     {
+--         name = 'cmdline',
+--         keyword_length = 3,
+--         option = {
+--             ignore_cmds = { 'Man', '!' }
+--         }
+--     }
+--   })
+-- })

@@ -1,4 +1,5 @@
-vim.g.mapleader = " "
+-- Is moved to /home/xi3k/.config/nvim/lua/simachri/lazy.nvim.lua.
+-- vim.g.mapleader = " "
 
 -- Move lines up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
