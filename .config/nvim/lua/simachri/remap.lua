@@ -1,5 +1,4 @@
--- Is moved to /home/xi3k/.config/nvim/lua/simachri/lazy.nvim.lua.
--- vim.g.mapleader = " "
+vim.g.mapleader = " "
 
 -- Move lines up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -73,4 +72,3 @@ vim.keymap.set("n", "Q", "<nop>")
 
 -- Toggle highlighting of search hits.
 vim.keymap.set("n", "<Leader>th", ":set hlsearch!<CR>", { silent = true })
-

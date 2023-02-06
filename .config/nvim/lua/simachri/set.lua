@@ -27,8 +27,6 @@ vim.opt.shortmess:append({ c = true, s = true })
 vim.opt.showcmd = true
 vim.opt.laststatus = 2
 
-vim.opt.clipboard:append({ "unnamedplus" })
-
 vim.opt.spelllang = "en,de"
 vim.opt.spell = false
 
@@ -90,3 +88,5 @@ vim.opt.mouse = ""
 -- Disalbe netrw in favour of nvim-tree.
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.opt.clipboard = "unnamedplus"
