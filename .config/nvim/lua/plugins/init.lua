@@ -1,11 +1,4 @@
 return {
-  -- Colorscheme
-  {
-    'ishan9299/nvim-solarized-lua',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-  },
-
   -- Statusline
   'famiu/feline.nvim',
   'kyazdani42/nvim-web-devicons',
@@ -42,12 +35,22 @@ return {
   'sbdchd/neoformat',
   { 'Chiel92/vim-autoformat', ft = {'python'} },
 
-  -- HTML
-  'windwp/nvim-ts-autotag',
-
   'mbbill/undotree',
   'tpope/vim-surround',
-  'numToStr/Comment.nvim',
+
+  {
+      'numToStr/Comment.nvim',
+      dependencies = {
+          'nvim-treesitter/nvim-treesitter',
+      },
+      keys = {
+            { 'gcc' },
+            { 'gbc' },
+            { 'gc', mode = 'v' },
+            { 'gb', mode = 'v' },
+      },
+      config = true,
+  },
 
   -- Markdown
   'jakewvincent/mkdnflow.nvim',
@@ -59,17 +62,6 @@ return {
 
   -- File navigation/marks
   'ThePrimeagen/harpoon',
-
-  -- Session
-  'rmagatti/auto-session',
-
-  {
-      'nvim-treesitter/nvim-treesitter',
-      build = ':TSUpdate',
-  },
-  'nvim-treesitter/playground',
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  'nvim-treesitter/nvim-treesitter-context',
 
   -- Golang
   'sebdah/vim-delve',
