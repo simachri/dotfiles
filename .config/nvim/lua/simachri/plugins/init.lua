@@ -1,90 +1,107 @@
 return {
-  -- Statusline
-  'famiu/feline.nvim',
-  'kyazdani42/nvim-web-devicons',
+	"kyazdani42/nvim-web-devicons",
 
-  -- Utils
-  'tpope/vim-repeat',
+	-- Utils
+	"tpope/vim-repeat",
 
-  -- Terminal
-  'voldikss/vim-floaterm',
+	-- Terminal
+	"voldikss/vim-floaterm",
 
-  -- LSP
-  'neovim/nvim-lspconfig',
-  'onsails/lspkind-nvim',
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-nvim-lua',
-  'hrsh7th/cmp-calc',
-  'hrsh7th/cmp-cmdline',
-  'saadparwaiz1/cmp_luasnip',
-  'petertriho/cmp-git',
-  'hrsh7th/cmp-nvim-lsp-signature-help',
+	-- LSP
+	"neovim/nvim-lspconfig",
+	"onsails/lspkind-nvim",
+	"hrsh7th/nvim-cmp",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-nvim-lua",
+	"hrsh7th/cmp-calc",
+	"hrsh7th/cmp-cmdline",
+	"saadparwaiz1/cmp_luasnip",
+	"petertriho/cmp-git",
+	"hrsh7th/cmp-nvim-lsp-signature-help",
 
-  -- JS/TS
-  'leafOfTree/vim-svelte-plugin',
-  'jose-elias-alvarez/typescript.nvim',
-  'jose-elias-alvarez/null-ls.nvim',
+	{
+		{
+			-- requires 'sudo pacman -S stylua'
+			"ckipp01/stylua-nvim",
+			ft = "lua",
+		},
+	},
 
-  -- Python
-  { 'rafi/vim-venom', ft = {'python'} },
+	-- JS/TS
+	"leafOfTree/vim-svelte-plugin",
+	"jose-elias-alvarez/typescript.nvim",
+	"jose-elias-alvarez/null-ls.nvim",
 
-  -- Formatter for HTML and Python
-  'sbdchd/neoformat',
-  { 'Chiel92/vim-autoformat', ft = {'python'} },
+	-- Python
+	{ "rafi/vim-venom", ft = { "python" } },
 
-  'mbbill/undotree',
-  'tpope/vim-surround',
+	-- TODO: Replace the formatter for python with a respective EFM configuration, see
+	-- https://github.com/mattn/efm-langserver#configuration-for-neovim-builtin-lsp-with-nvim-lspconfig
+	-- Formatter for HTML and Python
+	"sbdchd/neoformat",
+	{ "Chiel92/vim-autoformat", ft = { "python" } },
 
-  {
-      'numToStr/Comment.nvim',
-      dependencies = {
-          'nvim-treesitter/nvim-treesitter',
-      },
-      keys = {
-            { 'gcc' },
-            { 'gbc' },
-            { 'gc', mode = 'v' },
-            { 'gb', mode = 'v' },
-      },
-      config = true,
-  },
+	"mbbill/undotree",
+	"tpope/vim-surround",
 
-  -- Markdown
-  'jakewvincent/mkdnflow.nvim',
-  'ekickx/clipboard-image.nvim',
-  { "iamcco/markdown-preview.nvim", build = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
+	{
+		"numToStr/Comment.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		keys = {
+			{ "gcc" },
+			{ "gbc" },
+			{ "gc", mode = "v" },
+			{ "gb", mode = "v" },
+		},
+		config = true,
+	},
 
-  'nvim-lua/popup.nvim',
-  'nvim-lua/plenary.nvim',
+	-- Markdown
+	"jakewvincent/mkdnflow.nvim",
+	"ekickx/clipboard-image.nvim",
+	{
+		"iamcco/markdown-preview.nvim",
+		build = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
 
-  -- File navigation/marks
-  'ThePrimeagen/harpoon',
+	"nvim-lua/popup.nvim",
+	"nvim-lua/plenary.nvim",
 
-  -- Golang
-  'sebdah/vim-delve',
-  'ray-x/go.nvim',
-  'ray-x/guihua.lua', -- float term, codeaction and codelens gui support
+	-- File navigation/marks
+	"ThePrimeagen/harpoon",
 
-  -- Rust
-  'simrat39/rust-tools.nvim',
+	-- Golang
+	"sebdah/vim-delve",
+	"ray-x/go.nvim",
+	"ray-x/guihua.lua", -- float term, codeaction and codelens gui support
 
-  -- Snippets
-  'L3MON4D3/LuaSnip',
+	-- Rust
+	"simrat39/rust-tools.nvim",
 
-  'folke/which-key.nvim',
+	-- Snippets
+	"L3MON4D3/LuaSnip",
 
-  -- Git
-  'tpope/vim-fugitive',
-  'sindrets/diffview.nvim',
-  'lewis6991/gitsigns.nvim',
+	"folke/which-key.nvim",
 
-  {
-	  'glacambre/firenvim',
-	  build = function() vim.fn['firenvim#install'](0) end
-  },
+	-- Git
+	"tpope/vim-fugitive",
+	"sindrets/diffview.nvim",
+	"lewis6991/gitsigns.nvim",
 
-  'lukas-reineke/indent-blankline.nvim',
+	{
+		"glacambre/firenvim",
+		build = function()
+			vim.fn["firenvim#install"](0)
+		end,
+	},
+
+	"lukas-reineke/indent-blankline.nvim",
 }

@@ -67,6 +67,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
   end
 
+  if client.name == "sumneko_lua" then
+    -- https://github.com/Koihik/LuaFormatter
+    buf_set_keymap("n", "<leader>rf", "<cmd>lua require('stylua-nvim').format_file()<cr>", opts)
+  end
 end
 
 -- Filter/modify the way how specific diagonistics are shown.
@@ -261,4 +265,3 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 vim.diagnostic.config{
     float = { border = _border}
 }
-

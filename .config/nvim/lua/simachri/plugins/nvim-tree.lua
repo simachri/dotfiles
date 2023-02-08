@@ -16,7 +16,6 @@ return {
                 -- :h nvim-tree-default-mappings
                 list = {
                     { key = "<c-q>", action = "close" },
-                    { key = "/", action = "live_filter" },
                 },
             },
             float = {
