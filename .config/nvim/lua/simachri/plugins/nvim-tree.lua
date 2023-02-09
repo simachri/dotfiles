@@ -4,7 +4,6 @@ return {
 		requires = {
 			"nvim-web-devicons",
 		},
-		event = "VeryLazy",
 		keys = {
 			{ "<leader>nn", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true } },
 			{ "<leader>nq", "<cmd>NvimTreeClose<cr>", { noremap = true, silent = true } },

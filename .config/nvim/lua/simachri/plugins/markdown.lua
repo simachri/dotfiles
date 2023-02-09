@@ -250,6 +250,7 @@ return {
 		---- cmd_paste = "$content = " .. cmd_check .. ";$content.Save('%s', 'png')"
 		-- cmd_paste = "(" .. cmd_check .. ").Save('%s', 'png')"
 		"ekickx/clipboard-image.nvim",
+        ft = { "markdown" },
 		opts = {
 			markdown = {
 				img_dir = { "%:p:h", ".img" },

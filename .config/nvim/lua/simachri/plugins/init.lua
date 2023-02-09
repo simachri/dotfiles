@@ -1,10 +1,14 @@
 return {
-	"kyazdani42/nvim-web-devicons",
+	{
+		"kyazdani42/nvim-web-devicons",
+		event = "VeryLazy",
+	},
 
-	-- Utils
-	"tpope/vim-repeat",
+	{
+		"tpope/vim-repeat",
+		event = "InsertEnter",
+	},
 
-	-- Terminal
 	"voldikss/vim-floaterm",
 
 	{
@@ -20,17 +24,25 @@ return {
 		ft = { "svelte" },
 	},
 
-	-- Python
 	{ "rafi/vim-venom", ft = { "python" } },
-
-	-- TODO: Replace the formatter for python with a respective EFM configuration, see
-	-- https://github.com/mattn/efm-langserver#configuration-for-neovim-builtin-lsp-with-nvim-lspconfig
 	-- Formatter for HTML and Python
-	"sbdchd/neoformat",
+	{
+		"sbdchd/neoformat",
+		ft = { "python", "html" },
+	},
 	{ "Chiel92/vim-autoformat", ft = { "python" } },
 
-	"mbbill/undotree",
-	"tpope/vim-surround",
+	{
+		"mbbill/undotree",
+		keys = {
+			{ "<leader>u", ":UndotreeToggle<CR>", { silent = true } },
+		},
+	},
+
+	{
+		"tpope/vim-surround",
+		event = "InsertEnter",
+	},
 
 	{
 		"numToStr/Comment.nvim",
@@ -46,18 +58,19 @@ return {
 		config = true,
 	},
 
-	"nvim-lua/popup.nvim",
-	"nvim-lua/plenary.nvim",
-
-	-- Rust
-	"simrat39/rust-tools.nvim",
-
 	{
-		"L3MON4D3/LuaSnip",
+		"nvim-lua/popup.nvim",
+		lazy = true,
+	},
+	{
+		"nvim-lua/plenary.nvim",
 		lazy = true,
 	},
 
-	"folke/which-key.nvim",
+	{
+		"simrat39/rust-tools.nvim",
+		ft = { "rust" },
+	},
 
 	{
 		"lukas-reineke/indent-blankline.nvim",

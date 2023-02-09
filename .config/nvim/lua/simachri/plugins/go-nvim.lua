@@ -70,9 +70,11 @@ return {
 
 	{
 		"sebdah/vim-delve",
+		lazy = true,
 	},
 
 	{
 		"ray-x/guihua.lua", -- float term, codeaction and codelens gui support
+		lazy = true,
 	},
 }
