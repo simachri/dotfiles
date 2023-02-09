@@ -9,17 +9,6 @@ return {
 
 	-- LSP
 	"neovim/nvim-lspconfig",
-	"onsails/lspkind-nvim",
-	"hrsh7th/nvim-cmp",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/cmp-calc",
-	"hrsh7th/cmp-cmdline",
-	"saadparwaiz1/cmp_luasnip",
-	"petertriho/cmp-git",
-	"hrsh7th/cmp-nvim-lsp-signature-help",
 
 	{
 		{
@@ -86,22 +75,12 @@ return {
 	-- Rust
 	"simrat39/rust-tools.nvim",
 
-	-- Snippets
-	"L3MON4D3/LuaSnip",
+	{
+		"L3MON4D3/LuaSnip",
+		lazy = true,
+	},
 
 	"folke/which-key.nvim",
-
-	-- Git
-	"tpope/vim-fugitive",
-	"sindrets/diffview.nvim",
-	"lewis6991/gitsigns.nvim",
-
-	{
-		"glacambre/firenvim",
-		build = function()
-			vim.fn["firenvim#install"](0)
-		end,
-	},
 
 	"lukas-reineke/indent-blankline.nvim",
 }
