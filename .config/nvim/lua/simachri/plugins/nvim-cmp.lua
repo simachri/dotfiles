@@ -207,14 +207,7 @@ return {
 			-- })
 		end,
 	},
-	{
-		"onsails/lspkind-nvim",
-		lazy = true,
-		config = function()
-			-- Do not display an icon for plain text in the buffer autocompletion used by nvim-cmp.
-			require("lspkind").presets["default"]["Text"] = ""
-		end,
-	},
+
 	{
 		"hrsh7th/cmp-nvim-lsp",
 		lazy = true,
