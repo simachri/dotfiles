@@ -12,25 +12,16 @@ return {
 	"voldikss/vim-floaterm",
 
 	{
-		{
-			-- requires 'sudo pacman -S stylua'
-			"ckipp01/stylua-nvim",
-			ft = "lua",
-		},
-	},
-
-	{
 		"leafOfTree/vim-svelte-plugin",
 		ft = { "svelte" },
 	},
 
 	{ "rafi/vim-venom", ft = { "python" } },
-	-- Formatter for HTML and Python
+
 	{
 		"sbdchd/neoformat",
-		ft = { "python", "html" },
+		ft = { "python", "html", "lua", "svelte" },
 	},
-	{ "Chiel92/vim-autoformat", ft = { "python" } },
 
 	{
 		"mbbill/undotree",

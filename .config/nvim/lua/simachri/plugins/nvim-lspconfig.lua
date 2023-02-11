@@ -105,8 +105,8 @@ return {
 				end
 
 				if client.name == "sumneko_lua" then
-					-- https://github.com/Koihik/LuaFormatter
-					buf_set_keymap("n", "<leader>rf", "<cmd>lua require('stylua-nvim').format_file()<cr>", opts)
+                    -- requires 'sudo pacman -S stylua'
+					buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
 				end
 			end
 
@@ -189,13 +189,11 @@ return {
 				),
 			})
 
-			-- Lua https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
-			-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+			-- Lua https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
 			local runtime_path = vim.split(package.path, ";")
 			table.insert(runtime_path, "lua/?.lua")
 			table.insert(runtime_path, "lua/?/init.lua")
-			nvim_lsp.sumneko_lua.setup({
-				-- cmd = require'lspcontainers'.command('sumneko_lua'),
+			nvim_lsp.lua_ls.setup({
 				cmd = {
 					"/opt/lua-language-server/bin/Linux/lua-language-server",
 					"-E",
