@@ -158,3 +158,11 @@ n ()
 #    tmux set-window-option -qg window-status-format ${tmux_conf_theme_window_status_format}
 #    tmux set-window-option -qg window-status-current-format ${tmux_conf_theme_window_status_current_format}
 #}
+
+# Start Docker daemon automatically when logging in if not running.
+# Source: https://blog.nillsf.com/index.php/2020/06/29/how-to-automatically-start-the-docker-daemon-on-wsl2/
+DOCKERD_RUNNING=`ps aux | grep dockerd | grep -v grep`
+if [ -z "$DOCKERD_RUNNING" ]; then
+   sudo dockerd > /dev/null 2>&1 &
+   disown
+fi
