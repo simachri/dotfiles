@@ -104,7 +104,7 @@ return {
 					buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
 				end
 
-				if client.name == "sumneko_lua" then
+				if client.name == "lua_ls" then
                     -- requires 'sudo pacman -S stylua'
 					buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
 				end
