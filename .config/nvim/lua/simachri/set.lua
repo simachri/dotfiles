@@ -82,8 +82,9 @@ vim.opt.wrap = false
 vim.opt.mouse = ""
 
 -- Wider statuscolumn to the left.
--- https://github.com/neovim/neovim/pull/20621#issuecomment-1376041943
--- vim.opt.statuscolumn = '%C%l%=%s'
+-- see :h statuscolumn
+-- vim.opt.statuscolumn='%{v:relnum?" ":v:lnum}%= %{v:relnum?v:relnum:" "} %s '
+vim.opt.statuscolumn='%s%=%{v:relnum?v:relnum:v:lnum}  '
 
 -- Disalbe netrw in favour of nvim-tree.
 vim.g.loaded_netrw = 1
