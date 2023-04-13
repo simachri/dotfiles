@@ -70,3 +70,5 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 export DOCKER_BUILDKIT=1
 
 export BROWSER=brave
+
+export OPENAI_API_KEY=$(cat ~/.openai/api_key)

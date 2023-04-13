@@ -73,6 +73,9 @@ return {
             au ColorScheme * hi Include guifg=#6c71c4
             au ColorScheme * hi Constant guifg=#6c71c4
 
+            " TreeSitter context: Show an underline under the current context.
+            au ColorScheme * hi TreesitterContextBottom gui=underline
+
             " Other adjustments
             au ColorScheme * hi Search guifg=#eee8d5 guibg=#657b83
             au ColorScheme * hi Error gui=underline
