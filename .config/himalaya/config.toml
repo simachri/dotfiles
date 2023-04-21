@@ -1,0 +1,17 @@
+[Posteo]
+backend = "imap"
+email = "marvin.christe@posteo.de"
+default = true
+display-name = "Marvin Christe"
+sender = "smtp"
+smtp-host = "posteo.de"
+smtp-port = 465
+smtp-ssl = true
+smtp-login = "marvin.christe@posteo.de"
+smtp-passwd-cmd = "pass show posteo.de"
+sync = false
+imap-host = "posteo.de"
+imap-port = 993
+imap-ssl = true
+imap-login = "marvin.christe@posteo.de"
+imap-passwd-cmd = "pass show posteo.de"
