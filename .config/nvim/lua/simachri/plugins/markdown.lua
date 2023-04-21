@@ -16,7 +16,7 @@
 function Jump_to_file_with_anchor()
 	local row = vim.fn.line(".") - 1
 	local col = vim.fn.col(".") - 1
-	local selected_node = vim.treesitter.get_node_at_pos(0, row, col, { ignore_injections = false })
+	local selected_node = vim.treesitter.get_node({0, {row, col}, ignore_injections = false })
 
 	local node_type = selected_node:type()
 	if
@@ -78,7 +78,7 @@ end
 function Open_URL()
 	local row = vim.fn.line(".") - 1
 	local col = vim.fn.col(".") - 1
-	local selected_node = vim.treesitter.get_node_at_pos(0, row, col, { ignore_injections = false })
+	local selected_node = vim.treesitter.get_node({0, {row, col}, ignore_injections = false })
 
 	local node_type = selected_node:type()
 	if
