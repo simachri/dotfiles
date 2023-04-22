@@ -2,6 +2,7 @@ return {
     {
         -- https://github.com/rmagatti/auto-session
         'rmagatti/auto-session',
+        event = 'VeryLazy',
         keys = {
             { '<leader>sr', '<cmd>silent! RestoreSession<CR>', { noremap = true, silent = true } },
         },
