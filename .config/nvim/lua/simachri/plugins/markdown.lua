@@ -40,7 +40,7 @@ function Jump_to_file_with_anchor()
 	if string.match(node_type, "link_text") then
 		dest_node = selected_node:next_named_sibling()
 	end
-	local destination = vim.treesitter.query.get_node_text(dest_node, 0)
+	local destination = vim.treesitter.get_node_text(dest_node, 0)
 
 	-- Split the destination at '#' into RELATIVE_FILEPATH and ANCHOR.
 	local t = {}
@@ -102,7 +102,7 @@ function Open_URL()
 	if string.match(node_type, "link_text") then
 		dest_node = selected_node:next_named_sibling()
 	end
-	local url = vim.treesitter.query.get_node_text(dest_node, 0)
+	local url = vim.treesitter.get_node_text(dest_node, 0)
 
 	-- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
 	vim.cmd("call system('www-browser " .. url .. "')")
