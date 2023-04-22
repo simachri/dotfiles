@@ -1,28 +1,30 @@
 return {
 	{
 		"glacambre/firenvim",
+
+		-- Lazy load firenvim
+		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+		cond = not not vim.g.started_by_firenvim,
 		build = function()
+			require("lazy").load({ plugins = "firenvim", wait = true })
 			vim.fn["firenvim#install"](0)
 		end,
-        event = 'VeryLazy',
 		config = function()
-			vim.cmd([[
-                let g:firenvim_config = { 
-                    \ 'globalSettings': {
-                        \ 'alt': 'all',
-                    \  },
-                    \ 'localSettings': {
-                        \ '.*': {
-                            \ 'cmdline': 'neovim',
-                            \ 'content': 'text',
-                            \ 'priority': 0,
-                            \ 'selector': 'textarea',
-                            \ 'takeover': 'never',
-                            \ 'filename': '/tmp/{pathname%32}.{extension}',
-                        \ },
-                    \ }
-                \ }
+			vim.g.firenvim_config = {
+				globalSettings = { alt = "all" },
+				localSettings = {
+					[".*"] = {
+						cmdline = "neovim",
+						content = "text",
+						priority = 0,
+						selector = "textarea",
+						takeover = "never",
+						filename = "/tmp/{pathname%32}.{extension}",
+					},
+				},
+			}
 
+			vim.cmd([[
                 function! OnUIEnter(event) abort
                   if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
                     " To create mappings for increasing and decreasing the font size through a key mapping, 

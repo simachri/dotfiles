@@ -1,18 +1,13 @@
-# Dotfiles
 abbr dfa="df add"
 abbr dfc="df commit -m"
 abbr dfp="df push"
 abbr dfs="df status"
-
-# Git
-abbr gl="git --no-pager log --oneline -15"
 abbr gg="git log --graph --decorate --oneline --all"
+abbr gl="git --no-pager log --oneline -15"
+abbr gor="git remote -v | head -n 1 | awk -F \" \" '{print \$2}' | xargs www-browser"
 abbr gs="git status"
-# Open remote in browser
-# https://mihan007.medium.com/how-to-open-github-repository-from-the-command-line-gremote-81502fad0ef0
-abbr gor="git remote -v | head -n 1 | awk -F \" \" '{print $2}' | xargs www-browser"
-
-# Watson
-abbr wl="watson log"
-abbr we="watson edit"
+abbr ml="himalaya list"
+abbr mw="himalaya write"
 abbr wa="watson add --from '' --to ''"
+abbr we="watson edit"
+abbr wl="watson log"

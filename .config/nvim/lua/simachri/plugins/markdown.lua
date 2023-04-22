@@ -16,7 +16,7 @@
 function Jump_to_file_with_anchor()
 	local row = vim.fn.line(".") - 1
 	local col = vim.fn.col(".") - 1
-	local selected_node = vim.treesitter.get_node({0, {row, col}, ignore_injections = false })
+	local selected_node = vim.treesitter.get_node({ 0, { row, col }, ignore_injections = false })
 
 	local node_type = selected_node:type()
 	if
@@ -78,7 +78,7 @@ end
 function Open_URL()
 	local row = vim.fn.line(".") - 1
 	local col = vim.fn.col(".") - 1
-	local selected_node = vim.treesitter.get_node({0, {row, col}, ignore_injections = false })
+	local selected_node = vim.treesitter.get_node({ 0, { row, col }, ignore_injections = false })
 
 	local node_type = selected_node:type()
 	if
@@ -249,8 +249,12 @@ return {
 		-- To make this work, adjust the following in /home/xi3k/.config/nvim/plugged/clipboard-image.nvim/lua/clipboard-image/utils.lua:
 		---- cmd_paste = "$content = " .. cmd_check .. ";$content.Save('%s', 'png')"
 		-- cmd_paste = "(" .. cmd_check .. ").Save('%s', 'png')"
+		-- To make this work, adjust the following in /home/xi3k/.config/nvim/plugged/clipboard-image.nvim/lua/clipboard-image/health.lua:
+    -- require"nvim.health" instead of require"health"
 		"ekickx/clipboard-image.nvim",
-        ft = { "markdown" },
+		keys = {
+			{ "<leader><leader>p", ":PasteImg<CR>", { silent = true } },
+		},
 		opts = {
 			markdown = {
 				img_dir = { "%:p:h", ".img" },
@@ -265,6 +269,9 @@ return {
 		setup = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
-		ft = { "markdown" },
+		keys = {
+			{ "<leader>mps", ":MarkdownPreview<CR>", { silent = true } },
+			{ "<leader>mpc", ":MarkdownPreviewStop<CR>", { silent = true } },
+		},
 	},
 }
