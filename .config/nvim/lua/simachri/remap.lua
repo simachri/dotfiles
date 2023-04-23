@@ -96,7 +96,7 @@ vim.cmd([[
       let currLineText = getline(".")
       " If an option is given, evaluate it directly.
       if a:option == "done"
-        call setline(".", substitute(currLineText, "- [.*\\]", "- [X]", ""))
+        call setline(".", substitute(currLineText, "- [.*\\]", "- [x]", ""))
         return
       elseif a:option == "open"
         call setline(".", substitute(currLineText, "- [.*\\]", "- [ ]", ""))
@@ -107,7 +107,7 @@ vim.cmd([[
       endif
 
       " If checkbox is empty: Check it.
-      let replacedText = substitute(currLineText, "- [ \\]", "- [X]", "")
+      let replacedText = substitute(currLineText, "- [ \\]", "- [x]", "")
       if currLineText != replacedText
         " Replace text.
         call setline(".", replacedText)
@@ -115,7 +115,7 @@ vim.cmd([[
       endif
 
       " If checkbox is checked: Set to invalid.
-      let replacedText = substitute(currLineText, "- [X\\]", "- [-]", "")
+      let replacedText = substitute(currLineText, "- [x\\]", "- [-]", "")
       if currLineText != replacedText
         " Replace text.
         call setline(".", replacedText)
