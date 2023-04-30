@@ -20,7 +20,8 @@ return {
 
 	{
 		"sbdchd/neoformat",
-		ft = { "python", "html", "lua", "svelte", "markdown" },
+		-- ft = { "python", "html", "lua", "svelte", "markdown" },
+		ft = { "python", "html", "lua", "svelte" },
 	},
 
 	{
