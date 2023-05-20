@@ -304,6 +304,11 @@ return {
 			-- sudo pacman -S yaml-language-server
 			nvim_lsp.yamlls.setup({
 				on_attach = on_attach,
+                settings = {
+                    yaml = {
+                        keyOrdering = false,
+                    },
+                },
 			})
 
 			-- Rounded borders for help windows (hover and signature help).
