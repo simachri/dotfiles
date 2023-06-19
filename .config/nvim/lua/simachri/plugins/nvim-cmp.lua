@@ -55,7 +55,6 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-						max_item_count = 10, -- show up to 10 items.
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
@@ -81,6 +80,14 @@ return {
 						},
 					}),
 				},
+				performance = {
+					debounce = 60,
+					throttle = 30,
+					fetching_timeout = 500,
+					async_budget = 1,
+					max_view_entries = 50,
+					-- max_view_entries = 200,
+				},
 			})
 
 			vim.api.nvim_exec(
@@ -95,7 +102,6 @@ return {
                     \     { name = 'nvim_lsp_signature_help' },
                     \     { name = 'buffer',
                     \       keyword_length = 1,
-                    \       max_item_count = 5,
                     \       option = {
                     \         get_bufnrs = function()
                     \                       return vim.api.nvim_list_bufs()
@@ -110,7 +116,6 @@ return {
                     \     { name = 'luasnip' },
                     \     { name = 'buffer',
                     \       keyword_length = 1,
-                    \       max_item_count = 10,
                     \       option = {
                     \         get_bufnrs = function()
                     \                       return vim.api.nvim_list_bufs()
@@ -128,7 +133,6 @@ return {
                     \     { name = 'nvim_lsp_signature_help' },
                     \     { name = 'buffer',
                     \       keyword_length = 1,
-                    \       max_item_count = 5,
                     \       option = {
                     \         get_bufnrs = function()
                     \                       return vim.api.nvim_list_bufs()
@@ -145,7 +149,6 @@ return {
                     \     { name = 'nvim_lsp_signature_help' },
                     \     { name = 'buffer',
                     \       keyword_length = 1,
-                    \       max_item_count = 5,
                     \       option = {
                     \         get_bufnrs = function()
                     \                       return vim.api.nvim_list_bufs()
@@ -162,7 +165,6 @@ return {
                     "\     { name = 'cmp_tabnine' },
                     \     { name = 'buffer',
                     \       keyword_length = 1,
-                    \       max_item_count = 5,
                     \       option = {
                     \         get_bufnrs = function()
                     \                       return vim.api.nvim_list_bufs()

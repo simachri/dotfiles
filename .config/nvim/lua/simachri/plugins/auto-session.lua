@@ -4,7 +4,7 @@ return {
         'rmagatti/auto-session',
         event = 'VeryLazy',
         keys = {
-            { '<leader>sr', '<cmd>silent! RestoreSession<CR>', { noremap = true, silent = true } },
+            { '<leader>sr', '<cmd>silent! SessionRestore<CR>', { noremap = true, silent = true } },
         },
         opts = {
             log_level = 'error',

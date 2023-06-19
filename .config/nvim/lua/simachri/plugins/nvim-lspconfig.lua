@@ -77,6 +77,8 @@ return {
 				buf_set_keymap("n", "<leader>ldc", "<cmd>lua vim.diagnostic.disable()<CR>", opts)
 				buf_set_keymap("n", "<leader>lda", "<cmd>lua vim.diagnostic.enable()<CR>", opts)
 
+				buf_set_keymap("n", "<leader>lr", "<cmd>LspRestart<CR>", opts)
+
 				buf_set_keymap("n", "<leader>rr", "<cmd>lua Rename_file()<CR>", opts)
 				buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 

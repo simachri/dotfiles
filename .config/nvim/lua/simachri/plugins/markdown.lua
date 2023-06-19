@@ -232,7 +232,7 @@ return {
                   silent execute
                     "\ "!pandoc -f markdown+task_lists+pipe_tables
                     \ "!pandoc -f gfm
-                    \ --reference-doc ~/VmHostShare/_Pandoc_reference_21-06-01.docx
+                    \ --reference-doc ~/VmHostShare/Pandoc_Markdown_To_Docx_Template.docx
                     \ -s ".src_filename." -o ".dst_filename | redraw!
                   echo dst_filename.' exported.'
 
