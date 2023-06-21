@@ -43,12 +43,12 @@ function backup_journal() {
   foldername=`date +"%Y-%m-%d"`
   folderpath=~/VmHostShare/Journal_Backups/$foldername
   mkdir -p $folderpath
-  rsync -a ~/Wiki $folderpath
-  rsync -a ~/Journal $folderpath
-  rsync -a ~/SAP $folderpath
-  rsync -a ~/Development $folderpath --exclude={.venv,node_modules,taskd,target}
-  rsync -a ~/.task $folderpath
-  rsync -a ~/E-Mail $folderpath
+  rsync -av --progress ~/Wiki $folderpath
+  rsync -av --progress ~/Journal $folderpath
+  rsync -av --progress ~/SAP $folderpath
+  rsync -av --progress ~/Development $folderpath --exclude={.venv,node_modules,taskd,target}
+  rsync -av --progress ~/.task $folderpath
+  rsync -av --progress ~/E-Mail $folderpath
   echo "Backup finished."
 }
 alias backup_journal=backup_journal
