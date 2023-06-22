@@ -8,6 +8,7 @@ abbr gor="git remote -v | head -n 1 | awk -F \" \" '{print \$2}' | xargs www-bro
 abbr gs="git status"
 abbr ml="himalaya list"
 abbr mw="himalaya write"
+abbr mr="himalaya read"
 abbr wa="watson add --from '' --to ''"
 abbr we="watson edit"
 abbr wl="watson log"

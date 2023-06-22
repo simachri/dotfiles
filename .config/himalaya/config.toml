@@ -8,10 +8,12 @@ smtp-host = "posteo.de"
 smtp-port = 465
 smtp-ssl = true
 smtp-login = "marvin.christe@posteo.de"
-smtp-passwd-cmd = "pass show posteo.de"
 sync = false
 imap-host = "posteo.de"
 imap-port = 993
 imap-ssl = true
 imap-login = "marvin.christe@posteo.de"
-imap-passwd-cmd = "pass show posteo.de"
+imap-auth = "passwd"
+imap-passwd = { cmd = "pass show Posteo-imap-passwd" }
+smtp-auth = "passwd"
+smtp-passwd = { cmd = "pass show Posteo-imap-passwd" }
