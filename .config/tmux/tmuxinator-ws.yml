@@ -4,7 +4,7 @@ name: workspace
 root: ~/
 
 windows:
-  - SAP: cd ~/SAP && nvim
+  - DSC: cd ~/SAP && nvim
   - Journal: cd ~/Journal && ls
   - Wiki: cd ~/Wiki && nvim
   - Code: cd ~/Development && ls
@@ -19,7 +19,7 @@ windows:
   # but for the first one. Therefore all the windows are created first and then 
   # reordered.
   # https://github.com/tmuxinator/tmuxinator/issues/747
-  # Move 0:SAP -> 7
+  # Move 0:DSC -> 7
   # Move 1:Journal -> 8
   # Move 5:zsh -> 1
   # Move 3:Code -> 5
