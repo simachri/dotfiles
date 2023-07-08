@@ -105,7 +105,7 @@ function Open_URL()
 	local url = vim.treesitter.get_node_text(dest_node, 0)
 
 	-- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
-	vim.cmd("call system('www-browser " .. url .. "')")
+	vim.cmd("call system('www-browser \"" .. url .. "\"')")
 end
 
 return {

@@ -97,7 +97,7 @@ report.list.sort=urgency-
 #urgency.blocking.coefficient                 8.0 # blocking other tasks
 #urgency.uda.priority.H.coefficient           6.0 # high Priority
 #urgency.uda.priority.M.coefficient           3.9 # medium Priority
-#urgency.uda.priority.L.coefficient           1.8 # low Priority
+urgency.uda.priority.L.coefficient=-1.0 # low Priority
 #urgency.scheduled.coefficient                5.0 # scheduled tasks
 urgency.active.coefficient=10.0 # already started tasks
 #urgency.age.coefficient                      2.0 # coefficient for age
@@ -133,18 +133,18 @@ uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-log=true
 ##############################
 # taskserver
 ##############################
-taskd.server=coco-life.de:53589
-taskd.certificate=~/.task/wsl.cert.pem
-taskd.key=~/.task/wsl.key.pem
-taskd.ca=~/.task/ca.cert.pem
-taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
+#taskd.server=coco-life.de:53589
+#taskd.certificate=~/.task/wsl.cert.pem
+#taskd.key=~/.task/wsl.key.pem
+#taskd.ca=~/.task/ca.cert.pem
+#taskd.credentials=Public/wsl/d904cc6d-d27f-4ba5-98ef-0b51a61353c6
 
 ##############################
 # Remap keys
 # https://kdheepak.com/taskwarrior-tui/configuration/keys/
 ##############################
 # Disable default start/stop and use 4 and 5 instead, see above.
-uda.taskwarrior-tui.keyconfig.start-stop=)
+#uda.taskwarrior-tui.keyconfig.start-stop=)
 # Disable default 'quit' key mapping as it interferes with Floaterm in Nvim.
 uda.taskwarrior-tui.keyconfig.quit=(
 uda.ms_todo_id.label=ToDo-ID
@@ -153,3 +153,4 @@ uda.ms_todo_listid.type=string
 uda.ms_todo_listid.label=MS To-Do List ID
 uda.ms_todo_taskid.type=string
 uda.ms_todo_taskid.label=MS To-Do Task ID
+context=Assigned

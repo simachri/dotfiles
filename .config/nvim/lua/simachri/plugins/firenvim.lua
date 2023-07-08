@@ -17,9 +17,12 @@ return {
 						cmdline = "neovim",
 						content = "text",
 						priority = 0,
-						selector = "textarea",
 						takeover = "never",
 						filename = "/tmp/{pathname%32}.{extension}",
+					},
+					["outlook.office365.com"] = {
+						content = "html",
+						priority = 1,
 					},
 				},
 			}
@@ -29,18 +32,20 @@ return {
                   if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
                     " To create mappings for increasing and decreasing the font size through a key mapping, 
                     " see https://github.com/glacambre/firenvim/issues/972#issuecomment-843733076.
-                    let s:fontsize = 16
+                    let s:fontsize = 10
                     function! AdjustFontSizeF(amount)
                       let s:fontsize = s:fontsize+a:amount
                       "execute "set guifont=SauceCodePro\\ NF:h" . s:fontsize
-                      execute "set guifont=MesloLGLDZ\\ NF:h" . s:fontsize
+                      "execute "set guifont=MesloLGLDZ\\ NF:h" . s:fontsize
+                      execute "set guifont=CaskaydiaCove\\ Nerd\\ Font\\ MonoNF:h" . s:fontsize
                       call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
                     endfunction
 
                     nnoremap  <C-+> :call AdjustFontSizeF(1)<CR>
                     nnoremap  <C--> :call AdjustFontSizeF(-1)<CR>
-                   " set guifont=SauceCodePro\ NF:h16
-                    set guifont=MesloLGLDZ\ NF:h16
+                   " set guifont=SauceCodePro\ NF:h12
+                   " set guifont=MesloLGLDZ\ NF:h12
+                    set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h10
                     set lines=70
                     set columns=110
                     " Setting the filetype here has no effect as it is derived from the (temporary) file 
