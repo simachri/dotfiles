@@ -32,7 +32,7 @@ return {
                   if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
                     " To create mappings for increasing and decreasing the font size through a key mapping, 
                     " see https://github.com/glacambre/firenvim/issues/972#issuecomment-843733076.
-                    let s:fontsize = 10
+                    let s:fontsize = 14
                     function! AdjustFontSizeF(amount)
                       let s:fontsize = s:fontsize+a:amount
                       "execute "set guifont=SauceCodePro\\ NF:h" . s:fontsize
@@ -45,7 +45,7 @@ return {
                     nnoremap  <C--> :call AdjustFontSizeF(-1)<CR>
                    " set guifont=SauceCodePro\ NF:h12
                    " set guifont=MesloLGLDZ\ NF:h12
-                    set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h10
+                    set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h14
                     set lines=70
                     set columns=110
                     " Setting the filetype here has no effect as it is derived from the (temporary) file 

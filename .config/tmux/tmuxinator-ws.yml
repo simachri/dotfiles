@@ -4,7 +4,7 @@ name: workspace
 root: ~/
 
 windows:
-  - DSC: cd ~/SAP && nvim
+  - DSC: cd ~/DSC && nvim
   - Journal: cd ~/Journal && ls
   - Wiki: cd ~/Wiki && nvim
   - Code: cd ~/Development && ls
