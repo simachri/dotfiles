@@ -72,3 +72,6 @@ export DOCKER_BUILDKIT=1
 export BROWSER=brave
 
 export OPENAI_API_KEY=$(cat ~/.openai/api_key)
+
+# Make pipenv create virutal environment in project directory.
+export PIPENV_VENV_IN_PROJEC="enabled"

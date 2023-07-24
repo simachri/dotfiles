@@ -56,8 +56,9 @@ column.padding=3
 # Define contexts.
 ###############################
 #context.SAP.read=project != Linode and project != AoC and project != Vim and project != \'\'
-context.ToDo.read=user: and status:pending
-context.Waiting.read=status:waiting
+#context.ToDo.read=user: and status:pending
+context.ToDo.read=status:pending
+#context.Waiting.read=status:waiting
 context.Assigned.read=user != \'\'
 #context.Development.read=project:Linode or project:AoC or project:Vim
 #context.Private.read=project:
@@ -81,13 +82,18 @@ uda.cont.label=Continue here
 # Set up reports.
 ##############################
 # 'next'-report: This is the one used by taskwarrior-tui.
-report.next.columns=id,start.age,depends,priority,project,tags,user,scheduled.countdown,until.remaining,notes,description.truncated
-report.next.labels=ID,Active,Deps,P,Project,Tags,Assignee,S,Until,Notes,Description
+report.next.columns=id,start.age,depends,priority,project,tags,user,scheduled.countdown,until.remaining,description.truncated,notes,cont
+report.next.labels=ID,Active,Deps,P,Project,Tags,Assignee,S,Until,Descr,Notes,Next
 report.next.filter=(status:pending or +WAITING) 
+
 report.list.columns=id,start.age,depends,priority,project,tags,user,recur,scheduled.countdown,until.remaining,wait.remaining,notes,description.truncated,jira
 report.list.labels=ID,Active,Deps,P,Project,Tags,Assignee,Recur,S,Until,Waiting,Notes,Description,Jira
 report.list.filter=status:pending or +WAITING
 report.list.sort=urgency-
+
+# 'information'-report: Default data displayed in the bottom bar. Is the same as 'task <ID>'.
+# Unfortunately, the report cannot be modified, see https://taskwarrior.org/docs/report/#built-in-static-reports.
+
 # The 'next'-report is always sorted by urgency
 # report.next.sort=status-,wait+,priority-,project+
 # Adjust the urgency coefficients. The defaults are kept as is.
@@ -97,7 +103,7 @@ report.list.sort=urgency-
 #urgency.blocking.coefficient                 8.0 # blocking other tasks
 #urgency.uda.priority.H.coefficient           6.0 # high Priority
 #urgency.uda.priority.M.coefficient           3.9 # medium Priority
-urgency.uda.priority.L.coefficient=-1.0 # low Priority
+urgency.uda.priority.L.coefficient=-10.0 # low Priority
 #urgency.scheduled.coefficient                5.0 # scheduled tasks
 urgency.active.coefficient=10.0 # already started tasks
 #urgency.age.coefficient                      2.0 # coefficient for age
@@ -153,4 +159,4 @@ uda.ms_todo_listid.type=string
 uda.ms_todo_listid.label=MS To-Do List ID
 uda.ms_todo_taskid.type=string
 uda.ms_todo_taskid.label=MS To-Do Task ID
-context=Assigned
+context=ToDo

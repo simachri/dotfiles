@@ -184,9 +184,12 @@ nnoremap <leader>rn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 nnoremap ]d <Cmd>call VSCodeNotify('editor.action.marker.next')<CR>
 nnoremap [d <Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>
 nnoremap <leader>vo <Cmd>call VSCodeNotify('workbench.view.scm')<CR>
-nnoremap <leader>la <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap <leader>lf <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap <leader>ls <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap <leader>fo <Cmd>call VSCodeNotify('outline.focus')<CR>
 nnoremap <C-w>o <Cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>
+nnoremap K <Cmd>call VSCodeNotify('editor.action.peekImplementation')<CR>
+nnoremap <leader>db <Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')<CR>
         "{
             ""before": ["g", "i"],
             ""after": [],
