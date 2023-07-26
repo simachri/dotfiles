@@ -81,28 +81,27 @@ function Open_URL()
 	local selected_node = vim.treesitter.get_node({ 0, { row, col }, ignore_injections = false })
 
 	local node_type = selected_node:type()
-	if
-		not (
+  local url = ""
+	if (
 			string.match(node_type, "inline_link")
 			or string.match(node_type, "link_text")
 			or string.match(node_type, "link_destination")
 		)
 	then
-		print("Cursor is not on a link.")
-		return
+    local dest_node = {}
+    if string.match(node_type, "link_destination") then
+      dest_node = selected_node
+    end
+    if string.match(node_type, "inline_link") then
+      dest_node = selected_node:named_child(1)
+    end
+    if string.match(node_type, "link_text") then
+      dest_node = selected_node:next_named_sibling()
+    end
+    url = vim.treesitter.get_node_text(dest_node, 0)
+  else
+    url = vim.fn.expand("<cWORD>")
 	end
-
-	local dest_node = {}
-	if string.match(node_type, "link_destination") then
-		dest_node = selected_node
-	end
-	if string.match(node_type, "inline_link") then
-		dest_node = selected_node:named_child(1)
-	end
-	if string.match(node_type, "link_text") then
-		dest_node = selected_node:next_named_sibling()
-	end
-	local url = vim.treesitter.get_node_text(dest_node, 0)
 
 	-- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
 	vim.cmd("call system('www-browser \"" .. url .. "\"')")
@@ -202,6 +201,7 @@ return {
 					MkdnTableNewColBefore = false,
 					MkdnFoldSection = false,
 					MkdnUnfoldSection = false,
+          MkdnCreateLinkFromClipboard = false,
 				},
 			})
 

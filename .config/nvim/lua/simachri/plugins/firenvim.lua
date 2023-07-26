@@ -58,6 +58,20 @@ return {
 
                 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
             ]])
+
+            -- Autosave resizes the window for some reason.
+			-- vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+			-- 	callback = function()
+			-- 		if vim.g.timer_started == true then
+			-- 			return
+			-- 		end
+			-- 		vim.g.timer_started = true
+			-- 		vim.fn.timer_start(10000, function()
+			-- 			vim.g.timer_started = false
+			-- 			vim.cmd("silent write")
+			-- 		end)
+			-- 	end,
+			-- })
 		end,
 	},
 }

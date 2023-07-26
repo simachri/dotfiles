@@ -58,8 +58,8 @@ column.padding=3
 #context.SAP.read=project != Linode and project != AoC and project != Vim and project != \'\'
 #context.ToDo.read=user: and status:pending
 context.ToDo.read=status:pending
-#context.Waiting.read=status:waiting
-context.Assigned.read=user != \'\'
+context.Waiting.read=status:waiting
+#context.Assigned.read=user != \'\'
 #context.Development.read=project:Linode or project:AoC or project:Vim
 #context.Private.read=project:
 #context.Done=stat:completed end:today
