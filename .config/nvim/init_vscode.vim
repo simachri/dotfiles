@@ -32,8 +32,9 @@ set shiftwidth=2
 set shiftround
 set expandtab
 set textwidth=89   " width of document (used by gq)
-" Show a vertical bar at column X
-set colorcolumn=90
+" Show a vertical bar at column X - disabled as it is broken in VSCode and shows colored 
+" blocks all over the place.
+"set colorcolumn=90
 " The following options have no effect when visual wrapping is disabled.
 " set linebreak " Only break at the 'breakat' option 
 " set breakindent

@@ -113,9 +113,10 @@ return {
                     \ }
                     autocmd FileType markdown lua require'cmp'.setup.buffer {
                     \   sources = {
-                    \     { name = 'luasnip' },
+                    \     { name = 'luasnip', group_index = 1 },
                     \     { name = 'buffer',
                     \       keyword_length = 1,
+                    \       group_index = 2,
                     \       option = {
                     \         get_bufnrs = function()
                     \                       return vim.api.nvim_list_bufs()
