@@ -52,7 +52,7 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
 	require("telescope.builtin").buffers({
-		sort_lastused = false,
+		sort_lastused = true,
 	})
 end
 
@@ -281,7 +281,7 @@ return {
 				{ noremap = true, silent = true },
 			},
 			-- Find markdown wiki anchor references
-			{ "<leader>fmr", "<cmd>lua grep_md_anchor_refs()<cr>", { noremap = true, silent = true } },
+			{ "<leader>gmr", "<cmd>lua grep_md_anchor_refs()<cr>", { noremap = true, silent = true } },
 			-- Find markdown wiki headers
 			{
 				"<leader>fmh",

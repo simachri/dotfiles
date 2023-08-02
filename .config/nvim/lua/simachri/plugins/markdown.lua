@@ -253,7 +253,7 @@ return {
     -- require"nvim.health" instead of require"health"
 		"ekickx/clipboard-image.nvim",
 		keys = {
-			{ "<leader><leader>p", ":PasteImg<CR>", { silent = true } },
+			{ "<leader>mpi", ":PasteImg<CR>", { silent = true } },
 		},
 		opts = {
 			markdown = {
@@ -269,6 +269,8 @@ return {
 		event = "VeryLazy",
 		setup = function()
 			vim.g.mkdp_filetypes = { "markdown" }
+      -- Research: Why does this not work?
+      -- vim.g.mkdp_page_title = "${name}"
 		end,
 		keys = {
 			{ "<leader>mps", ":MarkdownPreview<CR>", { silent = true } },
