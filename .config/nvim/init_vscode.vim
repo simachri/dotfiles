@@ -191,6 +191,9 @@ nnoremap <leader>fo <Cmd>call VSCodeNotify('outline.focus')<CR>
 nnoremap <C-w>o <Cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>
 nnoremap K <Cmd>call VSCodeNotify('editor.action.peekImplementation')<CR>
 nnoremap <leader>db <Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')<CR>
+nnoremap <leader>fd <Cmd>call VSCodeNotify('workbench.action.openSettings')<CR>
+nnoremap <leader>ti <Cmd>call VSCodeNotify('workbench.action.terminal.toggleTerminal')<CR>
+
         "{
             ""before": ["g", "i"],
             ""after": [],

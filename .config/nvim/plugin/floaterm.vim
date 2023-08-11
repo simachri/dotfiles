@@ -1,5 +1,10 @@
 " https://github.com/voldikss/vim-floaterm
 
+if exists('g:vscode') && g:vscode
+  " Do not load the plugin when running in VSCode.
+  finish
+endif
+
 let g:floaterm_width = 0.85
 let g:floaterm_height = 0.95
 " By default, open a file as a new buffer in the existing Neovim instance

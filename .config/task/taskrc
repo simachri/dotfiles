@@ -83,7 +83,7 @@ uda.cont.label=Continue here
 ##############################
 # 'next'-report: This is the one used by taskwarrior-tui.
 report.next.columns=id,start.age,depends,priority,project,tags,user,scheduled.countdown,until.remaining,description.truncated,notes,cont
-report.next.labels=ID,Active,Deps,P,Project,Tags,Assignee,S,Until,Descr,Notes,Next
+report.next.labels=ID,Active,Deps,P,Project,Tags,Assignee,S,Until,Descr,Notes,Continue
 report.next.filter=(status:pending or +WAITING) 
 
 report.list.columns=id,start.age,depends,priority,project,tags,user,recur,scheduled.countdown,until.remaining,wait.remaining,notes,description.truncated,jira
