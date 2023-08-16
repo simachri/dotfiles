@@ -77,6 +77,8 @@ uda.notes.type=string
 uda.notes.label=Notes
 uda.cont.type=string
 uda.cont.label=Continue here
+uda.doc.type=string
+uda.doc.label=DocLink
 
 ##############################
 # Set up reports.

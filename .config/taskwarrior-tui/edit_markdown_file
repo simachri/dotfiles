@@ -1,23 +1,33 @@
 #!/bin/bash
-# Set the indicator that the task has a note.
-task $1 modify note:X
-# Read the first eight chars of the UUID.
-fname=${1:0:8}
-fpath=~/.task/notes/$fname.md
-## If the file already exists omit the description.
-## This is an indicator for the floaterm command.
-#if [ -f "$fpath" ]; then
-#  # File exists.
-#  description=
-#else
-#  # Read the task description and use it as heading for the markdown file.
-#  description=$(task _get $1.description)
-#  description=${description// /_}
-#  # Brackets need to be replaced. Otherwise, the floaterm command will fail (exact reason
-#  # unknown).
-#  description=${description//(/\[}
-#  description=${description//)/\]}
-#fi
-#cmd=$fpath@$description
-#floaterm $cmd
-floaterm $fpath
+taskDocs=$(task _get $1.doc)
+if [ -z "$taskDocs" ]
+then
+  # taskDocs is empty.
+
+  # Set the indicator that the task has a note.
+  task $1 modify note:X
+  # Read the first eight chars of the UUID.
+  fname=${1:0:8}
+  fpath=~/.task/notes/$fname.md
+  ## If the file already exists omit the description.
+  ## This is an indicator for the floaterm command.
+  #if [ -f "$fpath" ]; then
+  #  # File exists.
+  #  description=
+  #else
+  #  # Read the task description and use it as heading for the markdown file.
+  #  description=$(task _get $1.description)
+  #  description=${description// /_}
+  #  # Brackets need to be replaced. Otherwise, the floaterm command will fail (exact reason
+  #  # unknown).
+  #  description=${description//(/\[}
+  #  description=${description//)/\]}
+  #fi
+  #cmd=$fpath@$description
+  #floaterm $cmd
+  floaterm $fpath
+
+else
+
+  floaterm $taskDocs
+fi
