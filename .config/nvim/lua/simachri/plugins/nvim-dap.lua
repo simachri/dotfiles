@@ -12,7 +12,7 @@ local function custom_dap_setup(dap)
       dapui.close()
     end
 
-    -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
+    -- TODO: Switch to new debug adapter: https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
     dap.adapters.node2 = {
       type = 'executable',
       command = 'node',
@@ -94,7 +94,7 @@ return {
         'mfussenegger/nvim-dap',
         name = 'dap',
         keys = {
-          { '<leader>dd', '<cmd>lua require"dap".continue()<cr>', { noremap = true, silent = true } },
+          { '<leader>dd', '<cmd>lua require("dap.ext.vscode").load_launchjs(nil, { node2 = {"typescript", "javascript"}})<cr><cmd>lua require"dap".continue()<cr>', { noremap = true, silent = true } },
           { '<leader>d<space>', '<cmd>lua require"dap".continue()<cr>', { noremap = true, silent = true } },
           { '<leader>drr', '<cmd>lua require"dap".run("run")<cr>', { noremap = true, silent = true } },
           { '<leader>drt', '<cmd>lua require"dap".run("test")<cr>', { noremap = true, silent = true } },

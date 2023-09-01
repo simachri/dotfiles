@@ -12,6 +12,7 @@ function grep_prompt()
 			"--column",
 			"--smart-case",
 			"--hidden",
+			"--no-ignore",
 		},
 	})
 end
@@ -52,7 +53,9 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
 	require("telescope.builtin").buffers({
-		sort_lastused = true,
+    -- disable this as it does not select the item at the bottom which is cumbersome when
+    -- filtering the list
+		sort_lastused = false,
 	})
 end
 
@@ -71,9 +74,10 @@ end
 
 function search_all_files()
 	require("telescope.builtin").find_files({
-		-- --no-ignore-vcs does not take .gitingore rules into account.
+		-- --no-ignore does not take .gitingore rules into account.
 		-- Ignore node_mdules: https://github.com/nvim-telescope/telescope.nvim/issues/1769#issuecomment-1067459702
-		find_command = { "rg", "--no-ignore-vcs", "--hidden", "--files", "-g", "!*node_modules" },
+		-- find_command = { "rg", "--no-ignore", "--hidden", "--files", "-g", "!*node_modules" },
+		find_command = { "rg", "--no-ignore", "--hidden", "--files" },
 		follow = true,
 		prompt_title = "Search files - including hidden",
 	})
@@ -274,10 +278,16 @@ return {
 				'<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true, disable_coordinates=true, prompt_title="Grep in open buffers"})<cr>',
 				{ noremap = true, silent = true },
 			},
-			-- Grep word under cursor
+			-- Grep Word under cursor in Cwd
 			{
-				"<leader>gw",
-				'<cmd>lua require("telescope.builtin").grep_string({ search_dirs = { vim.api.nvim_eval("getcwd()") }})<cr>',
+				"<leader>gwc",
+				'<cmd>lua require("telescope.builtin").grep_string()<cr>',
+				{ noremap = true, silent = true },
+			},
+			-- Grep Word under cursor in folder Relative to open buffer
+			{
+				"<leader>gwr",
+				'<cmd>lua require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })<cr>',
 				{ noremap = true, silent = true },
 			},
 			-- Find markdown wiki anchor references

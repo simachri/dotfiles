@@ -246,6 +246,8 @@ return {
 					silent = true,
 				})
 			end
+            -- language server is deprecated, see https://github.com/jose-elias-alvarez/typescript.nvim/issues/80
+            -- serch for an alternative when required
 			require("typescript").setup({
 				disable_commands = false, -- prevent the plugin from creating Vim commands
 				debug = false, -- enable debug logging for commands
