@@ -20,7 +20,32 @@ return {
 			"onsails/lspkind-nvim",
 			"jose-elias-alvarez/typescript.nvim",
 		},
-        event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
+		keys = {
+			{ "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true } },
+			{ "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true } },
+
+			{ "<leader>ls", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true } },
+
+			{ "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true, silent = true } },
+			{ "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true, silent = true } },
+			{ "<leader>ldq", "<cmd>lua vim.diagnostic.setloclist()<CR>", { noremap = true, silent = true } },
+			{ "<leader>ldc", "<cmd>lua vim.diagnostic.disable()<CR>", { noremap = true, silent = true } },
+			{ "<leader>lda", "<cmd>lua vim.diagnostic.enable()<CR>", { noremap = true, silent = true } },
+
+			{ "<leader>lr", "<cmd>LspRestart<CR>", { noremap = true, silent = true } },
+
+			{ "<leader>rr", "<cmd>lua Rename_file()<CR>", { noremap = true, silent = true } },
+			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true } },
+
+			{ "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", { noremap = true, silent = true } },
+			{ "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", { noremap = true, silent = true } },
+			{
+				"<space>wl",
+				"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+				{ noremap = true, silent = true },
+			},
+		},
 		config = function()
 			local nvim_lsp = require("lspconfig")
 			local util = require("lspconfig/util")
@@ -38,70 +63,6 @@ return {
 				end)
 
 				vim.lsp.util.rename(source_file, target_file)
-			end
-
-			local on_attach = function(client, bufnr)
-				local function buf_set_keymap(...)
-					vim.api.nvim_buf_set_keymap(bufnr, ...)
-				end
-				local function buf_set_option(...)
-					vim.api.nvim_buf_set_option(bufnr, ...)
-				end
-
-				buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-				-- Mappings.
-				local opts = { noremap = true, silent = true }
-				-- Migrated to Telescope:
-				--buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-				--buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-				--buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-				--buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-				--buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-
-				buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-				buf_set_keymap("n", "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
-				-- Show diagnostic of current line:
-				buf_set_keymap("n", "<leader>ls", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-
-				buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-				buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-				buf_set_keymap("n", "<leader>ldq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-				buf_set_keymap("n", "<leader>ldc", "<cmd>lua vim.diagnostic.disable()<CR>", opts)
-				buf_set_keymap("n", "<leader>lda", "<cmd>lua vim.diagnostic.enable()<CR>", opts)
-
-				buf_set_keymap("n", "<leader>lr", "<cmd>LspRestart<CR>", opts)
-
-				buf_set_keymap("n", "<leader>rr", "<cmd>lua Rename_file()<CR>", opts)
-				buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-
-				buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-				buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-				buf_set_keymap(
-					"n",
-					"<space>wl",
-					"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-					opts
-				)
-
-                -- Moved to formatiing.lua
-				-- buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
-				-- buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_format()<CR>", opts)
-				-- 21-06-12, add formatter for python as pyright does not provide one.
-				-- if client.name == "pyright" then
-				-- 	-- https://github.com/sbdchd/neoformat
-				-- 	-- vim.api.nvim_command[[autocmd BufWritePre <buffer> undojoin | Neoformat]]
-				-- 	buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
-				-- end
-				-- if client.name == "gopls" then
-				-- 	buf_set_keymap("n", "<leader>rf", "<cmd>GoFmt<CR>", opts)
-				-- 	buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
-				-- end
-				-- if client.name == "lua_ls" then
-				-- 	-- requires 'sudo pacman -S stylua'
-				-- 	buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
-				-- end
 			end
 
 			-- Filter/modify the way how specific diagonistics are shown.
@@ -124,7 +85,6 @@ return {
 			json_capabilities.textDocument.completion.completionItem.snippetSupport = true
 			nvim_lsp.jsonls.setup({
 				capabilities = json_capabilities,
-				on_attach = on_attach,
 			})
 
 			-- Python: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
@@ -135,7 +95,6 @@ return {
 				-- Note: lspcontainers does not work with pipenv yet (21-05-13).
 				-- cmd = require'lspcontainers'.command('pyright'),
 				root_dir = util.root_pattern(".git", vim.fn.getcwd()),
-				on_attach = on_attach,
 				-- https://github.com/hrsh7th/nvim-cmp
 				capabilities = require("cmp_nvim_lsp").default_capabilities(
 					vim.lsp.protocol.make_client_capabilities()
@@ -150,17 +109,6 @@ return {
 				},
 			})
 
-			-- Golang
-			nvim_lsp.gopls.setup({
-				-- Do not use lspcontainers as it does not yet work with Go modules (21-07-25).
-				--cmd = require'lspcontainers'.command('gopls'),
-				-- https://github.com/hrsh7th/nvim-cmp
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
-				on_attach = on_attach,
-			})
-
 			-- Docker
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dockerls
 			nvim_lsp.dockerls.setup({
@@ -173,7 +121,6 @@ return {
 				),
 				-- cmd = require'lspcontainers'.command('dockerls'),
 				root_dir = util.root_pattern(".git", vim.fn.getcwd()),
-				on_attach = on_attach,
 			})
 
 			-- SQL
@@ -194,7 +141,6 @@ return {
 					"-E",
 					"/opt/lua-language-server/bin/Linux/main.lua",
 				},
-				on_attach = on_attach,
 				-- https://github.com/hrsh7th/nvim-cmp
 				capabilities = require("cmp_nvim_lsp").default_capabilities(
 					vim.lsp.protocol.make_client_capabilities()
@@ -250,7 +196,6 @@ return {
 					on_attach = function(client, bufnr)
 						client.server_capabilities.document_formatting = false
 						client.server_capabilities.document_range_formatting = false
-						on_attach(client, bufnr)
 						buf_map(bufnr, "n", "<leader>ro", ":TypescriptOrganizeImports<CR>")
 						buf_map(bufnr, "n", "<leader>rr", ":TypescriptRenameFile<CR>")
 						buf_map(bufnr, "n", "gd", ":TypescriptGoToSourceDefinition<CR>")
@@ -263,19 +208,14 @@ return {
 			require("lspkind").init()
 
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#svelte
-			nvim_lsp.svelte.setup({
-				on_attach = on_attach,
-			})
+			nvim_lsp.svelte.setup({})
 
 			-- Rust
-			nvim_lsp.rust_analyzer.setup({
-				on_attach = on_attach,
-			})
+			nvim_lsp.rust_analyzer.setup({})
 
 			-- Yaml
 			-- sudo pacman -S yaml-language-server
 			nvim_lsp.yamlls.setup({
-				on_attach = on_attach,
 				settings = {
 					yaml = {
 						keyOrdering = false,

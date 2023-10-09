@@ -102,6 +102,12 @@ return {
           { '<leader>dq', '<cmd>lua require"dap".terminate()<cr>', { noremap = true, silent = true } },
           { '<leader>dp', '<cmd>lua require"dap".pause()<cr>', { noremap = true, silent = true } },
 
+          -- Specific mappings for Go
+          { '<leader>dd', '<cmd>GoDebug<cr>', { noremap = true, silent = true }, 'go' },
+          { '<leader>drl', '<cmd>GoDebug -R<cr>', { noremap = true, silent = true }, 'go' },
+          { '<leader>dq', '<cmd>GoDebug -s<cr>', { noremap = true, silent = true }, 'go' },
+          { '<leader>drt', '<cmd>GoDebug -n<cr>', { noremap = true, silent = true }, 'go' },
+
           { '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<cr>', { noremap = true, silent = true } },
 
           { '<leader>dl', '<cmd>lua require"dap".step_into()<cr>', { noremap = true, silent = true } },
