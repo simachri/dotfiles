@@ -55,9 +55,9 @@ alias backup_journal=backup_journal
 alias update_sys='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && zprezto-update'
 alias update_go='gup update'
 alias update_rust='rustup update'
-alias update_npm='cd ~ && npm update && npm audit fix && npm outdated'
+# alias update_npm='cd ~ && bun update && npm audit fix && npm outdated'
+alias update_bun='cd ~ && bun update'
 alias update_pip="cd ~ && pip list --outdated | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U --user"
-alias update_rust="rustup update"
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias ws='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
 function www() {

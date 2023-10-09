@@ -15,18 +15,12 @@ return {
 	},
 
 	{
-		"jose-elias-alvarez/null-ls.nvim",
-		lazy = true,
-	},
-
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"onsails/lspkind-nvim",
-			"jose-elias-alvarez/null-ls.nvim",
 			"jose-elias-alvarez/typescript.nvim",
 		},
-		event = "VeryLazy",
+        event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local nvim_lsp = require("lspconfig")
 			local util = require("lspconfig/util")
@@ -91,25 +85,23 @@ return {
 					opts
 				)
 
-				buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
-				buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_format()<CR>", opts)
+                -- Moved to formatiing.lua
+				-- buf_set_keymap("n", "<leader>rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts)
+				-- buf_set_keymap("v", "<leader>rf", "<cmd>lua vim.lsp.buf.range_format()<CR>", opts)
 				-- 21-06-12, add formatter for python as pyright does not provide one.
-				-- https://www.reddit.com/r/neovim/comments/kpkc7o/how_to_leverage_neovims_vimlspbufformatting/ghy9550?utm_source=share&utm_medium=web2x&context=3
-				if client.name == "pyright" then
-					-- https://github.com/sbdchd/neoformat
-					-- vim.api.nvim_command[[autocmd BufWritePre <buffer> undojoin | Neoformat]]
-					buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
-				end
-
-				if client.name == "gopls" then
-					buf_set_keymap("n", "<leader>rf", "<cmd>GoFmt<CR>", opts)
-					buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
-				end
-
-				if client.name == "lua_ls" then
-					-- requires 'sudo pacman -S stylua'
-					buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
-				end
+				-- if client.name == "pyright" then
+				-- 	-- https://github.com/sbdchd/neoformat
+				-- 	-- vim.api.nvim_command[[autocmd BufWritePre <buffer> undojoin | Neoformat]]
+				-- 	buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
+				-- end
+				-- if client.name == "gopls" then
+				-- 	buf_set_keymap("n", "<leader>rf", "<cmd>GoFmt<CR>", opts)
+				-- 	buf_set_keymap("n", "<leader>ro", "<cmd>GoImport<CR>", opts)
+				-- end
+				-- if client.name == "lua_ls" then
+				-- 	-- requires 'sudo pacman -S stylua'
+				-- 	buf_set_keymap("n", "<leader>rf", "<cmd>Neoformat<CR>", opts)
+				-- end
 			end
 
 			-- Filter/modify the way how specific diagonistics are shown.
@@ -246,8 +238,8 @@ return {
 					silent = true,
 				})
 			end
-            -- language server is deprecated, see https://github.com/jose-elias-alvarez/typescript.nvim/issues/80
-            -- serch for an alternative when required
+			-- language server is deprecated, see https://github.com/jose-elias-alvarez/typescript.nvim/issues/80
+			-- serch for an alternative when required
 			require("typescript").setup({
 				disable_commands = false, -- prevent the plugin from creating Vim commands
 				debug = false, -- enable debug logging for commands
@@ -264,30 +256,6 @@ return {
 						buf_map(bufnr, "n", "gd", ":TypescriptGoToSourceDefinition<CR>")
 					end,
 				},
-			})
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.diagnostics.eslint_d.with({
-						filetypes = { "javascript", "typescript" },
-						-- Only use ESLint when project contains an ESLint executable.
-						-- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils#configuring-sources
-						only_local = "node_modules/.bin",
-					}),
-					null_ls.builtins.code_actions.eslint_d.with({
-						filetypes = { "javascript", "typescript" },
-						-- Only use ESLint when project contains an ESLint executable.
-						-- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils#configuring-sources
-						only_local = "node_modules/.bin",
-					}),
-					null_ls.builtins.formatting.prettier.with({
-						filetypes = { "javascript", "typescript" },
-						-- Only use Prettier when project contains a Prettier executable.
-						-- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils#configuring-sources
-						only_local = "node_modules/.bin",
-					}),
-				},
-				on_attach = on_attach,
 			})
 
 			-- Initialize lsp-kind for symbbols
@@ -308,11 +276,11 @@ return {
 			-- sudo pacman -S yaml-language-server
 			nvim_lsp.yamlls.setup({
 				on_attach = on_attach,
-                settings = {
-                    yaml = {
-                        keyOrdering = false,
-                    },
-                },
+				settings = {
+					yaml = {
+						keyOrdering = false,
+					},
+				},
 			})
 
 			-- Rounded borders for help windows (hover and signature help).

@@ -19,12 +19,6 @@ return {
 	{ "rafi/vim-venom", ft = { "python" } },
 
 	{
-		"sbdchd/neoformat",
-		-- ft = { "python", "html", "lua", "svelte", "markdown" },
-		ft = { "python", "html", "lua", "svelte" },
-	},
-
-	{
 		"mbbill/undotree",
 		keys = {
 			{ "<leader>u", ":UndotreeToggle<CR>", { silent = true } },
@@ -66,23 +60,37 @@ return {
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = "VeryLazy",
+		main = "ibl",
 		config = function()
-			-- https://github.com/lukas-reineke/indent-blankline.nvim
-			vim.g.indent_blankline_filetype_exclude =
-				{ "markdown", "taskedit", "lspinfo", "packer", "checkhealth", "help", "" }
-			vim.g.indent_blankline_show_first_indent_level = false
-			require("indent_blankline").setup({
-				char_highlight_list = {
-					"IndentBlanklineIndent1",
+			local hooks = require("ibl.hooks")
+			-- create the highlight groups in the highlight setup hook, so they are reset
+			-- every time the colorscheme changes
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#eee8d5" })
+				vim.api.nvim_set_hl(0, "IblScope", { fg = "#eee8d5" })
+			end)
+
+			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+
+			require("ibl").setup({
+				indent = { highlight = "IndentBlankLineChar" },
+				scope = { enabled = false },
+				exclude = {
+					filetypes = {
+						"markdown",
+						"man",
+						"gitcommit",
+						"TelescopePrompt",
+						"TelescopeResults",
+						"help",
+						"packer",
+						"checkhealth",
+						"lspinfo",
+						"taskedit",
+						"''",
+					},
 				},
 			})
-
-			vim.cmd([[
-                highlight IndentBlanklineIndent1 guifg=#eee8d5 gui=nocombine
-            ]])
-			-- This doesn't work:
-			-- vim.api.nvim_set_hl(0, 'IndentBlanklineIndent1', { fg = '#586e75', nocombine = true })
 		end,
 	},
 }
