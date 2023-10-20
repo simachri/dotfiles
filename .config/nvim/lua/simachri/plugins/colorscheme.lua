@@ -114,6 +114,9 @@ return {
             au ColorScheme * hi Pmenu guibg=none
             augroup END
 
+            " LSP
+            au ColorScheme * hi LspCodeLens guifg=#d33682
+
             ]]
             , false)
 

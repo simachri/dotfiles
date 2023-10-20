@@ -81,26 +81,25 @@ function Open_URL()
 	local selected_node = vim.treesitter.get_node({ 0, { row, col }, ignore_injections = false })
 
 	local node_type = selected_node:type()
-  local url = ""
-	if (
-			string.match(node_type, "inline_link")
-			or string.match(node_type, "link_text")
-			or string.match(node_type, "link_destination")
-		)
+	local url = ""
+	if
+		string.match(node_type, "inline_link")
+		or string.match(node_type, "link_text")
+		or string.match(node_type, "link_destination")
 	then
-    local dest_node = {}
-    if string.match(node_type, "link_destination") then
-      dest_node = selected_node
-    end
-    if string.match(node_type, "inline_link") then
-      dest_node = selected_node:named_child(1)
-    end
-    if string.match(node_type, "link_text") then
-      dest_node = selected_node:next_named_sibling()
-    end
-    url = vim.treesitter.get_node_text(dest_node, 0)
-  else
-    url = vim.fn.expand("<cWORD>")
+		local dest_node = {}
+		if string.match(node_type, "link_destination") then
+			dest_node = selected_node
+		end
+		if string.match(node_type, "inline_link") then
+			dest_node = selected_node:named_child(1)
+		end
+		if string.match(node_type, "link_text") then
+			dest_node = selected_node:next_named_sibling()
+		end
+		url = vim.treesitter.get_node_text(dest_node, 0)
+	else
+		url = vim.fn.expand("<cWORD>")
 	end
 
 	-- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
@@ -201,7 +200,7 @@ return {
 					MkdnTableNewColBefore = false,
 					MkdnFoldSection = false,
 					MkdnUnfoldSection = false,
-          MkdnCreateLinkFromClipboard = false,
+					MkdnCreateLinkFromClipboard = false,
 				},
 			})
 
@@ -246,11 +245,13 @@ return {
 	},
 
 	{
-		-- To make this work, adjust the following in /home/xi3k/.config/nvim/plugged/clipboard-image.nvim/lua/clipboard-image/utils.lua:
+		-- To make this work, adjust the following in /home/xi3k/.local/share/nvim/lazy/clipboard-image.nvim/lua/clipboard-image/utils.lua:
 		---- cmd_paste = "$content = " .. cmd_check .. ";$content.Save('%s', 'png')"
 		-- cmd_paste = "(" .. cmd_check .. ").Save('%s', 'png')"
-		-- To make this work, adjust the following in /home/xi3k/.config/nvim/plugged/clipboard-image.nvim/lua/clipboard-image/health.lua:
-    -- require"nvim.health" instead of require"health"
+		-- To make this work, adjust the following in /home/xi3k/.local/share/nvim/lazy/clipboard-image.nvim/lua/clipboard-image/health.lua:
+		-- require"nvim.health" instead of require"health"
+        -- For compatibility with Lazy, make sure to 'git add' the changes to stage them,
+        -- see https://github.com/folke/lazy.nvim/issues/1099#issuecomment-1758249371.
 		"ekickx/clipboard-image.nvim",
 		keys = {
 			{ "<leader>mpi", ":PasteImg<CR>", { silent = true } },
@@ -265,12 +266,14 @@ return {
 
 	{
 		"iamcco/markdown-preview.nvim",
-		build = "cd app && npm install",
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 		event = "VeryLazy",
 		setup = function()
 			vim.g.mkdp_filetypes = { "markdown" }
-      -- Research: Why does this not work?
-      -- vim.g.mkdp_page_title = "${name}"
+			-- Research: Why does this not work?
+			-- vim.g.mkdp_page_title = "${name}"
 		end,
 		keys = {
 			{ "<leader>mps", ":MarkdownPreview<CR>", { silent = true } },

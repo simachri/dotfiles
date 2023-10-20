@@ -49,12 +49,14 @@ return {
 					["<C-y>"] = cmp.mapping(cmp.mapping.confirm(), { "i", "c" }),
 				},
 				sources = {
+					{ name = "luasnip" },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					-- https://github.com/hrsh7th/cmp-buffer
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+                        max_view_entries = 5,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
@@ -63,7 +65,6 @@ return {
 					},
 					-- { name = 'path' },
 					{ name = "git" },
-					{ name = "luasnip" },
 				},
 				formatting = {
 					fields = { "abbr", "kind", "menu" },
@@ -76,7 +77,7 @@ return {
 							nvim_lsp = "LSP",
 							luasnip = "Snip",
 							nvim_lua = "Lua",
-							cmp_tabnine = "TN",
+							-- cmp_tabnine = "TN",
 						},
 					}),
 				},
@@ -85,7 +86,7 @@ return {
 					throttle = 30,
 					fetching_timeout = 500,
 					async_budget = 1,
-					max_view_entries = 50,
+					max_view_entries = 10,
 					-- max_view_entries = 200,
 				},
 			})

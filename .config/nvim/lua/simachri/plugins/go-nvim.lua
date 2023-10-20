@@ -12,6 +12,8 @@ return {
 		build = ':lua require("go.install").update_all_sync()',
 		keys = {
             { "<leader>lc", "<cmd>GoCodeLenAct<CR>", { noremap = true, silent = true } },
+            { "<leader>li", "<cmd>GoImport<CR>", { noremap = true, silent = true } },
+            { "<leader>ls", "<cmd>GoFillStruct<CR>", { noremap = true, silent = true } },
 		},
 		config = function()
 			require("mason").setup()
@@ -46,7 +48,7 @@ return {
 				-- end
 				-- to setup a table of codelens
 				diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
-					hdlr = true, -- hook lsp diag handler
+					hdlr = false, -- hook lsp diag handler
 					underline = true,
 					-- virtual text setup
 					virtual_text = { space = 0, prefix = "■" },
