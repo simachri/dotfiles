@@ -49,14 +49,14 @@ return {
 					["<C-y>"] = cmp.mapping(cmp.mapping.confirm(), { "i", "c" }),
 				},
 				sources = {
-					{ name = "luasnip" },
+					{ name = "luasnip", group_index = 1 },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					-- https://github.com/hrsh7th/cmp-buffer
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-                        max_view_entries = 5,
+						max_view_entries = 3,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
@@ -86,100 +86,108 @@ return {
 					throttle = 30,
 					fetching_timeout = 500,
 					async_budget = 1,
-					max_view_entries = 10,
+					max_view_entries = 50,
 					-- max_view_entries = 200,
 				},
 			})
 
-			vim.api.nvim_exec(
-				[[
-                  augroup cmp_aucmds
-                    " Set up sources for filetypes.
-                    autocmd FileType lua lua require'cmp'.setup.buffer {
-                    \   sources = {
-                    "\     { name = 'cmp_tabnine' },
-                    \     { name = 'nvim_lua' },
-                    \     { name = 'nvim_lsp' },
-                    \     { name = 'nvim_lsp_signature_help' },
-                    \     { name = 'buffer',
-                    \       keyword_length = 1,
-                    \       option = {
-                    \         get_bufnrs = function()
-                    \                       return vim.api.nvim_list_bufs()
-                    \                     end
-                    \       },
-                    \     },
-                    \     { name = 'path' },
-                    \   },
-                    \ }
-                    autocmd FileType markdown lua require'cmp'.setup.buffer {
-                    \   sources = {
-                    \     { name = 'luasnip', group_index = 1 },
-                    \     { name = 'buffer',
-                    \       keyword_length = 1,
-                    \       group_index = 2,
-                    \       option = {
-                    \         get_bufnrs = function()
-                    \                       return vim.api.nvim_list_bufs()
-                    \                     end
-                    \       },
-                    \     },
-                    \     { name = 'path' },
-                    \     { name = 'calc' },
-                    \   },
-                    \ }
-                    autocmd FileType python lua require'cmp'.setup.buffer {
-                    \   sources = {
-                    "\     { name = 'cmp_tabnine' },
-                    \     { name = 'nvim_lsp' },
-                    \     { name = 'nvim_lsp_signature_help' },
-                    \     { name = 'buffer',
-                    \       keyword_length = 1,
-                    \       option = {
-                    \         get_bufnrs = function()
-                    \                       return vim.api.nvim_list_bufs()
-                    \                     end
-                    \       },
-                    \     },
-                    \     { name = 'path' },
-                    \   },
-                    \ }
-                    autocmd FileType go lua require'cmp'.setup.buffer {
-                    \   sources = {
-                    "\     { name = 'cmp_tabnine' },
-                    \     { name = 'nvim_lsp' },
-                    \     { name = 'nvim_lsp_signature_help' },
-                    \     { name = 'buffer',
-                    \       keyword_length = 1,
-                    \       option = {
-                    \         get_bufnrs = function()
-                    \                       return vim.api.nvim_list_bufs()
-                    \                     end
-                    \       },
-                    \     },
-                    \     { name = 'path' },
-                    \   },
-                    \ }
-                    autocmd FileType typescript,javascript lua require'cmp'.setup.buffer {
-                    \   sources = {
-                    \     { name = 'nvim_lsp' },
-                    \     { name = 'nvim_lsp_signature_help' },
-                    "\     { name = 'cmp_tabnine' },
-                    \     { name = 'buffer',
-                    \       keyword_length = 1,
-                    \       option = {
-                    \         get_bufnrs = function()
-                    \                       return vim.api.nvim_list_bufs()
-                    \                     end
-                    \       },
-                    \     },
-                    \     { name = 'path' },
-                    \   },
-                    \ }
-                  augroup END
-                ]],
-				false
-			)
+			cmp.setup.filetype("lua", {
+				sources = cmp.config.sources({
+					{ name = "nvim_lua" },
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
+					-- https://github.com/hrsh7th/cmp-buffer
+					{
+						name = "buffer",
+						keyword_length = 1, -- start completion after n chars.
+						max_view_entries = 3,
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+					},
+					{ name = 'path' },
+				}),
+			})
+
+			cmp.setup.filetype("markdown", {
+				sources = cmp.config.sources({
+					{ name = "luasnip", group_index = 1 },
+                    -- https://github.com/hrsh7th/cmp-buffer
+                    {
+                        name = "buffer",
+                        keyword_length = 1, -- start completion after n chars.
+                        max_view_entries = 3,
+                        option = {
+                            get_bufnrs = function()
+                                return vim.api.nvim_list_bufs()
+                            end,
+                        },
+                    },
+					{ name = 'path' },
+					{ name = 'calc' },
+				}),
+			})
+
+			cmp.setup.filetype("python", {
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
+					-- https://github.com/hrsh7th/cmp-buffer
+					{
+						name = "buffer",
+						keyword_length = 1, -- start completion after n chars.
+						max_view_entries = 3,
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+					},
+					{ name = 'path' },
+				}),
+			})
+
+			cmp.setup.filetype("go", {
+				sources = cmp.config.sources({
+					{ name = "luasnip", group_index = 1 },
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
+					-- https://github.com/hrsh7th/cmp-buffer
+					{
+						name = "buffer",
+						keyword_length = 1, -- start completion after n chars.
+						max_view_entries = 3,
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+					},
+					{ name = 'path' },
+				}),
+			})
+
+			cmp.setup.filetype("typescript, javascript", {
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
+					-- https://github.com/hrsh7th/cmp-buffer
+					{
+						name = "buffer",
+						keyword_length = 1, -- start completion after n chars.
+						max_view_entries = 3,
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+					},
+					{ name = 'path' },
+				}),
+			})
+
 
 			-- `/` cmdline setup.
 			cmp.setup.cmdline("/", {

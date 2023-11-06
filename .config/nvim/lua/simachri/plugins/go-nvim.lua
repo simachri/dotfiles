@@ -13,7 +13,7 @@ return {
 		keys = {
             { "<leader>lc", "<cmd>GoCodeLenAct<CR>", { noremap = true, silent = true } },
             { "<leader>li", "<cmd>GoImport<CR>", { noremap = true, silent = true } },
-            { "<leader>ls", "<cmd>GoFillStruct<CR>", { noremap = true, silent = true } },
+            -- { "<leader>lt", "<cmd>GoFillStruct<CR>", { noremap = true, silent = true } },
 		},
 		config = function()
 			require("mason").setup()
@@ -92,7 +92,7 @@ return {
 				gocoverage_sign = "█",
 				sign_priority = 5, -- change to a higher number to override other signs
 				dap_debug = true, -- set to false to disable dap
-				dap_debug_keymap = true, -- true: use keymap for debugger defined in go/dap.lua
+				dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
 				-- false: do not use keymap in go/dap.lua.  you must define your own.
 				-- windows: use visual studio keymap
 				-- dap_debug_gui = {}, -- bool|table put your dap-ui setup here set to false to disable

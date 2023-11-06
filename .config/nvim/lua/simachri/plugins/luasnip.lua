@@ -45,7 +45,7 @@ return {
 				-- history: If true, Snippets that were exited can still be jumped back into. As
 				-- Snippets are not removed when their text is deleted, they have to be removed
 				-- manually via LuasnipUnlinkCurrent.
-				history = true,
+				history = false,
 				---- Update more often, :h events for more info.
 				--updateevents = "TextChanged,TextChangedI",
 				--ext_opts = {
@@ -184,6 +184,7 @@ return {
 					t({ ")" }),
 				}),
 			})
+
 		end,
 	},
 }

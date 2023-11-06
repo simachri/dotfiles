@@ -37,9 +37,9 @@ include /usr/share/doc/task/rc/solarized-dark-256.theme
 ###############################
 # Color due tasks green.
 color.due=color2
+color.due.today=color2
 # Do not color recurring tasks.
 color.recurring=
-#color.due.today=
 #color.overdue=color4
 # When using the 'next' tag, mark the task in blue.
 color.tagged=color4
