@@ -56,25 +56,32 @@ return {
                 endfunction
 
                 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+
+                " https://github.com/glacambre/firenvim/issues/491
+                autocmd FocusLost * ++nested write
             ]])
 
-			vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
-				callback = function()
-					if vim.g.timer_started == true then
-						return
-					end
-					vim.g.timer_started = true
-					vim.fn.timer_start(2000, function()
-						vim.g.timer_started = false
-						vim.cmd("silent write")
-					end)
-				end,
-			})
+			-- disabled the following as it triggers a window resize after the save; trying to
+			-- mitigate the resizing leads to flickering
+			-- vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+			-- 	callback = function()
+			-- 		if vim.g.timer_started == true then
+			-- 			return
+			-- 		end
+			-- 		vim.g.timer_started = true
+			-- 		vim.fn.timer_start(2000, function()
+			-- 			vim.g.timer_started = false
+			-- 			vim.cmd("silent write")
+			--
+			--          vim.cmd("set lines=70 columns=110")
+			-- 		end)
+			-- 	end,
+			-- })
 
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>mr",
-				"<cmd>set lines=70<cr><cmd>set columns=110<cr>",
+				"<cmd>set lines=70 columns=110<cr>",
 				{ desc = "Resize window", noremap = true, silent = true }
 			)
 		end,
