@@ -63,10 +63,10 @@ return {
 			})
 			local function splitPath(path)
 				local elems = {}
-				--vim.api.nvim_echo({{path, "WarningMsg"}}, true, {}) -- default {history = true}
+				-- vim.api.nvim_echo({{path, "WarningMsg"}}, true, {}) -- default {history = true}
 				-- Add a trailing / to make the gmatch work.
 				for elem in (path .. "/"):gmatch("([^/]*)/") do
-					--vim.api.nvim_echo({{elem, "WarningMsg"}}, true, {}) -- default {history = true}
+          -- vim.api.nvim_echo({{elem, "WarningMsg"}}, true, {}) -- default {history = true}
 					table.insert(elems, elem)
 				end
 				return elems
@@ -127,20 +127,23 @@ return {
 						-- Split the paths into their directories.
 						local destPathElems = splitPath(destPath)
 						local currFilePathElems = splitPath(currFileParentDirPath)
+            -- vim.api.nvim_echo({{vim.inspect(destPathElems), "WarningMsg"}}, true, {}) -- default {history = true}
+            -- vim.api.nvim_echo({{vim.inspect(currFilePathElems), "WarningMsg"}}, true, {}) -- default {history = true}
+
 						-- Identify the first elements of the path that are identical.
 						local branchIdx = 0
 						for idx, val in ipairs(destPathElems) do
-							--vim.api.nvim_echo({{val, "WarningMsg"}}, true, {}) -- default {history = true}
-							--vim.api.nvim_echo({{currFilePathElems[idx], "WarningMsg"}}, true, {}) -- default {history = true}
+							-- vim.api.nvim_echo({{val, "WarningMsg"}}, true, {}) -- default {history = true}
+							-- vim.api.nvim_echo({{currFilePathElems[idx], "WarningMsg"}}, true, {}) -- default {history = true}
 							if val == currFilePathElems[idx] then
 								branchIdx = branchIdx + 1
-								--vim.api.nvim_echo({{"branchIdx is "..branchIdx, "WarningMsg"}}, true, {}) -- default {history = true}
+								-- vim.api.nvim_echo({{"branchIdx is "..branchIdx, "WarningMsg"}}, true, {}) -- default {history = true}
 							else
-								--vim.api.nvim_echo({{"breaking", "WarningMsg"}}, true, {}) -- default {history = true}
+								-- vim.api.nvim_echo({{"breaking", "WarningMsg"}}, true, {}) -- default {history = true}
 								break
 							end
 						end
-						--vim.api.nvim_echo({{"branchIdx is "..branchIdx, "WarningMsg"}}, true, {}) -- default {history = true}
+						-- vim.api.nvim_echo({{"branchIdx is "..branchIdx, "WarningMsg"}}, true, {}) -- default {history = true}
 
 						-- When there are no identical elements, set the branchIdx to 1.
 						-- Fix: Don't do this as it will break cases when there is no
