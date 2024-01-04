@@ -223,6 +223,19 @@ return {
 				},
 			})
 
+			-- https://templ.guide/commands-and-tools/ide-support
+			nvim_lsp.templ.setup({})
+			nvim_lsp.html.setup({
+				filetypes = { "html", "templ" },
+			})
+			nvim_lsp.htmx.setup({
+				filetypes = { "html", "templ" },
+			})
+			nvim_lsp.tailwindcss.setup({
+				filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+				init_options = { userLanguages = { templ = "html" } },
+			})
+
 			-- Rounded borders for help windows (hover and signature help).
 			-- Source: https://vi.stackexchange.com/a/39075
 			-- The highlight for FloatBorder is defined in /home/xi3k/.config/nvim/after/plugin/colorscheme.lua
