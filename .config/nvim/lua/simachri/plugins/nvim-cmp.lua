@@ -56,7 +56,7 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-						max_view_entries = 3,
+						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
@@ -86,8 +86,7 @@ return {
 					throttle = 30,
 					fetching_timeout = 500,
 					async_budget = 1,
-					max_view_entries = 50,
-					-- max_view_entries = 200,
+					max_view_entries = 200,
 				},
 			})
 
@@ -100,33 +99,33 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-						max_view_entries = 3,
+						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
 							end,
 						},
 					},
-					{ name = 'path' },
+					{ name = "path" },
 				}),
 			})
 
 			cmp.setup.filetype("markdown", {
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
-                    -- https://github.com/hrsh7th/cmp-buffer
-                    {
-                        name = "buffer",
-                        keyword_length = 1, -- start completion after n chars.
-                        max_view_entries = 3,
-                        option = {
-                            get_bufnrs = function()
-                                return vim.api.nvim_list_bufs()
-                            end,
-                        },
-                    },
-					{ name = 'path' },
-					{ name = 'calc' },
+					-- https://github.com/hrsh7th/cmp-buffer
+					{
+						name = "buffer",
+						keyword_length = 1, -- start completion after n chars.
+						max_item_count = 6,
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+					},
+					{ name = "path" },
+					{ name = "calc" },
 				}),
 			})
 
@@ -138,14 +137,14 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-						max_view_entries = 3,
+						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
 							end,
 						},
 					},
-					{ name = 'path' },
+					{ name = "path" },
 				}),
 			})
 
@@ -158,14 +157,14 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-						max_view_entries = 3,
+						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
 							end,
 						},
 					},
-					{ name = 'path' },
+					{ name = "path" },
 				}),
 			})
 
@@ -177,17 +176,16 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
-						max_view_entries = 3,
+						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
 							end,
 						},
 					},
-					{ name = 'path' },
+					{ name = "path" },
 				}),
 			})
-
 
 			-- `/` cmdline setup.
 			cmp.setup.cmdline("/", {

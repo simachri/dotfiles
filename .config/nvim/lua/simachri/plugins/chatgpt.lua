@@ -1,7 +1,7 @@
 return {
 	{
 		"jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"nvim-lua/plenary.nvim",
@@ -22,7 +22,7 @@ return {
 					toggle_settings = "<C-o>",
 					new_session = "<C-n>",
 					cycle_windows = "<Tab>",
-					select_session = "<Space>",
+					select_session = "<C-m>",
 					rename_session = "r",
 					delete_session = "d",
 				},
@@ -30,6 +30,9 @@ return {
 			popup_input = {
 				-- submit = "<C-Enter>",
 				submit = "<Enter>",
+			},
+			openai_params = {
+				model = "gpt-4",
 			},
 		},
 	},
