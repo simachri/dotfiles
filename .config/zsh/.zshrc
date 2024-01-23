@@ -70,8 +70,8 @@ function www() {
 }
 
 # Custom key bindings
-# Accept the autosuggestion: <Ctrl-n>
-bindkey '^y' autosuggest-accept
+# Accept the autosuggestion: <Ctrl-j>
+bindkey '^j' autosuggest-accept
 # Use <space> in command mode to open the current line in Vim
 # https://unix.stackexchange.com/a/6622
 autoload edit-command-line; zle -N edit-command-line

@@ -72,4 +72,3 @@ nnoremap <buffer><silent> ge :lua Jump_to_file_with_anchor()<cr>
 
 nnoremap <buffer><silent> gx :lua Open_URL()<cr>
 
-

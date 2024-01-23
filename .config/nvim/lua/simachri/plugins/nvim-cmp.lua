@@ -24,9 +24,11 @@ return {
 				window = {
 					documentation = {
 						border = "rounded",
+						winhighlight = "FloatBorder:Pmenu",
 					},
 					completion = {
 						border = "rounded",
+						winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 					},
 				},
 				snippet = {
