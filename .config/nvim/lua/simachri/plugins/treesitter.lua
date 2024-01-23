@@ -122,6 +122,21 @@ return {
 					templ = "templ",
 				},
 			})
+
+			-- Markdown: Disable conceal of fenced code blocks
+			-- Issue: https://github.com/nvim-treesitter/nvim-treesitter/issues/5751
+			-- Solution: https://github.com/nvim-treesitter/nvim-treesitter/issues/2825#issuecomment-1369082992
+			-- for _, lang in ipairs({ "json", "markdown", "help" }) do
+			for _, lang in ipairs({ "markdown" }) do
+				local queries = {}
+				for _, file in ipairs(require("nvim-treesitter.compat").get_query_files(lang, "highlights")) do
+					for _, line in ipairs(vim.fn.readfile(file)) do
+						local line_sub = line:gsub([[%(#set! conceal ""%)]], "")
+						table.insert(queries, line_sub)
+					end
+				end
+				require("vim.treesitter.query").set(lang, "highlights", table.concat(queries, "\n"))
+			end
 		end,
 	},
 
