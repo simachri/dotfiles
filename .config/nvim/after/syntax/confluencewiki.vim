@@ -160,7 +160,6 @@ ConfluenceHiLink confluenceTag           PreProc
 ConfluenceHiLink confluenceQuoteMarker   Type
 ConfluenceHiLink confluenceQuote         String
 ConfluenceHiLink confluenceComment       Comment
-ConfluenceHiLink confluenceWord          Tag
 ConfluenceHiLink confluenceAnchor        PreProc
 ConfluenceHiLink confluenceVerbatim      Constant
 ConfluenceHiLink confluenceCode          Constant
@@ -173,6 +172,9 @@ ConfluenceHiLink confluenceSeparator     Type
 
 ConfluenceHiLink confluenceEmoticons     Special
 ConfluenceHiLink confluenceSymbols       Special
+
+" transferred to colorscheme
+" ConfluenceHiLink confluenceWord          Tag
 
 " Images
 ConfluenceHiLink confluenceImageParameterName  Type

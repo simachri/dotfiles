@@ -250,8 +250,8 @@ return {
 		-- cmd_paste = "(" .. cmd_check .. ").Save('%s', 'png')"
 		-- To make this work, adjust the following in /home/xi3k/.local/share/nvim/lazy/clipboard-image.nvim/lua/clipboard-image/health.lua:
 		-- require"nvim.health" instead of require"health"
-        -- For compatibility with Lazy, make sure to 'git add' the changes to stage them,
-        -- see https://github.com/folke/lazy.nvim/issues/1099#issuecomment-1758249371.
+		-- For compatibility with Lazy, make sure to 'git add' the changes to stage them,
+		-- see https://github.com/folke/lazy.nvim/issues/1099#issuecomment-1758249371.
 		"ekickx/clipboard-image.nvim",
 		keys = {
 			{ "<leader>mpi", ":PasteImg<CR>", { silent = true } },
@@ -270,10 +270,14 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 		event = "VeryLazy",
-		setup = function()
+		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
 			-- Research: Why does this not work?
 			-- vim.g.mkdp_page_title = "${name}"
+
+			vim.g.mkdp_preview_options = {
+				disable_sync_scroll = true,
+			}
 		end,
 		keys = {
 			{ "<leader>mps", ":MarkdownPreview<CR>", { silent = true } },
