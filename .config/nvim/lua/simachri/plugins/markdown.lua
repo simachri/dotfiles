@@ -143,7 +143,8 @@ return {
 				links = {
 					style = "markdown",
 					name_is_source = false,
-					conceal = true,
+          -- concealing is done by treesitter
+					conceal = false,
 					implicit_extension = "md",
 					transform_implicit = false,
 					transform_explicit = function(text)

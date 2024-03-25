@@ -12,7 +12,7 @@ return {
 		build = ':lua require("go.install").update_all_sync()',
 		keys = {
             { "<leader>lc", "<cmd>GoCodeLenAct<CR>", { noremap = true, silent = true } },
-            { "<leader>li", "<cmd>GoImport<CR>", { noremap = true, silent = true } },
+            { "<leader>li", "<cmd>GoImports<CR>", { noremap = true, silent = true } },
             -- { "<leader>lt", "<cmd>GoFillStruct<CR>", { noremap = true, silent = true } },
 		},
 		config = function()
@@ -22,10 +22,10 @@ return {
 			require("go").setup({
 				-- https://github.com/ray-x/go.nvim#configuration
 				go = "go", -- go command, can be go[default] or go1.18beta1
-				goimport = "gopls", -- goimport command, can be gopls[default] or goimport
+				goimports = "gopls", -- goimport command, can be gopls[default] or goimport
 				fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
 				gofmt = "gofumpt", --gofmt cmd,
-				max_line_len = 90, -- max line length in goline format
+				max_line_len = 0, -- max line length in goline format
 				tag_transform = false, -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
 				tag_options = "json=omitempty", -- sets options sent to gomodifytags, i.e., json=omitempty
 				gotests_template = "", -- sets gotests -template parameter (check gotests for details)

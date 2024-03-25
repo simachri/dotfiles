@@ -1,8 +1,10 @@
 return {
 	{
 		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
 		keys = {
-			{ "<Leader>jk", "<Cmd>lua require('harpoon.mark').add_file()<CR>", { noremap = true, silent = true } },
+			{ "<Leader>jk", "function() harpoon:list():append() end", { noremap = true, silent = true } },
 			{
 				"<Leader>jl",
 				"<Cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>",
@@ -13,13 +15,48 @@ return {
 			{ "<Leader>jd", "<Cmd>lua require('harpoon.ui').nav_file(3)<CR>", { noremap = true, silent = true } },
 			{ "<Leader>jf", "<Cmd>lua require('harpoon.ui').nav_file(4)<CR>", { noremap = true, silent = true } },
 		},
+		config = function()
+			local harpoon = require("harpoon")
+
+			-- REQUIRED
+			harpoon:setup()
+			-- REQUIRED
+
+			vim.keymap.set("n", "<leader>jk", function()
+				harpoon:list():append()
+			end)
+			vim.keymap.set("n", "<leader>jl", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
+
+			vim.keymap.set("n", "<leader>ja", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "<leader>js", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "<leader>jd", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "<leader>jf", function()
+				harpoon:list():select(4)
+			end)
+			--
+			-- -- Toggle previous & next buffers stored within Harpoon list
+			-- vim.keymap.set("n", "<C-S-P>", function()
+			-- 	harpoon:list():prev()
+			-- end)
+			-- vim.keymap.set("n", "<C-S-N>", function()
+			-- 	harpoon:list():next()
+			-- end)
+		end,
 		opts = {
-			global_settings = {
+			settings = {
 				save_on_toggle = true,
 				save_on_change = true,
-			},
-			menu = {
-				width = 100,
+				key = function()
+					return vim.loop.cwd()
+				end,
 			},
 		},
 	},

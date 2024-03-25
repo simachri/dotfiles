@@ -53,8 +53,8 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
 	require("telescope.builtin").buffers({
-    -- disable this as it does not select the item at the bottom which is cumbersome when
-    -- filtering the list
+		-- disable this as it does not select the item at the bottom which is cumbersome when
+		-- filtering the list
 		sort_lastused = false,
 	})
 end
@@ -156,18 +156,17 @@ return {
 					initial_mode = "insert",
 					selection_strategy = "reset",
 					sorting_strategy = "descending",
-					layout_strategy = "horizontal",
+					layout_strategy = "vertical",
+					-- layout_strategy = "horizontal",
 					layout_config = {
 						prompt_position = "bottom",
-						preview_cutoff = 90, -- preview will be disabled when Vim buffer has less columns
-						horizontal = {
-							mirror = false,
-							height = 0.8,
-							width = 0.9,
-						},
+						-- preview_cutoff = 90, -- preview will be disabled when Vim buffer has less lines/columns, depending on the layout
+						height = 0.95,
+						width = 0.9,
+						mirror = false,
 						vertical = {
 							mirror = false,
-							-- preview_height = 15,
+							preview_height = 0.4,
 						},
 					},
 					--file_sorter =  require'telescope.sorters'.get_fzy_sorter,

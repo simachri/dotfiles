@@ -32,7 +32,7 @@ return {
 				submit = "<Enter>",
 			},
 			openai_params = {
-				model = "gpt-4",
+				model = "gpt-3.5-turbo",
 			},
 		},
 	},

@@ -7,6 +7,7 @@ return {
 			"windwp/nvim-ts-autotag",
 			"nvim-treesitter/nvim-treesitter-context",
 			"nvim-treesitter/nvim-treesitter-textobjects",
+            "andymass/vim-matchup"
 		},
 		event = "VeryLazy",
 		config = function()
@@ -17,6 +18,7 @@ return {
 					"go",
 					"templ",
 					"lua",
+                    "java",
 					"javascript",
 					"typescript",
 					"css",
@@ -114,6 +116,13 @@ return {
 						},
 					},
 				},
+
+				-- https://github.com/andymass/vim-matchup
+				matchup = {
+					enable = true, -- mandatory, false will disable the whole extension
+					disable = {}, -- optional, list of language that will be disabled
+					disable_virtual_text = true,
+				},
 			})
 
 			-- https://github.com/vrischmann/tree-sitter-templ
@@ -126,6 +135,8 @@ return {
 			-- Markdown: Disable conceal of fenced code blocks
 			-- Issue: https://github.com/nvim-treesitter/nvim-treesitter/issues/5751
 			-- Solution: https://github.com/nvim-treesitter/nvim-treesitter/issues/2825#issuecomment-1369082992
+      -- Solution for 'markdown_inline' `shortcut_link`: https://github.com/MDeiml/tree-sitter-markdown/issues/56#issuecomment-1286142674
+      -- ':TSEditQuery highlights markdown_inline`
 			-- for _, lang in ipairs({ "json", "markdown", "help" }) do
 			for _, lang in ipairs({ "markdown" }) do
 				local queries = {}
@@ -207,5 +218,10 @@ return {
 				--   },
 			},
 		},
+	},
+
+	{
+		"andymass/vim-matchup",
+		event = "VeryLazy",
 	},
 }

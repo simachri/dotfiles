@@ -54,7 +54,7 @@ nnoremap <Leader>aa o<a id=""></a><Esc>5hi
 " 3. Yank the match to register d.
 " 4. Disable highlighting of search results.
 nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
-                  \:let @x=expand('%:r')<CR>
+                  \:let @x=expand('%:.:r')<CR>
                   \:nohlsearch<CR>
                   \:echo('Anchor copied to clipboard.')<CR>
                   "\:let @+="(".expand('%:r')."#".@d.")"<CR>
@@ -72,3 +72,4 @@ nnoremap <buffer><silent> ge :lua Jump_to_file_with_anchor()<cr>
 
 nnoremap <buffer><silent> gx :lua Open_URL()<cr>
 
+set conceallevel=2

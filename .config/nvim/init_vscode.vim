@@ -192,10 +192,18 @@ nnoremap <C-w>o <Cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility
 nnoremap K <Cmd>call VSCodeNotify('editor.action.peekImplementation')<CR>
 nnoremap <leader>db <Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')<CR>
 nnoremap <leader>fd <Cmd>call VSCodeNotify('workbench.action.openSettings')<CR>
+nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
 nnoremap <leader>ti <Cmd>call VSCodeNotify('workbench.action.terminal.toggleTerminal')<CR>
 
 nnoremap <leader>nf <Cmd>call VSCodeNotify('workbench.files.action.showActiveFileInExplorer')<CR>
+
+nnoremap <leader>jk <Cmd>call VSCodeNotify('vscode-harpoon.addEditor')<CR>
+nnoremap <leader>jl <Cmd>call VSCodeNotify('vscode-harpoon.editEditors')<CR>
+nnoremap <leader>ja <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor1')<CR>
+nnoremap <leader>js <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor2')<CR>
+nnoremap <leader>jd <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3')<CR>
+nnoremap <leader>jf <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3')<CR>
 
         "{
             ""before": ["g", "i"],

@@ -1,11 +1,13 @@
 #!/bin/bash
 taskDocs=$(task _get $1.doc)
+
+# Set the indicator that the task has a note.
+task $1 modify note:X
+
 if [ -z "$taskDocs" ]
 then
   # taskDocs is empty.
 
-  # Set the indicator that the task has a note.
-  task $1 modify note:X
   # Read the first eight chars of the UUID.
   fname=${1:0:8}
   fpath=~/.task/notes/$fname.md
