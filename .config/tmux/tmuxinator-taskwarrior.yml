@@ -1,0 +1,12 @@
+name: taskwarrior
+root: ~
+attach: false
+startup_window: 0
+
+windows:
+  - zsh:
+    - tmux set status-bg "#b58900" # yellow
+    - tmux set status-fg "#fdf6e3" # base3
+    - taskwarrior-tui
+  - Neovim:
+    - nvim

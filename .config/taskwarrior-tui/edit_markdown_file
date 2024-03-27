@@ -27,9 +27,11 @@ then
   #fi
   #cmd=$fpath@$description
   #floaterm $cmd
-  floaterm $fpath
+  tmux send-keys -t "$session:1" ":e $fpath" C-m
+  tmux select-window -t 1
 
 else
 
-  floaterm $taskDocs
+  tmux send-keys -t "$session:1" ":e $taskDocs" C-m
+  tmux select-window -t 1
 fi

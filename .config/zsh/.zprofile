@@ -5,10 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# Start X on login:
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	exec startx
-fi
+# # Start X on login:
+# if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+# 	exec startx
+# fi
 
 #
 # Browser

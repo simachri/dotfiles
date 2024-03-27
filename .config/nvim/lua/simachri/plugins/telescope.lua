@@ -36,6 +36,7 @@ function find_dotfiles()
 			"~/.config/task",
 			"~/.config/watson",
 			"~/.config/lazygit",
+			"~/.config/twm",
 		},
 		--cwd = "~/.config/nvim",
 	})

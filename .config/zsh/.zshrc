@@ -60,7 +60,8 @@ alias update_bun='cd ~ && bun update'
 # python packages are managed by pacman
 # alias update_pip="cd ~ && pip list --outdated | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U --user"
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-alias ws='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
+alias ws-old='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
+alias ws='tmuxinator start taskwarrior -n Tasks -p ~/.config/tmux/tmuxinator-taskwarrior.yml && tmuxinator start wiki -n Wiki -p ~/.config/tmux/tmuxinator-wiki.yml'
 function www() {
   if [ -n "$1" ] 
   then

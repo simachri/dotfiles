@@ -1,0 +1,11 @@
+name: wiki
+root: ~/Wiki
+attach: true
+startup_window: 1
+
+windows:
+  - zsh: 
+  - Neovim:
+    - tmux set status-bg "#859900" # green
+    - tmux set status-fg "#fdf6e3" # base3
+    - nvim
