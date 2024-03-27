@@ -28,10 +28,12 @@ then
   #cmd=$fpath@$description
   #floaterm $cmd
   tmux send-keys -t "$session:1" ":e $fpath" C-m
+  tmux popup -C
   tmux select-window -t 1
 
 else
 
   tmux send-keys -t "$session:1" ":e $taskDocs" C-m
+  tmux popup -C
   tmux select-window -t 1
 fi

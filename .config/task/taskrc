@@ -28,7 +28,7 @@ data.location=~/.task
 #include /usr/share/doc/task/rc/dark-gray-256.theme
 #include /usr/share/doc/task/rc/dark-gray-blue-256.theme
 #include /usr/share/doc/task/rc/solarized-dark-256.theme
-include /usr/share/doc/task/rc/solarized-light-256.theme
+#include /usr/share/doc/task/rc/solarized-light-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
 ###############################
@@ -37,11 +37,14 @@ include /usr/share/doc/task/rc/solarized-light-256.theme
 # Color due tasks green.
 color.due=color2
 color.due.today=color2
+color.active=color6
 # Do not color recurring tasks.
 color.recurring=
-#color.overdue=color4
-# When using the 'next' tag, mark the task in blue.
-color.tagged=color4
+color.overdue=color5
+color.tag.next=color4
+color.uda.priority.H=color9
+# color.uda.priority.M=bold color11
+color.uda.priority.L=color12
 
 ###############################
 # General settings
@@ -106,7 +109,7 @@ report.list.sort=urgency-
 #urgency.uda.priority.M.coefficient           3.9 # medium Priority
 urgency.uda.priority.L.coefficient=-10.0 # low Priority
 #urgency.scheduled.coefficient                5.0 # scheduled tasks
-urgency.active.coefficient=10.0 # already started tasks
+urgency.active.coefficient=20.0 # already started tasks
 #urgency.age.coefficient                      2.0 # coefficient for age
 urgency.age.coefficient=0 # coefficient for age
 #urgency.annotations.coefficient              1.0 # has annotations

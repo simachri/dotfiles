@@ -28,7 +28,6 @@ workspace_definitions: # our list of workspaces, each with different properties
     has_any_file: # if any file matches this list, we consider it a match, since its "has_any_file"
       - .twm.yaml
       # - .git
-      # - flake.nix
     default_layout: default # the layout to use if none is specified
 
   # - name: python # they all have to be named
