@@ -72,9 +72,9 @@ return {
 				},
 				sections = {
 					lualine_a = { { "filename", path = 1 } },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					-- https://github.com/letieu/harpoon-lualine
-					lualine_c = { "harpoon2" },
+          -- https://github.com/letieu/harpoon-lualine
+          lualine_b = { "harpoon2" },
+					lualine_c = { "branch", "diff", "diagnostics" },
 					lualine_x = { "encoding", "filetype" },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
@@ -82,7 +82,7 @@ return {
 				inactive_sections = {
 					lualine_a = {},
 					lualine_b = {},
-					lualine_c = { "filename" },
+					lualine_c = { { "filename", path = 1 } },
 					lualine_x = { "location" },
 					lualine_y = {},
 					lualine_z = {},

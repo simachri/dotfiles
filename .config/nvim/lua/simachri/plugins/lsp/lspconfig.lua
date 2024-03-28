@@ -106,6 +106,9 @@ return {
 				capabilities = json_capabilities,
 			})
 
+			-- Bash
+			nvim_lsp.bashls.setup({})
+
 			-- Python: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
 			nvim_lsp.pyright.setup({
 				before_init = function(params)

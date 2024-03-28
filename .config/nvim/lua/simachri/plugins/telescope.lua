@@ -36,7 +36,7 @@ function find_dotfiles()
 			"~/.config/task",
 			"~/.config/watson",
 			"~/.config/lazygit",
-			"~/.config/twm",
+			"~/.config/tmuxinator",
 		},
 		--cwd = "~/.config/nvim",
 	})
@@ -136,6 +136,7 @@ return {
 			"nvim-telescope/telescope-dap.nvim",
 			"ThePrimeagen/refactoring.nvim", -- defined in ./refactoring.lua
 			"tzachar/fuzzy.nvim",
+			"danielpieper/telescope-tmuxinator.nvim",
 		},
 		config = function()
 			local actions = require("telescope.actions")
@@ -254,6 +255,7 @@ return {
 			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("dap")
 			require("telescope").load_extension("refactoring")
+			require("telescope").load_extension("tmuxinator")
 		end,
 
 		keys = {
@@ -376,6 +378,13 @@ return {
 			{
 				"<leader>ghc",
 				'<cmd>lua require("telescope.builtin").command_history()<cr>',
+				{ noremap = true, silent = true },
+			},
+
+			-- Find tmuxinator projects
+			{
+				"<leader>fp",
+				"<cmd>lua require('telescope').extensions.tmuxinator.projects({ layout_strategy = 'vertical', layout_config = { prompt_position = 'bottom', width = 0.5, height = 0.8 }, previwer = false, })<cr>",
 				{ noremap = true, silent = true },
 			},
 

@@ -32,7 +32,7 @@ data.location=~/.task
 #include /usr/share/doc/task/rc/no-color.theme
 
 ###############################
-# Overwrite some colors.
+# Overwrite colors
 ###############################
 # Color due tasks green.
 color.due=color2
@@ -45,6 +45,8 @@ color.tag.next=color4
 color.uda.priority.H=color9
 # color.uda.priority.M=bold color11
 color.uda.priority.L=color12
+color.alternate=on color7
+color.uda.user=color3
 
 ###############################
 # General settings
@@ -139,6 +141,10 @@ uda.taskwarrior-tui.shortcuts.9=~/.config/taskwarrior-tui/edit_markdown_file
 uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-add=false
 uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-annotate=true
 uda.taskwarrior-tui.task-report.auto-insert-double-quotes-on-log=true
+uda.taskwarrior-tui.selection.reverse=no
+uda.taskwarrior-tui.selection.bold=yes
+uda.taskwarrior-tui.selection.dim=no
+uda.taskwarrior-tui.task-report.prompt-on-undo=true
 
 ##############################
 # taskserver

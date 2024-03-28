@@ -1,4 +1,4 @@
-name: wiki
+name: Wiki
 root: ~/Wiki
 attach: true
 startup_window: 1

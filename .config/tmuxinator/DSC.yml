@@ -1,0 +1,8 @@
+name: DSC
+root: ~/DSC
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

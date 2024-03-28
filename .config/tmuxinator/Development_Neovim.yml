@@ -1,0 +1,8 @@
+name: Development_Neovim
+root: ~/Development/Neovim
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

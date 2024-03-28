@@ -1,0 +1,8 @@
+name: Hilti
+root: ~/DSC/03_Customers/Hilti
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

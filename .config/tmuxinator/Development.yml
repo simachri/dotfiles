@@ -1,0 +1,10 @@
+name: Development
+root: ~/Development
+startup_window: 1
+
+windows:
+  - zsh:
+    - tmux set status-bg "#268bd2" # blue
+    - tmux set status-fg "#fdf6e3" # base3
+  - Neovim:
+    - nvim
