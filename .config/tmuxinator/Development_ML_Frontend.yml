@@ -1,0 +1,8 @@
+name: Development_ML_Frontend
+root: ~/Development/Mental_Load/mental_load_frontend
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

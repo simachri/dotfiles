@@ -1,6 +1,7 @@
 return {
 	{
-		"letieu/harpoon-lualine",
+		-- "letieu/harpoon-lualine",
+		"simachri/harpoon-lualine",
 		dependencies = {
 			{
 				"ThePrimeagen/harpoon",

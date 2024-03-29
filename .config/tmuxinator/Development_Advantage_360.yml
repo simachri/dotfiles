@@ -1,0 +1,8 @@
+name: Development_Advantage_360
+root: ~/Development/Advantage_360
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

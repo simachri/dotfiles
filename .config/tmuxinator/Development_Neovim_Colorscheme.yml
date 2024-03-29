@@ -1,0 +1,8 @@
+name: Development_Neovim_Colorscheme
+root: ~/Development/Neovim/Colorscheme
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
