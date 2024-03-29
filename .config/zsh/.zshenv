@@ -75,3 +75,7 @@ export OPENAI_API_KEY=$(cat ~/.openai/api_key)
 
 # Make pipenv create virutal environment in project directory.
 export PIPENV_VENV_IN_PROJEC="enabled"
+
+# Color 'less' search highlights 'bright white fg' on 'yellow bg'
+export LESS_TERMCAP_so=$(echo -e '\e[1;97;43m')
+export LESS_TERMCAP_se=$(echo -e '\e[0m')
