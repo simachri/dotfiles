@@ -63,6 +63,23 @@ alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias ws-old='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
 alias ws='tmuxinator start Tasks; tmuxinator start Wiki'
 
+# change tmux workspace directory
+function cdt() {
+    tmux send-keys -t 0 "cd $1" C-m
+
+    # Neovim
+    tmux send-keys -t 1 Escape ":qa" C-m
+    sleep 0.5 # wait for nvim to close
+    tmux send-keys -t 1 "cd $1" C-m
+    tmux send-keys -t 1 "nvim" C-m
+
+    window_count=$(tmux display-message -p '#{session_windows}')
+    if [ $window_count -gt 2 ]
+    then
+        tmux send-keys -t 2 "cd $1" C-m
+    fi
+}
+
 function www() {
   if [ -n "$1" ] 
   then

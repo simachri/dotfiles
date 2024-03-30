@@ -1,7 +1,6 @@
 return {
 	{
-		-- "letieu/harpoon-lualine",
-		"simachri/harpoon-lualine",
+		"letieu/harpoon-lualine",
 		dependencies = {
 			{
 				"ThePrimeagen/harpoon",
@@ -73,8 +72,8 @@ return {
 				},
 				sections = {
 					lualine_a = { { "filename", path = 1 } },
-          -- https://github.com/letieu/harpoon-lualine
-          lualine_b = { "harpoon2" },
+					-- https://github.com/letieu/harpoon-lualine
+					lualine_b = { "harpoon2" },
 					lualine_c = { "branch", "diff", "diagnostics" },
 					lualine_x = { "encoding", "filetype" },
 					lualine_y = { "progress" },
