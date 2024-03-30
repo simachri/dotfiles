@@ -5,6 +5,20 @@ local function custom_keymappings(bufnr)
 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
 
+	local function edit_or_open()
+		local node = api.tree.get_node_under_cursor()
+
+		if node.nodes ~= nil then
+			-- expand or collapse folder
+			api.node.open.edit()
+		else
+			-- open file
+			api.node.open.edit()
+			-- Close the tree if file was opened
+			api.tree.close()
+		end
+	end
+
 	-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach
 	-- vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node,          opts('CD'))
 	vim.keymap.set("n", "<C-g>", api.tree.change_root_to_node, opts("CD"))
@@ -26,7 +40,7 @@ local function custom_keymappings(bufnr)
 	vim.keymap.set("n", "bmv", api.marks.bulk.move, opts("Move Bookmarked"))
 	vim.keymap.set("n", "B", api.tree.toggle_no_buffer_filter, opts("Toggle No Buffer"))
 	vim.keymap.set("n", "y", api.fs.copy.node, opts("Copy"))
-	vim.keymap.set("n", "Y", api.tree.toggle_git_clean_filter, opts("Toggle Git Clean"))
+	vim.keymap.set("n", "Y", api.fs.copy.absolute_path, opts("Copy Absolute Path"))
 	-- vim.keymap.set('n', 'c',     api.fs.copy.node,                      opts('Copy'))
 	-- vim.keymap.set('n', 'C',     api.tree.toggle_git_clean_filter,      opts('Toggle Git Clean'))
 	vim.keymap.set("n", "[c", api.node.navigate.git.prev, opts("Prev Git"))
@@ -42,10 +56,12 @@ local function custom_keymappings(bufnr)
 	vim.keymap.set("n", "f", api.live_filter.start, opts("Filter"))
 	vim.keymap.set("n", "g?", api.tree.toggle_help, opts("Help"))
 	vim.keymap.set("n", "gy", api.fs.copy.absolute_path, opts("Copy Absolute Path"))
+	vim.keymap.set("n", "h", api.tree.change_root_to_parent, opts("Change Root To Parent"))
 	vim.keymap.set("n", "H", api.tree.toggle_hidden_filter, opts("Toggle Dotfiles"))
 	vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts("Toggle Git Ignore"))
 	vim.keymap.set("n", "J", api.node.navigate.sibling.last, opts("Last Sibling"))
 	vim.keymap.set("n", "K", api.node.navigate.sibling.first, opts("First Sibling"))
+	vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
 	vim.keymap.set("n", "m", api.marks.toggle, opts("Toggle Bookmark"))
 	vim.keymap.set("n", "o", api.node.open.edit, opts("Open"))
 	vim.keymap.set("n", "O", api.node.open.no_window_picker, opts("Open: No Window Picker"))
