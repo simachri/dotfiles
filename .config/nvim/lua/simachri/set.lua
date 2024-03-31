@@ -96,5 +96,6 @@ vim.filetype.add({
   extension = {
     jira = "confluencewiki",
     confluencewiki = "confluencewiki",
+    cds = "cds",
   },
 })

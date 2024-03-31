@@ -106,6 +106,9 @@ return {
 				capabilities = json_capabilities,
 			})
 
+			-- CDS
+			require("lspconfig").cds_lsp.setup({})
+
 			-- Bash
 			nvim_lsp.bashls.setup({})
 

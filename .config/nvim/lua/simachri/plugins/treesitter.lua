@@ -7,18 +7,41 @@ return {
 			"windwp/nvim-ts-autotag",
 			"nvim-treesitter/nvim-treesitter-context",
 			"nvim-treesitter/nvim-treesitter-textobjects",
-            "andymass/vim-matchup"
+			"andymass/vim-matchup",
 		},
 		event = "VeryLazy",
 		config = function()
-			require("nvim-treesitter.configs").setup({
+			-- import nvim-treesitter plugin
+			local treesitter = require("nvim-treesitter.configs")
+
+			-- CDS Custom Parser
+			-- https://github.com/cap-js-community/tree-sitter-cds/blob/main/docs/neovim-support.md#setup
+            -- MANUAL STEP REQUIRED:
+            -- 1. After each update, go to ~/Development/Neovim/tree-sitter-cds/
+            -- 2. Run `./nvim/setup-nvim-treesitter.sh`
+			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+			parser_config.cds = {
+				install_info = {
+					-- local path or git repo
+					-- (I prefer the git repo way such that I can easily swap machines but keep the config)
+					url = "https://github.com/cap-js-community/tree-sitter-cds.git",
+					branch = "main",
+					-- Small note here, treesitters documentation doesn't tell you this but you actually
+					-- need both the parser.c and the scanner.c files included here, otherwise it won't compile!
+					files = { "src/parser.c", "src/scanner.c" },
+				},
+				filetype = "cds", -- if filetype does not match the parser name
+			}
+
+			treesitter.setup({
 				-- one of "all", "maintained" (parsers with maintainers), or a list of languages
 				ensure_installed = {
+                    "cds",
 					"python",
 					"go",
 					"templ",
 					"lua",
-                    "java",
+					"java",
 					"javascript",
 					"typescript",
 					"css",
@@ -135,8 +158,8 @@ return {
 			-- Markdown: Disable conceal of fenced code blocks
 			-- Issue: https://github.com/nvim-treesitter/nvim-treesitter/issues/5751
 			-- Solution: https://github.com/nvim-treesitter/nvim-treesitter/issues/2825#issuecomment-1369082992
-      -- Solution for 'markdown_inline' `shortcut_link`: https://github.com/MDeiml/tree-sitter-markdown/issues/56#issuecomment-1286142674
-      -- ':TSEditQuery highlights markdown_inline`
+			-- Solution for 'markdown_inline' `shortcut_link`: https://github.com/MDeiml/tree-sitter-markdown/issues/56#issuecomment-1286142674
+			-- ':TSEditQuery highlights markdown_inline`
 			-- for _, lang in ipairs({ "json", "markdown", "help" }) do
 			for _, lang in ipairs({ "markdown" }) do
 				local queries = {}

@@ -17,6 +17,8 @@ typeset -U path
 path+=('/home/xi3k/.local/bin')
 # ~/node_modules/.bin locally installed Node modules.
 path+=('/home/xi3k/node_modules/.bin')
+# bun binaries
+path+=('/home/xi3k/.bun/bin')
 # Golang binaires
 path+=('/home/xi3k/go/bin')
 export PATH
