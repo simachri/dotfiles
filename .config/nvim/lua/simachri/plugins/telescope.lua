@@ -23,6 +23,7 @@ function find_dotfiles()
 		file_ignore_patterns = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
 		follow = false,
 		hidden = true,
+        previewr = false,
 		-- Multiple search directories can be used:
 		-- https://github.com/errx/telescope.nvim/commit/cf8ec44a4299a26adbd4bdcd01e60271f1fef9d5
 		search_dirs = {
@@ -81,6 +82,7 @@ function search_all_files()
 		find_command = { "rg", "--no-ignore", "--hidden", "--files" },
 		follow = true,
 		prompt_title = "Search files - including hidden",
+        previewer = false,
 	})
 end
 
@@ -120,9 +122,9 @@ function Project_files()
 		)
 	)
 	if is_git_repo then
-		require("telescope.builtin").git_files({ use_git_root = false, show_untracked = true })
+		require("telescope.builtin").git_files({ use_git_root = false, show_untracked = true, previewer = false })
 	else
-		require("telescope.builtin").find_files({ follow = true })
+		require("telescope.builtin").find_files({ follow = true, previewer = false })
 	end
 end
 
@@ -162,7 +164,7 @@ return {
 					-- layout_strategy = "horizontal",
 					layout_config = {
 						prompt_position = "bottom",
-						-- preview_cutoff = 90, -- preview will be disabled when Vim buffer has less lines/columns, depending on the layout
+						preview_cutoff = 30, -- preview will be disabled when Vim buffer has less lines/columns, depending on the layout
 						height = 0.95,
 						width = 0.9,
 						mirror = false,
@@ -197,7 +199,7 @@ return {
 							["<C-q>"] = actions.close,
 							-- Override default C-q to 'smart' add to quickfix list.
 							["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
-							["<C-e>"] = actions.to_fuzzy_refine,
+							["<C-r>"] = actions.to_fuzzy_refine,
 							["<C-j>"] = require("telescope.actions").cycle_history_next,
 							["<C-k>"] = require("telescope.actions").cycle_history_prev,
 						},
