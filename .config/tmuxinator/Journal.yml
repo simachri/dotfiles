@@ -1,0 +1,8 @@
+name: Journal
+root: ~/Journal
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

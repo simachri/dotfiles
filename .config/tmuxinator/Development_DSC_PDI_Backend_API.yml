@@ -1,0 +1,8 @@
+name: Development_DSC_PDI_Backend_API
+root: ~/Development/DSC/02_PDI/02_Impl/02_Backend
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
