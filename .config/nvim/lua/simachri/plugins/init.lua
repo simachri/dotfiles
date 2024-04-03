@@ -9,8 +9,6 @@ return {
 		event = "InsertEnter",
 	},
 
-	"voldikss/vim-floaterm",
-
 	{
 		"leafOfTree/vim-svelte-plugin",
 		ft = { "svelte" },

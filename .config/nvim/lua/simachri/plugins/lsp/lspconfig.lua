@@ -82,21 +82,22 @@ return {
 			-- Java
 			-- https://github.com/nvim-java/nvim-java
 			require("java").setup()
-			require("lspconfig").jdtls.setup({
-				settings = {
-					java = {
-						configuration = {
-							runtimes = {
-								{
-									name = "JavaSE-21",
-									path = "/opt/jdk-21",
-									default = true,
-								},
-							},
-						},
-					},
-				},
-			})
+			require("lspconfig").jdtls.setup({})
+			-- require("lspconfig").jdtls.setup({
+			-- 	settings = {
+			-- 		java = {
+			-- 			configuration = {
+			-- 				runtimes = {
+			-- 					{
+			-- 						name = "sapmachine-jdk-21.0.2",
+			-- 						path = "/usr/lib/jvm/sapmachine-jdk-21.0.2",
+			-- 						default = true,
+			-- 					},
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 
 			-- JSON
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonls

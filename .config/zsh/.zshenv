@@ -21,6 +21,10 @@ path+=('/home/xi3k/node_modules/.bin')
 path+=('/home/xi3k/.bun/bin')
 # Golang binaires
 path+=('/home/xi3k/go/bin')
+# Java
+export JAVA_HOME="/usr/lib/jvm/sapmachine-jdk-21.0.2"
+path+=("$JAVA_HOME/bin")
+path+=('/usr/lib/maven/apache-maven-3.9.6/bin')
 export PATH
 # Pipenv: Create environment in local project directory.
 # Source: https://stackoverflow.com/a/52540270
@@ -77,8 +81,3 @@ export OPENAI_API_KEY=$(cat ~/.openai/api_key)
 
 # Make pipenv create virutal environment in project directory.
 export PIPENV_VENV_IN_PROJEC="enabled"
-
-# Color 'less' search highlights 'bright white fg' on 'yellow bg'
-export LESS_TERMCAP_so=$(echo -e '\e[1;97;43m')
-export LESS_TERMCAP_se=$(echo -e '\e[0m')
-

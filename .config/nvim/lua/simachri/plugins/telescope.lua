@@ -23,7 +23,7 @@ function find_dotfiles()
 		file_ignore_patterns = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
 		follow = false,
 		hidden = true,
-        previewr = false,
+        previewer = false,
 		-- Multiple search directories can be used:
 		-- https://github.com/errx/telescope.nvim/commit/cf8ec44a4299a26adbd4bdcd01e60271f1fef9d5
 		search_dirs = {

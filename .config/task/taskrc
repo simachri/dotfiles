@@ -61,7 +61,9 @@ column.padding=3
 ###############################
 #context.SAP.read=project != Linode and project != AoC and project != Vim and project != \'\'
 #context.ToDo.read=user: and status:pending
-context.ToDo.read=status:pending
+#context.ToDo.read=status:pending
+context.Today.read=status:pending and user == \'\' and (priority == H or description == \'Vemas\' or +next)
+context.Backlog.read=status:pending and description != \'Vemas\' and -next and (user != \'\' or priority != H)
 context.Waiting.read=status:waiting
 #context.Assigned.read=user != \'\'
 #context.Development.read=project:Linode or project:AoC or project:Vim
@@ -169,4 +171,4 @@ uda.ms_todo_listid.type=string
 uda.ms_todo_listid.label=MS To-Do List ID
 uda.ms_todo_taskid.type=string
 uda.ms_todo_taskid.label=MS To-Do Task ID
-context=ToDo
+context=Today
