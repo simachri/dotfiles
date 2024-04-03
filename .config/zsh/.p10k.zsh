@@ -1598,3 +1598,8 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
+
+# Color 'less' search highlights 'bright white fg' on 'yellow bg'
+# Needs to be added here instead of .zshenv to override the zsh/termcap module
+export LESS_TERMCAP_so=$(echo -e '\e[1;97;43m')
+export LESS_TERMCAP_se=$(echo -e '\e[0m')
