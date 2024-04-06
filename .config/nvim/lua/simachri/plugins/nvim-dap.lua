@@ -96,8 +96,20 @@ return {
 				"<leader>dd",
 				'<cmd>lua require("dap.ext.vscode").load_launchjs(nil, { node2 = {"typescript", "javascript"}})<cr><cmd>lua require"dap".continue()<cr>',
 				{ noremap = true, silent = true },
+                ft = { "javascript", "typescript" },
+                desc = "Start JS/TS debugger",
 			},
-			{ "<leader>d<space>", '<cmd>lua require"dap".continue()<cr>', { noremap = true, silent = true } },
+
+			{
+				"<leader>dd",
+				'<cmd>lua require"dap".continue()<cr>',
+				{ noremap = true, silent = true },
+                ft = "java",
+                desc = "Start Java debugger",
+			},
+
+            -- continue() is preferred over run(), see the dap documentation.
+			{ "<leader>dd", '<cmd>lua require"dap".continue()<cr>', { noremap = true, silent = true } },
 			{ "<leader>drr", '<cmd>lua require"dap".run("run")<cr>', { noremap = true, silent = true } },
 			{ "<leader>drt", '<cmd>lua require"dap".run("test")<cr>', { noremap = true, silent = true } },
 			{ "<leader>drl", '<cmd>lua require"dap".run_last()<cr>', { noremap = true, silent = true } },
@@ -105,10 +117,10 @@ return {
 			{ "<leader>dp", '<cmd>lua require"dap".pause()<cr>', { noremap = true, silent = true } },
 
 			-- Specific mappings for Go
-			{ "<leader>dd", "<cmd>GoDebug<cr>", { noremap = true, silent = true }, "go" },
-			{ "<leader>drl", "<cmd>GoDebug -R<cr>", { noremap = true, silent = true }, "go" },
-			{ "<leader>dq", "<cmd>GoDebug -s<cr>", { noremap = true, silent = true }, "go" },
-			{ "<leader>drt", "<cmd>GoDebug -n<cr>", { noremap = true, silent = true }, "go" },
+			{ "<leader>dd", "<cmd>GoDebug<cr>", { noremap = true, silent = true }, ft = "go" },
+			{ "<leader>drl", "<cmd>GoDebug -R<cr>", { noremap = true, silent = true }, ft = "go" },
+			{ "<leader>dq", "<cmd>GoDebug -s<cr>", { noremap = true, silent = true }, ft = "go" },
+			{ "<leader>drt", "<cmd>GoDebug -n<cr>", { noremap = true, silent = true }, ft = "go" },
 
 			{ "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<cr>', { noremap = true, silent = true } },
 
