@@ -23,7 +23,7 @@ function find_dotfiles()
 		file_ignore_patterns = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
 		follow = false,
 		hidden = true,
-        previewer = false,
+		previewer = false,
 		-- Multiple search directories can be used:
 		-- https://github.com/errx/telescope.nvim/commit/cf8ec44a4299a26adbd4bdcd01e60271f1fef9d5
 		search_dirs = {
@@ -82,7 +82,7 @@ function search_all_files()
 		find_command = { "rg", "--no-ignore", "--hidden", "--files" },
 		follow = true,
 		prompt_title = "Search files - including hidden",
-        previewer = false,
+		previewer = false,
 	})
 end
 
@@ -126,6 +126,17 @@ function Project_files()
 	else
 		require("telescope.builtin").find_files({ follow = true, previewer = false })
 	end
+end
+
+function Java_classes_wo_tests()
+	require("telescope.builtin").find_files({
+        prompt_title = "Find Java classes, ignoring tests",
+		follow = true,
+		previewer = false,
+		file_ignore_patterns = {
+			"%Test.java$",
+		},
+	})
 end
 
 return {
@@ -264,6 +275,7 @@ return {
 			-- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/mappings.lua
 			-- Find Git files and - if not in a Git repo - find files.
 			{ "<leader>fj", "<cmd>lua Project_files()<cr>", { noremap = true, silent = true } },
+			{ "<leader>fj", "<cmd>lua Java_classes_wo_tests()<cr>", { noremap = true, silent = true }, ft = "java" },
 			-- All Files, including the hidden ones
 			{ "<leader>fk", "<cmd>lua search_all_files()<cr>", { noremap = true, silent = true } },
 			-- Configuration files / dotfiles
@@ -281,6 +293,7 @@ return {
 				"<leader>gc",
 				'<cmd>lua require("telescope.builtin").live_grep({disable_coordinates=true, cwd=require("telescope.utils").buffer_dir()})<cr>',
 				{ noremap = true, silent = true },
+                desc = "Grep in current buffer's directory",
 			},
 			-- Grep in open buffers
 			{

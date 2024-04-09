@@ -1,5 +1,5 @@
 name: Journal
-root: ~/Journal
+root: ~/Journal/Obsidian
 startup_window: 1
 
 windows:

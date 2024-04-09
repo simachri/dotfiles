@@ -13,3 +13,11 @@ vim.api.nvim_create_autocmd(
 		command = "silent! loadview",
 	}
 )
+
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = "java",
+        command = "lua require'simachri.jdtls'.setup()",
+    }
+)

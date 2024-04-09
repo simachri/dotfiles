@@ -96,24 +96,28 @@ return {
 				"<leader>dd",
 				'<cmd>lua require("dap.ext.vscode").load_launchjs(nil, { node2 = {"typescript", "javascript"}})<cr><cmd>lua require"dap".continue()<cr>',
 				{ noremap = true, silent = true },
-                ft = { "javascript", "typescript" },
-                desc = "Start JS/TS debugger",
+				ft = { "javascript", "typescript" },
+				desc = "Start JS/TS debugger",
 			},
 
 			{
 				"<leader>dd",
 				'<cmd>lua require"dap".continue()<cr>',
 				{ noremap = true, silent = true },
-                ft = "java",
-                desc = "Start Java debugger",
+				ft = "java",
+				desc = "Start Java debugger",
 			},
 
-            -- continue() is preferred over run(), see the dap documentation.
+			-- continue() is preferred over run(), see the dap documentation.
 			{ "<leader>dd", '<cmd>lua require"dap".continue()<cr>', { noremap = true, silent = true } },
 			{ "<leader>drr", '<cmd>lua require"dap".run("run")<cr>', { noremap = true, silent = true } },
 			{ "<leader>drt", '<cmd>lua require"dap".run("test")<cr>', { noremap = true, silent = true } },
 			{ "<leader>drl", '<cmd>lua require"dap".run_last()<cr>', { noremap = true, silent = true } },
-			{ "<leader>dq", '<cmd>lua require"dap".terminate()<cr>', { noremap = true, silent = true } },
+			{
+				"<leader>dq",
+				'<cmd>lua require"dap".terminate()<cr><cmd>lua require"dap".terminate()<cr>',
+				{ noremap = true, silent = true },
+			},
 			{ "<leader>dp", '<cmd>lua require"dap".pause()<cr>', { noremap = true, silent = true } },
 
 			-- Specific mappings for Go
