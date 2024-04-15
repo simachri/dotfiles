@@ -5,8 +5,11 @@ startup_window: 0
 
 windows:
   - Taskwarrior:
-      - tmux set status-bg "#b58900" # yellow
-      - tmux set status-fg "#fdf6e3" # base3
+      # solarized
+      # - tmux set status-bg "#859900" # green
+      # - tmux set status-fg "#fdf6e3" # base3
+      - tmux set status-bg cyan
+      - tmux set status-fg white
       - taskwarrior-tui
   - Neovim:
       - nvim

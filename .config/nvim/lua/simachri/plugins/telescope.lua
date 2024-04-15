@@ -17,6 +17,25 @@ function grep_prompt()
 	})
 end
 
+function grep_live_in_bufs_workdir()
+	require("telescope.builtin").live_grep({
+        prompt_title = "Grep in current buffer's directory",
+		disable_coordinates = true,
+		cwd = require("telescope.utils").buffer_dir(),
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--hidden",
+			"--no-ignore",
+		},
+	})
+end
+
 function find_dotfiles()
 	require("telescope.builtin").find_files({
 		prompt_title = "Find config files",
@@ -130,7 +149,7 @@ end
 
 function Java_classes_wo_tests()
 	require("telescope.builtin").find_files({
-        prompt_title = "Find Java classes, ignoring tests",
+		prompt_title = "Find Java classes, ignoring tests",
 		follow = true,
 		previewer = false,
 		file_ignore_patterns = {
@@ -291,9 +310,9 @@ return {
 			-- Grep live in directory of currently opened file
 			{
 				"<leader>gc",
-				'<cmd>lua require("telescope.builtin").live_grep({disable_coordinates=true, cwd=require("telescope.utils").buffer_dir()})<cr>',
+				"<cmd>lua grep_live_in_bufs_workdir()<cr>",
 				{ noremap = true, silent = true },
-                desc = "Grep in current buffer's directory",
+				desc = "Grep in current buffer's directory",
 			},
 			-- Grep in open buffers
 			{

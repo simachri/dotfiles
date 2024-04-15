@@ -58,6 +58,8 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+						-- Also consider umlauts
+						keyword_pattern = [[\k\+]],
 						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
@@ -101,6 +103,8 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+						-- Also consider umlauts
+						keyword_pattern = [[\k\+]],
 						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
@@ -119,6 +123,8 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+						-- Also consider umlauts
+						keyword_pattern = [[\k\+]],
 						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
@@ -139,6 +145,8 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+						-- Also consider umlauts
+						keyword_pattern = [[\k\+]],
 						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
@@ -159,6 +167,8 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+						-- Also consider umlauts
+						keyword_pattern = [[\k\+]],
 						max_item_count = 6,
 						option = {
 							get_bufnrs = function()
@@ -178,6 +188,8 @@ return {
 					{
 						name = "buffer",
 						keyword_length = 1, -- start completion after n chars.
+						-- Also consider umlauts
+						keyword_pattern = [[\k\+]],
 						max_item_count = 6,
 						option = {
 							get_bufnrs = function()

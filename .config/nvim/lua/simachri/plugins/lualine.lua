@@ -54,7 +54,8 @@ return {
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = custom_solarized,
+					-- theme = custom_solarized,
+					theme = 'rose-pine',
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
