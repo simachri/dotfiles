@@ -16,6 +16,8 @@ return {
 		init = function()
 			vim.opt.background = "light"
 
+			vim.opt.conceallevel = 2
+
 			require("rose-pine").setup({
 				variant = "auto", -- auto, main, moon, or dawn
 				dark_variant = "main", -- main, moon, or dawn
@@ -30,7 +32,7 @@ return {
 
 				styles = {
 					bold = true,
-					italic = true,
+					italic = false,
 					transparency = false,
 				},
 
@@ -66,6 +68,20 @@ return {
 				},
 
 				highlight_groups = {
+					["Comment"] = { italic = true },
+
+					["@keyword.return"] = { bold = true },
+
+					-- ["@markup.link.markdown_inline"] = { fg = "subtle" },
+					["@markup.raw.markdown_inline"] = { fg = "gold" },
+					["@markup.italic.markdown_inline"] = { italic = true },
+					["markdownH1"] = { italic = true },
+					["markdownH2"] = { italic = true },
+					["markdownH3"] = { italic = true },
+					["markdownH4"] = { italic = true },
+					["markdownH5"] = { italic = true },
+					["markdownH6"] = { italic = true },
+
 					-- Comment = { fg = "foam" },
 					-- VertSplit = { fg = "muted", bg = "muted" },
 				},

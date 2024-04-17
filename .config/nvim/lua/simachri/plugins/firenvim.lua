@@ -36,7 +36,8 @@ return {
                       let s:fontsize = s:fontsize+a:amount
                       "execute "set guifont=SauceCodePro\\ NF:h" . s:fontsize
                       "execute "set guifont=MesloLGLDZ\\ NF:h" . s:fontsize
-                      execute "set guifont=CaskaydiaCove\\ Nerd\\ Font\\ MonoNF:h" . s:fontsize
+                      "execute "set guifont=CaskaydiaCove\\ Nerd\\ Font\\ MonoNF:h" . s:fontsize
+                      execute "set guifont=Delugia\\ Mono:h" . s:fontsize
                       call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
                     endfunction
 
@@ -44,7 +45,8 @@ return {
                     nnoremap  <C--> :call AdjustFontSizeF(-1)<CR>
                    " set guifont=SauceCodePro\ NF:h12
                    " set guifont=MesloLGLDZ\ NF:h12
-                    set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h14
+                    " set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h14
+                    set guifont=Delugia\ Mono:h14
                     set lines=70
                     set columns=110
                     " Setting the filetype here has no effect as it is derived from the (temporary) file 

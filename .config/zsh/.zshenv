@@ -10,9 +10,17 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
+
 # Add to path:
 # Only keep the first occurrence of each duplicated value. https://superuser.com/a/598924
 typeset -U path
+
+# Note: The Windows path is NOT appended, see the wsl.conf file which contains appendWindowsPath=false
+
+# Add powershell
+path+=('/mnt/c/Windows/System32/WindowsPowerShell/v1.0')
+# Add cmd and standard windows tools
+path+=('/mnt/c/Windows/System32')
 # ~/.local/bin contains locally installed Python modules. The most prominent one is 
 path+=('/home/xi3k/.local/bin')
 # ~/node_modules/.bin locally installed Node modules.

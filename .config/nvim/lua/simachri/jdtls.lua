@@ -23,7 +23,7 @@ function M.setup()
 	local on_attach = function()
 		require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
 		require("jdtls").setup.add_commands()
-        require('dap.ext.vscode').load_launchjs()
+		require("dap.ext.vscode").load_launchjs()
 		-- local opts = { silent = true, buffer = bufnr }
 		-- vim.keymap.set("n", "<A-o>", jdtls.organize_imports, opts)
 		-- vim.keymap.set("n", "<leader>df", jdtls.test_class, opts)
@@ -41,7 +41,7 @@ function M.setup()
 			format = {
 				enabled = true,
 				settings = {
-					url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
+					url = home .. "/Development/Neovim/google/styleguide/eclipse-java-google-style.xml",
 					profile = "GoogleStyle",
 				},
 			},

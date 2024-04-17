@@ -253,7 +253,7 @@ return {
 		-- require"nvim.health" instead of require"health"
 		-- For compatibility with Lazy, make sure to 'git add' the changes to stage them,
 		-- see https://github.com/folke/lazy.nvim/issues/1099#issuecomment-1758249371.
-		"ekickx/clipboard-image.nvim",
+		"dfendr/clipboard-image.nvim",
 		keys = {
 			{ "<leader>mpi", ":PasteImg<CR>", { silent = true } },
 		},

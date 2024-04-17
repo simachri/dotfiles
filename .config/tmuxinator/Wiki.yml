@@ -10,5 +10,5 @@ windows:
       # - tmux set status-bg "#859900" # green
       # - tmux set status-fg "#fdf6e3" # base3
       - tmux set status-bg yellow
-      - tmux set status-fg white
+      - tmux set status-fg black
       - nvim
