@@ -1,8 +1,0 @@
-name: Development_DSC_PDI_CLI
-root: ~/Development/DSC/02_PDI/02_Impl/03_CLI
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

@@ -29,10 +29,10 @@ set indentkeys=
 "setlocal nonumber norelativenumber
 "" Set width of sign column to 1.
 "set scl=yes:1
-" Disable sign column.
-set scl=no
+" Disable sign column. 2024-04-22: Enable it again to see marks.
+" set scl=no
 " Set minimal line number column width.
-set numberwidth=6
+" set numberwidth=6
 
 set tabstop=2
 set softtabstop=2

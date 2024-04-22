@@ -45,7 +45,7 @@ color.tag.next=color6
 color.uda.priority.H=color3
 # color.uda.priority.M=bold color11
 color.uda.priority.L=color12
-color.alternate=on color7
+color.alternate=on color0
 color.uda.user=color4
 
 ###############################

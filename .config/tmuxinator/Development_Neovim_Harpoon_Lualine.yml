@@ -1,8 +1,0 @@
-name: Development_Neovim_Harpoon_Lualine
-root: ~/Development/Neovim/harpoon-lualine
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

@@ -45,10 +45,13 @@ vim.opt.pastetoggle = "<F2>"
 vim.opt.viewoptions = "cursor"
 
 -- Use relative line numbers.
-vim.opt.nu = true
+vim.opt.number = true
 vim.opt.relativenumber = true
+-- For wrapped lines, do not show the line number of the wrapped line, see :h 'rnu'
+vim.opt.cpoptions:remove("n")
+vim.opt.scl = "auto:1-4"
 -- Always show sign column of width 2.
-vim.opt.scl = "yes:2"
+-- vim.opt.scl = "yes:2"
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -75,7 +78,7 @@ vim.opt.fo = "cMroqwnjl" -- see :help fo-table
 vim.opt.comments = "s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:**"
 
 -- Indicate that a line has been wrapped.
-vim.opt.showbreak = '>  '
+vim.opt.showbreak = '\\>  '
 vim.opt.wrap = false
 
 -- Disable the mouse such that 'select-to-copy' works.
@@ -84,7 +87,7 @@ vim.opt.mouse = ""
 -- Wider statuscolumn to the left.
 -- see :h statuscolumn
 -- vim.opt.statuscolumn='%{v:relnum?" ":v:lnum}%= %{v:relnum?v:relnum:" "} %s '
-vim.opt.statuscolumn='%s%=%{v:relnum?v:relnum:v:lnum}  '
+vim.opt.statuscolumn="%s%=%{v:virtnum?'':(v:relnum?v:relnum:v:lnum)}  "
 
 -- Disalbe netrw in favour of nvim-tree.
 vim.g.loaded_netrw = 1
