@@ -18,14 +18,21 @@ function M.setup()
 
 	local path_to_mason = home .. "/.local/share/nvim/mason"
 	local path_to_jdtls = path_to_mason .. "/packages/jdtls"
-	local lombok_path = path_to_mason .. "/packages/lombok-nightly/lombok.jar"
+	local lombok_path = home .. "/Development/Neovim/java-lombok/lombok_1.18.32.jar"
 
-	local on_attach = function()
+	local on_attach = function(_, bufnr)
 		require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
-		require("jdtls").setup.add_commands()
 		require("dap.ext.vscode").load_launchjs()
-		-- local opts = { silent = true, buffer = bufnr }
-		-- vim.keymap.set("n", "<A-o>", jdtls.organize_imports, opts)
+
+		vim.api.nvim_buf_set_keymap(
+			bufnr,
+			"n",
+			"<leader>li",
+			-- jdtls.organize_imports,
+			"<cmd>lua require('jdtls').organize_imports()<CR>",
+			{ desc = "Java Organize Imports", noremap = true, silent = true }
+		)
+
 		-- vim.keymap.set("n", "<leader>df", jdtls.test_class, opts)
 		-- vim.keymap.set("n", "<leader>dn", jdtls.test_nearest_method, opts)
 		-- vim.keymap.set("n", "crv", jdtls.extract_variable, opts)

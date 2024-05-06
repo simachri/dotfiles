@@ -7,14 +7,11 @@ return {
 			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
 		},
-		event = { "CmdlineEnter" },
+        -- when using CmdLineEnter, the keymappings below will trigger and override
+        -- existing ones, e.g. for Java.
+		-- event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()',
-		keys = {
-            { "<leader>lc", "<cmd>GoCodeLenAct<CR>", { noremap = true, silent = true } },
-            { "<leader>li", "<cmd>GoImports<CR>", { noremap = true, silent = true } },
-            -- { "<leader>lt", "<cmd>GoFillStruct<CR>", { noremap = true, silent = true } },
-		},
 		config = function()
 			require("mason").setup()
 			require("mason-lspconfig").setup()
@@ -59,7 +56,7 @@ return {
 				-- set to true: use gopls to format
 				-- false if you want to use other formatter tool(e.g. efm, nulls)
 				lsp_inlay_hints = {
-					enable = true,
+					enable = false, -- disabled as it occupies too much space
 					-- Only show inlay hints for the current line
 					only_current_line = false,
 					-- Event which triggers a refersh of the inlay hints.
@@ -134,6 +131,22 @@ return {
 				iferr_vertical_shift = 4, -- defines where the cursor will end up vertically from the begining of if err statement
 				-- float term recommand if you use richgo/ginkgo with terminal color
 			})
+
+			vim.api.nvim_buf_set_keymap(
+				0,
+				"n",
+				"<leader>lc",
+				"<cmd>GoCodeLenAct<cr>",
+				{ desc = "Go Code Lens", noremap = true, silent = true }
+			)
+
+			vim.api.nvim_buf_set_keymap(
+				0,
+				"n",
+				"<leader>li",
+				"<cmd>GoImports<cr>",
+				{ desc = "Go Organize Imports", noremap = true, silent = true }
+			)
 
 			local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
 			require("lspconfig").gopls.setup(cfg)

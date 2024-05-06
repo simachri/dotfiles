@@ -1,8 +1,10 @@
 vim.g.mapleader = " "
 
 -- Move lines up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- Use 'x' mode instead of 'v' to not interfere when inserting a link (URL) through
+-- snippets and the link name starts with a capital letter j or k.
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
 

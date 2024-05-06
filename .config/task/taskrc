@@ -55,6 +55,8 @@ color.uda.user=color4
 due=1
 # Set the column padding.
 column.padding=3
+# Make search case-insensitive.
+search.case.sensitive=no
 
 ###############################
 # Define contexts.
@@ -62,7 +64,7 @@ column.padding=3
 #context.SAP.read=project != Linode and project != AoC and project != Vim and project != \'\'
 #context.ToDo.read=user: and status:pending
 #context.ToDo.read=status:pending
-context.Today.read=status:pending and (priority == H or description == \'Vemas\' or +next or wait<=today)
+context.Today.read=status:pending and (priority == H or description == \'Vemas\' or +next or wait<=today or +ACTIVE)
 context.Backlog.read=status:pending and description != \'Vemas\' and -next and (user != \'\' or priority != H)
 context.Waiting.read=status:waiting
 #context.Assigned.read=user != \'\'

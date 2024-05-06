@@ -68,7 +68,8 @@ return {
 				},
 
 				highlight_groups = {
-					["Comment"] = { italic = true },
+					-- ["Comment"] = { fg = "subtle", italic = true },
+					["Comment"] = { fg = "muted", italic = true },
 
 					["@keyword.return"] = { bold = true },
 					["@function.method.call"] = { italic = true },
@@ -76,7 +77,8 @@ return {
 					-- ["@markup.link.markdown_inline"] = { fg = "subtle" },
 					["@markup.raw.markdown_inline"] = { fg = "gold" },
 					["@markup.italic.markdown_inline"] = { italic = true },
-					["@markup.quote"] = { italic = true },
+					-- ["@markup.quote"] = { fg = "subtle", italic = true },
+					["@markup.quote"] = { fg = "muted", italic = true },
 					["markdownH1"] = { italic = true, bold = true },
 					["markdownH2"] = { italic = true, bold = true },
 					["markdownH3"] = { italic = true, bold = true },

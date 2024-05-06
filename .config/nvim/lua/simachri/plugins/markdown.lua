@@ -1,3 +1,16 @@
+-- Transform the relative filepath to a filepath relative to the CWD.
+local function as_relative_to_current_buffer(path)
+	-- Transform the relative filepath to a filepath relative to the CWD.
+	-- Vimscript command: fnameescape(fnamemodify(expand('%:h').'/'.l:url.'.md', ':.'))
+	-- ':.' Reduces the file name to be relative to the current directory.
+	return vim.fn.fnameescape(vim.fn.fnamemodify(vim.fn.expand("%:h") .. "/" .. path, ":."))
+end
+
+-- https://codereview.stackexchange.com/a/90231
+local function getFileExtension(path)
+	return path:match("^.+(%..+)$")
+end
+
 -----------------------------------------
 -- Treesitter: Implement 'go to URL'
 -- Keymap is configured in /home/xi3k/.config/nvim/after/ftplugin/markdown.vim
@@ -42,6 +55,21 @@ function Jump_to_file_with_anchor()
 	end
 	local destination = vim.treesitter.get_node_text(dest_node, 0)
 
+	-- Check if the destination contains a '#' at all.
+	if destination:find("#") == nil then
+		-- Does not contain a '#'.
+		local target_relative = as_relative_to_current_buffer(destination)
+
+		local fname = target_relative
+		local file_extension = getFileExtension(target_relative)
+		if file_extension == nil then
+			fname = fname .. ".md"
+		end
+
+		vim.cmd("edit " .. fname)
+		return
+	end
+
 	-- Split the destination at '#' into RELATIVE_FILEPATH and ANCHOR.
 	local t = {}
 	for str in string.gmatch(destination, "([^#]+)") do
@@ -58,10 +86,14 @@ function Jump_to_file_with_anchor()
 
 	-- RELATIVE_FILEPATH can be empty.
 	if tab_cnt == 2 then
-		-- Transform the relative filepath to a filepath relative to the CWD.
-		-- Vimscript command: fnameescape(fnamemodify(expand('%:h').'/'.l:url.'.md', ':.'))
-		-- ':.' Reduces the file name to be relative to the current directory.
-		local fname = vim.fn.fnameescape(vim.fn.fnamemodify(vim.fn.expand("%:h") .. "/" .. t[1] .. ".md", ":."))
+		local target_relative = as_relative_to_current_buffer(t[1])
+
+		local fname = target_relative
+		local file_extension = getFileExtension(target_relative)
+		if file_extension == nil then
+			fname = fname .. ".md"
+		end
+
 		vim.cmd("edit " .. fname)
 	end
 
@@ -143,7 +175,7 @@ return {
 				links = {
 					style = "markdown",
 					name_is_source = false,
-          -- concealing is done by treesitter
+					-- concealing is done by treesitter
 					conceal = false,
 					implicit_extension = "md",
 					transform_implicit = false,

@@ -229,6 +229,10 @@ return {
 				},
 			})
 
+			-- xml
+			-- installed through Mason
+			require("lspconfig").lemminx.setup({})
+
 			-- https://templ.guide/commands-and-tools/ide-support
 			nvim_lsp.templ.setup({})
 			nvim_lsp.html.setup({

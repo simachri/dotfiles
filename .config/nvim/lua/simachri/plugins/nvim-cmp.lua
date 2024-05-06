@@ -116,7 +116,7 @@ return {
 				}),
 			})
 
-			cmp.setup.filetype("markdown", {
+			cmp.setup.filetype({"markdown", "taskedit", "text"}, {
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
 					-- https://github.com/hrsh7th/cmp-buffer
@@ -180,7 +180,7 @@ return {
 				}),
 			})
 
-			cmp.setup.filetype("typescript, javascript", {
+			cmp.setup.filetype({"typescript", "javascript"}, {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },

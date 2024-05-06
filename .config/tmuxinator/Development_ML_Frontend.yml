@@ -6,3 +6,4 @@ windows:
   - zsh:
   - Neovim:
     - nvim
+  - Run/Debug:

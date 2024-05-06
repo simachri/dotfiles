@@ -76,7 +76,7 @@ return {
 				scope = { enabled = false },
 				exclude = {
 					filetypes = {
-						"markdown",
+						-- "markdown",
 						"man",
 						"gitcommit",
 						"TelescopePrompt",

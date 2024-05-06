@@ -103,7 +103,7 @@ return {
 					t({ "](" }),
 					f(function()
 						local destPath = vim.api.nvim_eval("@x")
-						local currFileParentDirPath = vim.api.nvim_eval("expand('%:h')")
+						local currFileParentDirPath = vim.api.nvim_eval("expand('%:.:h')")
 						local anchor = vim.api.nvim_eval("@y")
 						local function starts_with(entireStr, startStr)
 							return entireStr:sub(1, #startStr) == startStr
