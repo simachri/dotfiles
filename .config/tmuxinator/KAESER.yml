@@ -1,0 +1,8 @@
+name: KASER
+root: ~/DSC/03_Customers/KAESER
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

@@ -1,0 +1,8 @@
+name: PDI_CLI
+root: ~/Development/DSC/PDI/Impl/CLI
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

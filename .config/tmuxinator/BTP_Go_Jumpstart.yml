@@ -1,0 +1,9 @@
+name: BTP_Go_Jumpstart
+root: ~/Development/BTP/Go_Jumpstart
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:
