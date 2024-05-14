@@ -93,8 +93,8 @@ alias compact_memory="sudo bash -c 'echo 1 > /proc/sys/vm/compact_memory'"
 alias drop_caches='sudo bash -c "echo 1 > /proc/sys/vm/drop_caches"'
 
 # Custom key bindings
-# Accept the autosuggestion: <Ctrl-j>
-bindkey '^j' autosuggest-accept
+# Accept the autosuggestion: <Ctrl-y>
+bindkey '^y' autosuggest-accept
 # Use <space> in command mode to open the current line in Vim
 # https://unix.stackexchange.com/a/6622
 autoload edit-command-line; zle -N edit-command-line

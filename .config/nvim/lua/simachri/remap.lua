@@ -15,9 +15,9 @@ vim.keymap.set("x", "<Leader>p", '"_dP')
 -- Prevent <leader><CR> to convert the word under cursor into a link (for some reason).
 vim.keymap.set("n", "<Leader><CR>", "<Esc>")
 
--- Keymap to sync syntax highlighting again if it is broken.
--- See :h redrawtime
-vim.keymap.set("n", "<Leader>e", "mx:e<CR>:syntax sync fromstart<CR>`x", { silent = true })
+-- -- Keymap to sync syntax highlighting again if it is broken.
+-- -- See :h redrawtime
+-- vim.keymap.set("n", "<Leader>e", "mx:e<CR>:syntax sync fromstart<CR>`x", { silent = true })
 
 -- Jump to alternate file.
 vim.keymap.set("n", "<C-e>", ":b#<CR>")

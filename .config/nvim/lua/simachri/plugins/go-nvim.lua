@@ -7,8 +7,8 @@ return {
 			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
 		},
-        -- when using CmdLineEnter, the keymappings below will trigger and override
-        -- existing ones, e.g. for Java.
+		-- when using CmdLineEnter, the keymappings below will trigger and override
+		-- existing ones, e.g. for Java.
 		-- event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()',
@@ -132,23 +132,26 @@ return {
 				-- float term recommand if you use richgo/ginkgo with terminal color
 			})
 
-			vim.api.nvim_buf_set_keymap(
-				0,
-				"n",
-				"<leader>lc",
-				"<cmd>GoCodeLenAct<cr>",
-				{ desc = "Go Code Lens", noremap = true, silent = true }
-			)
+			local on_attach = function(_client, bufnr)
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<leader>lc",
+					"<cmd>GoCodeLenAct<cr>",
+					{ desc = "Go Code Lens", noremap = true, silent = true }
+				)
 
-			vim.api.nvim_buf_set_keymap(
-				0,
-				"n",
-				"<leader>li",
-				"<cmd>GoImports<cr>",
-				{ desc = "Go Organize Imports", noremap = true, silent = true }
-			)
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<leader>li",
+					"<cmd>GoImports<cr>",
+					{ desc = "Go Organize Imports", noremap = true, silent = true }
+				)
+			end
 
 			local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
+			cfg.on_attach = on_attach
 			require("lspconfig").gopls.setup(cfg)
 		end,
 	},
