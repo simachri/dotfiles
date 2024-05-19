@@ -74,9 +74,8 @@ end
 -- Source: https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/lua/tj/telescope/init.lua
 function buffers()
 	require("telescope.builtin").buffers({
-		-- disable this as it does not select the item at the bottom which is cumbersome when
-		-- filtering the list
-		sort_lastused = false,
+    -- Sorts all buffers after most recent used.
+    sort_mru = true,
 	})
 end
 

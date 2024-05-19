@@ -6,4 +6,5 @@ windows:
   - zsh:
   - Neovim:
     - nvim
-  - Run/Debug:
+  - Run/Debug App:
+  - Run/Debug AppRouter:

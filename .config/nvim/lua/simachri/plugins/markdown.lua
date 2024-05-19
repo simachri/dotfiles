@@ -6,6 +6,14 @@ local function as_relative_to_current_buffer(path)
 	return vim.fn.fnameescape(vim.fn.fnamemodify(vim.fn.expand("%:h") .. "/" .. path, ":."))
 end
 
+local function getFileName(path)
+	local filename = path:match("^.+/(.+)$")
+	if filename == nil then
+		filename = path
+	end
+	return filename
+end
+
 -- https://codereview.stackexchange.com/a/90231
 local function getFileExtension(path)
 	return path:match("^.+(%..+)$")
@@ -60,13 +68,13 @@ function Jump_to_file_with_anchor()
 		-- Does not contain a '#'.
 		local target_relative = as_relative_to_current_buffer(destination)
 
-		local fname = target_relative
-		local file_extension = getFileExtension(target_relative)
+		local fname = getFileName(target_relative)
+		local file_extension = getFileExtension(fname)
 		if file_extension == nil then
-			fname = fname .. ".md"
+			target_relative = target_relative .. ".md"
 		end
 
-		vim.cmd("edit " .. fname)
+		vim.cmd("edit " .. target_relative)
 		return
 	end
 
@@ -88,13 +96,14 @@ function Jump_to_file_with_anchor()
 	if tab_cnt == 2 then
 		local target_relative = as_relative_to_current_buffer(t[1])
 
-		local fname = target_relative
-		local file_extension = getFileExtension(target_relative)
+		local fname = getFileName(target_relative)
+		local file_extension = getFileExtension(fname)
+
 		if file_extension == nil then
-			fname = fname .. ".md"
+			target_relative = target_relative .. ".md"
 		end
 
-		vim.cmd("edit " .. fname)
+		vim.cmd("edit " .. target_relative)
 	end
 
 	-- Jump to the anchor.

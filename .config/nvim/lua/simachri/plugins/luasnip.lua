@@ -1,8 +1,14 @@
 return {
 
 	{
+		"rafamadriz/friendly-snippets",
+	},
+
+	{
 		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
 		event = "InsertEnter",
+		build = "make install_jsregexp",
 		config = function()
 			-- Examples from https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua
 
@@ -66,11 +72,16 @@ return {
 				-- vim.api.nvim_echo({{path, "WarningMsg"}}, true, {}) -- default {history = true}
 				-- Add a trailing / to make the gmatch work.
 				for elem in (path .. "/"):gmatch("([^/]*)/") do
-          -- vim.api.nvim_echo({{elem, "WarningMsg"}}, true, {}) -- default {history = true}
+					-- vim.api.nvim_echo({{elem, "WarningMsg"}}, true, {}) -- default {history = true}
 					table.insert(elems, elem)
 				end
 				return elems
 			end
+
+			-- Required for friendly-snippets to work.
+			require("luasnip.loaders.from_vscode").lazy_load({
+				exclude = { "markdown" },
+			})
 
 			ls.add_snippets("all", {
 				-- Checkbox Insert: "- [ ]", trigger is 'cb'.
@@ -127,8 +138,8 @@ return {
 						-- Split the paths into their directories.
 						local destPathElems = splitPath(destPath)
 						local currFilePathElems = splitPath(currFileParentDirPath)
-            -- vim.api.nvim_echo({{vim.inspect(destPathElems), "WarningMsg"}}, true, {}) -- default {history = true}
-            -- vim.api.nvim_echo({{vim.inspect(currFilePathElems), "WarningMsg"}}, true, {}) -- default {history = true}
+						-- vim.api.nvim_echo({{vim.inspect(destPathElems), "WarningMsg"}}, true, {}) -- default {history = true}
+						-- vim.api.nvim_echo({{vim.inspect(currFilePathElems), "WarningMsg"}}, true, {}) -- default {history = true}
 
 						-- Identify the first elements of the path that are identical.
 						local branchIdx = 0
@@ -187,7 +198,6 @@ return {
 					t({ ")" }),
 				}),
 			})
-
 		end,
 	},
 }
