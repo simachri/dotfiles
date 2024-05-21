@@ -38,9 +38,6 @@ vim.opt.hidden = true
 vim.opt.timeoutlen = 600
 vim.opt.ttimeoutlen = 0
 
--- Pasting
-vim.opt.pastetoggle = "<F2>"
-
 -- Create 'views' when exiting a window and load it when entering it.
 vim.opt.viewoptions = "cursor"
 

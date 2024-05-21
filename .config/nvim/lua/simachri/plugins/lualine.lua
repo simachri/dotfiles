@@ -73,8 +73,8 @@ return {
 				},
 				sections = {
 					-- https://github.com/letieu/harpoon-lualine
-					lualine_a = { "diagnostics", "harpoon2" },
-					lualine_b = { "branch", "diff" },
+					lualine_a = { "harpoon2" },
+					lualine_b = { "branch", "diff", "diagnostics" },
 					lualine_c = { "%=", { "filename", path = 1, separator = { left = ".", right = "" } } },
 					lualine_x = { "encoding", "filetype" },
 					lualine_y = { "progress" },

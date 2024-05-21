@@ -59,8 +59,6 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-    -- last non-breaking commit before nvim 0.10
-    commit = "3d08501",
 		config = function()
 			local hooks = require("ibl.hooks")
 			-- create the highlight groups in the highlight setup hook, so they are reset

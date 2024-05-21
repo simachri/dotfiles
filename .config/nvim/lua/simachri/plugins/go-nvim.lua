@@ -16,6 +16,26 @@ return {
 			require("mason").setup()
 			require("mason-lspconfig").setup()
 
+			local on_attach = function(_, bufnr)
+				require("go.lsp").gopls_on_attach(_, bufnr)
+
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<leader>lc",
+					"<cmd>GoCodeLenAct<cr>",
+					{ desc = "Go Code Lens", noremap = true, silent = true }
+				)
+
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<leader>li",
+					"<cmd>GoImports<cr>",
+					{ desc = "Go Organize Imports", noremap = true, silent = true }
+				)
+			end
+
 			require("go").setup({
 				-- https://github.com/ray-x/go.nvim#configuration
 				go = "go", -- go command, can be go[default] or go1.18beta1
@@ -29,13 +49,14 @@ return {
 				gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
 				comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. ﳑ       
 				icons = { breakpoint = "🧘", currentpos = "🏃" }, -- setup to `false` to disable icons setup
-				verbose = false, -- output loginf in messages
-				lsp_cfg = false, -- true: use non-default gopls setup specified in go/lsp.lua
+				verbose = true, -- output loginf in messages
+				log_path = vim.fn.expand("$HOME") .. "/.local/state/nvim/gopls.log",
+				lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
 				-- false: do nothing and use the config from /home/xi3k/.config/nvim/lua/plugin/nvim-lspconfig.lua
 				-- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
 				--   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
 				lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
-				lsp_on_attach = nil, -- nil: use on_attach function defined in go/lsp.lua,
+				lsp_on_attach = on_attach, -- nil: use on_attach function defined in go/lsp.lua,
 				--      when lsp_cfg is true
 				-- if lsp_on_attach is a function: use this function as on_attach function for gopls
 				lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
@@ -84,7 +105,11 @@ return {
 					-- The color of the hints
 					highlight = "Comment",
 				},
-				gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
+				gopls_cmd = {
+					vim.fn.expand("$HOME") .. "/.local/share/nvim/mason/bin/gopls",
+					"-logfile",
+					vim.fn.expand("$HOME") .. "/.local/state/nvim/gopls.log",
+				},
 				gopls_remote_auto = true, -- add -remote=auto to gopls
 				gocoverage_sign = "█",
 				sign_priority = 5, -- change to a higher number to override other signs
@@ -132,27 +157,9 @@ return {
 				-- float term recommand if you use richgo/ginkgo with terminal color
 			})
 
-			local on_attach = function(_client, bufnr)
-				vim.api.nvim_buf_set_keymap(
-					bufnr,
-					"n",
-					"<leader>lc",
-					"<cmd>GoCodeLenAct<cr>",
-					{ desc = "Go Code Lens", noremap = true, silent = true }
-				)
-
-				vim.api.nvim_buf_set_keymap(
-					bufnr,
-					"n",
-					"<leader>li",
-					"<cmd>GoImports<cr>",
-					{ desc = "Go Organize Imports", noremap = true, silent = true }
-				)
-			end
-
-			local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
-			cfg.on_attach = on_attach
-			require("lspconfig").gopls.setup(cfg)
+			-- local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
+			-- cfg.on_attach = on_attach
+			-- require("lspconfig").gopls.setup(cfg)
 		end,
 	},
 
