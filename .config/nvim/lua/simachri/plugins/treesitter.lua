@@ -52,10 +52,6 @@ return {
 					"html",
 					"rust",
 				},
-				-- https://github.com/windwp/nvim-ts-autotag
-				autotag = {
-					enable = true,
-				},
 				highlight = {
 					enable = true, -- false will disable the whole extension
 					-- disable = {"markdown"}

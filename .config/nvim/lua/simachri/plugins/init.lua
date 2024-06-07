@@ -1,10 +1,5 @@
 return {
 	{
-		"kyazdani42/nvim-web-devicons",
-		event = "VeryLazy",
-	},
-
-	{
 		"tpope/vim-repeat",
 		event = "InsertEnter",
 	},
@@ -93,7 +88,19 @@ return {
 		end,
 	},
 
-	{ "folke/neodev.nvim", opts = {
-		library = { plugins = { "nvim-dap-ui" }, types = true },
-	} },
+	-- luals for neovim config
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				-- Library items can be absolute paths
+				-- "~/projects/my-awesome-lib",
+				-- Or relative, which means they will be resolved as a plugin
+				-- "LazyVim",
+				-- When relative, you can also provide a path to the library in the plugin dir
+				"nvim-dap-ui",
+			},
+		},
+	},
 }

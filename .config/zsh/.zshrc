@@ -35,10 +35,8 @@ alias vim=nvim
 # -n: Type-to-nav mode
 # -H: Show hidden files
 # -A: Disable auto enter directory on unique filter match
-alias ls='n -aADoeH'
-# The n () function is defined further below.
-# alias ls='n -aDo'
-alias ll='ls -lah --color=auto'
+alias ln='n -aADoeH'
+# alias ll='ls -lah --color=auto'
 function backup_journal() {
   foldername=`date +"%Y-%m-%d"`
   folderpath=~/VmHostShare/Journal_Backups/$foldername

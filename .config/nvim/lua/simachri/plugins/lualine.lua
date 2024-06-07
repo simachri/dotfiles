@@ -13,7 +13,7 @@ return {
 		"nvim-lualine/lualine.nvim",
 		-- event = "VeryLazy",
 		dependencies = {
-			"kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 			"letieu/harpoon-lualine",
 		},
 		config = function()
@@ -55,7 +55,7 @@ return {
 				options = {
 					icons_enabled = true,
 					-- theme = custom_solarized,
-					theme = 'rose-pine',
+					theme = "rose-pine",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
@@ -75,7 +75,22 @@ return {
 					-- https://github.com/letieu/harpoon-lualine
 					lualine_a = { "harpoon2" },
 					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "%=", { "filename", path = 1, separator = { left = ".", right = "" } } },
+					lualine_c = {
+						"%=",
+						{
+							"filename",
+							path = 1,
+							separator = { left = ".", right = "" },
+							symbols = {
+								-- modified = "[+]", -- Text to show when the file is modified.
+								modified = "●",
+								-- readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+								readonly = "", -- Text to show when the file is non-modifiable or readonly.
+								unnamed = "[No Name]", -- Text to show for unnamed buffers.
+								newfile = "[New]", -- Text to show for newly created file before first write
+							},
+						},
+					},
 					lualine_x = { "encoding", "filetype" },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },

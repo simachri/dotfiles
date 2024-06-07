@@ -242,11 +242,13 @@ return {
 			{
 				"<leader>dI",
 				'<cmd>lua require"dapui".eval(nil, { enter = true })<cr>',
+                mode = { "n", "v" },
 				{ noremap = true, silent = true },
 			},
 			{
 				"<leader>dI",
 				'<cmd>lua require"dapui".eval(nil, { enter = true })<cr>',
+                mode = { "n", "v" },
 				{ noremap = true, silent = true },
 			},
 			{ "<leader>dwl", '<cmd>lua require"dapui".float_element()<cr>', { noremap = true, silent = true } },

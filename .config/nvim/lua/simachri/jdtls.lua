@@ -22,7 +22,7 @@ function M.setup()
 
 	local on_attach = function(_, bufnr)
 		require("jdtls.dap").setup_dap({ hotcodereplace = "auto" })
-		require("dap.ext.vscode").load_launchjs()
+		-- require("dap.ext.vscode").load_launchjs()
 
 		vim.api.nvim_buf_set_keymap(
 			bufnr,

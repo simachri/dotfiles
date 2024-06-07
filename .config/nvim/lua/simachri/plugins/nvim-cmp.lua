@@ -96,6 +96,10 @@ return {
 
 			cmp.setup.filetype("lua", {
 				sources = cmp.config.sources({
+					{
+						name = "lazydev",
+						group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+					},
 					{ name = "nvim_lua" },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
@@ -116,7 +120,7 @@ return {
 				}),
 			})
 
-			cmp.setup.filetype({"markdown", "taskedit", "text"}, {
+			cmp.setup.filetype({ "markdown", "taskedit", "text" }, {
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
 					-- https://github.com/hrsh7th/cmp-buffer
@@ -180,7 +184,7 @@ return {
 				}),
 			})
 
-			cmp.setup.filetype({"typescript", "javascript"}, {
+			cmp.setup.filetype({ "typescript", "javascript" }, {
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },

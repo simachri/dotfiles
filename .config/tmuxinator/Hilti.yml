@@ -1,5 +1,5 @@
 name: Hilti
-root: ~/DSC/03_Customers/Hilti
+root: ~/DSC/Customers/Hilti
 startup_window: 1
 
 windows:

@@ -46,7 +46,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- For wrapped lines, do not show the line number of the wrapped line, see :h 'rnu'
 vim.opt.cpoptions:remove("n")
-vim.opt.scl = "auto:1-4"
+vim.opt.scl = "auto:3-4"
 -- Always show sign column of width 2.
 -- vim.opt.scl = "yes:2"
 

@@ -16,8 +16,10 @@ return {
 			require("mason").setup()
 			require("mason-lspconfig").setup()
 
-			local on_attach = function(_, bufnr)
-				require("go.lsp").gopls_on_attach(_, bufnr)
+			local on_attach = function(client, bufnr)
+				-- require("go.utils").log("pre_on_attach", bufnr)
+				require("go.lsp").gopls_on_attach(client, bufnr)
+				-- require("go.utils").log("post_on_attach", bufnr)
 
 				vim.api.nvim_buf_set_keymap(
 					bufnr,
@@ -60,7 +62,11 @@ return {
 				--      when lsp_cfg is true
 				-- if lsp_on_attach is a function: use this function as on_attach function for gopls
 				lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
+
+				-- 2024-05-22: Disabled due to continuous error messages
+				-- https://github.com/ray-x/go.nvim/issues/434
 				lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function
+
 				-- function(bufnr)
 				--    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
 				-- end
@@ -128,7 +134,7 @@ return {
 				build_tags = "tag1,tag2", -- set default build tags
 				textobjects = true, -- enable default text jobects through treesittter-text-objects
 				test_runner = "go", -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
-				verbose_tests = true, -- set to add verbose flag to tests deprecated, see '-v' option
+				verbose_tests = false, -- set to add verbose flag to tests deprecated, see '-v' option
 				run_in_floaterm = false, -- set to true to run in float window. :GoTermClose closes the floatterm
 				-- float term recommend if you use richgo/ginkgo with terminal color
 
@@ -156,10 +162,6 @@ return {
 				iferr_vertical_shift = 4, -- defines where the cursor will end up vertically from the begining of if err statement
 				-- float term recommand if you use richgo/ginkgo with terminal color
 			})
-
-			-- local cfg = require("go.lsp").config() -- config() return the go.nvim gopls setup
-			-- cfg.on_attach = on_attach
-			-- require("lspconfig").gopls.setup(cfg)
 		end,
 	},
 
