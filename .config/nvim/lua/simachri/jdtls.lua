@@ -46,7 +46,7 @@ function M.setup()
 				includeDecompiledSources = true,
 			},
 			format = {
-				enabled = true,
+				enabled = false, -- use conform.nvim instead
 				settings = {
 					url = home .. "/Development/Neovim/google/styleguide/eclipse-java-google-style.xml",
 					profile = "GoogleStyle",

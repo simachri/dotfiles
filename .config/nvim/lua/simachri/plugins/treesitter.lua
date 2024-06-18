@@ -16,9 +16,9 @@ return {
 
 			-- CDS Custom Parser
 			-- https://github.com/cap-js-community/tree-sitter-cds/blob/main/docs/neovim-support.md#setup
-            -- MANUAL STEP REQUIRED:
-            -- 1. After each update, go to ~/Development/Neovim/tree-sitter-cds/
-            -- 2. Run `./nvim/setup-nvim-treesitter.sh`
+			-- MANUAL STEP REQUIRED:
+			-- 1. After each update, go to ~/Development/Neovim/tree-sitter-cds/
+			-- 2. Run `./nvim/setup-nvim-treesitter.sh`
 			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 			parser_config.cds = {
 				install_info = {
@@ -36,7 +36,7 @@ return {
 			treesitter.setup({
 				-- one of "all", "maintained" (parsers with maintainers), or a list of languages
 				ensure_installed = {
-                    "cds",
+					"cds",
 					"python",
 					"go",
 					"templ",
@@ -51,6 +51,7 @@ return {
 					"svelte",
 					"html",
 					"rust",
+					"vimdoc",
 				},
 				highlight = {
 					enable = true, -- false will disable the whole extension

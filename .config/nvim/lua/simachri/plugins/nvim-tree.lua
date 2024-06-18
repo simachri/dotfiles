@@ -86,7 +86,7 @@ end
 return {
 	{
 		"nvim-tree/nvim-tree.lua",
-		requires = {
+		dependencies = {
 			"nvim-web-devicons",
 		},
 		keys = {

@@ -1,5 +1,5 @@
-name: BTP_Go_Jumpstart
-root: ~/Development/BTP/Go_Jumpstart
+name: PDI_Landscape_Manager
+root: ~/Development/DSC/PDI/Impl/Landscape_Manager
 startup_window: 1
 
 windows:

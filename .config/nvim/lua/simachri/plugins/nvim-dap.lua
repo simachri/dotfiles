@@ -115,7 +115,7 @@ return {
 			{ "<leader>drl", '<cmd>lua require"dap".run_last()<cr>', { noremap = true, silent = true } },
 			{
 				"<leader>dq",
-				'<cmd>lua require"dap".terminate()<cr><cmd>lua require"dap".terminate()<cr>',
+				'<cmd>lua require"dap".continue()<cr><cmd>lua require"dap".terminate()<cr>',
 				{ noremap = true, silent = true },
 			},
 			{ "<leader>dp", '<cmd>lua require"dap".pause()<cr>', { noremap = true, silent = true } },
