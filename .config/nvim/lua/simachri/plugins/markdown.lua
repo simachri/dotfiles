@@ -66,6 +66,12 @@ function Jump_to_file_with_anchor()
 	-- Check if the destination contains a '#' at all.
 	if destination:find("#") == nil then
 		-- Does not contain a '#'.
+
+		if require("plenary.path").new(destination):is_absolute() then
+			vim.cmd("edit " .. destination)
+			return
+		end
+
 		local target_relative = as_relative_to_current_buffer(destination)
 
 		local fname = getFileName(target_relative)

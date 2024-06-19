@@ -47,10 +47,10 @@ function M.setup()
 			},
 			format = {
 				enabled = false, -- use conform.nvim instead
-				settings = {
-					url = home .. "/Development/Neovim/google/styleguide/eclipse-java-google-style.xml",
-					profile = "GoogleStyle",
-				},
+				-- settings = {
+				-- 	url = home .. "/Development/Neovim/google/styleguide/eclipse-java-google-style.xml",
+				-- 	profile = "GoogleStyle",
+				-- },
 			},
 			eclipse = {
 				downloadSources = true,
