@@ -173,7 +173,7 @@ return {
 						-- paths need to be adjusted. That is, only do something if the
 						-- destination anchor is in a different file (strip the file
 						-- extension!).
-						if destPath ~= vim.api.nvim_eval("expand('%:r')") then
+						if destPath ~= vim.api.nvim_eval("expand('%:.:r')") then
 							for _ = branchIdx + 1, #currFilePathElems do
 								--vim.api.nvim_echo({{"currIdx is "..currIdx, "WarningMsg"}}, true, {}) -- default {history = true}
 								relPath = relPath .. "../"
