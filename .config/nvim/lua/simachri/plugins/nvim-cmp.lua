@@ -15,10 +15,17 @@ return {
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"L3MON4D3/LuaSnip",
 		},
-		event = "InsertEnter",
+		event = { "InsertEnter", "CmdlineEnter" },
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+
+			local has_words_before = function()
+				unpack = unpack or table.unpack
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0
+					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+			end
 
 			cmp.setup({
 				window = {
@@ -31,24 +38,67 @@ return {
 						winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 					},
 				},
+                complete = {
+                    completeopt = 'menu,menuone',
+                },
 				snippet = {
 					expand = function(args)
 						-- For `luasnip` user.
 						luasnip.lsp_expand(args.body)
 					end,
 				},
-				completion = {
-					-- Select first item automatically.
-					completeopt = "menu,menuone,noinsert",
-				},
 				mapping = {
 					["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 					["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-					["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
-					["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
+					-- -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+					["<C-n>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							if #cmp.get_entries() == 1 then
+								cmp.confirm({ select = true })
+							else
+								cmp.select_next_item()
+							end
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						elseif has_words_before() then
+							cmp.complete()
+							if #cmp.get_entries() == 1 then
+								cmp.confirm({ select = true })
+							end
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+					["<C-p>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 					["<C-e>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
-					["<C-y>"] = cmp.mapping(cmp.mapping.confirm(), { "i", "c" }),
+					["<C-y>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							if luasnip.expandable() then
+								luasnip.expand()
+							else
+								cmp.confirm({
+									select = true,
+								})
+							end
+						else
+							fallback()
+						end
+					end),
+					-- ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
+					-- ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
+					-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+					-- ["<C-e>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
+					-- ["<C-y>"] = cmp.mapping(cmp.mapping.confirm({ select = true }), { "i" }),
 				},
 				sources = {
 					{ name = "luasnip", group_index = 1 },
@@ -162,7 +212,7 @@ return {
 				}),
 			})
 
-			cmp.setup.filetype("go", {
+			cmp.setup.filetype({ "go", "java" }, {
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
 					{ name = "nvim_lsp" },

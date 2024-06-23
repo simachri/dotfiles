@@ -133,7 +133,8 @@ function M.setup()
 			textDocument = {
 				completion = {
 					completionItem = {
-						snippetSupport = true,
+                        -- autocompletion is sometimes problematic
+						snippetSupport = false,
 					},
 				},
 			},
