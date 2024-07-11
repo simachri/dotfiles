@@ -308,10 +308,10 @@ return {
 			},
 			-- Grep live in directory of currently opened file
 			{
-				"<leader>gc",
+				"<leader>gr",
 				"<cmd>lua grep_live_in_bufs_workdir()<cr>",
 				{ noremap = true, silent = true },
-				desc = "Grep in current buffer's directory",
+				desc = "Grep in buffer's directory",
 			},
 			-- Grep in open buffers
 			{
@@ -323,13 +323,15 @@ return {
 			{
 				"<leader>gwc",
 				'<cmd>lua require("telescope.builtin").grep_string()<cr>',
-				{ noremap = true, silent = true, desc = "Grep 'word' in CWD" },
+				{ noremap = true, silent = true },
+				desc = "Grep 'word' in CWD",
 			},
 			-- Grep Word under cursor in folder Relative to open buffer
 			{
 				"<leader>gwr",
 				'<cmd>lua require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })<cr>',
-				{ noremap = true, silent = true, desc = "Grep 'word' in buffer's directory" },
+				{ noremap = true, silent = true },
+				desc = "Grep 'word' in buffer's directory",
 			},
 			-- Find markdown wiki anchor references
 			{ "<leader>gmr", "<cmd>lua grep_md_anchor_refs()<cr>", { noremap = true, silent = true } },

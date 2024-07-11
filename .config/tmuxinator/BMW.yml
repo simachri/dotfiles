@@ -1,5 +1,5 @@
-name: KASER
-root: ~/DSC/Customers/KAESER
+name: BMW
+root: ~/DSC/Customers/BMW
 startup_window: 1
 
 windows:
