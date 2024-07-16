@@ -92,9 +92,6 @@ end
 
 return {
 	{
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-		},
 		"mfussenegger/nvim-dap",
 		keys = {
 			{
@@ -126,6 +123,11 @@ return {
 				'<cmd>lua require"dap".terminate()<cr>',
 				{ noremap = true, silent = true },
 			},
+			{
+				"<leader>dQ",
+				'<cmd>lua require"dapui".close()<cr>',
+				{ noremap = true, silent = true },
+			},
 			{ "<leader>dp", '<cmd>lua require"dap".pause()<cr>', { noremap = true, silent = true } },
 
 			-- Specific mappings for Go
@@ -153,6 +155,7 @@ return {
 		"rcarriga/nvim-dap-ui",
 		lazy = true,
 		dependencies = {
+			"mfussenegger/nvim-dap",
 			"nvim-neotest/nvim-nio",
 		},
 		config = function()
