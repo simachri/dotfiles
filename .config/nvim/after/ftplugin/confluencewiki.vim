@@ -1,5 +1,4 @@
-" Disable sign column.
-set scl=no
+set scl=auto
 " Set minimal line number column width.
 set numberwidth=6
 " Do not use automatic wrapping as the Jira syntax

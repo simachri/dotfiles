@@ -170,15 +170,16 @@ nnoremap <Leader>dp :lprev<CR>
 set clipboard+=unnamedplus
 
 
-"###############
-" VSCode comands
-"###############
+"#############################
+" VSCode commands/keybindings
+"#############################
 vnoremap <leader>rf <Cmd>call VSCodeNotifyVisual('editor.action.formatSelection')<CR>
 vnoremap <leader>c<space> <Cmd>call VSCodeNotifyVisual('editor.action.commentLine')<CR>
 nnoremap <leader>rf <Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>
 nnoremap <leader>c<space> <Cmd>call VSCodeNotify('editor.action.commentLine')<CR>
 nnoremap <leader>fj <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
 nnoremap <leader>gj <Cmd>call VSCodeNotify('workbench.action.findInFiles')<CR>
+nnoremap <leader>lb <Cmd>call VSCodeNotify('workbench.action.quickOpenRecent')<CR>
 nnoremap ]c <Cmd>call VSCodeNotify('workbench.action.compareEditor.nextChange')<CR>
 nnoremap [c <Cmd>call VSCodeNotify('workbench.action.compareEditor.previousChange')<CR>
 nnoremap <leader>rn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
@@ -193,6 +194,7 @@ nnoremap K <Cmd>call VSCodeNotify('editor.action.peekImplementation')<CR>
 nnoremap <leader>db <Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')<CR>
 nnoremap <leader>fd <Cmd>call VSCodeNotify('workbench.action.openSettings')<CR>
 nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
+nnoremap gx <Cmd>call VSCodeNotify('editor.action.openLink')<CR>
 
 nnoremap <leader>ti <Cmd>call VSCodeNotify('workbench.action.terminal.toggleTerminal')<CR>
 
@@ -203,7 +205,7 @@ nnoremap <leader>jl <Cmd>call VSCodeNotify('vscode-harpoon.editEditors')<CR>
 nnoremap <leader>ja <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor1')<CR>
 nnoremap <leader>js <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor2')<CR>
 nnoremap <leader>jd <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3')<CR>
-nnoremap <leader>jf <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3')<CR>
+nnoremap <leader>jf <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor4')<CR>
 
         "{
             ""before": ["g", "i"],

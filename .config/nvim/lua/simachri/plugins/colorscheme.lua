@@ -26,7 +26,7 @@ return {
 
 				enable = {
 					terminal = true,
-					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+					legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
 					migrations = true, -- Handle deprecated options automatically
 				},
 
@@ -36,71 +36,23 @@ return {
 					transparency = false,
 				},
 
-				groups = {
-					border = "muted",
-					link = "iris",
-					panel = "surface",
-
-					error = "love",
-					hint = "iris",
-					info = "foam",
-					note = "pine",
-					todo = "rose",
-					warn = "gold",
-
-					git_add = "foam",
-					git_change = "rose",
-					git_delete = "love",
-					git_dirty = "rose",
-					git_ignore = "muted",
-					git_merge = "iris",
-					git_rename = "pine",
-					git_stage = "iris",
-					git_text = "rose",
-					git_untracked = "subtle",
-
-					h1 = "iris",
-					h2 = "foam",
-					h3 = "rose",
-					h4 = "gold",
-					h5 = "pine",
-					h6 = "foam",
-				},
-
 				highlight_groups = {
-					-- ["Comment"] = { fg = "subtle", italic = true },
 					["Comment"] = { fg = "muted", italic = true },
 
 					["@keyword.return"] = { bold = true },
 					["@function.method.call"] = { italic = true },
 
-					-- ["@markup.link.markdown_inline"] = { fg = "subtle" },
-					["@markup.raw.markdown_inline"] = { fg = "gold" },
-					["@markup.italic.markdown_inline"] = { italic = true },
-					-- ["@markup.quote"] = { fg = "subtle", italic = true },
-					["@markup.quote"] = { fg = "muted", italic = true },
-					["markdownH1"] = { italic = true, bold = true },
-					["markdownH2"] = { italic = true, bold = true },
-					["markdownH3"] = { italic = true, bold = true },
-					["markdownH4"] = { italic = true, bold = true },
-					["markdownH5"] = { italic = true, bold = true },
-					["markdownH6"] = { italic = true, bold = true },
-
-					-- Comment = { fg = "foam" },
-					-- VertSplit = { fg = "muted", bg = "muted" },
+                    -- 2024-07-25, disabled due to https://github.com/MeanderingProgrammer/markdown.nvim
+					-- ["@markup.raw.markdown_inline"] = { fg = "gold" },
+					-- ["@markup.italic.markdown_inline"] = { italic = true },
+					-- ["@markup.quote"] = { fg = "muted", italic = true },
+					-- ["markdownH1"] = { italic = true, bold = true },
+					-- ["markdownH2"] = { italic = true, bold = true },
+					-- ["markdownH3"] = { italic = true, bold = true },
+					-- ["markdownH4"] = { italic = true, bold = true },
+					-- ["markdownH5"] = { italic = true, bold = true },
+					-- ["markdownH6"] = { italic = true, bold = true },
 				},
-
-				before_highlight = function(group, highlight, palette)
-					-- Disable all undercurls
-					-- if highlight.undercurl then
-					--     highlight.undercurl = false
-					-- end
-					--
-					-- Change palette colour
-					-- if highlight.fg == palette.pine then
-					--     highlight.fg = palette.foam
-					-- end
-				end,
 			})
 
 			vim.cmd("colorscheme rose-pine")

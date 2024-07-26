@@ -154,6 +154,22 @@ function Open_URL()
 end
 
 return {
+	{
+		"MeanderingProgrammer/markdown.nvim",
+		main = "render-markdown",
+		opts = {
+			heading = {
+            -- disable sign column related rendering
+                sign = false,
+				-- disable icons for headers
+				icons = {},
+			},
+		},
+		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+	},
 
 	{
 		"jakewvincent/mkdnflow.nvim",
@@ -182,10 +198,6 @@ return {
 					nvim_wd_heel = false,
 				},
 				wrap = false,
-				bib = {
-					default_path = nil,
-					find_in_root = true,
-				},
 				silent = false,
 				links = {
 					style = "markdown",

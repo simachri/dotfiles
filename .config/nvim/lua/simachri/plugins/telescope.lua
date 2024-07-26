@@ -334,12 +334,18 @@ return {
 				desc = "Grep 'word' in buffer's directory",
 			},
 			-- Find markdown wiki anchor references
-			{ "<leader>gmr", "<cmd>lua grep_md_anchor_refs()<cr>", { noremap = true, silent = true } },
-			-- Find markdown wiki headers
 			{
-				"<leader>fmh",
+				"<leader>gmr",
+				"<cmd>lua grep_md_anchor_refs()<cr>",
+				{ noremap = true, silent = true },
+				desc = "References of anchor under cursor",
+			},
+			-- Grep markdown wiki headers
+			{
+				"<leader>gmh",
 				'<cmd>lua require("telescope.builtin").live_grep({disable_coordinates=true, default_text="## .*", prompt_title="Find header"})<cr>',
 				{ noremap = true, silent = true },
+				desc = "Grep markdown headers",
 			},
 			-- Find help tags
 			{
