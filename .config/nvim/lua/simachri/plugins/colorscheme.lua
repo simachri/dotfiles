@@ -18,10 +18,12 @@ return {
 
 			vim.opt.conceallevel = 2
 
+            local palette = require("rose-pine.palette")
+
 			require("rose-pine").setup({
 				variant = "auto", -- auto, main, moon, or dawn
 				dark_variant = "main", -- main, moon, or dawn
-				dim_inactive_windows = false,
+				dim_inactive_windows = true,
 				extend_background_behind_borders = true,
 
 				enable = {
@@ -52,6 +54,14 @@ return {
 					-- ["markdownH4"] = { italic = true, bold = true },
 					-- ["markdownH5"] = { italic = true, bold = true },
 					-- ["markdownH6"] = { italic = true, bold = true },
+
+                    -- disable the background of markdown headings, see https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#headings
+                    ["RenderMarkdownH1Bg"] = { bg = palette.base },
+                    ["RenderMarkdownH2Bg"] = { bg = palette.base },
+                    ["RenderMarkdownH3Bg"] = { bg = palette.base },
+                    ["RenderMarkdownH4Bg"] = { bg = palette.base },
+                    ["RenderMarkdownH5Bg"] = { bg = palette.base },
+                    ["RenderMarkdownH6Bg"] = { bg = palette.base },
 				},
 			})
 

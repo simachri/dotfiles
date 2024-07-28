@@ -25,14 +25,8 @@ setlocal formatoptions=Mwjlnt
 " See also: ~/.config/nvim/plugged/vim-markdown/indent/markdown.vim
 set indentkeys=
 
-"" Disable relative line numbers.
-"setlocal nonumber norelativenumber
-"" Set width of sign column to 1.
-"set scl=yes:1
-" Disable sign column. 2024-04-22: Enable it again to see marks.
-" set scl=no
-" Set minimal line number column width.
-" set numberwidth=6
+"" Set fixed width of sign column to 1 (only for marks).
+" set scl=yes:1
 
 setlocal tabstop=2
 setlocal softtabstop=2
@@ -71,5 +65,3 @@ nnoremap <buffer><silent> <leader>ff :lua require('telescope.builtin').current_b
 nnoremap <buffer><silent> ge :lua Jump_to_file_with_anchor()<cr>
 
 nnoremap <buffer><silent> gx :lua Open_URL()<cr>
-
-set conceallevel=2
