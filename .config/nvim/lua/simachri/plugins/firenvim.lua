@@ -5,9 +5,7 @@ return {
 		-- Lazy load firenvim
 		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-6652991
 		lazy = not vim.g.started_by_firenvim,
-		build = function()
-			vim.fn["firenvim#install"](0)
-		end,
+		build = ":call firenvim#install(0)",
 		config = function()
 			vim.g.firenvim_config = {
 				globalSettings = { alt = "all" },

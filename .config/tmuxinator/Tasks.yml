@@ -4,6 +4,9 @@ attach: false
 startup_window: 0
 
 windows:
+  - zsh:
+  - Neovim:
+      - nvim
   - Taskwarrior:
       # solarized
       # - tmux set status-bg "#859900" # green
@@ -11,5 +14,3 @@ windows:
       - tmux set status-bg cyan
       - tmux set status-fg black
       - taskwarrior-tui
-  - Neovim:
-      - nvim

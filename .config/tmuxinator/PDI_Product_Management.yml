@@ -1,0 +1,8 @@
+name: PDI_Product_Management
+root: ~/DSC/Products/SAP_PLM/PDI/Product_Management/
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

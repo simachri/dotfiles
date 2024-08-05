@@ -34,7 +34,7 @@ return {
 
 				styles = {
 					bold = true,
-					italic = false,
+					italic = true,
 					transparency = false,
 				},
 
@@ -55,13 +55,13 @@ return {
 					-- ["markdownH5"] = { italic = true, bold = true },
 					-- ["markdownH6"] = { italic = true, bold = true },
 
-                    -- disable the background of markdown headings, see https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#headings
-                    ["RenderMarkdownH1Bg"] = { bg = palette.base },
-                    ["RenderMarkdownH2Bg"] = { bg = palette.base },
-                    ["RenderMarkdownH3Bg"] = { bg = palette.base },
-                    ["RenderMarkdownH4Bg"] = { bg = palette.base },
-                    ["RenderMarkdownH5Bg"] = { bg = palette.base },
-                    ["RenderMarkdownH6Bg"] = { bg = palette.base },
+                    -- -- disable the background of markdown headings, see https://github.com/MeanderingProgrammer/markdown.nvim?tab=readme-ov-file#headings
+                    -- ["RenderMarkdownH1Bg"] = { bg = palette.base },
+                    -- ["RenderMarkdownH2Bg"] = { bg = palette.base },
+                    -- ["RenderMarkdownH3Bg"] = { bg = palette.base },
+                    -- ["RenderMarkdownH4Bg"] = { bg = palette.base },
+                    -- ["RenderMarkdownH5Bg"] = { bg = palette.base },
+                    -- ["RenderMarkdownH6Bg"] = { bg = palette.base },
 				},
 			})
 
