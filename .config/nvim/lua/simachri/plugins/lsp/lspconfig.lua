@@ -10,15 +10,9 @@ return {
 	},
 
 	{
-		"jose-elias-alvarez/typescript.nvim",
-		lazy = true,
-	},
-
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"onsails/lspkind-nvim",
-			"jose-elias-alvarez/typescript.nvim",
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		keys = {
@@ -70,7 +64,8 @@ return {
 				local client = vim.lsp.get_client_by_id(ctx.client_id)
 
 				-- https://github.com/jose-elias-alvarez/typescript.nvim/issues/19#issuecomment-1193335686
-				if client and client.name == "tsserver" then
+				-- if client and client.name == "tsserver" then
+				if client and client.name == "ts_ls" then
 					result.diagnostics = vim.tbl_filter(function(diagnostic)
 						return not diagnostic.message:find("is declared but its value is never read.")
 					end, result.diagnostics)
@@ -183,31 +178,32 @@ return {
 				},
 			})
 
+            -- TODO: Migrate to vtsls
 			-- JavaScript/TypeScript
 			-- https://github.com/jose-elias-alvarez/typescript.nvim
-			local buf_map = function(bufnr, mode, lhs, rhs, opts)
-				vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
-					silent = true,
-				})
-			end
+			-- local buf_map = function(bufnr, mode, lhs, rhs, opts)
+			-- 	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+			-- 		silent = true,
+			-- 	})
+			-- end
 			-- language server is deprecated, see https://github.com/jose-elias-alvarez/typescript.nvim/issues/80
 			-- serch for an alternative when required
-			require("typescript").setup({
-				disable_commands = false, -- prevent the plugin from creating Vim commands
-				debug = false, -- enable debug logging for commands
-				go_to_source_definition = {
-					fallback = true, -- fall back to standard LSP definition on failure
-				},
-				server = { -- pass options to lspconfig's setup method
-					on_attach = function(client, bufnr)
-						client.server_capabilities.document_formatting = false
-						client.server_capabilities.document_range_formatting = false
-						buf_map(bufnr, "n", "<leader>ro", ":TypescriptOrganizeImports<CR>")
-						buf_map(bufnr, "n", "<leader>rr", ":TypescriptRenameFile<CR>")
-						buf_map(bufnr, "n", "gd", ":TypescriptGoToSourceDefinition<CR>")
-					end,
-				},
-			})
+			-- require("typescript").setup({
+			-- 	disable_commands = false, -- prevent the plugin from creating Vim commands
+			-- 	debug = false, -- enable debug logging for commands
+			-- 	go_to_source_definition = {
+			-- 		fallback = true, -- fall back to standard LSP definition on failure
+			-- 	},
+			-- 	server = { -- pass options to lspconfig's setup method
+			-- 		on_attach = function(client, bufnr)
+			-- 			client.server_capabilities.document_formatting = false
+			-- 			client.server_capabilities.document_range_formatting = false
+			-- 			buf_map(bufnr, "n", "<leader>ro", ":TypescriptOrganizeImports<CR>")
+			-- 			buf_map(bufnr, "n", "<leader>rr", ":TypescriptRenameFile<CR>")
+			-- 			buf_map(bufnr, "n", "gd", ":TypescriptGoToSourceDefinition<CR>")
+			-- 		end,
+			-- 	},
+			-- })
 
 			-- Initialize lsp-kind for symbbols
 			-- https://github.com/onsails/lspkind-nvim

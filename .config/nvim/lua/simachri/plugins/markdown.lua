@@ -63,8 +63,8 @@ function Jump_to_file_with_anchor()
 	end
 	local destination = vim.treesitter.get_node_text(dest_node, 0)
 
-    -- add current position to the jump list
-    vim.cmd("normal m`")
+	-- add current position to the jump list
+	vim.cmd("normal m`")
 
 	-- Check if the destination contains a '#' at all.
 	if destination:find("#") == nil then
@@ -158,20 +158,16 @@ end
 
 return {
 	{
-		"MeanderingProgrammer/markdown.nvim",
+		"MeanderingProgrammer/render-markdown.nvim",
 		main = "render-markdown",
 		opts = {
 			heading = {
 				-- disable sign column related rendering
 				sign = false,
-			    -- disable icons for headers
+				-- disable icons for headers
 				icons = {},
 				-- do not cover the whole window with with the header background
 				width = "block",
-			},
-			link = {
-				-- Do not show icon for inline links (only for images)
-				hyperlink = "",
 			},
 			code = {
 				-- turn on off any sign column related rendering
@@ -179,13 +175,16 @@ return {
 				-- Width of the code block background:
 				--  block: width of the code block
 				width = "block",
-                right_pad = 2,
+				right_pad = 2,
 				border = "thick",
+			},
+			checkbox = {
+				position = "overlay",
 			},
 		},
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
 		-- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-		dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
 		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
 
@@ -197,7 +196,7 @@ return {
 				modules = {
 					bib = false,
 					buffers = false,
-                    -- 2024-07-26, disable conceal because of markdown.nvim
+					-- 2024-07-26, disable conceal because of markdown.nvim
 					conceal = false,
 					cursor = true,
 					folds = false,

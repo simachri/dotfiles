@@ -25,7 +25,8 @@ return {
 			ensure_installed = {
                 "jdtls",
 				"bashls",
-				"tsserver",
+				-- "ts_ls", -- superseded by vtsls
+                "vtsls",
 				"html",
 				"htmx",
 				"cssls",
