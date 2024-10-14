@@ -10,7 +10,7 @@
 
 # Use the command 'task show' to see all defaults and overrides
 
-news.version=2.6.0
+news.version=3.1.0
 
 # Files
 data.location=~/.task
@@ -64,7 +64,8 @@ search.case.sensitive=no
 #context.SAP.read=project != Linode and project != AoC and project != Vim and project != \'\'
 #context.ToDo.read=user: and status:pending
 #context.ToDo.read=status:pending
-context.Today.read=status:pending and (priority == H or description == \'Vemas\' or +next or wait<=today or +ACTIVE)
+# context.Inbox.read=status:pending and (priority == H or description == \'Vemas\' or +next or wait<=today or +ACTIVE)
+context.Inbox.read=status:pending and (priority == H or +next or wait<=today or +ACTIVE or -PROJECT)
 context.Backlog.read=status:pending and description != \'Vemas\' and -next and (user != \'\' or priority != H)
 context.Waiting.read=status:waiting
 #context.Assigned.read=user != \'\'
@@ -139,7 +140,7 @@ urgency.user.project.Zeiterfassung.coefficient=-7.0 # assigned to project:"Zeite
 # Custom commands
 # https://github.com/kdheepak/taskwarrior-tui/issues/140#issuecomment-801930419
 uda.taskwarrior-tui.shortcuts.2=~/.config/taskwarrior-tui/open_jira_url
-uda.taskwarrior-tui.shortcuts.4=task context Today
+uda.taskwarrior-tui.shortcuts.4=task context Inbox
 uda.taskwarrior-tui.shortcuts.5=task context Backlog
 uda.taskwarrior-tui.shortcuts.6=task context Waiting
 #uda.taskwarrior-tui.shortcuts.4=~/.config/taskwarrior-tui/watson_start
@@ -176,4 +177,4 @@ uda.ms_todo_listid.type=string
 uda.ms_todo_listid.label=MS To-Do List ID
 uda.ms_todo_taskid.type=string
 uda.ms_todo_taskid.label=MS To-Do Task ID
-context=Today
+context=Inbox

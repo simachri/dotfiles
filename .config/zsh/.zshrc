@@ -179,11 +179,21 @@ n ()
 #}
 
 # Start Docker daemon automatically when logging in if not running.
+# Note: This also requires the following line in `sudo visudo`:
+# xi3k ALL=NOPASSWD: /usr/sbin/dockerd
 # Source: https://blog.nillsf.com/index.php/2020/06/29/how-to-automatically-start-the-docker-daemon-on-wsl2/
 DOCKERD_RUNNING=`ps aux | grep dockerd | grep -v grep`
 if [ -z "$DOCKERD_RUNNING" ]; then
    sudo dockerd > /dev/null 2>&1 &
    disown
+fi
+
+# Start SSH service automatically when logging in if not running.
+# Note: This also requires the following line in `sudo visudo`:
+# xi3k ALL=NOPASSWD: /usr/sbin/sshd
+if ! pgrep -x "sshd" > /dev/null
+then
+    sudo /usr/sbin/sshd
 fi
 
 # Set up Node Version Manager

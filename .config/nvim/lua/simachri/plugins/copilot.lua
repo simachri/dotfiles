@@ -3,6 +3,7 @@ return {
     'zbirenbaum/copilot.lua',
     event = 'InsertEnter',
     cmd = "Copilot",
+    enabled = false,
     opts = {
       panel = {
         enabled = true,
