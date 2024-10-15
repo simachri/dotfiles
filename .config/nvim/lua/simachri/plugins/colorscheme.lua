@@ -18,7 +18,7 @@ return {
 
 			vim.opt.conceallevel = 2
 
-            local palette = require("rose-pine.palette")
+            -- local palette = require("rose-pine.palette")
 
 			require("rose-pine").setup({
 				variant = "auto", -- auto, main, moon, or dawn

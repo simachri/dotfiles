@@ -168,6 +168,8 @@ return {
 				icons = {},
 				-- do not cover the whole window with with the header background
 				width = "block",
+                left_pad = 2,
+                right_pad = 2,
 			},
 			code = {
 				-- turn on off any sign column related rendering
@@ -177,6 +179,9 @@ return {
 				width = "block",
 				right_pad = 2,
 				border = "thick",
+                -- change inline code highlighting
+                -- highlight_inline = "RenderMarkdownCodeInline",
+                highlight_inline = "Special",
 			},
 			checkbox = {
 				position = "overlay",
