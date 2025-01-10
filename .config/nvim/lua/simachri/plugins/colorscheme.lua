@@ -18,7 +18,7 @@ return {
 
 			vim.opt.conceallevel = 2
 
-            -- local palette = require("rose-pine.palette")
+            local palette = require("rose-pine.palette")
 
 			require("rose-pine").setup({
 				variant = "auto", -- auto, main, moon, or dawn
@@ -43,6 +43,8 @@ return {
 
 					["@keyword.return"] = { bold = true },
 					["@function.method.call"] = { italic = true },
+
+					["CustomMarkdownInlineCodeBlock"] = { fg = palette.foam, bg = palette.overlay, },
 
                     -- 2024-07-25, disabled due to https://github.com/MeanderingProgrammer/markdown.nvim
 					-- ["@markup.raw.markdown_inline"] = { fg = "gold" },

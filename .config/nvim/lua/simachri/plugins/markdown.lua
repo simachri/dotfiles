@@ -166,10 +166,12 @@ return {
 				sign = false,
 				-- disable icons for headers
 				icons = {},
-				-- do not cover the whole window with with the header background
-				width = "block",
-                left_pad = 2,
-                right_pad = 2,
+                -- disable backgrounds
+                backgrounds = {},
+				-- -- do not cover the whole window with with the header background
+				-- width = "block",
+                -- -- left_pad = 2,
+                -- right_pad = 1,
 			},
 			code = {
 				-- turn on off any sign column related rendering
@@ -181,7 +183,7 @@ return {
 				border = "thick",
                 -- change inline code highlighting
                 -- highlight_inline = "RenderMarkdownCodeInline",
-                highlight_inline = "Special",
+                highlight_inline = "CustomMarkdownInlineCodeBlock",
 			},
 			checkbox = {
 				position = "overlay",

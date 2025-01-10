@@ -1,5 +1,5 @@
 name: PDI_Product_Management
-root: ~/DSC/Products/SAP_PLM/PDI/Product_Management/
+root: ~/DSC/Products/IPD/PDI/Product_Management/
 attach: false
 startup_window: 1
 

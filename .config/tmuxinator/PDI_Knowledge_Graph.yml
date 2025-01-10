@@ -1,8 +1,0 @@
-name: PDI_Knowledge_Graph
-root: ~/DSC/Products/SAP_PLM/PDI/Knowledge_Graph/
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
