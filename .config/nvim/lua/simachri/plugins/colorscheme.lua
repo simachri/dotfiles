@@ -65,6 +65,17 @@ return {
                     -- ["RenderMarkdownH5Bg"] = { bg = palette.base },
                     -- ["RenderMarkdownH6Bg"] = { bg = palette.base },
 				},
+
+                groups = {
+                    h1 = "iris",
+                    -- h2 = "foam",
+                    h2 = "rose",
+                    -- h3 = "rose",
+                    h3 = "foam",
+                    h4 = "gold",
+                    h5 = "pine",
+                    h6 = "foam",
+                },
 			})
 
 			vim.cmd("colorscheme rose-pine")
