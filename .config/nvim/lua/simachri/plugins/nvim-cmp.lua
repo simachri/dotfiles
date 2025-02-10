@@ -2,6 +2,7 @@ return {
 
 	{
 		"hrsh7th/nvim-cmp",
+        enabled = false,
 		dependencies = {
 			"onsails/lspkind-nvim",
 			"hrsh7th/cmp-nvim-lsp",
@@ -27,6 +28,20 @@ return {
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
+			local accept_with_luasnip = function(fallback)
+				if cmp.visible() then
+					if luasnip.expandable() then
+						luasnip.expand()
+					else
+						cmp.confirm({
+							select = true,
+						})
+					end
+				else
+					fallback()
+				end
+			end
+
 			cmp.setup({
 				window = {
 					documentation = {
@@ -38,9 +53,6 @@ return {
 						winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 					},
 				},
-                complete = {
-                    completeopt = 'menu,menuone',
-                },
 				snippet = {
 					expand = function(args)
 						-- For `luasnip` user.
@@ -79,21 +91,10 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-					["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+					-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 					["<C-e>"] = cmp.mapping(cmp.mapping.close(), { "i", "c" }),
-					["<C-y>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							if luasnip.expandable() then
-								luasnip.expand()
-							else
-								cmp.confirm({
-									select = true,
-								})
-							end
-						else
-							fallback()
-						end
-					end),
+					["<C-Space>"] = cmp.mapping(accept_with_luasnip),
+					["<C-y>"] = cmp.mapping(accept_with_luasnip),
 					-- ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
 					-- ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
 					-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -173,6 +174,7 @@ return {
 			cmp.setup.filetype({ "markdown", "taskedit", "text" }, {
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
+					{ name = "nvim_lsp" },
 					-- https://github.com/hrsh7th/cmp-buffer
 					{
 						name = "buffer",

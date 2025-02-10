@@ -12,32 +12,20 @@ return {
 		config = function()
 			-- Examples from https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua
 
-			vim.api.nvim_set_keymap(
-				"i",
-				"<C-Y>",
-				"luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-Y>'",
-				{ expr = true, silent = true }
-			)
-			vim.api.nvim_set_keymap(
-				"i",
-				"<C-E>",
-				"luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
-				{ expr = true, silent = true }
-			)
-			vim.api.nvim_set_keymap(
-				"s",
-				"<C-N>",
-				"v:lua.require'luasnip'.jump(1)",
-				{ expr = true, noremap = true, silent = true }
-			)
-			vim.api.nvim_set_keymap(
-				"s",
-				"<C-P>",
-				"v:lua.require'luasnip'.jump(-1)",
-				{ expr = true, noremap = true, silent = true }
-			)
-
+			-- vim.api.nvim_set_keymap(
+			-- 	"i",
+			-- 	"<C-E>",
+			-- 	"luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
+			-- 	{ expr = true, silent = true }
+			-- )
 			local ls = require("luasnip")
+			vim.keymap.set({ "i", "s" }, "<C-j>", function()
+				ls.jump(1)
+			end, { silent = true })
+			vim.keymap.set({ "i", "s" }, "<C-k>", function()
+				ls.jump(-1)
+			end, { silent = true })
+
 			-- some shorthands...
 			local s = ls.s
 			--local sn = ls.sn
@@ -82,6 +70,8 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load({
 				exclude = { "markdown" },
 			})
+
+			require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets" })
 
 			ls.add_snippets("all", {
 				-- Checkbox Insert: "- [ ]", trigger is 'cb'.

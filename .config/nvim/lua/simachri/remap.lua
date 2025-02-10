@@ -47,8 +47,9 @@ vim.keymap.set("n", "Y", "y$")
 -- Insertion of blank lines
 vim.keymap.set("n", "<C-j>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>", { silent = true })
 vim.keymap.set("n", "<C-k>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = true })
-vim.keymap.set("x", "<C-j>", "my<Esc>`>o<Esc>gv`y", { silent = true })
-vim.keymap.set("x", "<C-k>", "my<Esc>`<O<Esc>gv`y", { silent = true })
+-- Prevent in insert-like modes to not mess with Luasnip mappings.
+-- vim.keymap.set("x", "<C-j>", "my<Esc>`>o<Esc>gv`y", { silent = true })
+-- vim.keymap.set("x", "<C-k>", "my<Esc>`<O<Esc>gv`y", { silent = true })
 
 -- Replace word word under cursor
 vim.keymap.set("n", "<Leader>rr", ':%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>', { silent = true })

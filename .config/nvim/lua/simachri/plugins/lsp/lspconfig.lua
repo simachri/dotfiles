@@ -1,18 +1,9 @@
 return {
 
 	{
-		"onsails/lspkind-nvim",
-		lazy = true,
-		config = function()
-			-- Do not display an icon for plain text in the buffer autocompletion used by nvim-cmp.
-			require("lspkind").presets["default"]["Text"] = ""
-		end,
-	},
-
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"onsails/lspkind-nvim",
+			"saghen/blink.cmp",
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		keys = {
@@ -74,6 +65,9 @@ return {
 				return vim.lsp.diagnostic.on_publish_diagnostics(nil, result, ctx, ...)
 			end
 
+			-- Markdown
+			nvim_lsp.marksman.setup({})
+
 			-- JSON
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jsonls
 			local json_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -83,7 +77,7 @@ return {
 			})
 
 			-- CDS
-			require("lspconfig").cds_lsp.setup({})
+			nvim_lsp.cds_lsp.setup({})
 
 			-- Bash
 			nvim_lsp.bashls.setup({})
@@ -96,10 +90,11 @@ return {
 				-- Note: lspcontainers does not work with pipenv yet (21-05-13).
 				-- cmd = require'lspcontainers'.command('pyright'),
 				root_dir = util.root_pattern(".git", vim.fn.getcwd()),
-				-- https://github.com/hrsh7th/nvim-cmp
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
+				-- -- https://github.com/hrsh7th/nvim-cmp
+				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
+				-- 	vim.lsp.protocol.make_client_capabilities()
+				-- ),
+                capablities = require('blink.cmp').get_lsp_capabilities(),
 				settings = {
 					python = {
 						analysis = {
@@ -116,10 +111,11 @@ return {
 				before_init = function(params)
 					params.processId = vim.NIL
 				end,
-				-- https://github.com/hrsh7th/nvim-cmp
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
+				-- -- https://github.com/hrsh7th/nvim-cmp
+				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
+				-- 	vim.lsp.protocol.make_client_capabilities()
+				-- ),
+                capablities = require('blink.cmp').get_lsp_capabilities(),
 				-- cmd = require'lspcontainers'.command('dockerls'),
 				root_dir = util.root_pattern(".git", vim.fn.getcwd()),
 			})
@@ -127,9 +123,10 @@ return {
 			-- SQL
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sqlls
 			nvim_lsp.sqlls.setup({
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
+				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
+				-- 	vim.lsp.protocol.make_client_capabilities()
+				-- ),
+                capablities = require('blink.cmp').get_lsp_capabilities(),
 			})
 
 			-- Lua https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
@@ -142,10 +139,11 @@ return {
 					"-E",
 					"/opt/lua-language-server/bin/Linux/main.lua",
 				},
-				-- https://github.com/hrsh7th/nvim-cmp
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
+				-- -- https://github.com/hrsh7th/nvim-cmp
+				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
+				-- 	vim.lsp.protocol.make_client_capabilities()
+				-- ),
+                capablities = require('blink.cmp').get_lsp_capabilities(),
 				-- Add 'vim' to globals to prevent message 'Undefined global `vim`.'
 				-- https://www.reddit.com/r/neovim/comments/khk335/lua_configuration_global_vim_is_undefined/gglrg7k?utm_source=share&utm_medium=web2x&context=3
 				settings = {
@@ -178,7 +176,7 @@ return {
 				},
 			})
 
-            -- TODO: Migrate to vtsls
+			-- TODO: Migrate to vtsls
 			-- JavaScript/TypeScript
 			-- https://github.com/jose-elias-alvarez/typescript.nvim
 			-- local buf_map = function(bufnr, mode, lhs, rhs, opts)
@@ -205,10 +203,6 @@ return {
 			-- 	},
 			-- })
 
-			-- Initialize lsp-kind for symbbols
-			-- https://github.com/onsails/lspkind-nvim
-			require("lspkind").init()
-
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#svelte
 			nvim_lsp.svelte.setup({})
 
@@ -227,7 +221,7 @@ return {
 
 			-- xml
 			-- installed through Mason
-			require("lspconfig").lemminx.setup({})
+			nvim_lsp.lemminx.setup({})
 
 			-- https://templ.guide/commands-and-tools/ide-support
 			nvim_lsp.templ.setup({})

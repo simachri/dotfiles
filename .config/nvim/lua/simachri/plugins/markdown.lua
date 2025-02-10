@@ -166,12 +166,12 @@ return {
 				sign = false,
 				-- disable icons for headers
 				icons = {},
-                -- disable backgrounds
-                backgrounds = {},
+				-- disable backgrounds
+				backgrounds = {},
 				-- -- do not cover the whole window with with the header background
 				-- width = "block",
-                -- -- left_pad = 2,
-                -- right_pad = 1,
+				-- -- left_pad = 2,
+				-- right_pad = 1,
 			},
 			code = {
 				-- turn on off any sign column related rendering
@@ -181,12 +181,19 @@ return {
 				width = "block",
 				right_pad = 2,
 				border = "thick",
-                -- change inline code highlighting
-                -- highlight_inline = "RenderMarkdownCodeInline",
-                highlight_inline = "CustomMarkdownInlineCodeBlock",
+				-- change inline code highlighting
+				-- highlight_inline = "RenderMarkdownCodeInline",
+				highlight_inline = "CustomMarkdownInlineCodeBlock",
 			},
 			checkbox = {
 				position = "overlay",
+			},
+			dash = {
+				enabled = false,
+				-- width = 15,
+			},
+			link = {
+				wiki = { icon = "↪ " },
 			},
 		},
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
