@@ -346,7 +346,7 @@ return {
 		-- see https://github.com/folke/lazy.nvim/issues/1099#issuecomment-1758249371.
 		"dfendr/clipboard-image.nvim",
 		keys = {
-			{ "<leader>mpi", ":PasteImg<CR>", { silent = true } },
+			{ "<leader>mpi", ":PasteImg<CR>", { silent = true, desc = "Paste Image" } },
 		},
 		opts = {
 			markdown = {

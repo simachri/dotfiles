@@ -57,6 +57,7 @@ function find_dotfiles()
 			"~/.config/watson",
 			"~/.config/lazygit",
 			"~/.config/tmuxinator",
+			"~/.config/marksman",
 		},
 		--cwd = "~/.config/nvim",
 	})
@@ -297,7 +298,7 @@ return {
 			-- All Files, including the hidden ones
 			{ "<leader>fk", "<cmd>lua search_all_files()<cr>", { noremap = true, silent = true } },
 			-- Configuration files / dotfiles
-			{ "<leader>fd", "<cmd>lua find_dotfiles()<cr>", { noremap = true, silent = true } },
+			-- { "<leader>fd", "<cmd>lua find_dotfiles()<cr>", { noremap = true, silent = true } },
 			-- Grep prompt
 			{ "<leader>gk", "<cmd>lua grep_prompt()<cr>", { noremap = true, silent = true } },
 			-- Grep live in CWD
@@ -356,7 +357,7 @@ return {
 			---- CurrBuf
 			--vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
 			-- List buffers
-			{ "<leader>lb", "<cmd>lua buffers()<cr>", { noremap = true, silent = true } },
+			-- { "<leader>lb", "<cmd>lua buffers()<cr>", { noremap = true, silent = true } },
 			---- Outline
 			--vim.api.nvim_set_keymap('n', '<leader>fo', [[<cmd>lua outline()<cr>]], { noremap = true, silent = true })
 			-- Continue search
@@ -370,18 +371,18 @@ return {
 
 			-- LSP: Fix actions
 			{ "<leader>lf", "<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>", { noremap = true, silent = true } },
-			-- LSP: Find Document symbols
-			{
-				"<leader>fs",
-				'<cmd>lua require("telescope.builtin").lsp_document_symbols({symbol_width=45})<cr>',
-				{ noremap = true, silent = true },
-			},
+			-- -- LSP: Find Document symbols
+			-- {
+			-- 	"<leader>fs",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_document_symbols({symbol_width=45})<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- },
 			-- LSP: Find Document symbols - only functions and methods
-			{
-				"<leader>ff",
-				'<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbol_width = 45, symbols = {"function", "method"}, prompt_title = "Find functions & methods" })<cr>',
-				{ noremap = true, silent = true },
-			},
+			-- {
+			-- 	"<leader>ff",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbol_width = 45, symbols = {"function", "method"}, prompt_title = "Find functions & methods" })<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- },
 			-- LSP: Find workspace symbols
 			{
 				"<leader>fw",
@@ -445,11 +446,6 @@ return {
 
 			-- Find spellcheck proposals.
 			--vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
-
-			---- Harpoon
-			---- https://github.com/ThePrimeagen/harpoon
-			--require("telescope").load_extension('harpoon')
-			--vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>Telescope harpoon marks<cr>]], { noremap = true, silent = true })
 
 			-- Grep Quickfix list
 			{ "<leader>gq", '<cmd>lua require("telescope.builtin").quickfix()<cr>', { noremap = true, silent = true } },

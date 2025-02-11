@@ -7,8 +7,9 @@ return {
 		bigfile = { enabled = false },
 		dashboard = { enabled = false },
 		explorer = { enabled = false },
-		indent = { enabled = false },
 		input = { enabled = false },
+
+		indent = { enabled = true },
 
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 		picker = {
@@ -32,6 +33,22 @@ return {
 					truncate = 80, -- truncate the file path to (roughly) this length
 				},
 			},
+
+			win = {
+				input = {
+					keys = {
+						["<Down>"] = { "history_forward", mode = { "i", "n" } },
+						["<Up>"] = { "history_back", mode = { "i", "n" } },
+						["<C-c>"] = { "close", mode = { "i", "n" } },
+					},
+				},
+
+				list = {
+					keys = {
+						["<C-c>"] = { "close" },
+					},
+				},
+			},
 		},
 
 		notifier = { enabled = false },
@@ -51,19 +68,22 @@ return {
 			desc = "Find Files",
 		},
 		{
-			"<leader>ft",
+			"<leader>gt",
 			function()
 				Snacks.picker.grep({
 					search = "- \\[ \\] ",
-					live = true,
+					live = false, -- easier filtering for returned list
 					show_empty = true,
 					format = "file",
+					layout = {
+						title = "Grep TODOs",
+					},
 				})
 			end,
-			desc = "Find TODOs",
+			desc = "Grep TODOs",
 		},
 		{
-			-- does not work yet
+			-- DOES NOT YET WORK
 			-- waiting for https://github.com/folke/snacks.nvim/discussions/509
 			"<leader>fm",
 			function()
@@ -76,6 +96,9 @@ return {
 						item.file = item.text
 						-- item.dir = true
 					end,
+					layout = {
+						title = "Find Meeting Notes",
+					},
 				})
 			end,
 			desc = "Find Meeting Notes",
@@ -92,9 +115,75 @@ return {
 						item.file = item.text
 						item.dir = true
 					end,
+					layout = {
+						preset = "select",
+						layout = {
+							title = "List Directories",
+						},
+					},
 				})
 			end,
 			desc = "List Directories",
+		},
+
+		{
+			"<leader>lb",
+			function()
+				Snacks.picker.buffers({
+					layout = {
+						preset = "select",
+					},
+				})
+			end,
+			desc = "List Buffers",
+		},
+
+		{
+			"<leader>fd",
+			function()
+				Snacks.picker.files({
+					hidden = true,
+					ignored = true,
+					dirs = { "~/.config" },
+					exclude = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
+					layout = {
+                        preset = "select",
+					},
+				})
+			end,
+			desc = "Find Dotfiles",
+		},
+
+		{
+			"<leader>/",
+			function()
+				Snacks.picker.lines({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Grep Lines",
+		},
+
+		{
+			"<leader>ggl",
+			function()
+				Snacks.picker.git_log()
+			end,
+			desc = "Grep Git Log",
+		},
+
+		{
+			"<leader>fs",
+			function()
+				Snacks.picker.lsp_symbols({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Find Symbols",
 		},
 	},
 }
