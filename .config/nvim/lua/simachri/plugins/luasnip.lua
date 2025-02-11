@@ -75,12 +75,12 @@ return {
 
 			ls.add_snippets("all", {
 				-- Checkbox Insert: "- [ ]", trigger is 'cb'.
-				s({ trig = "ci", name = "Insert checkbox" }, {
+				s({ trig = "ci", name = "Checkbox" }, {
 					t({ "- [ ] " }),
 					i(0),
 				}),
 				-- URL in the format [<URL name>](<URL>), trigger is 'url'.
-				s({ trig = "url", name = "Insert external link" }, {
+				s({ trig = "url", name = "URL" }, {
 					t({ "[" }),
 					-- Placeholder with initial text.
 					i(1, { "<link name>" }),
@@ -97,7 +97,7 @@ return {
 
 			ls.add_snippets("markdown", {
 				-- trigger is 'ref'.
-				s({ trig = "ref", name = "Insert reference link" }, {
+				s({ trig = "ref", name = "Markdown Link" }, {
 					t({ "[" }),
 					-- Placeholder with initial text.
 					i(1, { "<link name>" }),

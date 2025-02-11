@@ -32,12 +32,6 @@ return {
 					truncate = 80, -- truncate the file path to (roughly) this length
 				},
 			},
-
-			sources = {
-				files = {
-					cmd = "rg",
-				},
-			},
 		},
 
 		notifier = { enabled = false },
@@ -75,19 +69,9 @@ return {
 			function()
 				Snacks.picker.pick({
 					finder = "proc",
-					cmd = "rg",
+					cmd = "fd",
 					-- https://github.com/folke/snacks.nvim/blob/8edd7b4d866d77a2d7c8c7f58eacd97cb8bb1be4/lua/snacks/picker/source/files.lua#L13
-					-- args = { "--files", "--no-messages", "--color", "never", "-g", '\"*/Meetings/*.md\"' },
-					args = {
-						"--files",
-						"--no-messages",
-						"--color",
-						"never",
-						"-g",
-						"'!.git'",
-						"-g",
-						"'*/Meetings/*.md'",
-					},
+					args = { "--type", "f", "--type", "l", "--color", "never", "-E", ".git", "-g", "*/Meetings/*" },
 					transform = function(item)
 						item.file = item.text
 						-- item.dir = true
@@ -95,6 +79,22 @@ return {
 				})
 			end,
 			desc = "Find Meeting Notes",
+		},
+		{
+			"<leader>ld",
+			function()
+				Snacks.picker.pick({
+					finder = "proc",
+					cmd = "fd",
+					-- https://github.com/folke/snacks.nvim/blob/8edd7b4d866d77a2d7c8c7f58eacd97cb8bb1be4/lua/snacks/picker/source/files.lua#L13
+					args = { "--type", "d", "--type", "l", "--color", "never", "-E", ".git" },
+					transform = function(item)
+						item.file = item.text
+						item.dir = true
+					end,
+				})
+			end,
+			desc = "List Directories",
 		},
 	},
 }

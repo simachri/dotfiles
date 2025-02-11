@@ -59,7 +59,7 @@ alias update_bun='cd ~ && bun update'
 # alias update_pip="cd ~ && pip list --outdated | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U --user"
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 alias ws-old='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
-alias ws='tmuxinator start DSC_Product_Management; tmuxinator start Tasks; tmuxinator start Wiki'
+alias ws='tmuxinator start DSC_Product_Management; tmuxinator start Tasks; tmuxinator start Knowledge'
 
 # change tmux workspace directory
 function cdt() {

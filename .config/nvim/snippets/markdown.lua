@@ -3,9 +3,15 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
+-- local dl = require("luasnip.extras").dynamic_lambda
 
 local function current_date()
 	return os.date("%Y-%m-%d")
+end
+
+local function get_filename_without_leading_date()
+	local filename = vim.fn.expand("%:t:r")
+	return filename:gsub("^%d%d%d%d%-%d%d%-%d%d[-_ ]*", ""):gsub("-", " ")
 end
 
 ls.add_snippets("markdown", {
@@ -18,7 +24,7 @@ ls.add_snippets("markdown", {
 		i(2, "<Previous Meeting>"), -- Jump here AFTER the meeting title is provided
 		-- t("]]"), omitted because will be provided by autocomplete
 		t({
-            "",
+			"",
 			"tags:",
 			"  - meeting",
 			"---",
@@ -26,7 +32,9 @@ ls.add_snippets("markdown", {
 		}),
 		f(current_date, {}),
 		t(" "),
-		i(1, "<Meeting Title>"),
+		f(get_filename_without_leading_date, {}),
+		i(0, ""),
+		-- dl(1, get_filename_without_leading_date, {}),
 		t({
 			"",
 			"",
