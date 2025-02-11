@@ -1,0 +1,8 @@
+name: Lifecycle_Graph_Documentation
+root: ~/Development/DSC/Lifecycle_Graph/Documentation/
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

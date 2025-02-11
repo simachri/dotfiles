@@ -9,7 +9,12 @@ return {
 		explorer = { enabled = false },
 		input = { enabled = false },
 
-		indent = { enabled = true },
+		indent = {
+			enabled = true,
+			animate = {
+				enabled = false,
+			},
+		},
 
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 		picker = {
@@ -25,6 +30,7 @@ return {
 			matcher = {
 				frecency = true, -- frecency bonus
 				history_bonus = true, -- give more weight to chronological order
+				cwd_bonus = true,
 			},
 
 			formatters = {
@@ -63,7 +69,9 @@ return {
 		{
 			"<leader>fj",
 			function()
-				Snacks.picker.files()
+				Snacks.picker.files({
+					exclude = { "Meetings" },
+				})
 			end,
 			desc = "Find Files",
 		},
@@ -76,31 +84,50 @@ return {
 					show_empty = true,
 					format = "file",
 					layout = {
-						title = "Grep TODOs",
+						layout = {
+							title = "TODOs",
+						},
 					},
 				})
 			end,
 			desc = "Grep TODOs",
 		},
 		{
-			-- DOES NOT YET WORK
-			-- waiting for https://github.com/folke/snacks.nvim/discussions/509
 			"<leader>fm",
 			function()
-				Snacks.picker.pick({
-					finder = "proc",
-					cmd = "fd",
-					-- https://github.com/folke/snacks.nvim/blob/8edd7b4d866d77a2d7c8c7f58eacd97cb8bb1be4/lua/snacks/picker/source/files.lua#L13
-					args = { "--type", "f", "--type", "l", "--color", "never", "-E", ".git", "-g", "*/Meetings/*" },
-					transform = function(item)
-						item.file = item.text
-						-- item.dir = true
-					end,
+				--          -- DOES NOT YET WORK
+				--          -- waiting for https://github.com/folke/snacks.nvim/discussions/509
+				Snacks.picker.files({
+					dirs = {
+						"Meetings",
+						-- "Hilti/Meetings",
+						-- "Kaeser/Meetings",
+						-- "Lifecycle-Graph/Meetings",
+						-- "PDI/Meetings",
+					},
+					ft = "md",
 					layout = {
-						title = "Find Meeting Notes",
+						layout = {
+							title = "Meeting Notes",
+						},
 					},
 				})
 			end,
+			-- function()
+			-- 	Snacks.picker.pick({
+			-- 		finder = "proc",
+			-- 		cmd = "fd",
+			-- 		-- https://github.com/folke/snacks.nvim/blob/8edd7b4d866d77a2d7c8c7f58eacd97cb8bb1be4/lua/snacks/picker/source/files.lua#L13
+			-- 		args = { "--type", "f", "--type", "l", "--color", "never", "-E", ".git", "-g", "*/Meetings/*" },
+			-- 		transform = function(item)
+			-- 			item.file = item.text
+			-- 			-- item.dir = true
+			-- 		end,
+			-- 		layout = {
+			-- 			title = "Meeting Notes",
+			-- 		},
+			-- 	})
+			-- end,
 			desc = "Find Meeting Notes",
 		},
 		{
@@ -118,7 +145,7 @@ return {
 					layout = {
 						preset = "select",
 						layout = {
-							title = "List Directories",
+							title = "Directories",
 						},
 					},
 				})
@@ -147,7 +174,8 @@ return {
 					dirs = { "~/.config" },
 					exclude = { "sessions", "plugged", "lain", "themes", "freedesktop", ".zprezto/" },
 					layout = {
-                        preset = "select",
+						preset = "select",
+						title = "Dotfiles",
 					},
 				})
 			end,

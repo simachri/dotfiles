@@ -106,7 +106,20 @@ ls.add_snippets("markdown", {
 			"---",
 			"status: open",
 			"tags:",
-			"  - solution-design",
+			"  - design",
+			"---",
+			"# ",
+		}),
+		f(get_filename_without_leading_date, {}),
+		i(0, ""),
+	}),
+
+	s("Solution", {
+		t({
+			"---",
+			"status: open",
+			"tags:",
+			"  - solution",
 			"---",
 			"# ",
 		}),

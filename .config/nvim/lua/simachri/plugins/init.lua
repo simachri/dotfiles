@@ -51,43 +51,44 @@ return {
 		ft = { "rust" },
 	},
 
-	{
-		"lukas-reineke/indent-blankline.nvim",
-        enabled = false,
-		main = "ibl",
-		config = function()
-			local hooks = require("ibl.hooks")
-			-- create the highlight groups in the highlight setup hook, so they are reset
-			-- every time the colorscheme changes
-			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-				vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#eee8d5" })
-				vim.api.nvim_set_hl(0, "IblScope", { fg = "#eee8d5" })
-			end)
-
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
-
-			require("ibl").setup({
-				indent = { highlight = "IndentBlankLineChar" },
-				scope = { enabled = false },
-				exclude = {
-					filetypes = {
-						-- "markdown",
-						"man",
-						"gitcommit",
-						"TelescopePrompt",
-						"TelescopeResults",
-						"help",
-						"packer",
-						"checkhealth",
-						"lspinfo",
-						"taskedit",
-						"''",
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+ --        enabled = false,
+	-- 	main = "ibl",
+	-- 	config = function()
+	-- 		local hooks = require("ibl.hooks")
+	-- 		-- create the highlight groups in the highlight setup hook, so they are reset
+	-- 		-- every time the colorscheme changes
+	-- 		hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+	-- 			vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#eee8d5" })
+	-- 			vim.api.nvim_set_hl(0, "IblScope", { fg = "#eee8d5" })
+	-- 		end)
+	--
+	-- 		hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+	-- 		hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
+	--
+	-- 		require("ibl").setup({
+	-- 			indent = { highlight = "IndentBlankLineChar" },
+	-- 			scope = { enabled = false },
+	-- 			exclude = {
+	-- 				filetypes = {
+	-- 					-- "markdown",
+	-- 					"man",
+	-- 					"gitcommit",
+	--
+	-- 					"TelescopePrompt",
+	-- 					"TelescopeResults",
+	-- 					"help",
+	-- 					"packer",
+	-- 					"checkhealth",
+	-- 					"lspinfo",
+	-- 					"taskedit",
+	-- 					"''",
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- luals for neovim config
 	{

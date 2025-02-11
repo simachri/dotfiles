@@ -1,0 +1,8 @@
+name: Lifecycle-Graph-Deprecated
+root: ~/DSC/Products/IPD/Lifecycle_Graph/
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

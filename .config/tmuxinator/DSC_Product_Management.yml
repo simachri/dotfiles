@@ -1,0 +1,9 @@
+name: DSC_Product_Management
+root: ~/DSC/Products/
+attach: false
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

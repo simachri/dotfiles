@@ -21,9 +21,13 @@ return {
                     -- show lsp first
 					score_offset = 100000,
 				},
+				path = {
+                    -- show path second
+					score_offset = 1000,
+				},
 				snippets = {
-					-- show snippets second
-					score_offset = 500,
+					-- show snippets third
+					score_offset = 100,
 				},
 			},
 		},
