@@ -54,7 +54,8 @@ nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR
                   "\:let @+="(".expand('%:r')."#".@d.")"<CR>
 
 " Find markdown headers in current buffer
-nnoremap <buffer><silent> <leader>ff :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", previewer=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="bottom", height=0.7, width=0.7,}})<cr>
+" nnoremap <buffer><silent> <leader>ff :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", previewer=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="bottom", height=0.7, width=0.7,}})<cr>
+
 " Find markdown wiki anchor references
 " -> see /home/xi3k/.config/nvim/lua/plugin/telescope.lua
 " Find markdown wiki headers in all files

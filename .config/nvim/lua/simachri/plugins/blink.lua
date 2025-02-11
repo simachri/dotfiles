@@ -14,6 +14,18 @@ return {
 	opts = {
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+
+			-- https://cmp.saghen.dev/configuration/sources.html#provider-options
+			providers = {
+				lsp = {
+                    -- show lsp first
+					score_offset = 100000,
+				},
+				snippets = {
+					-- show snippets second
+					score_offset = 500,
+				},
+			},
 		},
 
 		-- https://cmp.saghen.dev/configuration/snippets.html#luasnip
@@ -22,7 +34,7 @@ return {
 		-- https://cmp.saghen.dev/recipes.html#mini-icons
 		completion = {
 			menu = {
-				border = "single",
+				border = "rounded",
 
 				draw = {
 					components = {
@@ -44,12 +56,21 @@ return {
 				},
 			},
 
-			documentation = { window = { border = "single" } },
-
+			-- https://cmp.saghen.dev/configuration/completion.html#documentation
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 500,
+				window = { border = "rounded" },
+			},
 		},
 
-		signature = { window = { border = "single" } },
-
+		-- https://cmp.saghen.dev/configuration/signature.html
+		signature = {
+			enabled = true,
+			window = {
+				border = "rounded",
+			},
+		},
 	},
 	opts_extend = { "sources.default" },
 }

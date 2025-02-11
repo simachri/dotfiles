@@ -90,7 +90,7 @@ return {
 			"nvim-web-devicons",
 		},
 		keys = {
-			{ "<leader>nn", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true } },
+			{ "<leader>nn", "<cmd>NvimTreeToggle .<cr>", { noremap = true, silent = true } },
 			{ "<leader>nq", "<cmd>NvimTreeClose<cr>", { noremap = true, silent = true } },
 			{ "<leader>nf", "<cmd>NvimTreeToggle %:p:h<cr>", { noremap = true, silent = true } },
 		},

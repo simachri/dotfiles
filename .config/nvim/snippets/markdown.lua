@@ -9,10 +9,10 @@ local function current_date()
 end
 
 ls.add_snippets("markdown", {
-	s("mt", {
+	s("Meeting Notes", {
 		t({
 			"---",
-			"location: Virtual",
+			"location: virtual",
 			"previous_meeting: [[",
 		}),
 		i(2, "<Previous Meeting>"), -- Jump here AFTER the meeting title is provided
@@ -41,6 +41,34 @@ ls.add_snippets("markdown", {
 			"## References",
 			"",
 			"## Actions",
+			"",
+		}),
+	}),
+})
+
+ls.add_snippets("markdown", {
+	s("Issue", {
+		t({
+			"---",
+			"status: open",
+			"tags:",
+			"  - issue",
+			"---",
+			"# ",
+		}),
+		i(1, "<Issue Title>"),
+		t({
+			"",
+			"",
+			"## Request",
+			"",
+			"## Solution",
+			"",
+			"## Notes",
+			"",
+			"## Relations",
+			"",
+			"## References",
 			"",
 		}),
 	}),

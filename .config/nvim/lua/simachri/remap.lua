@@ -29,8 +29,8 @@ vim.keymap.set("i", "!", "!<c-g>u")
 vim.keymap.set("i", "?", "?<c-g>u")
 
 -- Jumplist mutations when doing relative movement of more than five lines.
-vim.keymap.set("n", "k", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'", { expr = true })
-vim.keymap.set("n", "j", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'", { expr = true })
+vim.keymap.set("n", "k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', { expr = true })
+vim.keymap.set("n", "j", '(v:count > 5 ? "m\'" . v:count : "") . \'j\'', { expr = true })
 
 -- Keep the screen centered when using n & N for cycling through search results.
 vim.keymap.set("n", "n", "nzz")
@@ -52,7 +52,7 @@ vim.keymap.set("n", "<C-k>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silen
 -- vim.keymap.set("x", "<C-k>", "my<Esc>`<O<Esc>gv`y", { silent = true })
 
 -- Replace word word under cursor
-vim.keymap.set("n", "<Leader>rr", ':%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>', { silent = true })
+vim.keymap.set("n", "<Leader>rr", ":%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>", { silent = true })
 -- Replace selection
 vim.keymap.set("v", "<Leader>rr", '"sy:%s/<C-r>s//gI<Left><Left><Left>', { silent = true })
 
@@ -77,12 +77,12 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<Leader>th", ":set hlsearch!<CR>", { silent = true })
 
 function OpenScratchBuffer()
-    -- Check if a scratch buffer already exists.
-    if vim.fn.bufnr("scratch") ~= -1 then
-      vim.cmd("e scratch")
-      return
-    else
-      vim.cmd([[
+	-- Check if a scratch buffer already exists.
+	if vim.fn.bufnr("scratch") ~= -1 then
+		vim.cmd("e scratch")
+		return
+	else
+		vim.cmd([[
         noswapfile hide enew
         file scratch
         setlocal buftype=nofile
@@ -90,9 +90,9 @@ function OpenScratchBuffer()
         setlocal tw=0
         setlocal ft=markdown
         ]])
-    end
+	end
 end
-vim.api.nvim_set_keymap('n', '<Leader>i', ':lua OpenScratchBuffer()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>i", ":lua OpenScratchBuffer()<CR>", { noremap = true, silent = true })
 
 vim.cmd([[
     function! ToggleCb(option)
@@ -153,3 +153,62 @@ vim.cmd([[
     nnoremap <silent> <Leader>tco :SetCheckBoxOpen<CR>
     nnoremap <silent> <Leader>tcu :SetCheckBoxUp<CR>
 ]])
+
+function Rename_md_file_from_h1()
+	local line = vim.api.nvim_get_current_line()
+
+	local header = line:match("^#%s+(.+)")
+	if not header then
+		print("No H1 header found under cursor!")
+		return
+	end
+
+	local filename = header:gsub("%s+", "-"):gsub("[^a-zA-Z0-9%-äöüÖÜÄ]", "")
+
+	local old_path = vim.fn.expand("%:p")
+	local dir = vim.fn.expand("%:p:h")
+	local ext = ".md"
+	local new_path = dir .. "/" .. filename .. ext
+
+	if vim.fn.filereadable(new_path) == 1 then
+		print("File already exists: " .. new_path)
+		return
+	end
+
+    vim.cmd("keepalt write")
+
+	os.rename(old_path, new_path)
+
+	vim.api.nvim_command("keepalt edit " .. new_path)
+	print("Renamed file to: " .. filename .. ext)
+end
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>sh",
+	":lua Rename_md_file_from_h1()<CR>",
+	{ noremap = true, silent = true, desc = "Rename File from Header" }
+)
+
+function Create_new_tracker_file()
+	local new_file_path = vim.fn.expand("%:h") .. "/../Tracker/new.md"
+	vim.cmd("edit " .. new_file_path)
+
+	-- Wait for buffer to load, then insert a specific LuaSnip snippet
+	vim.schedule(function()
+		local snips = require("luasnip").get_snippets()["markdown"]
+		for _, snip in ipairs(snips) do
+			if snip["name"] == "Issue" then
+				require("luasnip").snip_expand(snip)
+				return true
+			end
+		end
+	end)
+end
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>nt",
+	":lua Create_new_tracker_file()<CR>",
+	{ noremap = true, silent = true, desc = "New Tracker Item" }
+)
