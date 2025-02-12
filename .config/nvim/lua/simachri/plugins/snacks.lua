@@ -9,6 +9,25 @@ return {
 		explorer = { enabled = false },
 		input = { enabled = false },
 
+		scratch = {
+			root = "/home/xi3k/Notes/Scratch",
+			ft = "markdown",
+			win_by_ft = {
+				markdown = {
+					keys = {
+						["Close"] = {
+							"<C-c>",
+							function()
+								Snacks.scratch.open()
+							end,
+							desc = "Close",
+							mode = { "n", "x" },
+						},
+					},
+				},
+			},
+		},
+
 		indent = {
 			enabled = true,
 			animate = {
@@ -67,6 +86,21 @@ return {
 
 	keys = {
 		{
+			"<leader>.",
+			function()
+				Snacks.scratch()
+			end,
+			desc = "Toggle Scratch Buffer",
+		},
+		{
+			"<leader>ls",
+			function()
+				Snacks.scratch.select()
+			end,
+			desc = "List Scratch Buffer",
+		},
+
+		{
 			"<leader>fj",
 			function()
 				Snacks.picker.files({
@@ -75,8 +109,9 @@ return {
 			end,
 			desc = "Find Files",
 		},
+
 		{
-			"<leader>gt",
+			"<leader>fst",
 			function()
 				Snacks.picker.grep({
 					search = "- \\[ \\] ",
@@ -84,35 +119,69 @@ return {
 					show_empty = true,
 					format = "file",
 					layout = {
+						preview = "main",
 						layout = {
 							title = "TODOs",
 						},
 					},
 				})
 			end,
-			desc = "Grep TODOs",
+			desc = "Find Space TODOs",
 		},
+
 		{
-			"<leader>fm",
+			"<leader>fsj",
 			function()
-				--          -- DOES NOT YET WORK
-				--          -- waiting for https://github.com/folke/snacks.nvim/discussions/509
 				Snacks.picker.files({
-					dirs = {
+					exclude = {
 						"Meetings",
-						-- "Hilti/Meetings",
-						-- "Kaeser/Meetings",
-						-- "Lifecycle-Graph/Meetings",
-						-- "PDI/Meetings",
+						"Issues",
 					},
 					ft = "md",
 					layout = {
 						layout = {
-							title = "Meeting Notes",
+							title = "Files",
 						},
 					},
 				})
 			end,
+			desc = "Find Space Files",
+		},
+
+		{
+			"<leader>fsl",
+			function()
+				Snacks.picker.grep({
+					search = "tags:\\s*\\n\\s*-.*",
+					ft = "md",
+					layout = {
+						layout = {
+							title = "Tagged Files",
+						},
+					},
+					args = { "-U" }, -- --multline and -U are equivalent
+				})
+			end,
+			desc = "Find Tagged Space Files",
+		},
+
+		{
+			"<leader>fsm",
+			function()
+				Snacks.picker.files({
+					dirs = {
+						"Meetings",
+					},
+					ft = "md",
+					layout = {
+						layout = {
+							title = "Meetings",
+						},
+					},
+				})
+			end,
+			--          -- DOES NOT YET WORK
+			--          -- waiting for https://github.com/folke/snacks.nvim/discussions/509
 			-- function()
 			-- 	Snacks.picker.pick({
 			-- 		finder = "proc",
@@ -128,8 +197,44 @@ return {
 			-- 		},
 			-- 	})
 			-- end,
-			desc = "Find Meeting Notes",
+			desc = "Find Space Meeting Notes",
 		},
+
+		{
+			"<leader>fsi",
+			function()
+				Snacks.picker.files({
+					dirs = {
+						"Issues",
+					},
+					ft = "md",
+					layout = {
+						layout = {
+							title = "Issues",
+						},
+					},
+				})
+			end,
+			--          -- DOES NOT YET WORK
+			--          -- waiting for https://github.com/folke/snacks.nvim/discussions/509
+			-- function()
+			-- 	Snacks.picker.pick({
+			-- 		finder = "proc",
+			-- 		cmd = "fd",
+			-- 		-- https://github.com/folke/snacks.nvim/blob/8edd7b4d866d77a2d7c8c7f58eacd97cb8bb1be4/lua/snacks/picker/source/files.lua#L13
+			-- 		args = { "--type", "f", "--type", "l", "--color", "never", "-E", ".git", "-g", "*/Meetings/*" },
+			-- 		transform = function(item)
+			-- 			item.file = item.text
+			-- 			-- item.dir = true
+			-- 		end,
+			-- 		layout = {
+			-- 			title = "Meeting Notes",
+			-- 		},
+			-- 	})
+			-- end,
+			desc = "Find Space Issues",
+		},
+
 		{
 			"<leader>ld",
 			function()
@@ -212,6 +317,18 @@ return {
 				})
 			end,
 			desc = "Find Symbols",
+		},
+
+		{
+			"<leader>gj",
+			function()
+				Snacks.picker.grep({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Grep",
 		},
 	},
 }

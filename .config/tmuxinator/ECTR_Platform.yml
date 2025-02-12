@@ -1,9 +1,0 @@
-name: ECTR_Platform
-root: ~/Development/DSC/ECTR/Platform
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
-  - Run/Debug:

@@ -1,9 +1,0 @@
-name: EPS_Service
-root: ~/Development/SAP/EPS/product-structure-service
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
-  - Run/Debug:

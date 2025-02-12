@@ -1,5 +1,5 @@
 name: Wiki
-root: ~/Wiki
+root: ~/Notes/Wiki
 attach: true
 startup_window: 1
 

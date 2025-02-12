@@ -10,7 +10,7 @@ return {
 			{ "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true } },
 			{ "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true } },
 
-			{ "<leader>ls", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true } },
+			-- { "<leader>ls", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true } },
 
 			{ "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true, silent = true } },
 			{ "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true, silent = true } },

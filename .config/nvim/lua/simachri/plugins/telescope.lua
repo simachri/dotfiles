@@ -301,12 +301,12 @@ return {
 			-- { "<leader>fd", "<cmd>lua find_dotfiles()<cr>", { noremap = true, silent = true } },
 			-- Grep prompt
 			{ "<leader>gk", "<cmd>lua grep_prompt()<cr>", { noremap = true, silent = true } },
-			-- Grep live in CWD
-			{
-				"<leader>gj",
-				'<cmd>lua require("telescope.builtin").live_grep({disable_coordinates=true})<cr>',
-				{ noremap = true, silent = true },
-			},
+			-- -- Grep live in CWD
+			-- {
+			-- 	"<leader>gj",
+			-- 	'<cmd>lua require("telescope.builtin").live_grep({disable_coordinates=true})<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- },
 			-- Grep live in directory of currently opened file
 			{
 				"<leader>gr",

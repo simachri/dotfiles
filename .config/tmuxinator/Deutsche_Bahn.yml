@@ -1,8 +1,0 @@
-name: Deutsche_Bahn
-root: ~/DSC/Customers/Deutsche_Bahn
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

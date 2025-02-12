@@ -1,9 +1,0 @@
-name: Development_ML_Backend
-root: ~/Development/Mental_Load/mental_load_backend
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
-  - Run/Debug:

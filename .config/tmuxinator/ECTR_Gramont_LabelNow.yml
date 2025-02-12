@@ -1,9 +1,0 @@
-name: ECTR_Gramont_LabelNow
-root: ~/Development/DSC/ECTR/Gramont/addon-labelnow
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
-  - Run/Debug:

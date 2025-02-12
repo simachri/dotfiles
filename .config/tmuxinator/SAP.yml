@@ -1,8 +1,0 @@
-name: SAP
-root: ~/SAP
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
