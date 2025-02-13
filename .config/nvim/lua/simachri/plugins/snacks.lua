@@ -12,6 +12,7 @@ return {
 		scratch = {
 			root = "/home/xi3k/Notes/Scratch",
 			ft = "markdown",
+            autowrite = false,
 			win_by_ft = {
 				markdown = {
 					keys = {
@@ -23,6 +24,19 @@ return {
 							desc = "Close",
 							mode = { "n", "x" },
 						},
+						-- ["Purge"] = {
+						-- 	"<C-w>p",
+						-- 	function()
+						-- 		local file = vim.fn.expand("%")
+						-- 		if file ~= "" then
+						-- 			vim.fn.delete(file)
+						-- 		else
+						-- 			print("No file to delete")
+						-- 		end
+						-- 	end,
+						-- 	desc = "Purge",
+						-- 	mode = { "n", "x" },
+						-- },
 					},
 				},
 			},
@@ -100,7 +114,7 @@ return {
 			function()
 				Snacks.scratch.select()
 			end,
-			desc = "List Scratch Buffer",
+			desc = "List Scratch Buffers",
 		},
 
 		{
@@ -187,11 +201,16 @@ return {
 			"<leader>fsl",
 			function()
 				Snacks.picker.grep({
-					search = "tags:\\s*\\n(\\s*-.*\\n)*\\s*-.*",
+					search = "^tags:\\s*\\[.*?",
+					exclude = {
+						"Meetings",
+						"Issues",
+					},
+                    live = false, -- will show all files with tags which then can be fuzzy searched in the result list
 					ft = "md",
 					layout = {
+                        preview = false,
 						layout = {
-							preview = true,
 							layout = {
 								-- all values are defaults except for the title
 								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default

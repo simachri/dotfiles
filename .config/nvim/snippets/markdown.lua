@@ -40,8 +40,7 @@ ls.add_snippets("markdown", {
 		-- t("]]"), omitted because will be provided by autocomplete
 		t({
 			"",
-			"tags:",
-			"  - meeting",
+			"tags: [meeting]",
 			"---",
 			"# ",
 		}),
@@ -78,8 +77,7 @@ ls.add_snippets("markdown", {
 		f(current_date, {}),
 		t({
 			"",
-			"tags:",
-			"  - issue",
+			"tags: [issue]",
 			"---",
 			"# ",
 		}),
@@ -105,8 +103,7 @@ ls.add_snippets("markdown", {
 		t({
 			"---",
 			"status: open",
-			"tags:",
-			"  - design",
+			"tags: [design]",
 			"---",
 			"# ",
 		}),
@@ -118,11 +115,10 @@ ls.add_snippets("markdown", {
 		t({
 			"---",
 			"status: open",
-			"tags:",
-			"  - solution",
-			"---",
-			"# ",
+			"tags: [solution, ",
 		}),
+		i(1, "tags"),
+		t({ "]", "---", "# " }),
 		f(get_filename_without_leading_date, {}),
 		i(0, ""),
 	}),
