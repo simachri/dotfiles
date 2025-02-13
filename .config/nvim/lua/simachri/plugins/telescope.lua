@@ -296,7 +296,7 @@ return {
 			-- { "<leader>fj", "<cmd>lua Project_files()<cr>", { noremap = true, silent = true } },
 			-- { "<leader>fj", "<cmd>lua Java_classes_wo_tests()<cr>", { noremap = true, silent = true }, ft = "java" },
 			-- All Files, including the hidden ones
-			{ "<leader>fk", "<cmd>lua search_all_files()<cr>", { noremap = true, silent = true } },
+			-- { "<leader>fk", "<cmd>lua search_all_files()<cr>", { noremap = true, silent = true } },
 			-- Configuration files / dotfiles
 			-- { "<leader>fd", "<cmd>lua find_dotfiles()<cr>", { noremap = true, silent = true } },
 			-- Grep prompt

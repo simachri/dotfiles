@@ -23,7 +23,7 @@ return {
 				},
 				path = {
                     -- show path second
-					score_offset = 1000,
+					score_offset = 5000,
 				},
 				snippets = {
 					-- show snippets third

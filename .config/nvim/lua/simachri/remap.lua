@@ -76,23 +76,23 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Toggle highlighting of search hits.
 vim.keymap.set("n", "<Leader>th", ":set hlsearch!<CR>", { silent = true })
 
-function OpenScratchBuffer()
-	-- Check if a scratch buffer already exists.
-	if vim.fn.bufnr("scratch") ~= -1 then
-		vim.cmd("e scratch")
-		return
-	else
-		vim.cmd([[
-        noswapfile hide enew
-        file scratch
-        setlocal buftype=nofile
-        setlocal bufhidden=hide
-        setlocal tw=0
-        setlocal ft=markdown
-        ]])
-	end
-end
-vim.api.nvim_set_keymap("n", "<Leader>i", ":lua OpenScratchBuffer()<CR>", { noremap = true, silent = true })
+-- function OpenScratchBuffer()
+-- 	-- Check if a scratch buffer already exists.
+-- 	if vim.fn.bufnr("scratch") ~= -1 then
+-- 		vim.cmd("e scratch")
+-- 		return
+-- 	else
+-- 		vim.cmd([[
+--         noswapfile hide enew
+--         file scratch
+--         setlocal buftype=nofile
+--         setlocal bufhidden=hide
+--         setlocal tw=0
+--         setlocal ft=markdown
+--         ]])
+-- 	end
+-- end
+-- vim.api.nvim_set_keymap("n", "<Leader>i", ":lua OpenScratchBuffer()<CR>", { noremap = true, silent = true })
 
 vim.cmd([[
     function! ToggleCb(option)
@@ -175,7 +175,7 @@ function Rename_md_file_from_h1()
 		return
 	end
 
-    vim.cmd("keepalt write")
+	vim.cmd("keepalt write")
 
 	os.rename(old_path, new_path)
 
@@ -212,3 +212,30 @@ vim.api.nvim_set_keymap(
 	":lua Create_new_tracker_file()<CR>",
 	{ noremap = true, silent = true, desc = "New Tracker Item" }
 )
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>ga",
+	[[:lua CreateWikiLinkToRegisterX()<CR>]],
+	{ noremap = true, silent = true, desc = "Generate Wiki Link Anchor" }
+)
+
+function CreateWikiLinkToRegisterX()
+	local line = vim.api.nvim_get_current_line()
+	local header = line:match("^#%s+(.+)")
+	if header then
+		local link = header
+			:lower()
+			:gsub("%p", "") -- Remove any punctuations
+			:gsub("%s", "-") -- Replace spaces with dashes
+			:gsub("%-+", "-") -- Remove multiple consecutive dashes
+			:gsub("^%-", "") -- Remove leading dash
+			:gsub("%-$", "") -- Remove trailing dash
+
+		local wikilink = string.format("[[%s]]", link)
+        vim.fn.setreg('x', wikilink)
+        print("Created wiki link and yanked to register 'x'.")
+	else
+		print("No H1 header found on this line.")
+	end
+end

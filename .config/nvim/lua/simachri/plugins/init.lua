@@ -53,7 +53,7 @@ return {
 
 	-- {
 	-- 	"lukas-reineke/indent-blankline.nvim",
- --        enabled = false,
+	--        enabled = false,
 	-- 	main = "ibl",
 	-- 	config = function()
 	-- 		local hooks = require("ibl.hooks")
@@ -104,5 +104,14 @@ return {
 				"nvim-dap-ui",
 			},
 		},
+	},
+
+	{
+		"simachri/qol-md-extensions.nvim",
+		dir = "~/Development/Neovim/simachri/qol-md-extensions.nvim",
+		dev = true,
+		ft = "markdown",
+		lazy = true,
+		opts = {},
 	},
 }

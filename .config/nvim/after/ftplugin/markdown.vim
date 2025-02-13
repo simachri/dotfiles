@@ -40,20 +40,22 @@ nmap <buffer><silent> <leader>mb ysiW_.
 
 " 'Add anchor'
 nnoremap <Leader>aa o<a id=""></a><Esc>5hi
-" 'Get anchor' link without the filename as the link description.
-" 1. Clear register d
-" 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and 
-"    match
-"    everything in the double quotes.
-" 3. Yank the match to register d.
-" 4. Disable highlighting of search results.
-nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
-                  \:let @x=expand('%:.:r')<CR>
-                  \:nohlsearch<CR>
-                  \:echo('Anchor copied to clipboard.')<CR>
-                  "\:let @+="(".expand('%:r')."#".@d.")"<CR>
+
+" " 'Get anchor' link without the filename as the link description.
+" " 1. Clear register d
+" " 2. Search for the anchor in the current line, that is, <a id="anchor-name"></a> and 
+" "    match
+" "    everything in the double quotes.
+" " 3. Yank the match to register d.
+" " 4. Disable highlighting of search results.
+" nnoremap <Leader>ga qdq:s/<a id="\zs.*\ze"><\/a>/\=setreg('y', submatch(0))/n<CR>
+"                   \:let @x=expand('%:.:r')<CR>
+"                   \:nohlsearch<CR>
+"                   \:echo('Anchor copied to clipboard.')<CR>
+"                   "\:let @+="(".expand('%:r')."#".@d.")"<CR>
 
 " Find markdown headers in current buffer
+
 " nnoremap <buffer><silent> <leader>ff :lua require('telescope.builtin').current_buffer_fuzzy_find({default_text='^## ', prompt_title="Find header", sorting_strategy="ascending", previewer=false, tiebreak=function(picker,current_entry,existing_entry) return false end, layout_config={prompt_position="bottom", height=0.7, width=0.7,}})<cr>
 
 " Find markdown wiki anchor references
