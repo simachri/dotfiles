@@ -4,10 +4,10 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		bigfile = { enabled = false },
+		bigfile = { enabled = true },
 		dashboard = { enabled = false },
 		explorer = { enabled = false },
-		input = { enabled = false },
+		input = { enabled = true },
 
 		scratch = {
 			root = "/home/xi3k/Notes/Scratch",
@@ -94,7 +94,7 @@ return {
 		},
 
 		notifier = { enabled = false },
-		quickfile = { enabled = false },
+		quickfile = { enabled = true },
 		scope = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },

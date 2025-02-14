@@ -1,5 +1,6 @@
 name: Lifecycle-Graph
 root: ~/Notes/Lifecycle-Graph
+attach: false
 startup_window: 1
 
 windows:

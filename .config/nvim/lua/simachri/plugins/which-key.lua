@@ -3,7 +3,7 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-        enabled = false,
+        enabled = true,
 		dependencies = {
 			"echasnovski/mini.icons",
 		},

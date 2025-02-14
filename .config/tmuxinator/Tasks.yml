@@ -8,9 +8,6 @@ windows:
   - Neovim:
       - nvim
   - Taskwarrior:
-      # solarized
-      # - tmux set status-bg "#859900" # green
-      # - tmux set status-fg "#fdf6e3" # base3
       - tmux set status-bg cyan
       - tmux set status-fg black
       - taskwarrior-tui
