@@ -1,0 +1,8 @@
+name: Personal
+root: ~/Notes/Personal
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

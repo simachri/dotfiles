@@ -1,0 +1,9 @@
+name: PDI_Documentation
+root: ~/Development/DSC/PDI/Impl/Documentation
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

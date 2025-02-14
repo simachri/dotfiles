@@ -1,0 +1,8 @@
+name: Archive-Hilti
+root: ~/DSC/Customers/Hilti
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

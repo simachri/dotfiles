@@ -1,0 +1,9 @@
+name: PDI_Service
+root: ~/Development/DSC/PDI/Impl/Backend
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

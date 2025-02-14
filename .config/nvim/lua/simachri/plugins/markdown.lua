@@ -203,8 +203,11 @@ return {
 	},
 
 	{
+		-- 2025-02-14: Disabling this as I am using this plugin only for jumping to next
+		-- header and next link.
 		"jakewvincent/mkdnflow.nvim",
 		ft = { "markdown" },
+		enabled = false,
 		config = function()
 			require("mkdnflow").setup({
 				modules = {
@@ -214,9 +217,9 @@ return {
 					conceal = false,
 					cursor = true,
 					folds = false,
-					links = true,
+					links = true, -- used for jump to next link
 					lists = false,
-					maps = true,
+					maps = true, -- keymaps
 					paths = false,
 					tables = false,
 				},
@@ -232,7 +235,7 @@ return {
 				wrap = false,
 				silent = false,
 				links = {
-					style = "markdown",
+					style = "wiki", -- 2025-02-14 changed due to my new notes setup
 					name_is_source = false,
 					-- concealing is done by treesitter
 					conceal = false,

@@ -1,0 +1,8 @@
+name: SAP
+root: ~/Notes/SAP
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

@@ -1,0 +1,34 @@
+# /home/xi3k/.config/tmuxinator/wiki.yml
+
+name: workspace
+root: ~/
+
+windows:
+  - DSC: cd ~/DSC && nvim
+  - Journal: cd ~/Journal && ls
+  - Wiki: cd ~/Wiki && nvim
+  - Code: cd ~/Development && ls
+  - Code: cd ~/Development && ls
+  #- Dev:
+  #    layout: ebc9,272x47,0,0{114x47,0,0,1,157x47,115,0,4}
+  #    panes:
+  #      - cd ~/Development && ls
+  #      - cd ~/Development && nvim Project_Ideas.md
+
+  # There is a bug that makes the tmux command being executed not for the specific window 
+  # but for the first one. Therefore all the windows are created first and then 
+  # reordered.
+  # https://github.com/tmuxinator/tmuxinator/issues/747
+  # Move 0:DSC -> 7
+  # Move 1:Journal -> 8
+  # Move 5:zsh -> 1
+  # Move 3:Code -> 5
+  # Move 4:Code -> 6
+  # Move 2:Wiki -> 4
+  - zsh:
+    - tmux move-window -s 0 -t 7
+    - tmux move-window -s 1 -t 8
+    - tmux move-window -s 5 -t 1
+    - tmux move-window -s 3 -t 5
+    - tmux move-window -s 4 -t 6
+    - tmux move-window -s 2 -t 4

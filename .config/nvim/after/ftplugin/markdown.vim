@@ -18,8 +18,9 @@ setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*[-*+]\\s\\+\\\|^\\[^\\ze[^\\
 	"'O' in Normal mode.
 "t	Auto-wrap text using textwidth
 "       is always set by: /usr/share/vim/vim82/ftplugin/markdown.vim
-" setlocal fo-=t fo-=q fo-=r
-setlocal formatoptions=Mwjlnt
+"c	Auto-wrap comments using 'textwidth', inserting the current comment
+"   leader automatically.
+setlocal formatoptions=Mwjlntqc
 
 " Prevent jumping to beginning of line when insertin a '#'.
 " See also: ~/.config/nvim/plugged/vim-markdown/indent/markdown.vim

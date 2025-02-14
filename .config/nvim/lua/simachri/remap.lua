@@ -185,33 +185,33 @@ end
 
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>sh",
+	"<leader>sfh",
 	":lua Rename_md_file_from_h1()<CR>",
-	{ noremap = true, silent = true, desc = "Rename File from Header" }
+	{ noremap = true, silent = true, desc = "Set FileName from header" }
 )
 
-function Create_new_tracker_file()
-	local new_file_path = vim.fn.expand("%:h") .. "/../Tracker/new.md"
-	vim.cmd("edit " .. new_file_path)
-
-	-- Wait for buffer to load, then insert a specific LuaSnip snippet
-	vim.schedule(function()
-		local snips = require("luasnip").get_snippets()["markdown"]
-		for _, snip in ipairs(snips) do
-			if snip["name"] == "Issue" then
-				require("luasnip").snip_expand(snip)
-				return true
-			end
-		end
-	end)
-end
-
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>nt",
-	":lua Create_new_tracker_file()<CR>",
-	{ noremap = true, silent = true, desc = "New Tracker Item" }
-)
+-- function Create_new_tracker_file()
+-- 	local new_file_path = vim.fn.expand("%:h") .. "/../Tracker/new.md"
+-- 	vim.cmd("edit " .. new_file_path)
+--
+-- 	-- Wait for buffer to load, then insert a specific LuaSnip snippet
+-- 	vim.schedule(function()
+-- 		local snips = require("luasnip").get_snippets()["markdown"]
+-- 		for _, snip in ipairs(snips) do
+-- 			if snip["name"] == "Issue" then
+-- 				require("luasnip").snip_expand(snip)
+-- 				return true
+-- 			end
+-- 		end
+-- 	end)
+-- end
+--
+-- vim.api.nvim_set_keymap(
+-- 	"n",
+-- 	"<leader>nt",
+-- 	":lua Create_new_tracker_file()<CR>",
+-- 	{ noremap = true, silent = true, desc = "New Tracker Item" }
+-- )
 
 vim.api.nvim_set_keymap(
 	"n",
@@ -226,15 +226,15 @@ function CreateWikiLinkToRegisterX()
 	if header then
 		local link = header
 			:lower()
-			:gsub("%p", "") -- Remove any punctuations
+			:gsub("[^%w%- ]", "") -- Remove any punctuations except hyphens and spaces
 			:gsub("%s", "-") -- Replace spaces with dashes
 			:gsub("%-+", "-") -- Remove multiple consecutive dashes
 			:gsub("^%-", "") -- Remove leading dash
 			:gsub("%-$", "") -- Remove trailing dash
 
 		local wikilink = string.format("[[%s]]", link)
-        vim.fn.setreg('x', wikilink)
-        print("Created wiki link and yanked to register 'x'.")
+		vim.fn.setreg("x", wikilink)
+		print("Created wiki link and yanked to register 'x'.")
 	else
 		print("No H1 header found on this line.")
 	end

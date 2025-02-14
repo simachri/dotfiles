@@ -126,7 +126,7 @@ return {
 		},
 
 		{
-			"<leader>fst",
+			"<leader>ft",
 			function()
 				Snacks.picker.grep({
 					search = "- \\[ \\] ",
@@ -159,46 +159,46 @@ return {
 					},
 				})
 			end,
-			desc = "Find Space Meeting TODOs",
+			desc = "Find space meeting Todos",
 		},
 
-		{
-			"<leader>fsj",
-			function()
-				Snacks.picker.files({
-					exclude = {
-						"Meetings",
-						"Issues",
-					},
-					ft = "md",
-					layout = {
-						layout = {
-							preview = false,
-							layout = {
-								-- all values are defaults except for the title
-								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-								box = "horizontal",
-								width = 0.8,
-								min_width = 120,
-								height = 0.8,
-								{
-									box = "vertical",
-									border = "rounded",
-									title = "Space Files {live} {flags}",
-									{ win = "input", height = 1, border = "bottom" },
-									{ win = "list", border = "none" },
-								},
-								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-							},
-						},
-					},
-				})
-			end,
-			desc = "Find Space Files",
-		},
+		-- {
+		-- 	"<leader>fsj",
+		-- 	function()
+		-- 		Snacks.picker.files({
+		-- 			exclude = {
+		-- 				"Meetings",
+		-- 				"Issues",
+		-- 			},
+		-- 			ft = "md",
+		-- 			layout = {
+		-- 				layout = {
+		-- 					preview = false,
+		-- 					layout = {
+		-- 						-- all values are defaults except for the title
+		-- 						-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+		-- 						box = "horizontal",
+		-- 						width = 0.8,
+		-- 						min_width = 120,
+		-- 						height = 0.8,
+		-- 						{
+		-- 							box = "vertical",
+		-- 							border = "rounded",
+		-- 							title = "Space Files {live} {flags}",
+		-- 							{ win = "input", height = 1, border = "bottom" },
+		-- 							{ win = "list", border = "none" },
+		-- 						},
+		-- 						{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+		-- 					},
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	desc = "Find Space Files",
+		-- },
 
 		{
-			"<leader>fsl",
+			"<leader>ff",
 			function()
 				Snacks.picker.grep({
 					search = "^tags:\\s*\\[.*?",
@@ -207,6 +207,7 @@ return {
 						"Issues",
 					},
                     live = false, -- will show all files with tags which then can be fuzzy searched in the result list
+                    args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
 					layout = {
                         preview = false,
@@ -229,14 +230,13 @@ return {
 							},
 						},
 					},
-					args = { "-U" }, -- --multline and -U are equivalent
 				})
 			end,
-			desc = "Find Tagged Space Files",
+			desc = "Find tagged space Files",
 		},
 
 		{
-			"<leader>fsm",
+			"<leader>fm",
 			function()
 				Snacks.picker.files({
 					dirs = {
@@ -268,7 +268,7 @@ return {
 		},
 
 		{
-			"<leader>fsi",
+			"<leader>fi",
 			function()
 				Snacks.picker.files({
 					dirs = {
@@ -420,11 +420,11 @@ return {
 		},
 
 		{
-			"<leader>fk",
+			"<leader>fa",
 			function()
 				Snacks.picker.keymaps()
 			end,
-			desc = "Find Key Mappings",
+			desc = "Find key mAppings",
 		},
 	},
 }
