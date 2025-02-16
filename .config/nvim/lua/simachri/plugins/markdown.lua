@@ -340,22 +340,25 @@ return {
 	},
 
 	{
-		-- To make this work, adjust the following in /home/xi3k/.local/share/nvim/lazy/clipboard-image.nvim/lua/clipboard-image/utils.lua:
-		---- cmd_paste = "$content = " .. cmd_check .. ";$content.Save('%s', 'png')"
-		-- cmd_paste = "(" .. cmd_check .. ").Save('%s', 'png')"
-		-- To make this work, adjust the following in /home/xi3k/.local/share/nvim/lazy/clipboard-image.nvim/lua/clipboard-image/health.lua:
-		-- require"nvim.health" instead of require"health"
-		-- For compatibility with Lazy, make sure to 'git add' the changes to stage them,
-		-- see https://github.com/folke/lazy.nvim/issues/1099#issuecomment-1758249371.
-		"dfendr/clipboard-image.nvim",
-		keys = {
-			{ "<leader>mpi", ":PasteImg<CR>", { silent = true, desc = "Paste Image" } },
-		},
+		"HakonHarnes/img-clip.nvim",
+		event = "VeryLazy",
 		opts = {
-			markdown = {
-				img_dir = { "%:p:h", ".img" },
-				img_dir_txt = { ".img" },
+			filetypes = {
+				markdown = {
+					dir_path = ".img", ---@type string | fun(): string
+					extension = "png", ---@type string | fun(): string
+					file_name = "%Y-%m-%d-%H-%M-%S", ---@type string | fun(): string
+					use_absolute_path = false, ---@type boolean | fun(): boolean
+					relative_to_current_file = true, ---@type boolean | fun(): boolean
+					url_encode_path = true, ---@type boolean | fun(): boolean
+					template = "![$CURSOR]($FILE_PATH)", ---@type string | fun(context: table): string
+					download_images = false, ---@type boolean | fun(): boolean
+				},
 			},
+		},
+		keys = {
+			-- suggested keymap
+			{ "<leader>mp", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
 		},
 	},
 
@@ -375,8 +378,86 @@ return {
 			}
 		end,
 		keys = {
-			{ "<leader>mps", ":MarkdownPreview<CR>", { silent = true } },
-			{ "<leader>mpc", ":MarkdownPreviewStop<CR>", { silent = true } },
+			{ "<leader>ms", ":MarkdownPreview<CR>", { silent = true } },
+			{ "<leader>mc", ":MarkdownPreviewStop<CR>", { silent = true } },
+		},
+	},
+
+	{
+		"folke/todo-comments.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- IMPORTANT: There is also an autocmd here /home/xi3k/.config/nvim/lua/simachri/autocmd.lua
+		-- VimEnter is required to make the autocmd run. https://github.com/folke/todo-comments.nvim/issues/264#issuecomment-2254810084
+		-- event = "VimEnter",
+		ft = "markdown",
+		opts = {
+			-- keywords recognized as todo comments
+			keywords = {
+				FIX = {
+					icon = " ", -- icon used for the sign, and in search results
+					color = "error", -- can be a hex color, or a named color (see below)
+					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+					-- signs = false, -- configure signs for some keywords individually
+				},
+				TODO = { icon = " ", color = "info" },
+				NEXT = { icon = " ", color = "error" },
+				WAIT = { icon = " ", color = "warning" },
+				HACK = { icon = " ", color = "warning" },
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+				NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+				TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+			},
+		},
+		keys = {
+			{
+				"<leader>lt",
+				function()
+					---@diagnostic disable-next-line: undefined-field
+					Snacks.picker.todo_comments({
+						keywords = { "TODO", "WAIT", "NEXT" },
+						ft = "md",
+						-- 	-- DOES NOT WORK
+						-- sort = {
+						-- 	fields = {
+						-- 		"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
+						-- 		-- "score:desc",
+						-- 		-- "idx",
+						-- 		-- "#text",
+						-- 	},
+						-- },
+						-- matcher = {
+						-- 	frecency = false, -- frecency bonus
+						-- 	history_bonus = false, -- give more weight to chronological order
+						-- 	cwd_bonus = false,
+						-- },
+						layout = {
+							preview = "main",
+							preset = "ivy",
+							layout = {
+								position = "bottom",
+								-- all values are defaults except for the title
+								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+								box = "horizontal",
+								width = 1,
+								min_width = 120,
+								height = 0.4,
+								{
+									box = "vertical",
+									border = "rounded",
+									title = "Todos {live} {flags}",
+									{ win = "input", height = 1, border = "bottom" },
+									{ win = "list", border = "none" },
+								},
+								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+							},
+						},
+					})
+				end,
+				desc = "List Todos",
+			},
 		},
 	},
 }

@@ -5,14 +5,12 @@ return {
 	---@type snacks.Config
 	opts = {
 		bigfile = { enabled = true },
-		dashboard = { enabled = false },
-		explorer = { enabled = false },
 		input = { enabled = true },
 
 		scratch = {
 			root = "/home/xi3k/Notes/Scratch",
 			ft = "markdown",
-            autowrite = false,
+			autowrite = true,
 			win_by_ft = {
 				markdown = {
 					keys = {
@@ -93,8 +91,11 @@ return {
 			},
 		},
 
-		notifier = { enabled = false },
+		notifier = { enabled = true },
 		quickfile = { enabled = true },
+
+		dashboard = { enabled = false },
+		explorer = { enabled = false },
 		scope = { enabled = false },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = false },
@@ -125,42 +126,42 @@ return {
 			desc = "Find Files",
 		},
 
-		{
-			"<leader>ft",
-			function()
-				Snacks.picker.grep({
-					search = "- \\[ \\] ",
-					live = false, -- easier filtering for returned list
-					show_empty = true,
-					dirs = {
-						"Meetings",
-					},
-					format = "file",
-					layout = {
-						layout = {
-							preview = false,
-							layout = {
-								-- all values are defaults except for the title
-								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-								box = "horizontal",
-								width = 0.8,
-								min_width = 120,
-								height = 0.8,
-								{
-									box = "vertical",
-									border = "rounded",
-									title = "TODOs {live} {flags}",
-									{ win = "input", height = 1, border = "bottom" },
-									{ win = "list", border = "none" },
-								},
-								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-							},
-						},
-					},
-				})
-			end,
-			desc = "Find space meeting Todos",
-		},
+		-- {
+		-- 	"<leader>ft",
+		-- 	function()
+		-- 		Snacks.picker.grep({
+		-- 			search = "- \\[ \\] ",
+		-- 			live = false, -- easier filtering for returned list
+		-- 			show_empty = true,
+		-- 			dirs = {
+		-- 				"Meetings",
+		-- 			},
+		-- 			format = "file",
+		-- 			layout = {
+		-- 				layout = {
+		-- 					preview = false,
+		-- 					layout = {
+		-- 						-- all values are defaults except for the title
+		-- 						-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+		-- 						box = "horizontal",
+		-- 						width = 0.8,
+		-- 						min_width = 120,
+		-- 						height = 0.8,
+		-- 						{
+		-- 							box = "vertical",
+		-- 							border = "rounded",
+		-- 							title = "TODOs {live} {flags}",
+		-- 							{ win = "input", height = 1, border = "bottom" },
+		-- 							{ win = "list", border = "none" },
+		-- 						},
+		-- 						{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+		-- 					},
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	desc = "Find space meeting Todos",
+		-- },
 
 		-- {
 		-- 	"<leader>fsj",
@@ -206,11 +207,11 @@ return {
 						"Meetings",
 						"Issues",
 					},
-                    live = false, -- will show all files with tags which then can be fuzzy searched in the result list
-                    args = { "--max-count", "1" }, -- stop for each filter after 1 hit
+					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
+					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
 					layout = {
-                        preview = false,
+						preview = false,
 						layout = {
 							layout = {
 								-- all values are defaults except for the title

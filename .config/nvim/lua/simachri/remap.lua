@@ -148,10 +148,10 @@ vim.cmd([[
     command SetCheckBoxDone call ToggleCb('done')
     command SetCheckBoxOpen call ToggleCb('open')
     command SetCheckBoxUp call ToggleCb('up')
-    nnoremap <silent> <Leader>tct :ToggleCheckBox<CR>
-    nnoremap <silent> <Leader>tcd :SetCheckBoxDone<CR>
-    nnoremap <silent> <Leader>tco :SetCheckBoxOpen<CR>
-    nnoremap <silent> <Leader>tcu :SetCheckBoxUp<CR>
+    " nnoremap <silent> <Leader>cc :ToggleCheckBox<CR>
+    nnoremap <silent> <Leader>cc :SetCheckBoxDone<CR>
+    nnoremap <silent> <Leader>co :SetCheckBoxOpen<CR>
+    " nnoremap <silent> <Leader>tcu :SetCheckBoxUp<CR>
 ]])
 
 function Rename_md_file_from_h1()
@@ -180,6 +180,10 @@ function Rename_md_file_from_h1()
 	os.rename(old_path, new_path)
 
 	vim.api.nvim_command("keepalt edit " .. new_path)
+
+	-- notify LSP
+	Snacks.rename.on_rename_file(old_path, new_path)
+
 	print("Renamed file to: " .. filename .. ext)
 end
 
@@ -239,3 +243,27 @@ function CreateWikiLinkToRegisterX()
 		print("No H1 header found on this line.")
 	end
 end
+
+function Open_or_create_weekly_note()
+	local year = os.date("%Y")
+	local week_number = os.date("%U")
+	local month_short = os.date("%b")
+	local file_path =
+		string.format("%s/Notes/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, week_number, month_short)
+
+	local file = io.open(file_path, "r")
+	if file then
+		file:close()
+		vim.cmd("edit " .. file_path)
+	else
+		vim.cmd("edit " .. file_path)
+		vim.cmd("write")
+	end
+end
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>jc",
+	":lua Open_or_create_weekly_note()<CR>",
+	{ noremap = true, silent = true, desc = "Weekly Note" }
+)

@@ -383,9 +383,9 @@ return {
 			-- 	'<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbol_width = 45, symbols = {"function", "method"}, prompt_title = "Find functions & methods" })<cr>',
 			-- 	{ noremap = true, silent = true },
 			-- },
-			-- LSP: Find workspace symbols
+			-- LSP: Find workspace (Project) symbols
 			{
-				"<leader>fw",
+				"<leader>fp",
 				'<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<cr>',
 				{ noremap = true, silent = true },
 			},
@@ -433,9 +433,9 @@ return {
 				{ noremap = true, silent = true },
 			},
 
-			-- Find tmuxinator projects
+			-- Find tmuxinator workspaces
 			{
-				"<leader>fp",
+				"<leader>fw",
 				"<cmd>lua require('telescope').extensions.tmuxinator.projects({ layout_strategy = 'vertical', layout_config = { prompt_position = 'bottom', width = 0.5, height = 0.8 }, previwer = false, })<cr>",
 				{ noremap = true, silent = true },
 			},

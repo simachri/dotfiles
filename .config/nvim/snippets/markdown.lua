@@ -4,6 +4,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 -- local dl = require("luasnip.extras").dynamic_lambda
+local date = os.date("*t")
 
 local function current_date()
 	return os.date("%Y-%m-%d")
@@ -23,6 +24,26 @@ local function splitPath(path)
 		table.insert(elems, elem)
 	end
 	return elems
+end
+
+local function get_monday()
+	local offset = date.wday - 2
+	if offset < 0 then
+		offset = 6
+	end
+	return os.date("%d.%m.%Y", os.time(date) - offset * 24 * 60 * 60)
+end
+
+local function get_sunday()
+	local offset = 8 - date.wday
+	if offset > 6 then
+		offset = 0
+	end
+	return os.date("%d.%m.%Y", os.time(date) + offset * 24 * 60 * 60)
+end
+
+local function print_week_dates()
+	return get_monday() .. " - " .. get_sunday()
 end
 
 local function extract_jira_issue_id()
@@ -256,5 +277,55 @@ ls.add_snippets("markdown", {
 		-- Last Placeholder, exit Point of the snippet. EVERY 'outer' SNIPPET NEEDS Placeholder 0.
 		i(0),
 		t({ ")" }),
+	}),
+
+	s("Footnote", {
+		t({
+			"---",
+			"status: open",
+			"tags: [design, ",
+		}),
+		i(1, "tags"),
+		t({ "]", "---", "# " }),
+		f(get_filename_without_leading_date, {}),
+		i(0, ""),
+		t({
+			"",
+			"",
+			"## Design",
+			"",
+			"## Relations",
+			"",
+			"## References",
+			"",
+		}),
+	}),
+
+	s("Weekly Note", {
+		t({
+			"---",
+			"week: ",
+		}),
+		f(print_week_dates, {}),
+		t({
+			"",
+			"---",
+			"# Week ",
+		}),
+		i(2, os.date("%U, %Y")),
+		t({
+			"",
+			"",
+			"## Vemas",
+			"",
+			"- [ ] Mo",
+			"- [ ] Di",
+			"- [ ] Mi",
+			"- [ ] Fr",
+			"",
+			"## Notes",
+			"",
+			"## Todo",
+		}),
 	}),
 })
