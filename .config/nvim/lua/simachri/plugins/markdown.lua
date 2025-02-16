@@ -403,6 +403,7 @@ return {
 				},
 				TODO = { icon = " ", color = "info" },
 				NEXT = { icon = " ", color = "error" },
+				CONT = { icon = "➤ ", color = "hint" },
 				WAIT = { icon = " ", color = "warning" },
 				HACK = { icon = " ", color = "warning" },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
@@ -417,7 +418,7 @@ return {
 				function()
 					---@diagnostic disable-next-line: undefined-field
 					Snacks.picker.todo_comments({
-						keywords = { "TODO", "WAIT", "NEXT" },
+						keywords = { "CONT", "NEXT", "TODO", "WAIT" },
 						ft = "md",
 						-- 	-- DOES NOT WORK
 						-- sort = {
