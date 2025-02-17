@@ -230,7 +230,7 @@ function CreateWikiLinkToRegisterX()
 	if header then
 		local link = header
 			:lower()
-			:gsub("[^%w%- ]", "") -- Remove any punctuations except hyphens and spaces
+			:gsub("[^%w%- äöüÄÖÜ]", "") -- Remove any punctuations except hyphens, spaces, and German Umlauts
 			:gsub("%s", "-") -- Replace spaces with dashes
 			:gsub("%-+", "-") -- Remove multiple consecutive dashes
 			:gsub("^%-", "") -- Remove leading dash
@@ -249,8 +249,13 @@ function Open_or_create_weekly_note()
 	local week_number = os.date("%W") + 1 -- is off by one in 2025
 	local formatted_week_number = string.format("%02d", week_number)
 	local month_short = os.date("%b")
-	local file_path =
-		string.format("%s/Notes/Work/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, formatted_week_number, month_short)
+	local file_path = string.format(
+		"%s/Notes/Work/Weekly/%s/Week-%s-%s.md",
+		os.getenv("HOME"),
+		year,
+		formatted_week_number,
+		month_short
+	)
 
 	local file = io.open(file_path, "r")
 	if file then

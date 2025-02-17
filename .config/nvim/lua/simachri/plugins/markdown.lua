@@ -207,7 +207,11 @@ return {
 		-- header and next link.
 		"jakewvincent/mkdnflow.nvim",
 		ft = { "markdown" },
-		enabled = false,
+		enabled = true,
+		keys = {
+			{ "]r", "<cmd>MkdnNextLink<cr>", desc = "Next Markdown link" },
+			{ "[r", "<cmd>MkdnPrevLink<cr>", desc = "Previous Markdown link" },
+		},
 		config = function()
 			require("mkdnflow").setup({
 				modules = {
@@ -215,87 +219,19 @@ return {
 					buffers = false,
 					-- 2024-07-26, disable conceal because of markdown.nvim
 					conceal = false,
-					cursor = true,
+					cursor = true, -- used for jump to next link
 					folds = false,
 					links = true, -- used for jump to next link
 					lists = false,
-					maps = true, -- keymaps
+					maps = false, -- keymaps
 					paths = false,
 					tables = false,
 				},
-				filetypes = { md = true, rmd = true, markdown = true },
-				create_dirs = true,
-				perspective = {
-					-- priority = 'first',
-					priority = "current",
-					fallback = "current",
-					root_tell = false,
-					nvim_wd_heel = false,
-				},
-				wrap = false,
-				silent = false,
-				links = {
-					style = "wiki", -- 2025-02-14 changed due to my new notes setup
-					name_is_source = false,
-					-- concealing is done by treesitter
-					conceal = false,
-					implicit_extension = "md",
-					transform_implicit = false,
-					transform_explicit = function(text)
-						text = text:gsub(" ", "-")
-						text = text:lower()
-						text = os.date("%Y-%m-%d_") .. text
-						return text
-					end,
-				},
-				to_do = {
-					symbols = { " ", "-", "X" },
-					update_parents = true,
-					not_started = " ",
-					in_progress = "-",
-					complete = "X",
-				},
-				tables = {
-					trim_whitespace = true,
-					format_on_move = true,
-					auto_extend_rows = false,
-					auto_extend_cols = false,
-				},
-				mappings = {
-					MkdnEnter = false,
-					MkdnTab = false,
-					MkdnSTab = false,
-					MkdnNextLink = { { "n", "v" }, "]r" },
-					MkdnPrevLink = { { "n", "v" }, "[r" },
-					MkdnNextHeading = { { "n", "v" }, "]]" },
-					MkdnPrevHeading = { { "n", "v" }, "[[" },
-					MkdnGoBack = false,
-					MkdnGoForward = false,
-					MkdnFollowLink = false,
-					MkdnDestroyLink = false,
-					MkdnTagSpan = false,
-					MkdnMoveSource = false,
-					MkdnYankAnchorLink = false,
-					MkdnYankFileAnchorLink = false,
-					MkdnIncreaseHeading = false,
-					MkdnDecreaseHeading = false,
-					MkdnToggleToDo = false,
-					MkdnNewListItem = false,
-					MkdnNewListItemBelowInsert = false,
-					MkdnNewListItemAboveInsert = false,
-					MkdnExtendList = false,
-					MkdnUpdateNumbering = false,
-					MkdnTableNextCell = false,
-					MkdnTablePrevCell = false,
-					MkdnTableNextRow = false,
-					MkdnTablePrevRow = false,
-					MkdnTableNewRowBelow = false,
-					MkdnTableNewRowAbove = false,
-					MkdnTableNewColAfter = false,
-					MkdnTableNewColBefore = false,
-					MkdnFoldSection = false,
-					MkdnUnfoldSection = false,
-					MkdnCreateLinkFromClipboard = false,
+				cursor = {
+					jump_patterns = {
+						"(%b[]%b())", -- markdown link
+						"(%[%b[]%])", -- wiki link
+					},
 				},
 			})
 
@@ -418,7 +354,7 @@ return {
 				function()
 					---@diagnostic disable-next-line: undefined-field
 					Snacks.picker.pick({
-                        source = "todo_comments",
+						source = "todo_comments",
 						keywords = { "CONT", "NEXT", "TODO", "WAIT" },
 						ft = "md",
 						sort = {
@@ -430,7 +366,7 @@ return {
 							},
 						},
 						matcher = {
-                            sort_empty = true,
+							sort_empty = true,
 							frecency = false, -- frecency bonus
 							history_bonus = false, -- give more weight to chronological order
 							cwd_bonus = false,

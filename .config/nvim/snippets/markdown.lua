@@ -68,12 +68,6 @@ ls.add_snippets("markdown", {
 		t({
 			"---",
 			"location: virtual",
-			"previous_meeting: [[",
-		}),
-		i(2, "<Previous Meeting>"), -- Jump here AFTER the meeting title is provided
-		-- t("]]"), omitted because will be provided by autocomplete
-		t({
-			"",
 			"tags: [meeting]",
 			"---",
 			"# ",
@@ -85,6 +79,8 @@ ls.add_snippets("markdown", {
 		-- dl(1, get_filename_without_leading_date, {}),
 		t({
 			"",
+			"",
+			"## Previous Meeting",
 			"",
 			"## Agenda",
 			"",
@@ -294,23 +290,11 @@ ls.add_snippets("markdown", {
 
 	s("Footnote", {
 		t({
-			"---",
-			"status: open",
-			"tags: [design, ",
+			"[^fn-1",
 		}),
-		i(1, "tags"),
-		t({ "]", "---", "# " }),
-		f(get_filename_without_leading_date, {}),
-		i(0, ""),
+		i(0),
 		t({
-			"",
-			"",
-			"## Design",
-			"",
-			"## Relations",
-			"",
-			"## References",
-			"",
+			"]",
 		}),
 	}),
 
