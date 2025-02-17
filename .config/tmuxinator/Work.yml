@@ -1,8 +1,8 @@
-name: PDI
-root: ~/Notes/Work/PDI
+name: Work
+root: ~/Notes/Work
 startup_window: 1
 
 windows:
   - zsh:
   - Neovim:
-    - nvim
+      - nvim

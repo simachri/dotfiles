@@ -250,7 +250,7 @@ function Open_or_create_weekly_note()
 	local formatted_week_number = string.format("%02d", week_number)
 	local month_short = os.date("%b")
 	local file_path =
-		string.format("%s/Notes/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, formatted_week_number, month_short)
+		string.format("%s/Notes/Work/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, formatted_week_number, month_short)
 
 	local file = io.open(file_path, "r")
 	if file then
