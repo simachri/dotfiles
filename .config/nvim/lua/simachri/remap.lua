@@ -163,7 +163,7 @@ function Rename_md_file_from_h1()
 		return
 	end
 
-	local filename = header:gsub("%s+", "-"):gsub("[^a-zA-Z0-9%-äöüÖÜÄ]", "")
+	local filename = header:gsub("%s+", "_"):gsub("[^a-zA-Z0-9%_äöüÖÜÄ]", "")
 
 	local old_path = vim.fn.expand("%:p")
 	local dir = vim.fn.expand("%:p:h")

@@ -11,7 +11,7 @@ end
 
 local function get_filename_without_leading_date()
 	local filename = vim.fn.expand("%:t:r")
-	return filename:gsub("^%d%d%d%d%-%d%d%-%d%d[-_ ]*", ""):gsub("-", " ")
+	return filename:gsub("^%d%d%d%d%-%d%d%-%d%d[-_ ]*", ""):gsub("[-_]", " ")
 end
 
 local function splitPath(path)
