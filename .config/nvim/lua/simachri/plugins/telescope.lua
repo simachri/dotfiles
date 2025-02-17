@@ -360,8 +360,8 @@ return {
 			-- { "<leader>lb", "<cmd>lua buffers()<cr>", { noremap = true, silent = true } },
 			---- Outline
 			--vim.api.nvim_set_keymap('n', '<leader>fo', [[<cmd>lua outline()<cr>]], { noremap = true, silent = true })
-			-- Continue search
-			{ "<leader>cs", '<cmd>lua require("telescope.builtin").resume()<cr>', { noremap = true, silent = true } },
+			-- -- Continue search
+			-- { "<leader>cs", '<cmd>lua require("telescope.builtin").resume()<cr>', { noremap = true, silent = true } },
 			-- -- Explorer/file browser
 			-- vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true })
 			-- -- Buffer fuzzy find: Headers

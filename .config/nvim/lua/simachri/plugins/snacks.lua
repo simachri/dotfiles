@@ -67,6 +67,10 @@ return {
 				cwd_bonus = true,
 			},
 
+			-- debug = {
+			-- 	scores = true, -- show scores in the list
+			-- },
+
 			formatters = {
 				file = {
 					filename_first = true, -- display filename before the file path
@@ -426,6 +430,14 @@ return {
 				Snacks.picker.keymaps()
 			end,
 			desc = "Find key mAppings",
+		},
+
+		{
+			"<leader>rs",
+			function()
+				Snacks.picker.resume()
+			end,
+			desc = "Resume Search",
 		},
 	},
 }

@@ -263,7 +263,7 @@ end
 
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>jc",
+	"<leader>jj",
 	":lua Open_or_create_weekly_note()<CR>",
 	{ noremap = true, silent = true, desc = "Weekly Note" }
 )

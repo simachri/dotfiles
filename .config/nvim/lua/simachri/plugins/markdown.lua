@@ -417,23 +417,24 @@ return {
 				"<leader>lt",
 				function()
 					---@diagnostic disable-next-line: undefined-field
-					Snacks.picker.todo_comments({
+					Snacks.picker.pick({
+                        source = "todo_comments",
 						keywords = { "CONT", "NEXT", "TODO", "WAIT" },
 						ft = "md",
-						-- 	-- DOES NOT WORK
-						-- sort = {
-						-- 	fields = {
-						-- 		"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
-						-- 		-- "score:desc",
-						-- 		-- "idx",
-						-- 		-- "#text",
-						-- 	},
-						-- },
-						-- matcher = {
-						-- 	frecency = false, -- frecency bonus
-						-- 	history_bonus = false, -- give more weight to chronological order
-						-- 	cwd_bonus = false,
-						-- },
+						sort = {
+							fields = {
+								"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
+								"score:desc",
+								-- "idx",
+								-- "#text",
+							},
+						},
+						matcher = {
+                            sort_empty = true,
+							frecency = false, -- frecency bonus
+							history_bonus = false, -- give more weight to chronological order
+							cwd_bonus = false,
+						},
 						layout = {
 							preview = "main",
 							preset = "ivy",
