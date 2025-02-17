@@ -246,10 +246,11 @@ end
 
 function Open_or_create_weekly_note()
 	local year = os.date("%Y")
-	local week_number = os.date("%U")
+	local week_number = os.date("%W") + 1 -- is off by one in 2025
+	local formatted_week_number = string.format("%02d", week_number)
 	local month_short = os.date("%b")
 	local file_path =
-		string.format("%s/Notes/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, week_number, month_short)
+		string.format("%s/Notes/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, formatted_week_number, month_short)
 
 	local file = io.open(file_path, "r")
 	if file then
@@ -257,7 +258,18 @@ function Open_or_create_weekly_note()
 		vim.cmd("edit " .. file_path)
 	else
 		vim.cmd("edit " .. file_path)
-		vim.cmd("write")
+
+		-- Wait for buffer to load, then insert a specific LuaSnip snippet
+		vim.schedule(function()
+			local snips = require("luasnip").get_snippets()["markdown"]
+			for _, snip in ipairs(snips) do
+				if snip["name"] == "Weekly Note" then
+					require("luasnip").snip_expand(snip)
+					vim.cmd("write")
+					return true
+				end
+			end
+		end)
 	end
 end
 

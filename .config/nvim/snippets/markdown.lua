@@ -4,7 +4,6 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 -- local dl = require("luasnip.extras").dynamic_lambda
-local date = os.date("*t")
 
 local function current_date()
 	return os.date("%Y-%m-%d")
@@ -26,24 +25,38 @@ local function splitPath(path)
 	return elems
 end
 
-local function get_monday()
-	local offset = date.wday - 2
+local function get_weekday_date(day_of_week)
+	local date = os.date("*t")
+	local current_day = date.wday - 1 -- Lua's os.date("%w") returns 1 for Sunday, 2 for Monday, etc.
+	local offset = day_of_week - current_day
 	if offset < 0 then
-		offset = 6
-	end
-	return os.date("%d.%m.%Y", os.time(date) - offset * 24 * 60 * 60)
-end
-
-local function get_sunday()
-	local offset = 8 - date.wday
-	if offset > 6 then
-		offset = 0
+		offset = offset + 7
 	end
 	return os.date("%d.%m.%Y", os.time(date) + offset * 24 * 60 * 60)
 end
 
-local function print_week_dates()
-	return get_monday() .. " - " .. get_sunday()
+local function print_monday()
+	return get_weekday_date(1)
+end
+
+local function print_tuesday()
+	return get_weekday_date(2)
+end
+
+local function print_wednesday()
+	return get_weekday_date(3)
+end
+
+local function print_friday()
+	return get_weekday_date(4)
+end
+
+local function print_week_number_and_year()
+	local week = os.date("%W") + 1 -- is off by one in 2025 for some reason
+	local formatted_week_number = string.format("%02d", week)
+	local full_month_name = os.date("%B")
+	local year = os.date("%Y")
+	return formatted_week_number .. ", " .. full_month_name .. " " .. year
 end
 
 local function extract_jira_issue_id()
@@ -303,29 +316,48 @@ ls.add_snippets("markdown", {
 
 	s("Weekly Note", {
 		t({
-			"---",
-			"week: ",
-		}),
-		f(print_week_dates, {}),
-		t({
-			"",
-			"---",
 			"# Week ",
 		}),
-		i(2, os.date("%U, %Y")),
+		f(print_week_number_and_year, {}),
 		t({
 			"",
 			"",
-			"## Vemas",
+			"## Monday, ",
+		}),
+		f(print_monday, {}),
+		t({
 			"",
-			"- [ ] Mo",
-			"- [ ] Di",
-			"- [ ] Mi",
-			"- [ ] Fr",
 			"",
-			"## Notes",
+			"- [ ] Vemas",
 			"",
-			"## Todo",
+		}),
+		i(0),
+		t({
+			"",
+			"## Tuesday, ",
+		}),
+		f(print_tuesday, {}),
+		t({
+			"",
+			"",
+			"- [ ] Vemas",
+			"",
+			"## Wednesday, ",
+		}),
+		f(print_wednesday, {}),
+		t({
+			"",
+			"",
+			"- [ ] Vemas",
+			"",
+			"## Friday, ",
+		}),
+		f(print_friday, {}),
+		t({
+			"",
+			"",
+			"- [ ] Vemas",
+			"",
 		}),
 	}),
 })
