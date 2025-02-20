@@ -371,32 +371,56 @@ return {
 							history_bonus = false, -- give more weight to chronological order
 							cwd_bonus = false,
 						},
+						-- Remove 'waiting' items that are not yet due.
 						---@param item snacks.picker.finder.Item Item returned from the matcher
 						transform = function(item)
-                            local remove_item_as_not_yet_due = false
+							local remove_item_as_not_yet_due = false
 
-                            -- special handling for WAIT, all others to be returned as-is
-                            if not string.match(item.line, "WAIT:") then
-                                return item
-                            end
+							-- special handling for WAIT, all others to be returned as-is
+							if not string.match(item.line, "WAIT:") then
+								return item
+							end
 
-                            -- check if line contains a date
-                            local year, month, day = string.match(item.line, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
-                            if not year then
-                                return item
-                            end
+							-- check if line contains a date
+							local year, month, day = string.match(item.line, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
+							if not year then
+								return item
+							end
 
-                            year, month, day = tonumber(year), tonumber(month), tonumber(day)
-                            local now = os.date("*t")
-                            local today = os.time{year = now.year, month = now.month, day = now.day}
-                            local due_date = os.time{year = year, month = month, day = day}
-                            if due_date > today then
-                                return remove_item_as_not_yet_due
-                            end
+							year, month, day = tonumber(year), tonumber(month), tonumber(day)
+							local now = os.date("*t")
+							local today = os.time({ year = now.year, month = now.month, day = now.day })
+							local due_date = os.time({ year = year, month = month, day = day })
+							if due_date > today then
+								return remove_item_as_not_yet_due
+							end
 
-                            return item
+							return item
 						end,
-
+						formatters = {
+							file = {
+								filename_only = true,
+							},
+						},
+						-- -- https://github.com/folke/todo-comments.nvim/blob/304a8d204ee787d2544d8bc23cd38d2f929e7cc5/lua/todo-comments/snacks.lua#L27
+						-- ---@param item snacks.picker.Item
+						-- ---@param picker snacks.Picker
+						-- format = function(item, picker)
+						-- 	local Config = require("todo-comments.config")
+						-- 	local Highlight = require("todo-comments.highlight")
+						--
+						-- 	local a = Snacks.picker.util.align
+						-- 	local _, _, kw = Highlight.match(item.text)
+						-- 	local ret = {} ---@type snacks.picker.Highlights
+						-- 	if kw then
+						-- 		kw = Config.keywords[kw] or kw
+						-- 		local icon = vim.tbl_get(Config.options.keywords, kw, "icon") or ""
+						-- 		ret[#ret + 1] = { a(icon, 2), "TodoFg" .. kw }
+						-- 		ret[#ret + 1] = { a(kw, 6, { align = "center" }), "TodoBg" .. kw }
+						-- 		ret[#ret + 1] = { " " }
+						-- 	end
+						-- 	return vim.list_extend(ret, Snacks.picker.format.file(item, picker))
+						-- end,
 						layout = {
 							preview = "main",
 							preset = "ivy",
