@@ -7,6 +7,14 @@ return {
 		bigfile = { enabled = true },
 		input = { enabled = true },
 
+		styles = {
+			notification_history = {
+				keys = {
+					["<C-c>"] = "close",
+				},
+			},
+		},
+
 		scratch = {
 			root = "/home/xi3k/Notes/Scratch",
 			ft = "markdown",
@@ -95,7 +103,9 @@ return {
 			},
 		},
 
-		notifier = { enabled = true },
+		notifier = {
+			enabled = true,
+		},
 		quickfile = { enabled = true },
 
 		dashboard = { enabled = false },
@@ -107,6 +117,13 @@ return {
 	},
 
 	keys = {
+		{
+			"<leader>sn",
+			function()
+				Snacks.notifier.show_history()
+			end,
+			desc = "Show Notification history",
+		},
 		{
 			"<leader>.",
 			function()

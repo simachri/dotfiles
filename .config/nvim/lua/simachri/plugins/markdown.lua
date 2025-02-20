@@ -371,6 +371,32 @@ return {
 							history_bonus = false, -- give more weight to chronological order
 							cwd_bonus = false,
 						},
+						---@param item snacks.picker.finder.Item Item returned from the matcher
+						transform = function(item)
+                            local remove_item_as_not_yet_due = false
+
+                            -- special handling for WAIT, all others to be returned as-is
+                            if not string.match(item.line, "WAIT:") then
+                                return item
+                            end
+
+                            -- check if line contains a date
+                            local year, month, day = string.match(item.line, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
+                            if not year then
+                                return item
+                            end
+
+                            year, month, day = tonumber(year), tonumber(month), tonumber(day)
+                            local now = os.date("*t")
+                            local today = os.time{year = now.year, month = now.month, day = now.day}
+                            local due_date = os.time{year = year, month = month, day = day}
+                            if due_date > today then
+                                return remove_item_as_not_yet_due
+                            end
+
+                            return item
+						end,
+
 						layout = {
 							preview = "main",
 							preset = "ivy",
