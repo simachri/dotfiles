@@ -383,42 +383,42 @@ return {
 			-- 	'<cmd>lua require("telescope.builtin").lsp_document_symbols({ symbol_width = 45, symbols = {"function", "method"}, prompt_title = "Find functions & methods" })<cr>',
 			-- 	{ noremap = true, silent = true },
 			-- },
-			-- LSP: Find workspace (Project) symbols
-			{
-				"<leader>fp",
-				'<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<cr>',
-				{ noremap = true, silent = true },
-			},
-			-- LSP: Show type definition(s) for word under cursor
-			{
-				"gt",
-				'<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
-				{ noremap = true, silent = true, desc = "LSP Type Definitions" },
-			},
-			-- LSP: Go to definition(s)
-			{
-				"gd",
-				'<cmd>lua require("telescope.builtin").lsp_definitions()<cr>',
-				{ noremap = true, silent = true, desc = "LSP Definitions" },
-			},
-			-- LSP: Go to implementaion(s)
-			{
-				"gi",
-				'<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
-				{ noremap = true, silent = true, desc = "LSP Implementations" },
-			},
-			-- LSP: Go to reference(s)
-			{
-				"gr",
-				'<cmd>lua require("telescope.builtin").lsp_references({include_declaration=false, fname_width=60, show_line=false})<cr>',
-				{ noremap = true, silent = true, desc = "LSP References" },
-			},
-			-- LSP: Go to declaration
-			{
-				"gD",
-				"<cmd>lua vim.lsp.buf.declaration()<cr>",
-				{ noremap = true, silent = true, desc = "LSP Declaration" },
-			},
+			-- -- LSP: Find workspace (Project) symbols
+			-- {
+			-- 	"<leader>fp",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- },
+			-- -- LSP: Show type definition(s) for word under cursor
+			-- {
+			-- 	"gt",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>',
+			-- 	{ noremap = true, silent = true, desc = "LSP Type Definitions" },
+			-- },
+			-- -- LSP: Go to definition(s)
+			-- {
+			-- 	"gd",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_definitions()<cr>',
+			-- 	{ noremap = true, silent = true, desc = "LSP Definitions" },
+			-- },
+			-- -- LSP: Go to implementaion(s)
+			-- {
+			-- 	"gi",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_implementations()<cr>',
+			-- 	{ noremap = true, silent = true, desc = "LSP Implementations" },
+			-- },
+			-- -- LSP: Go to reference(s)
+			-- {
+			-- 	"gr",
+			-- 	'<cmd>lua require("telescope.builtin").lsp_references({include_declaration=false, fname_width=60, show_line=false})<cr>',
+			-- 	{ noremap = true, silent = true, desc = "LSP References" },
+			-- },
+			-- -- LSP: Go to declaration
+			-- {
+			-- 	"gD",
+			-- 	"<cmd>lua vim.lsp.buf.declaration()<cr>",
+			-- 	{ noremap = true, silent = true, desc = "LSP Declaration" },
+			-- },
 
 			-- Grep Search history - use <C-e> for the entry to populate the search prompt.
 			{

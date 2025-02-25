@@ -265,6 +265,13 @@ return {
 						"Meetings",
 					},
 					ft = "md",
+					matcher = {
+						sort_empty = true, -- sort results when the search string is empty
+					},
+					sort = {
+						-- default sort is by score, text length and index
+						fields = { "score:desc", "text:desc", "#text", "idx" },
+					},
 					layout = {
 						preview = true,
 						layout = {
@@ -426,7 +433,74 @@ return {
 					},
 				})
 			end,
-			desc = "Find Symbols",
+			desc = "LSP Find Symbols",
+		},
+		{
+			"<leader>fS",
+			function()
+				Snacks.picker.lsp_workspace_symbols({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "LSP Find Workspace Symbols",
+		},
+		{
+			"gd",
+			function()
+				Snacks.picker.lsp_definitions({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Goto Definition",
+		},
+		{
+			"gD",
+			function()
+				Snacks.picker.lsp_declarations({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Goto Declaration",
+		},
+		{
+			"gr",
+			function()
+				Snacks.picker.lsp_references({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			nowait = true,
+			desc = "References",
+		},
+		{
+			"gI",
+			function()
+				Snacks.picker.lsp_implementations({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Goto Implementation",
+		},
+		{
+			"gy",
+			function()
+				Snacks.picker.lsp_type_definitions({
+					layout = {
+						preview = true,
+					},
+				})
+			end,
+			desc = "Goto T[y]pe Definition",
 		},
 
 		{

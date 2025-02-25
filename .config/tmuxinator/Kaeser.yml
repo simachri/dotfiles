@@ -1,0 +1,8 @@
+name: Kaeser
+root: ~/Notes/Work/Kaeser
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

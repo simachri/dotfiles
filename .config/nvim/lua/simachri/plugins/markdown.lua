@@ -287,7 +287,7 @@ return {
 					use_absolute_path = false, ---@type boolean | fun(): boolean
 					relative_to_current_file = true, ---@type boolean | fun(): boolean
 					url_encode_path = true, ---@type boolean | fun(): boolean
-					template = "![$CURSOR]($FILE_PATH)", ---@type string | fun(context: table): string
+					template = "![$LABEL]($FILE_PATH)", ---@type string | fun(context: table): string
 					download_images = false, ---@type boolean | fun(): boolean
 				},
 			},
@@ -340,7 +340,7 @@ return {
 				TODO = { icon = " ", color = "info" },
 				NEXT = { icon = " ", color = "error" },
 				CONT = { icon = "➤ ", color = "hint" },
-				WAIT = { icon = " ", color = "warning" },
+				PEND = { icon = " ", color = "warning", alt = { "WAIT", "PENDING" } },
 				HACK = { icon = " ", color = "warning" },
 				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
@@ -352,14 +352,13 @@ return {
 			{
 				"<leader>lt",
 				function()
-					---@diagnostic disable-next-line: undefined-field
 					Snacks.picker.pick({
 						source = "todo_comments",
-						keywords = { "CONT", "NEXT", "TODO", "WAIT" },
+						keywords = { "CONT", "NEXT", "TODO", "PENDING" },
 						ft = "md",
 						sort = {
 							fields = {
-								"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
+								"line", -- contains the matching keyword. this will sort CONT > NEXT > PENDING > TODO
 								"score:desc",
 								-- "idx",
 								-- "#text",
@@ -376,8 +375,8 @@ return {
 						transform = function(item)
 							local remove_item_as_not_yet_due = false
 
-							-- special handling for WAIT, all others to be returned as-is
-							if not string.match(item.line, "WAIT:") then
+							-- special handling for PENDING, all others to be returned as-is
+							if not string.match(item.line, "PENDING:") then
 								return item
 							end
 
@@ -445,6 +444,58 @@ return {
 					})
 				end,
 				desc = "List Todos",
+			},
+
+			{
+				"<leader>lw",
+				function()
+					Snacks.picker.pick({
+						source = "todo_comments",
+						keywords = { "PENDING" },
+						ft = "md",
+						sort = {
+							fields = {
+								"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
+								"score:desc",
+								-- "idx",
+								-- "#text",
+							},
+						},
+						matcher = {
+							sort_empty = true,
+							frecency = false, -- frecency bonus
+							history_bonus = false, -- give more weight to chronological order
+							cwd_bonus = false,
+						},
+						formatters = {
+							file = {
+								filename_only = true,
+							},
+						},
+						layout = {
+							preview = "main",
+							preset = "ivy",
+							layout = {
+								position = "bottom",
+								-- all values are defaults except for the title
+								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+								box = "horizontal",
+								width = 1,
+								min_width = 120,
+								height = 0.4,
+								{
+									box = "vertical",
+									border = "rounded",
+									title = "Todos {live} {flags}",
+									{ win = "input", height = 1, border = "bottom" },
+									{ win = "list", border = "none" },
+								},
+								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+							},
+						},
+					})
+				end,
+				desc = "List Waiting todos",
 			},
 		},
 	},
