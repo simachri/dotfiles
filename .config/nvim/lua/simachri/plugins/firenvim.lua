@@ -63,6 +63,8 @@ return {
 
                 " https://github.com/glacambre/firenvim/issues/491
                 autocmd FocusLost * ++nested write
+
+                autocmd BufEnter *.html set wrap 
             ]])
 
 			-- disabled the following as it triggers a window resize after the save; trying to
@@ -87,6 +89,13 @@ return {
 				"<leader>mr",
 				"<cmd>set lines=70 columns=110<cr>",
 				{ desc = "Resize window", noremap = true, silent = true }
+			)
+
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>cm",
+				[[gg/<br><CR>cf><CR><CR><Esc>ki]],
+				{ desc = "Compose Mail", noremap = true, silent = true }
 			)
 		end,
 	},

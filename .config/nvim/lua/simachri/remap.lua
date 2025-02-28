@@ -154,6 +154,38 @@ vim.cmd([[
     " nnoremap <silent> <Leader>tcu :SetCheckBoxUp<CR>
 ]])
 
+function MarkToDoCommentAsDone()
+	local replacement_candidates = { "PENDING:", "TODO:", "NEXT:", "CONT:" }
+	local replacement = "- [x]"
+	local line_contents = vim.api.nvim_get_current_line()
+	local line_contains_candidate = false
+
+	for _, str in ipairs(replacement_candidates) do
+		if line_contents:find(str) then
+			line_contains_candidate = true
+			break
+		end
+	end
+
+	if not line_contains_candidate then
+		print("Nothing to be marked as done.")
+		return
+	end
+
+	for _, str in ipairs(replacement_candidates) do
+		line_contents = line_contents:gsub(str, replacement)
+	end
+	vim.api.nvim_set_current_line(line_contents)
+
+	print("Marked as done.")
+end
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>cd",
+	":lua MarkToDoCommentAsDone()<CR>",
+	{ desc = "Mark ToDo Comment as Done", noremap = true, silent = true }
+)
+
 function Rename_md_file_from_h1()
 	local line = vim.api.nvim_get_current_line()
 

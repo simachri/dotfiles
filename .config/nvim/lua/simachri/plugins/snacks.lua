@@ -263,6 +263,10 @@ return {
 				Snacks.picker.files({
 					dirs = {
 						"Meetings",
+						"DSC/Meetings",
+						"PDI/Meetings",
+						"ECTR/Meetings",
+						"SAP/Meetings",
 					},
 					ft = "md",
 					matcher = {
