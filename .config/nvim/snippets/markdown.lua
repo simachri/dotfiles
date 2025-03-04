@@ -174,10 +174,13 @@ ls.add_snippets("markdown", {
 	}),
 
 	s({ trig = "ref", name = "Insert Markdown Wiki Link" }, {
+		t({ "[[" }),
 		f(function()
 			return { vim.api.nvim_eval("@x") }
 		end, {}),
-		i(0),
+		t({ "|" }),
+		i(0, "link name"),
+		t({ "]]" }),
 	}),
 
 	-- Old 'ref' snippet for reference.

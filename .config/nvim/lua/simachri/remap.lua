@@ -226,29 +226,6 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true, desc = "Set FileName from header" }
 )
 
--- function Create_new_tracker_file()
--- 	local new_file_path = vim.fn.expand("%:h") .. "/../Tracker/new.md"
--- 	vim.cmd("edit " .. new_file_path)
---
--- 	-- Wait for buffer to load, then insert a specific LuaSnip snippet
--- 	vim.schedule(function()
--- 		local snips = require("luasnip").get_snippets()["markdown"]
--- 		for _, snip in ipairs(snips) do
--- 			if snip["name"] == "Issue" then
--- 				require("luasnip").snip_expand(snip)
--- 				return true
--- 			end
--- 		end
--- 	end)
--- end
---
--- vim.api.nvim_set_keymap(
--- 	"n",
--- 	"<leader>nt",
--- 	":lua Create_new_tracker_file()<CR>",
--- 	{ noremap = true, silent = true, desc = "New Tracker Item" }
--- )
-
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>ga",
@@ -268,7 +245,7 @@ function CreateWikiLinkToRegisterX()
 			:gsub("^%-", "") -- Remove leading dash
 			:gsub("%-$", "") -- Remove trailing dash
 
-		local wikilink = string.format("[[%s]]", link)
+		local wikilink = string.format("%s", link)
 		vim.fn.setreg("x", wikilink)
 		print("Created wiki link and yanked to register 'x'.")
 	else
