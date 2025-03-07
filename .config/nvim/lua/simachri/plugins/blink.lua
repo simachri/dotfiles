@@ -18,16 +18,23 @@ return {
 			-- https://cmp.saghen.dev/configuration/sources.html#provider-options
 			providers = {
 				lsp = {
-                    -- show lsp first
+					-- show lsp first
 					score_offset = 100000,
 				},
 				path = {
-                    -- show path second
+					-- show path second
 					score_offset = 5000,
 				},
 				snippets = {
 					-- show snippets third
 					score_offset = 100,
+				},
+				cmdline = {
+					-- fix: lag when starting command with ! (system command)
+					-- https://github.com/Saghen/blink.cmp/issues/795#issuecomment-2598689820
+					enabled = function()
+						return vim.fn.getcmdline():sub(1, 1) ~= "!"
+					end,
 				},
 			},
 		},

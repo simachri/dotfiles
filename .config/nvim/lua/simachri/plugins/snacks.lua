@@ -231,24 +231,24 @@ return {
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
 					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
+					-- ivy_split: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy_split
 					layout = {
-						preview = false,
+						preview = "main",
 						layout = {
-							layout = {
-								-- all values are defaults except for the title
-								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+							box = "vertical",
+							backdrop = false,
+							width = 0,
+							height = 0.4,
+							position = "bottom",
+							border = "top",
+							-- here is an overwrite:
+							title = "Tagged Files {live} {flags}",
+							title_pos = "left",
+							{ win = "input", height = 1, border = "bottom" },
+							{
 								box = "horizontal",
-								width = 0.8,
-								min_width = 120,
-								height = 0.8,
-								{
-									box = "vertical",
-									border = "rounded",
-									title = "Tagged Files {live} {flags}",
-									{ win = "input", height = 1, border = "bottom" },
-									{ win = "list", border = "none" },
-								},
-								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+								{ win = "list", border = "none" },
+								{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
 							},
 						},
 					},
@@ -511,8 +511,25 @@ return {
 			"<leader>gj",
 			function()
 				Snacks.picker.grep({
+					-- ivy_split: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy_split
 					layout = {
-						preview = true,
+						preview = "main",
+						layout = {
+							box = "vertical",
+							backdrop = false,
+							width = 0,
+							height = 0.4,
+							position = "bottom",
+							border = "top",
+							title = " {title} {live} {flags}",
+							title_pos = "left",
+							{ win = "input", height = 1, border = "bottom" },
+							{
+								box = "horizontal",
+								{ win = "list", border = "none" },
+								{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
+							},
+						},
 					},
 				})
 			end,
