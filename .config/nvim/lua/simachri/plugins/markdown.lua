@@ -294,7 +294,7 @@ return {
 		},
 		keys = {
 			-- suggested keymap
-			{ "<leader>mp", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+			{ "<leader>mpi", "<cmd>PasteImage<cr>", desc = "Markdown Paste Image from clipboard" },
 		},
 	},
 
@@ -314,8 +314,8 @@ return {
 			}
 		end,
 		keys = {
-			{ "<leader>ms", ":MarkdownPreview<CR>", { silent = true } },
-			{ "<leader>mc", ":MarkdownPreviewStop<CR>", { silent = true } },
+			{ "<leader>mps", ":MarkdownPreview<CR>", { silent = true, desc = "Markdown Preview Start" } },
+			{ "<leader>mpc", ":MarkdownPreviewStop<CR>", { silent = true, desc = "Markdown Preview Cancel" } },
 		},
 	},
 

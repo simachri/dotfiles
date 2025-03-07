@@ -276,23 +276,25 @@ return {
 						-- default sort is by score, text length and index
 						fields = { "score:desc", "text:desc", "#text", "idx" },
 					},
+					-- ivy_split: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy_split
 					layout = {
-						preview = true,
+						preview = "main",
 						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
+							box = "vertical",
+							backdrop = false,
+							width = 0,
+							height = 0.4,
+							position = "bottom",
+							border = "top",
+							-- here is an overwrite:
+							title = "Meetings {live} {flags}",
+							title_pos = "left",
+							{ win = "input", height = 1, border = "bottom" },
 							{
-								box = "vertical",
-								border = "rounded",
-								title = "Meetings {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
+								box = "horizontal",
 								{ win = "list", border = "none" },
+								{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
 							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
 						},
 					},
 				})
@@ -306,6 +308,10 @@ return {
 				Snacks.picker.files({
 					dirs = {
 						"Issues",
+						"DSC/Issues",
+						"PDI/Issues",
+						"ECTR/Issues",
+						"SAP/Issues",
 					},
 					ft = "md",
 					layout = {

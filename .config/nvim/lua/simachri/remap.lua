@@ -10,7 +10,7 @@ vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent
 
 -- Do not override the buffer when pasting.
 -- https://stackoverflow.com/a/3837845
-vim.keymap.set("x", "<Leader>p", '"_dP')
+vim.keymap.set("x", "<Leader>pp", '"_dP')
 
 -- Prevent <leader><CR> to convert the word under cursor into a link (for some reason).
 vim.keymap.set("n", "<Leader><CR>", "<Esc>")
@@ -61,7 +61,31 @@ vim.keymap.set("v", "<Leader>rr", '"sy:%s/<C-r>s//gI<Left><Left><Left>', { silen
 vim.keymap.set("n", "J", ":let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>", { silent = true })
 
 -- Yank the full filepath into the clipboard.
-vim.keymap.set("n", "<Leader>yp", ":let @+=expand('%:p')<CR>")
+vim.api.nvim_set_keymap("n", "<leader>yp", [[:lua YankFullFilepath()<CR>]], { noremap = true, silent = true })
+
+function YankFilename()
+	local filepath = vim.fn.expand("%:p")
+	vim.fn.setreg("+", filepath)
+	print("Filepath yanked")
+end
+
+-- Yank Reference: filename without extension into register + (system clipboard)
+vim.api.nvim_set_keymap("n", "<leader>yr", [[:lua YankFilename()<CR>]], { noremap = true, silent = true })
+
+function YankFilename()
+	local filename = vim.fn.expand("%:t:r")
+	vim.fn.setreg("+", filename)
+	print("Filename yanked")
+end
+
+-- Paste Reference: create a markdown wiki link from register x (system clipboard)
+vim.api.nvim_set_keymap('n', '<leader>pr', [[:lua PasteWithBrackets()<CR>]], { noremap = true, silent = true })
+
+function PasteWithBrackets()
+  local content = vim.fn.getreg('+')
+  local wrapped_content = '[[' .. content .. ']]'
+  vim.api.nvim_put({wrapped_content}, 'c', true, true)
+end
 
 -- Location list: Next and previous
 vim.keymap.set("n", "<Leader>ln", ":lnext<CR>")
@@ -149,13 +173,13 @@ vim.cmd([[
     command SetCheckBoxOpen call ToggleCb('open')
     command SetCheckBoxUp call ToggleCb('up')
     " nnoremap <silent> <Leader>cc :ToggleCheckBox<CR>
-    nnoremap <silent> <Leader>cc :SetCheckBoxDone<CR>
+    " nnoremap <silent> <Leader>cc :SetCheckBoxDone<CR>
     nnoremap <silent> <Leader>co :SetCheckBoxOpen<CR>
     " nnoremap <silent> <Leader>tcu :SetCheckBoxUp<CR>
 ]])
 
 function MarkToDoCommentAsDone()
-	local replacement_candidates = { "PENDING:", "TODO:", "NEXT:", "CONT:" }
+	local replacement_candidates = { "PENDING:", "TODO:", "NEXT:", "CONT:", "%- %[ %]" }
 	local replacement = "- [x]"
 	local line_contents = vim.api.nvim_get_current_line()
 	local line_contains_candidate = false
@@ -181,7 +205,7 @@ function MarkToDoCommentAsDone()
 end
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>cd",
+	"<leader>cc",
 	":lua MarkToDoCommentAsDone()<CR>",
 	{ desc = "Mark ToDo Comment as Done", noremap = true, silent = true }
 )

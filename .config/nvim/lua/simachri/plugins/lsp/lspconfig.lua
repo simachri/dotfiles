@@ -20,8 +20,14 @@ return {
 
 			{ "<leader>lr", "<cmd>LspRestart<CR>", { noremap = true, silent = true } },
 
-			{ "<leader>rr", "<cmd>lua Rename_file()<CR>", { noremap = true, silent = true } },
 			{ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true } },
+			-- { "<leader>rr", "<cmd>lua Rename_file()<CR>", { noremap = true, silent = true } },
+			-- https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#snacksrenamerename_file
+			{
+				"<leader>rr",
+				"<cmd>lua Snacks.rename.rename_file()<CR>",
+				{ noremap = true, silent = true, desc = "Rename file" },
+			},
 
 			{ "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", { noremap = true, silent = true } },
 			{ "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", { noremap = true, silent = true } },
@@ -94,7 +100,7 @@ return {
 				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
 				-- 	vim.lsp.protocol.make_client_capabilities()
 				-- ),
-                capablities = require('blink.cmp').get_lsp_capabilities(),
+				capablities = require("blink.cmp").get_lsp_capabilities(),
 				settings = {
 					python = {
 						analysis = {
@@ -115,7 +121,7 @@ return {
 				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
 				-- 	vim.lsp.protocol.make_client_capabilities()
 				-- ),
-                capablities = require('blink.cmp').get_lsp_capabilities(),
+				capablities = require("blink.cmp").get_lsp_capabilities(),
 				-- cmd = require'lspcontainers'.command('dockerls'),
 				root_dir = util.root_pattern(".git", vim.fn.getcwd()),
 			})
@@ -126,7 +132,7 @@ return {
 				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
 				-- 	vim.lsp.protocol.make_client_capabilities()
 				-- ),
-                capablities = require('blink.cmp').get_lsp_capabilities(),
+				capablities = require("blink.cmp").get_lsp_capabilities(),
 			})
 
 			-- Lua https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
@@ -143,7 +149,7 @@ return {
 				-- capabilities = require("cmp_nvim_lsp").default_capabilities(
 				-- 	vim.lsp.protocol.make_client_capabilities()
 				-- ),
-                capablities = require('blink.cmp').get_lsp_capabilities(),
+				capablities = require("blink.cmp").get_lsp_capabilities(),
 				-- Add 'vim' to globals to prevent message 'Undefined global `vim`.'
 				-- https://www.reddit.com/r/neovim/comments/khk335/lua_configuration_global_vim_is_undefined/gglrg7k?utm_source=share&utm_medium=web2x&context=3
 				settings = {
