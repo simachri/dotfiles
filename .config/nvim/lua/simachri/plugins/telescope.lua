@@ -299,41 +299,41 @@ return {
 			-- { "<leader>fk", "<cmd>lua search_all_files()<cr>", { noremap = true, silent = true } },
 			-- Configuration files / dotfiles
 			-- { "<leader>fd", "<cmd>lua find_dotfiles()<cr>", { noremap = true, silent = true } },
-			-- Grep prompt
-			{ "<leader>gk", "<cmd>lua grep_prompt()<cr>", { noremap = true, silent = true } },
+			-- -- Grep prompt
+			-- { "<leader>gk", "<cmd>lua grep_prompt()<cr>", { noremap = true, silent = true } },
 			-- -- Grep live in CWD
 			-- {
 			-- 	"<leader>gj",
 			-- 	'<cmd>lua require("telescope.builtin").live_grep({disable_coordinates=true})<cr>',
 			-- 	{ noremap = true, silent = true },
 			-- },
-			-- Grep live in directory of currently opened file
-			{
-				"<leader>gr",
-				"<cmd>lua grep_live_in_bufs_workdir()<cr>",
-				{ noremap = true, silent = true },
-				desc = "Grep in buffer's directory",
-			},
-			-- Grep in open buffers
-			{
-				"<leader>go",
-				'<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true, disable_coordinates=true, prompt_title="Grep in open buffers"})<cr>',
-				{ noremap = true, silent = true },
-			},
-			-- Grep Word under cursor in Cwd
-			{
-				"<leader>gwc",
-				'<cmd>lua require("telescope.builtin").grep_string()<cr>',
-				{ noremap = true, silent = true },
-				desc = "Grep 'word' in CWD",
-			},
-			-- Grep Word under cursor in folder Relative to open buffer
-			{
-				"<leader>gwr",
-				'<cmd>lua require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })<cr>',
-				{ noremap = true, silent = true },
-				desc = "Grep 'word' in buffer's directory",
-			},
+			-- -- Grep live in directory of currently opened file
+			-- {
+			-- 	"<leader>gr",
+			-- 	"<cmd>lua grep_live_in_bufs_workdir()<cr>",
+			-- 	{ noremap = true, silent = true },
+			-- 	desc = "Grep in buffer's directory",
+			-- },
+			-- -- Grep in open buffers
+			-- {
+			-- 	"<leader>go",
+			-- 	'<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true, disable_coordinates=true, prompt_title="Grep in open buffers"})<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- },
+			-- -- Grep Word under cursor in Cwd
+			-- {
+			-- 	"<leader>gwc",
+			-- 	'<cmd>lua require("telescope.builtin").grep_string()<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- 	desc = "Grep 'word' in CWD",
+			-- },
+			-- -- Grep Word under cursor in folder Relative to open buffer
+			-- {
+			-- 	"<leader>gwr",
+			-- 	'<cmd>lua require("telescope.builtin").grep_string({ cwd = require("telescope.utils").buffer_dir() })<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- 	desc = "Grep 'word' in buffer's directory",
+			-- },
 			-- Find markdown wiki anchor references
 			{
 				"<leader>gmr",
@@ -348,12 +348,12 @@ return {
 				{ noremap = true, silent = true },
 				desc = "Grep markdown headers",
 			},
-			-- Find help tags
-			{
-				"<leader>fh",
-				'<cmd>lua require("telescope.builtin").help_tags()<cr>',
-				{ noremap = true, silent = true },
-			},
+			-- -- Find help tags
+			-- {
+			-- 	"<leader>fh",
+			-- 	'<cmd>lua require("telescope.builtin").help_tags()<cr>',
+			-- 	{ noremap = true, silent = true },
+			-- },
 			---- CurrBuf
 			--vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua curbuf()<cr>]], { noremap = true, silent = true })
 			-- List buffers
@@ -447,8 +447,8 @@ return {
 			-- Find spellcheck proposals.
 			--vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require('telescope.builtin').spell_suggest()<cr>]], { noremap = true, silent = true })
 
-			-- Grep Quickfix list
-			{ "<leader>gq", '<cmd>lua require("telescope.builtin").quickfix()<cr>', { noremap = true, silent = true } },
+			-- -- Grep Quickfix list
+			-- { "<leader>gq", '<cmd>lua require("telescope.builtin").quickfix()<cr>', { noremap = true, silent = true } },
 		},
 	},
 
