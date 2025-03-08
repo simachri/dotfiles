@@ -62,10 +62,6 @@ return {
 			-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy
 			layout = {
 				preset = "default",
-				layout = {
-					-- 	position = "bottom",
-					-- height = 0.7,
-				},
 				preview = false,
 			},
 
@@ -92,6 +88,8 @@ return {
 						["<Down>"] = { "history_forward", mode = { "i", "n" } },
 						["<Up>"] = { "history_back", mode = { "i", "n" } },
 						["<C-c>"] = { "close", mode = { "i", "n" } },
+						-- ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
+						["<c-h>"] = { "toggle_preview", mode = { "i", "n" } },
 					},
 				},
 
@@ -147,78 +145,6 @@ return {
 			desc = "Find Files",
 		},
 
-		-- {
-		-- 	"<leader>ft",
-		-- 	function()
-		-- 		Snacks.picker.grep({
-		-- 			search = "- \\[ \\] ",
-		-- 			live = false, -- easier filtering for returned list
-		-- 			show_empty = true,
-		-- 			dirs = {
-		-- 				"Meetings",
-		-- 			},
-		-- 			format = "file",
-		-- 			layout = {
-		-- 				layout = {
-		-- 					preview = false,
-		-- 					layout = {
-		-- 						-- all values are defaults except for the title
-		-- 						-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-		-- 						box = "horizontal",
-		-- 						width = 0.8,
-		-- 						min_width = 120,
-		-- 						height = 0.8,
-		-- 						{
-		-- 							box = "vertical",
-		-- 							border = "rounded",
-		-- 							title = "TODOs {live} {flags}",
-		-- 							{ win = "input", height = 1, border = "bottom" },
-		-- 							{ win = "list", border = "none" },
-		-- 						},
-		-- 						{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-		-- 					},
-		-- 				},
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- 	desc = "Find space meeting Todos",
-		-- },
-
-		-- {
-		-- 	"<leader>fsj",
-		-- 	function()
-		-- 		Snacks.picker.files({
-		-- 			exclude = {
-		-- 				"Meetings",
-		-- 				"Issues",
-		-- 			},
-		-- 			ft = "md",
-		-- 			layout = {
-		-- 				layout = {
-		-- 					preview = false,
-		-- 					layout = {
-		-- 						-- all values are defaults except for the title
-		-- 						-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-		-- 						box = "horizontal",
-		-- 						width = 0.8,
-		-- 						min_width = 120,
-		-- 						height = 0.8,
-		-- 						{
-		-- 							box = "vertical",
-		-- 							border = "rounded",
-		-- 							title = "Space Files {live} {flags}",
-		-- 							{ win = "input", height = 1, border = "bottom" },
-		-- 							{ win = "list", border = "none" },
-		-- 						},
-		-- 						{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-		-- 					},
-		-- 				},
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- 	desc = "Find Space Files",
-		-- },
-
 		{
 			"<leader>ff",
 			function()
@@ -231,27 +157,6 @@ return {
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
 					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
-					-- -- ivy_split: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy_split
-					-- layout = {
-					-- 	preview = "main",
-					-- 	layout = {
-					-- 		box = "vertical",
-					-- 		backdrop = false,
-					-- 		width = 0,
-					-- 		height = 0.4,
-					-- 		position = "bottom",
-					-- 		border = "top",
-					-- 		-- here is an overwrite:
-					-- 		title = "Tagged Files {live} {flags}",
-					-- 		title_pos = "left",
-					-- 		{ win = "input", height = 1, border = "bottom" },
-					-- 		{
-					-- 			box = "horizontal",
-					-- 			{ win = "list", border = "none" },
-					-- 			{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
-					-- 		},
-					-- 	},
-					-- },
 				})
 			end,
 			desc = "Find tagged space Files",
@@ -277,7 +182,6 @@ return {
 						fields = { "score:desc", "text:desc", "#text", "idx" },
 					},
 					layout = {
-						preview = true,
 						layout = {
 							-- all values are defaults except for the title
 							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
@@ -295,27 +199,6 @@ return {
 							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
 						},
 					},
-					-- -- ivy_split: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy_split
-					-- layout = {
-					-- 	preview = "main",
-					-- 	layout = {
-					-- 		box = "vertical",
-					-- 		backdrop = false,
-					-- 		width = 0,
-					-- 		height = 0.4,
-					-- 		position = "bottom",
-					-- 		border = "top",
-					-- 		-- here is an overwrite:
-					-- 		title = "Meetings {live} {flags}",
-					-- 		title_pos = "left",
-					-- 		{ win = "input", height = 1, border = "bottom" },
-					-- 		{
-					-- 			box = "horizontal",
-					-- 			{ win = "list", border = "none" },
-					-- 			{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
-					-- 		},
-					-- 	},
-					-- },
 				})
 			end,
 			desc = "Find Space Meeting Notes",
@@ -334,7 +217,6 @@ return {
 					},
 					ft = "md",
 					layout = {
-						preview = true,
 						layout = {
 							-- all values are defaults except for the title
 							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
@@ -356,29 +238,6 @@ return {
 			end,
 			desc = "Find Space Issues",
 		},
-
-		-- {
-		-- 	"<leader>ld",
-		-- 	function()
-		-- 		Snacks.picker.pick({
-		-- 			finder = "proc",
-		-- 			cmd = "fd",
-		-- 			-- https://github.com/folke/snacks.nvim/blob/8edd7b4d866d77a2d7c8c7f58eacd97cb8bb1be4/lua/snacks/picker/source/files.lua#L13
-		-- 			args = { "--type", "d", "--type", "l", "--color", "never", "-E", ".git" },
-		-- 			transform = function(item)
-		-- 				item.file = item.text
-		-- 				item.dir = true
-		-- 			end,
-		-- 			layout = {
-		-- 				preset = "telescope",
-		-- 				layout = {
-		-- 					title = "Directories",
-		-- 				},
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- 	desc = "List Directories",
-		-- },
 
 		{
 			"<leader>lb",
@@ -437,7 +296,6 @@ return {
 			"<leader>gwc",
 			function()
 				Snacks.picker.grep_word({
-					preview = false,
 					layout = {
 						layout = {
 							-- all values are defaults except for the title
@@ -467,7 +325,6 @@ return {
 				Snacks.picker.grep_word({
 					cwd = vim.fn.expand("%:p:h"),
 					layout = {
-						preview = false,
 						layout = {
 							-- all values are defaults except for the title
 							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
@@ -594,7 +451,6 @@ return {
 			function()
 				Snacks.picker.grep({
 					layout = {
-						preview = false,
 						layout = {
 							-- all values are defaults except for the title
 							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
@@ -612,26 +468,6 @@ return {
 							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
 						},
 					},
-					-- -- ivy_split: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy_split
-					-- layout = {
-					-- 	preview = "main",
-					-- 	layout = {
-					-- 		box = "vertical",
-					-- 		backdrop = false,
-					-- 		width = 0,
-					-- 		height = 0.4,
-					-- 		position = "bottom",
-					-- 		border = "top",
-					-- 		title = " {title} {live} {flags}",
-					-- 		title_pos = "left",
-					-- 		{ win = "input", height = 1, border = "bottom" },
-					-- 		{
-					-- 			box = "horizontal",
-					-- 			{ win = "list", border = "none" },
-					-- 			{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
-					-- 		},
-					-- 	},
-					-- },
 				})
 			end,
 			desc = "Grep in CWD",

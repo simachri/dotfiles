@@ -421,20 +421,18 @@ return {
 						-- 	return vim.list_extend(ret, Snacks.picker.format.file(item, picker))
 						-- end,
 						layout = {
-							preview = "main",
-							preset = "ivy",
+							preset = "default",
 							layout = {
-								position = "bottom",
 								-- all values are defaults except for the title
 								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
 								box = "horizontal",
-								width = 1,
+								width = 0.8,
 								min_width = 120,
-								height = 0.4,
+								height = 0.8,
 								{
 									box = "vertical",
 									border = "rounded",
-									title = "Todos {live} {flags}",
+									title = "ToDo's {live} {flags}",
 									{ win = "input", height = 1, border = "bottom" },
 									{ win = "list", border = "none" },
 								},
@@ -473,20 +471,18 @@ return {
 							},
 						},
 						layout = {
-							preview = "main",
-							preset = "ivy",
+							preset = "default",
 							layout = {
-								position = "bottom",
 								-- all values are defaults except for the title
 								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
 								box = "horizontal",
-								width = 1,
+								width = 0.8,
 								min_width = 120,
-								height = 0.4,
+								height = 0.8,
 								{
 									box = "vertical",
 									border = "rounded",
-									title = "Todos {live} {flags}",
+									title = "Pending ToDo's {live} {flags}",
 									{ win = "input", height = 1, border = "bottom" },
 									{ win = "list", border = "none" },
 								},
