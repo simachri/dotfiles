@@ -59,10 +59,31 @@ return {
 		picker = {
 			enabled = true,
 
-			-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#ivy
+			-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
 			layout = {
-				preset = "default",
-				preview = false,
+				-- preset = "default",
+				preview = true,
+				layout = {
+					box = "horizontal",
+					-- width = 0.8,
+					width = 0.95,
+					min_width = 120,
+					height = 0.8,
+					{
+						box = "vertical",
+						border = "rounded",
+						title = "{title} {live} {flags}",
+						{ win = "input", height = 1, border = "bottom" },
+						{ win = "list", border = "none" },
+					},
+					{
+						win = "preview",
+						title = "{preview}",
+						border = "rounded",
+						-- width = 0.5,
+						width = 0.4,
+					},
+				},
 			},
 
 			matcher = {
@@ -149,6 +170,9 @@ return {
 			"<leader>ff",
 			function()
 				Snacks.picker.grep({
+					-- layout = {
+					-- 	preview = true,
+					-- },
 					search = "^tags:\\s*\\[.*?",
 					exclude = {
 						"Meetings",
@@ -169,8 +193,12 @@ return {
 					dirs = {
 						"Meetings",
 						"DSC/Meetings",
+						"Deutsche_Bahn/Meetings",
+                        "ECTR/Meetings",
+                        "Hilti/Meetings",
+						"Kaeser/Meetings",
+						"Lifecycle_Graph/Meetings",
 						"PDI/Meetings",
-						"ECTR/Meetings",
 						"SAP/Meetings",
 					},
 					ft = "md",
@@ -181,24 +209,24 @@ return {
 						-- default sort is by score, text length and index
 						fields = { "score:desc", "text:desc", "#text", "idx" },
 					},
-					layout = {
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Meetings {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
-					},
+					-- layout = {
+					-- 	layout = {
+					-- 		-- all values are defaults except for the title
+					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+					-- 		box = "horizontal",
+					-- 		width = 0.8,
+					-- 		min_width = 120,
+					-- 		height = 0.8,
+					-- 		{
+					-- 			box = "vertical",
+					-- 			border = "rounded",
+					-- 			title = "Meetings {live} {flags}",
+					-- 			{ win = "input", height = 1, border = "bottom" },
+					-- 			{ win = "list", border = "none" },
+					-- 		},
+					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+					-- 	},
+					-- },
 				})
 			end,
 			desc = "Find Space Meeting Notes",
@@ -211,29 +239,33 @@ return {
 					dirs = {
 						"Issues",
 						"DSC/Issues",
+						"Deutsche_Bahn/Issues",
+                        "ECTR/Issues",
+                        "Hilti/Issues",
+						"Kaeser/Issues",
+						"Lifecycle_Graph/Issues",
 						"PDI/Issues",
-						"ECTR/Issues",
 						"SAP/Issues",
 					},
 					ft = "md",
-					layout = {
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Issues {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
-					},
+					-- layout = {
+					-- 	layout = {
+					-- 		-- all values are defaults except for the title
+					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+					-- 		box = "horizontal",
+					-- 		width = 0.8,
+					-- 		min_width = 120,
+					-- 		height = 0.8,
+					-- 		{
+					-- 			box = "vertical",
+					-- 			border = "rounded",
+					-- 			title = "Issues {live} {flags}",
+					-- 			{ win = "input", height = 1, border = "bottom" },
+					-- 			{ win = "list", border = "none" },
+					-- 		},
+					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+					-- 	},
+					-- },
 				})
 			end,
 			desc = "Find Space Issues",
@@ -269,24 +301,24 @@ return {
 						"yarn",
 						"netlify",
 					},
-					layout = {
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Dotfiles {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
-					},
+					-- layout = {
+					-- 	layout = {
+					-- 		-- all values are defaults except for the title
+					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+					-- 		box = "horizontal",
+					-- 		width = 0.8,
+					-- 		min_width = 120,
+					-- 		height = 0.8,
+					-- 		{
+					-- 			box = "vertical",
+					-- 			border = "rounded",
+					-- 			title = "Dotfiles {live} {flags}",
+					-- 			{ win = "input", height = 1, border = "bottom" },
+					-- 			{ win = "list", border = "none" },
+					-- 		},
+					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+					-- 	},
+					-- },
 				})
 			end,
 			desc = "Find Dotfiles",
@@ -324,24 +356,24 @@ return {
 			function()
 				Snacks.picker.grep_word({
 					cwd = vim.fn.expand("%:p:h"),
-					layout = {
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Grep Word Relative to current file {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
-					},
+					-- layout = {
+					-- 	layout = {
+					-- 		-- all values are defaults except for the title
+					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+					-- 		box = "horizontal",
+					-- 		width = 0.8,
+					-- 		min_width = 120,
+					-- 		height = 0.8,
+					-- 		{
+					-- 			box = "vertical",
+					-- 			border = "rounded",
+					-- 			title = "Grep Word Relative to current file {live} {flags}",
+					-- 			{ win = "input", height = 1, border = "bottom" },
+					-- 			{ win = "list", border = "none" },
+					-- 		},
+					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+					-- 	},
+					-- },
 				})
 			end,
 			desc = "Grep Word Relative to current file",
@@ -351,9 +383,9 @@ return {
 			"<leader>/",
 			function()
 				Snacks.picker.lines({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "Grep Lines",
@@ -371,9 +403,9 @@ return {
 			"<leader>fs",
 			function()
 				Snacks.picker.lsp_symbols({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "LSP Find Symbols",
@@ -382,9 +414,9 @@ return {
 			"<leader>fS",
 			function()
 				Snacks.picker.lsp_workspace_symbols({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "LSP Find Workspace Symbols",
@@ -393,9 +425,9 @@ return {
 			"gd",
 			function()
 				Snacks.picker.lsp_definitions({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "Goto Definition",
@@ -404,9 +436,9 @@ return {
 			"gD",
 			function()
 				Snacks.picker.lsp_declarations({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "Goto Declaration",
@@ -415,9 +447,9 @@ return {
 			"gr",
 			function()
 				Snacks.picker.lsp_references({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			nowait = true,
@@ -427,9 +459,9 @@ return {
 			"gI",
 			function()
 				Snacks.picker.lsp_implementations({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "Goto Implementation",
@@ -438,9 +470,9 @@ return {
 			"gy",
 			function()
 				Snacks.picker.lsp_type_definitions({
-					layout = {
-						preview = true,
-					},
+					-- layout = {
+					-- 	preview = true,
+					-- },
 				})
 			end,
 			desc = "Goto T[y]pe Definition",
@@ -450,24 +482,24 @@ return {
 			"<leader>gj",
 			function()
 				Snacks.picker.grep({
-					layout = {
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Grep in CWD {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
-					},
+					-- layout = {
+					-- 	layout = {
+					-- 		-- all values are defaults except for the title
+					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+					-- 		box = "horizontal",
+					-- 		width = 0.8,
+					-- 		min_width = 120,
+					-- 		height = 0.8,
+					-- 		{
+					-- 			box = "vertical",
+					-- 			border = "rounded",
+					-- 			title = "Grep in CWD {live} {flags}",
+					-- 			{ win = "input", height = 1, border = "bottom" },
+					-- 			{ win = "list", border = "none" },
+					-- 		},
+					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+					-- 	},
+					-- },
 				})
 			end,
 			desc = "Grep in CWD",
@@ -478,25 +510,25 @@ return {
 			function()
 				Snacks.picker.grep({
 					cwd = vim.fn.expand("%:p:h"),
-					layout = {
-						preview = false,
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Grep relative to current file {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
-					},
+					-- layout = {
+					-- 	preview = false,
+					-- 	layout = {
+					-- 		-- all values are defaults except for the title
+					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+					-- 		box = "horizontal",
+					-- 		width = 0.8,
+					-- 		min_width = 120,
+					-- 		height = 0.8,
+					-- 		{
+					-- 			box = "vertical",
+					-- 			border = "rounded",
+					-- 			title = "Grep relative to current file {live} {flags}",
+					-- 			{ win = "input", height = 1, border = "bottom" },
+					-- 			{ win = "list", border = "none" },
+					-- 		},
+					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+					-- 	},
+					-- },
 				})
 			end,
 			desc = "Grep relative to current file",

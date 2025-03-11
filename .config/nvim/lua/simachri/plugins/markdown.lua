@@ -420,25 +420,25 @@ return {
 						-- 	end
 						-- 	return vim.list_extend(ret, Snacks.picker.format.file(item, picker))
 						-- end,
-						layout = {
-							preset = "default",
-							layout = {
-								-- all values are defaults except for the title
-								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-								box = "horizontal",
-								width = 0.8,
-								min_width = 120,
-								height = 0.8,
-								{
-									box = "vertical",
-									border = "rounded",
-									title = "ToDo's {live} {flags}",
-									{ win = "input", height = 1, border = "bottom" },
-									{ win = "list", border = "none" },
-								},
-								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-							},
-						},
+						-- layout = {
+						-- 	preset = "default",
+						-- 	layout = {
+						-- 		-- all values are defaults except for the title
+						-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+						-- 		box = "horizontal",
+						-- 		width = 0.8,
+						-- 		min_width = 120,
+						-- 		height = 0.8,
+						-- 		{
+						-- 			box = "vertical",
+						-- 			border = "rounded",
+						-- 			title = "ToDo's {live} {flags}",
+						-- 			{ win = "input", height = 1, border = "bottom" },
+						-- 			{ win = "list", border = "none" },
+						-- 		},
+						-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+						-- 	},
+						-- },
 					})
 				end,
 				desc = "List Todos",
@@ -470,25 +470,25 @@ return {
 								filename_only = true,
 							},
 						},
-						layout = {
-							preset = "default",
-							layout = {
-								-- all values are defaults except for the title
-								-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-								box = "horizontal",
-								width = 0.8,
-								min_width = 120,
-								height = 0.8,
-								{
-									box = "vertical",
-									border = "rounded",
-									title = "Pending ToDo's {live} {flags}",
-									{ win = "input", height = 1, border = "bottom" },
-									{ win = "list", border = "none" },
-								},
-								{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-							},
-						},
+						-- layout = {
+						-- 	preset = "default",
+						-- 	layout = {
+						-- 		-- all values are defaults except for the title
+						-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+						-- 		box = "horizontal",
+						-- 		width = 0.8,
+						-- 		min_width = 120,
+						-- 		height = 0.8,
+						-- 		{
+						-- 			box = "vertical",
+						-- 			border = "rounded",
+						-- 			title = "Pending ToDo's {live} {flags}",
+						-- 			{ win = "input", height = 1, border = "bottom" },
+						-- 			{ win = "list", border = "none" },
+						-- 		},
+						-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+						-- 	},
+						-- },
 					})
 				end,
 				desc = "List Waiting todos",

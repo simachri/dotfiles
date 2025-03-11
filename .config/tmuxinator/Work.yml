@@ -1,9 +1,0 @@
-name: Work
-root: ~/Notes/Work
-attach: false
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-      - nvim

@@ -63,7 +63,7 @@ vim.keymap.set("n", "J", ":let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr
 -- Yank the full filepath into the clipboard.
 vim.api.nvim_set_keymap("n", "<leader>yp", [[:lua YankFullFilepath()<CR>]], { noremap = true, silent = true })
 
-function YankFilename()
+function YankFullFilepath()
 	local filepath = vim.fn.expand("%:p")
 	vim.fn.setreg("+", filepath)
 	print("Filepath yanked")
@@ -283,7 +283,7 @@ function Open_or_create_weekly_note()
 	local formatted_week_number = string.format("%02d", week_number)
 	local month_short = os.date("%b")
 	local file_path = string.format(
-		"%s/Notes/Work/Weekly/%s/Week-%s-%s.md",
+		"%s/Notes/Weekly/%s/Week-%s-%s.md",
 		os.getenv("HOME"),
 		year,
 		formatted_week_number,
