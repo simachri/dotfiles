@@ -433,9 +433,9 @@ return {
 				{ noremap = true, silent = true },
 			},
 
-			-- Find tmuxinator workspaces
+			-- Find tmuxinator Projects
 			{
-				"<leader>fw",
+				"<leader>fp",
 				"<cmd>lua require('telescope').extensions.tmuxinator.projects({ layout_strategy = 'vertical', layout_config = { prompt_position = 'bottom', width = 0.5, height = 0.8 }, previwer = false, })<cr>",
 				{ noremap = true, silent = true },
 			},

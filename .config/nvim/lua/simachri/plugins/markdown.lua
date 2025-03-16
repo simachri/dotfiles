@@ -353,6 +353,9 @@ return {
 				"<leader>lt",
 				function()
 					Snacks.picker.pick({
+                        dirs = {
+                            "~/Notes",
+                        },
 						source = "todo_comments",
 						keywords = { "CONT", "NEXT", "TODO", "PENDING" },
 						ft = "md",
@@ -401,6 +404,9 @@ return {
 								filename_only = true,
 							},
 						},
+						layout = {
+							preview = false,
+						},
 						-- -- https://github.com/folke/todo-comments.nvim/blob/304a8d204ee787d2544d8bc23cd38d2f929e7cc5/lua/todo-comments/snacks.lua#L27
 						-- ---@param item snacks.picker.Item
 						-- ---@param picker snacks.Picker
@@ -448,6 +454,9 @@ return {
 				"<leader>lw",
 				function()
 					Snacks.picker.pick({
+                        dirs = {
+                            "~/Notes",
+                        },
 						source = "todo_comments",
 						keywords = { "PENDING" },
 						ft = "md",
@@ -469,6 +478,9 @@ return {
 							file = {
 								filename_only = true,
 							},
+						},
+						layout = {
+							preview = false,
 						},
 						-- layout = {
 						-- 	preset = "default",

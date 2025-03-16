@@ -13,39 +13,25 @@ return {
 					["<C-c>"] = "close",
 				},
 			},
+			scratch = {
+				-- width = 100,
+				-- height = 30,
+				width = 0.9,
+				height = 0.8,
+				keys = {
+					["<C-c>"] = "close",
+				},
+				wo = {
+					winhighlight = "NormalFloat:Normal",
+					wrap = true,
+				},
+			},
 		},
 
 		scratch = {
 			root = "/home/xi3k/Notes/Scratch",
 			ft = "markdown",
 			autowrite = true,
-			win_by_ft = {
-				markdown = {
-					keys = {
-						["Close"] = {
-							"<C-c>",
-							function()
-								Snacks.scratch.open()
-							end,
-							desc = "Close",
-							mode = { "n", "x" },
-						},
-						-- ["Purge"] = {
-						-- 	"<C-w>p",
-						-- 	function()
-						-- 		local file = vim.fn.expand("%")
-						-- 		if file ~= "" then
-						-- 			vim.fn.delete(file)
-						-- 		else
-						-- 			print("No file to delete")
-						-- 		end
-						-- 	end,
-						-- 	desc = "Purge",
-						-- 	mode = { "n", "x" },
-						-- },
-					},
-				},
-			},
 		},
 
 		indent = {
@@ -59,32 +45,34 @@ return {
 		picker = {
 			enabled = true,
 
+            -- NOTE: If a layout is set here, using "preset = 'foo'" does not work in the
+            -- pickers anymore.
 			-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-			layout = {
-				-- preset = "default",
-				preview = true,
-				layout = {
-					box = "horizontal",
-					-- width = 0.8,
-					width = 0.95,
-					min_width = 120,
-					height = 0.8,
-					{
-						box = "vertical",
-						border = "rounded",
-						title = "{title} {live} {flags}",
-						{ win = "input", height = 1, border = "bottom" },
-						{ win = "list", border = "none" },
-					},
-					{
-						win = "preview",
-						title = "{preview}",
-						border = "rounded",
-						-- width = 0.5,
-						width = 0.4,
-					},
-				},
-			},
+			-- layout = {
+			-- 	-- preset = "default",
+			-- 	preview = true,
+			-- 	layout = {
+			-- 		box = "horizontal",
+			-- 		-- width = 0.8,
+			-- 		width = 0.95,
+			-- 		min_width = 120,
+			-- 		height = 0.8,
+			-- 		{
+			-- 			box = "vertical",
+			-- 			border = "rounded",
+			-- 			title = "{title} {live} {flags}",
+			-- 			{ win = "input", height = 1, border = "bottom" },
+			-- 			{ win = "list", border = "none" },
+			-- 		},
+			-- 		{
+			-- 			win = "preview",
+			-- 			title = "{preview}",
+			-- 			border = "rounded",
+			-- 			-- width = 0.5,
+			-- 			width = 0.6,
+			-- 		},
+			-- 	},
+			-- },
 
 			matcher = {
 				frecency = true, -- frecency bonus
@@ -161,7 +149,11 @@ return {
 		{
 			"<leader>fj",
 			function()
-				Snacks.picker.files()
+				Snacks.picker.files({
+					layout = {
+						preview = false,
+					},
+				})
 			end,
 			desc = "Find Files",
 		},
@@ -190,16 +182,23 @@ return {
 			"<leader>fm",
 			function()
 				Snacks.picker.files({
+					layout = {
+						preview = false,
+					},
 					dirs = {
 						"Meetings",
 						"DSC/Meetings",
 						"Deutsche_Bahn/Meetings",
-                        "ECTR/Meetings",
-                        "Hilti/Meetings",
+						"ECTR/Meetings",
+						"Hilti/Meetings",
 						"Kaeser/Meetings",
 						"Lifecycle_Graph/Meetings",
 						"PDI/Meetings",
 						"SAP/Meetings",
+					},
+
+					exclude = {
+						"Past",
 					},
 					ft = "md",
 					matcher = {
@@ -236,12 +235,15 @@ return {
 			"<leader>fi",
 			function()
 				Snacks.picker.files({
+					layout = {
+						preview = false,
+					},
 					dirs = {
 						"Issues",
 						"DSC/Issues",
 						"Deutsche_Bahn/Issues",
-                        "ECTR/Issues",
-                        "Hilti/Issues",
+						"ECTR/Issues",
+						"Hilti/Issues",
 						"Kaeser/Issues",
 						"Lifecycle_Graph/Issues",
 						"PDI/Issues",
@@ -274,7 +276,11 @@ return {
 		{
 			"<leader>lb",
 			function()
-				Snacks.picker.buffers()
+				Snacks.picker.buffers({
+					layout = {
+						preview = false,
+					},
+				})
 			end,
 			desc = "List Buffers",
 		},
@@ -329,22 +335,7 @@ return {
 			function()
 				Snacks.picker.grep_word({
 					layout = {
-						layout = {
-							-- all values are defaults except for the title
-							-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-							box = "horizontal",
-							width = 0.8,
-							min_width = 120,
-							height = 0.8,
-							{
-								box = "vertical",
-								border = "rounded",
-								title = "Grep Word in CWD {live} {flags}",
-								{ win = "input", height = 1, border = "bottom" },
-								{ win = "list", border = "none" },
-							},
-							{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						},
+						preview = false,
 					},
 				})
 			end,
@@ -355,6 +346,9 @@ return {
 			"<leader>gwr",
 			function()
 				Snacks.picker.grep_word({
+					layout = {
+						preview = false,
+					},
 					cwd = vim.fn.expand("%:p:h"),
 					-- layout = {
 					-- 	layout = {
@@ -383,9 +377,25 @@ return {
 			"<leader>/",
 			function()
 				Snacks.picker.lines({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = "main",
+						layout = {
+							box = "vertical",
+							backdrop = false,
+							row = -1,
+							width = 0,
+							height = 0.4,
+							border = "top",
+							title = " {title} {live} {flags}",
+							title_pos = "left",
+							{ win = "input", height = 1, border = "bottom" },
+							{
+								box = "horizontal",
+								{ win = "list", border = "none" },
+								{ win = "preview", title = "{preview}", width = 0.6, border = "left" },
+							},
+						},
+					},
 				})
 			end,
 			desc = "Grep Lines",
@@ -403,31 +413,34 @@ return {
 			"<leader>fs",
 			function()
 				Snacks.picker.lsp_symbols({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
 			desc = "LSP Find Symbols",
 		},
 		{
-			"<leader>fS",
+			"<leader>fw",
 			function()
 				Snacks.picker.lsp_workspace_symbols({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
-			desc = "LSP Find Workspace Symbols",
+			desc = "LSP Find Workspace symbols",
 		},
 		{
 			"gd",
 			function()
 				Snacks.picker.lsp_definitions({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
 			desc = "Goto Definition",
@@ -436,9 +449,10 @@ return {
 			"gD",
 			function()
 				Snacks.picker.lsp_declarations({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
 			desc = "Goto Declaration",
@@ -447,9 +461,10 @@ return {
 			"gr",
 			function()
 				Snacks.picker.lsp_references({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
 			nowait = true,
@@ -459,9 +474,10 @@ return {
 			"gI",
 			function()
 				Snacks.picker.lsp_implementations({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
 			desc = "Goto Implementation",
@@ -470,9 +486,10 @@ return {
 			"gy",
 			function()
 				Snacks.picker.lsp_type_definitions({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+						preset = "select",
+					},
 				})
 			end,
 			desc = "Goto T[y]pe Definition",
@@ -546,7 +563,11 @@ return {
 		{
 			"<leader>fa",
 			function()
-				Snacks.picker.keymaps()
+				Snacks.picker.keymaps({
+					layout = {
+						preview = false,
+					},
+				})
 			end,
 			desc = "Find key mAppings",
 		},
