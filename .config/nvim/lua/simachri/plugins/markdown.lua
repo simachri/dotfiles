@@ -130,30 +130,64 @@ function Open_URL()
 	local col = vim.fn.col(".") - 1
 	local selected_node = vim.treesitter.get_node({ 0, { row, col }, ignore_injections = false })
 
+	if not selected_node then
+		vim.notify("No Treesitter node found!", vim.log.levels.WARN)
+		return
+	end
+
 	local node_type = selected_node:type()
 	local url = ""
+
+	-- vim.notify("node_type: " .. node_type, vim.log.levels.debug)
+
 	if
-		string.match(node_type, "inline_link")
-		or string.match(node_type, "link_text")
-		or string.match(node_type, "link_destination")
+		node_type == "inline_link"
+		or node_type == "link_text"
+		or node_type == "link_destination"
+		or node_type == "shortcut_link"
 	then
-		local dest_node = {}
-		if string.match(node_type, "link_destination") then
+		local dest_node = nil
+
+		if node_type == "link_destination" or node_type == "shortcut_link" then
 			dest_node = selected_node
-		end
-		if string.match(node_type, "inline_link") then
+		elseif node_type == "inline_link" then
 			dest_node = selected_node:named_child(1)
+		elseif node_type == "link_text" then
+			local parent_node = selected_node:parent()
+			if parent_node then
+				local parent_node_type = parent_node:type()
+				-- vim.notify("parent_node_type: " .. parent_node_type, vim.log.levels.debug)
+				if parent_node_type == "inline_link" then
+					dest_node = selected_node:next_named_sibling()
+				elseif parent_node_type == "shortcut_link" then
+					dest_node = selected_node
+				end
+			end
 		end
-		if string.match(node_type, "link_text") then
-			dest_node = selected_node:next_named_sibling()
+
+		if dest_node then
+			url = vim.treesitter.get_node_text(dest_node, 0)
+		else
+			vim.notify("No valid link destination found!", vim.log.levels.WARN)
+			return
 		end
-		url = vim.treesitter.get_node_text(dest_node, 0)
 	else
 		url = vim.fn.expand("<cWORD>")
 	end
 
+	if url == "" then
+		vim.notify("No valid URL found!", vim.log.levels.WARN)
+		return
+	end
+
+	-- vim.notify("url: " .. url, vim.log.levels.debug)
+
 	-- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
-	vim.cmd("call system('www-browser \"" .. url .. "\"')")
+	-- vim.notify(
+	-- 	"final command: " .. "call system(\"www-browser " .. vim.fn.shellescape(url) .. "\")",
+	-- 	vim.log.levels.debug
+	-- )
+	vim.cmd("call system(\"www-browser " .. vim.fn.shellescape(url) .. "\")")
 end
 
 return {
@@ -353,9 +387,9 @@ return {
 				"<leader>lt",
 				function()
 					Snacks.picker.pick({
-                        dirs = {
-                            "~/Notes",
-                        },
+						dirs = {
+							"~/Notes",
+						},
 						source = "todo_comments",
 						keywords = { "CONT", "NEXT", "TODO", "PENDING" },
 						ft = "md",
@@ -454,9 +488,9 @@ return {
 				"<leader>lw",
 				function()
 					Snacks.picker.pick({
-                        dirs = {
-                            "~/Notes",
-                        },
+						dirs = {
+							"~/Notes",
+						},
 						source = "todo_comments",
 						keywords = { "PENDING" },
 						ft = "md",

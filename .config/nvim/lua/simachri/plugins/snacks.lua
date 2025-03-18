@@ -162,9 +162,9 @@ return {
 			"<leader>ff",
 			function()
 				Snacks.picker.grep({
-					-- layout = {
-					-- 	preview = true,
-					-- },
+					layout = {
+						preview = false,
+					},
 					search = "^tags:\\s*\\[.*?",
 					exclude = {
 						"Meetings",
@@ -307,6 +307,9 @@ return {
 						"yarn",
 						"netlify",
 					},
+					layout = {
+						preview = false,
+                    },
 					-- layout = {
 					-- 	layout = {
 					-- 		-- all values are defaults except for the title
@@ -415,7 +418,7 @@ return {
 				Snacks.picker.lsp_symbols({
 					layout = {
 						preview = false,
-						preset = "select",
+						preset = "default",
 					},
 				})
 			end,
@@ -427,7 +430,7 @@ return {
 				Snacks.picker.lsp_workspace_symbols({
 					layout = {
 						preview = false,
-						preset = "select",
+						preset = "default",
 					},
 				})
 			end,
@@ -439,7 +442,7 @@ return {
 				Snacks.picker.lsp_definitions({
 					layout = {
 						preview = false,
-						preset = "select",
+						preset = "default",
 					},
 				})
 			end,
@@ -451,7 +454,7 @@ return {
 				Snacks.picker.lsp_declarations({
 					layout = {
 						preview = false,
-						preset = "select",
+						preset = "default",
 					},
 				})
 			end,
@@ -462,8 +465,8 @@ return {
 			function()
 				Snacks.picker.lsp_references({
 					layout = {
-						preview = false,
-						preset = "select",
+						preview = true,
+						preset = "default",
 					},
 				})
 			end,
@@ -475,8 +478,8 @@ return {
 			function()
 				Snacks.picker.lsp_implementations({
 					layout = {
-						preview = false,
-						preset = "select",
+						preview = true,
+						preset = "default",
 					},
 				})
 			end,
@@ -488,7 +491,7 @@ return {
 				Snacks.picker.lsp_type_definitions({
 					layout = {
 						preview = false,
-						preset = "select",
+						preset = "default",
 					},
 				})
 			end,

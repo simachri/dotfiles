@@ -1,9 +1,0 @@
-name: Archive-DSC-Product-Management
-root: ~/DSC/Products/
-attach: false
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

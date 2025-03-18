@@ -1,8 +1,0 @@
-name: BMW
-root: ~/DSC/Customers/BMW
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

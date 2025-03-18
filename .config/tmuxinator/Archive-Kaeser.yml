@@ -1,8 +1,0 @@
-name: Kaeser
-root: ~/DSC/Customers/Kaeser
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

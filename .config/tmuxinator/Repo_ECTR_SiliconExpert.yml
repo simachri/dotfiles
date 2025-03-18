@@ -1,9 +1,0 @@
-name: ECTR_SiliconExpert
-root: ~/Development/DSC/ECTR/SiliconExpert
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
-  - Run/Debug:

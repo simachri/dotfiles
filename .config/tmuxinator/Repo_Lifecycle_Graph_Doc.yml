@@ -1,8 +1,0 @@
-name: Repo-Lifecycle-Graph-Doc
-root: ~/Development/DSC/Lifecycle_Graph/Documentation/
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim

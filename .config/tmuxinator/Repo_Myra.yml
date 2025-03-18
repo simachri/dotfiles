@@ -1,9 +1,0 @@
-name: Development_Myra
-root: ~/Development/Myra
-startup_window: 1
-
-windows:
-  - zsh:
-  - Neovim:
-    - nvim
-  - Run/Debug:

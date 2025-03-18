@@ -6,7 +6,13 @@ vim.g.mapleader = " "
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
+-- Note: For Markdown files, there is a remap in /home/xi3k/.config/nvim/after/ftplugin/markdown.vim
+vim.keymap.set(
+	"n",
+	"gx",
+	":call system('www-browser <C-r><C-a>')<CR>",
+	{ silent = true, desc = "Open with Web Browser" }
+)
 
 -- Do not override the buffer when pasting.
 -- https://stackoverflow.com/a/3837845
@@ -70,21 +76,38 @@ function YankFullFilepath()
 end
 
 -- Yank Reference: filename without extension into register + (system clipboard)
-vim.api.nvim_set_keymap("n", "<leader>yr", [[:lua YankFilename()<CR>]], { noremap = true, silent = true })
-
-function YankFilename()
+vim.keymap.set("n", "<leader>yr", function()
 	local filename = vim.fn.expand("%:t:r")
-	vim.fn.setreg("+", filename)
-	print("Filename yanked")
-end
+	if filename == "" then
+		print("No filename to yank")
+		return
+	end
+
+	local final_yank = filename
+	local filetype = vim.bo.filetype
+
+	if filetype == "markdown" then
+		local line = vim.api.nvim_get_current_line()
+		local header_match = line:match("^(##+)%s*(.*)")
+
+		if header_match then
+			local header = line:gsub("^#+%s*", "") -- Remove leading #'s and spaces
+			final_yank = filename .. "#" .. header
+		end
+	end
+
+	vim.fn.setreg("+", final_yank) -- System clipboard
+	vim.fn.setreg('"', final_yank) -- Default register
+	print("Yanked: " .. final_yank)
+end, { noremap = true, silent = true })
 
 -- Paste Reference: create a markdown wiki link from register x (system clipboard)
-vim.api.nvim_set_keymap('n', '<leader>pr', [[:lua PasteWithBrackets()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>pr", [[:lua PasteWithBrackets()<CR>]], { noremap = true, silent = true })
 
 function PasteWithBrackets()
-  local content = vim.fn.getreg('+')
-  local wrapped_content = '[[' .. content .. ']]'
-  vim.api.nvim_put({wrapped_content}, 'c', true, true)
+	local content = vim.fn.getreg("+")
+	local wrapped_content = "[[" .. content .. "]]"
+	vim.api.nvim_put({ wrapped_content }, "c", true, true)
 end
 
 -- Location list: Next and previous
@@ -205,7 +228,7 @@ function MarkToDoCommentAsDone()
 end
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>cc",
+	"<leader>cd",
 	":lua MarkToDoCommentAsDone()<CR>",
 	{ desc = "Mark ToDo Comment as Done", noremap = true, silent = true }
 )
@@ -282,13 +305,8 @@ function Open_or_create_weekly_note()
 	local week_number = os.date("%W") + 1 -- is off by one in 2025
 	local formatted_week_number = string.format("%02d", week_number)
 	local month_short = os.date("%b")
-	local file_path = string.format(
-		"%s/Notes/Weekly/%s/Week-%s-%s.md",
-		os.getenv("HOME"),
-		year,
-		formatted_week_number,
-		month_short
-	)
+	local file_path =
+		string.format("%s/Notes/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, formatted_week_number, month_short)
 
 	local file = io.open(file_path, "r")
 	if file then
