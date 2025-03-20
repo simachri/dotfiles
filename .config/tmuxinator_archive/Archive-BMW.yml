@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: BMW
+root: ~/DSC/Customers/BMW
 startup_window: 1
 
 windows:

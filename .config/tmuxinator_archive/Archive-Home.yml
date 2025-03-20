@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: Home
+root: "~"
 startup_window: 1
 
 windows:

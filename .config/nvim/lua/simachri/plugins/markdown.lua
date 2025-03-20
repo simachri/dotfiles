@@ -395,8 +395,8 @@ return {
 						ft = "md",
 						sort = {
 							fields = {
-								"line", -- contains the matching keyword. this will sort CONT > NEXT > PENDING > TODO
 								"score:desc",
+								"line", -- contains the matching keyword. this will sort CONT > NEXT > PENDING > TODO
 								-- "idx",
 								-- "#text",
 							},
@@ -496,8 +496,8 @@ return {
 						ft = "md",
 						sort = {
 							fields = {
-								"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
 								"score:desc",
+								"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
 								-- "idx",
 								-- "#text",
 							},

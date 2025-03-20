@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: ECTR_Installation_1_3
+root: ~/DSC/ECTR_Inst_Win/1_3
 startup_window: 1
 
 windows:

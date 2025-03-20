@@ -1,0 +1,9 @@
+name: ECTR_OSGi_Generic_Objects_Jira
+root: ~/Development/DSC/ECTR/OSGi_Generic_Objects_Jira/
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+      - nvim
+  - Run/Debug:

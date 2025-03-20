@@ -1,0 +1,9 @@
+name: Repo_ECTR_Jira_integration
+root: ~/Development/DSC/ECTR/jira-integration
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

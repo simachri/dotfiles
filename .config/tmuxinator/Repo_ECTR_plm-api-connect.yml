@@ -1,0 +1,9 @@
+name: Repo_ECTR_plm-api-connect
+root: ~/Development/DSC/ECTR/plm-api-connect
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

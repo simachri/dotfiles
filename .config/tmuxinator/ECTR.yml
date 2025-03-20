@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: ECTR
+root: ~/Notes/Projects/ECTR
 startup_window: 1
 
 windows:

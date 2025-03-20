@@ -1,3 +1,38 @@
+local function calculate_dirs(dir_type)
+    local cwd = vim.fn.getcwd()
+    local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
+    local project_dirs = {
+        "DSC",
+        "Deutsche_Bahn",
+        "ECTR",
+        "Hilti",
+        "Kaeser",
+        "Lifecycle_Graph",
+        "PDI",
+        "SAP",
+    }
+
+    for _, base in ipairs(base_dirs) do
+        if cwd == base then
+            local paths = {}
+            for _, project in ipairs(project_dirs) do
+                table.insert(paths, string.format("/home/xi3k/Notes/Projects/%s/%s", project, dir_type))
+            end
+            return paths
+        end
+    end
+
+    return { dir_type }
+end
+
+local function calculate_meeting_dirs()
+    return calculate_dirs("Meetings")
+end
+
+local function calculate_issues_dirs()
+    return calculate_dirs("Issues")
+end
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -45,8 +80,8 @@ return {
 		picker = {
 			enabled = true,
 
-            -- NOTE: If a layout is set here, using "preset = 'foo'" does not work in the
-            -- pickers anymore.
+			-- NOTE: If a layout is set here, using "preset = 'foo'" does not work in the
+			-- pickers anymore.
 			-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
 			-- layout = {
 			-- 	-- preset = "default",
@@ -159,23 +194,22 @@ return {
 		},
 
 		{
-			"<leader>ff",
+			"<leader>fw",
 			function()
 				Snacks.picker.grep({
 					layout = {
 						preview = false,
 					},
 					search = "^tags:\\s*\\[.*?",
-					exclude = {
-						"Meetings",
-						"Issues",
+					dirs = {
+						"~/Notes/Wiki",
 					},
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
 					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
 				})
 			end,
-			desc = "Find tagged space Files",
+			desc = "Find tagged Wiki files",
 		},
 
 		{
@@ -185,18 +219,7 @@ return {
 					layout = {
 						preview = false,
 					},
-					dirs = {
-						"Meetings",
-						"DSC/Meetings",
-						"Deutsche_Bahn/Meetings",
-						"ECTR/Meetings",
-						"Hilti/Meetings",
-						"Kaeser/Meetings",
-						"Lifecycle_Graph/Meetings",
-						"PDI/Meetings",
-						"SAP/Meetings",
-					},
-
+					dirs = calculate_meeting_dirs(),
 					exclude = {
 						"Past",
 					},
@@ -238,17 +261,7 @@ return {
 					layout = {
 						preview = false,
 					},
-					dirs = {
-						"Issues",
-						"DSC/Issues",
-						"Deutsche_Bahn/Issues",
-						"ECTR/Issues",
-						"Hilti/Issues",
-						"Kaeser/Issues",
-						"Lifecycle_Graph/Issues",
-						"PDI/Issues",
-						"SAP/Issues",
-					},
+					dirs = calculate_issues_dirs(),
 					ft = "md",
 					-- layout = {
 					-- 	layout = {
@@ -309,7 +322,7 @@ return {
 					},
 					layout = {
 						preview = false,
-                    },
+					},
 					-- layout = {
 					-- 	layout = {
 					-- 		-- all values are defaults except for the title
@@ -425,7 +438,7 @@ return {
 			desc = "LSP Find Symbols",
 		},
 		{
-			"<leader>fw",
+			"<leader>fS",
 			function()
 				Snacks.picker.lsp_workspace_symbols({
 					layout = {

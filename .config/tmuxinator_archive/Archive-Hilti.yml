@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: Archive-Hilti
+root: ~/DSC/Customers/Hilti
 startup_window: 1
 
 windows:

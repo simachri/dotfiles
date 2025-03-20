@@ -1,0 +1,14 @@
+name: Archive-Wiki
+root: ~/Wiki
+attach: false
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+      # solarized
+      # - tmux set status-bg "#859900" # green
+      # - tmux set status-fg "#fdf6e3" # base3
+      - tmux set status-bg yellow
+      - tmux set status-fg black
+      - nvim

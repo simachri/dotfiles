@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: Kaeser
+root: ~/DSC/Customers/Kaeser
 startup_window: 1
 
 windows:

@@ -434,6 +434,7 @@ return {
 			},
 
 			-- Find tmuxinator Projects
+			-- Note: archived tmuxinator projects are located in ~/.config/tmuxinator_archive/
 			{
 				"<leader>fp",
 				"<cmd>lua require('telescope').extensions.tmuxinator.projects({ layout_strategy = 'vertical', layout_config = { prompt_position = 'bottom', width = 0.5, height = 0.8 }, previwer = false, })<cr>",

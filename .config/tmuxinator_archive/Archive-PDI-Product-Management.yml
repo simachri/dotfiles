@@ -1,0 +1,8 @@
+name: Archive-PDI-Product-Management
+root: ~/DSC/Products/IPD/PDI/Product_Management/
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

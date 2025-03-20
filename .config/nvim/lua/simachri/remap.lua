@@ -67,7 +67,7 @@ vim.keymap.set("v", "<Leader>rr", '"sy:%s/<C-r>s//gI<Left><Left><Left>', { silen
 vim.keymap.set("n", "J", ":let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>", { silent = true })
 
 -- Yank the full filepath into the clipboard.
-vim.api.nvim_set_keymap("n", "<leader>yp", [[:lua YankFullFilepath()<CR>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>yp", [[:lua YankFullFilepath()<CR>]], { noremap = true, silent = true })
 
 function YankFullFilepath()
 	local filepath = vim.fn.expand("%:p")
@@ -102,7 +102,7 @@ vim.keymap.set("n", "<leader>yr", function()
 end, { noremap = true, silent = true })
 
 -- Paste Reference: create a markdown wiki link from register x (system clipboard)
-vim.api.nvim_set_keymap("n", "<leader>pr", [[:lua PasteWithBrackets()<CR>]], { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>pr", [[:lua PasteWithBrackets()<CR>]], { noremap = true, silent = true })
 
 function PasteWithBrackets()
 	local content = vim.fn.getreg("+")
@@ -139,7 +139,7 @@ vim.keymap.set("n", "<Leader>th", ":set hlsearch!<CR>", { silent = true })
 --         ]])
 -- 	end
 -- end
--- vim.api.nvim_set_keymap("n", "<Leader>i", ":lua OpenScratchBuffer()<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<Leader>i", ":lua OpenScratchBuffer()<CR>", { noremap = true, silent = true })
 
 vim.cmd([[
     function! ToggleCb(option)
@@ -226,7 +226,7 @@ function MarkToDoCommentAsDone()
 
 	print("Marked as done.")
 end
-vim.api.nvim_set_keymap(
+vim.keymap.set(
 	"n",
 	"<leader>cd",
 	":lua MarkToDoCommentAsDone()<CR>",
@@ -266,14 +266,14 @@ function Rename_md_file_from_h1()
 	print("Renamed file to: " .. filename .. ext)
 end
 
-vim.api.nvim_set_keymap(
+vim.keymap.set(
 	"n",
 	"<leader>sfh",
 	":lua Rename_md_file_from_h1()<CR>",
 	{ noremap = true, silent = true, desc = "Set FileName from header" }
 )
 
-vim.api.nvim_set_keymap(
+vim.keymap.set(
 	"n",
 	"<leader>ga",
 	[[:lua CreateWikiLinkToRegisterX()<CR>]],
@@ -329,9 +329,22 @@ function Open_or_create_weekly_note()
 	end
 end
 
-vim.api.nvim_set_keymap(
+vim.keymap.set(
 	"n",
 	"<leader>jj",
 	":lua Open_or_create_weekly_note()<CR>",
 	{ noremap = true, silent = true, desc = "Weekly Note" }
+)
+
+vim.keymap.set(
+	"t",
+	"<Esc>",
+	"<C-\\><C-n>",
+	{ noremap = true, silent = true, desc = "Terminal: Switch from TERMINAL to NORMAL mode" }
+)
+vim.keymap.set(
+	"t",
+	"<C-c>",
+	"<C-\\><C-n>",
+	{ noremap = true, silent = true, desc = "Terminal: Switch from TERMINAL to NORMAL mode" }
 )

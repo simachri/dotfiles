@@ -1,8 +1,11 @@
 name: Notes
 root: ~/Notes
+attach: true
 startup_window: 1
 
 windows:
   - zsh:
   - Neovim:
+    - tmux set status-bg yellow
+    - tmux set status-fg black
     - nvim

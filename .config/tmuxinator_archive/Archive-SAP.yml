@@ -1,6 +1,5 @@
-name: PDI
-root: ~/Notes/Projects/PDI
-attach: false
+name: SAP
+root: ~/SAP
 startup_window: 1
 
 windows:

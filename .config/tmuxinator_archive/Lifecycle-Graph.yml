@@ -1,0 +1,8 @@
+name: Archive-Lifecycle-Graph
+root: ~/DSC/Products/IPD/Lifecycle_Graph/
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

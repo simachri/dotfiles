@@ -1,0 +1,9 @@
+name: Repo_ECTR_btp-sapplm-connect
+root: ~/Development/DSC/ECTR/btp-sapplm-connect
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

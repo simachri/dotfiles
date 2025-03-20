@@ -51,3 +51,12 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end,
 })
 
+-- Automatically set filetype "conf" for all .txt files in the ECTR installation
+-- directory.
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "/mnt/c/Program Files/SAP/ECTR/SVN/**/*.txt", -- Match all .txt files in subdirectories of ECTR
+    -- pattern = "/home/xi3k/DSC/ECTR_Inst_Win/**/*.txt", -- Match all .txt files in subdirectories of ECTR
+    callback = function()
+        vim.bo.filetype = "conf"
+    end,
+})
