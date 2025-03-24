@@ -1,36 +1,49 @@
 local function calculate_dirs(dir_type)
-    local cwd = vim.fn.getcwd()
-    local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
-    local project_dirs = {
-        "DSC",
-        "Deutsche_Bahn",
-        "ECTR",
-        "Hilti",
-        "Kaeser",
-        "Lifecycle_Graph",
-        "PDI",
-        "SAP",
-    }
+	local cwd = vim.fn.getcwd()
+	local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
+	local project_dirs = {
+		"DSC",
+		"Deutsche_Bahn",
+		"ECTR",
+		"Hilti",
+		"Kaeser",
+		"Lifecycle_Graph",
+		"PDI",
+		"SAP",
+	}
 
-    for _, base in ipairs(base_dirs) do
-        if cwd == base then
-            local paths = {}
-            for _, project in ipairs(project_dirs) do
-                table.insert(paths, string.format("/home/xi3k/Notes/Projects/%s/%s", project, dir_type))
-            end
-            return paths
-        end
-    end
+	for _, base in ipairs(base_dirs) do
+		if cwd == base then
+			local paths = {}
+			for _, project in ipairs(project_dirs) do
+				table.insert(paths, string.format("/home/xi3k/Notes/Projects/%s/%s", project, dir_type))
+			end
+			return paths
+		end
+	end
 
-    return { dir_type }
+	return { dir_type }
 end
 
 local function calculate_meeting_dirs()
-    return calculate_dirs("Meetings")
+	return calculate_dirs("Meetings")
 end
 
 local function calculate_issues_dirs()
-    return calculate_dirs("Issues")
+	return calculate_dirs("Issues")
+end
+
+local function calculate_wiki_dirs()
+	local cwd = vim.fn.getcwd()
+	local wiki_base = "/home/xi3k/Notes/Wiki"
+
+	local paths = { wiki_base }
+
+	if cwd ~= wiki_base then
+		table.insert(paths, cwd)
+	end
+
+	return paths
 end
 
 return {
@@ -200,16 +213,34 @@ return {
 					layout = {
 						preview = false,
 					},
-					search = "^tags:\\s*\\[.*?",
-					dirs = {
-						"~/Notes/Wiki",
+					exclude = {
+						"Meetings",
+						"Issues",
 					},
+					search = "^tags:\\s*\\[.*?",
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
 					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
 				})
 			end,
-			desc = "Find tagged Wiki files",
+			desc = "Find tagged Wiki files in cwd",
+		},
+
+		{
+			"<leader>fW",
+			function()
+				Snacks.picker.grep({
+					layout = {
+						preview = false,
+					},
+					search = "^tags:\\s*\\[.*?",
+					dirs = calculate_wiki_dirs(),
+					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
+					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
+					ft = "md",
+				})
+			end,
+			desc = "Find tagged Wiki files: cwd + global Wiki",
 		},
 
 		{
