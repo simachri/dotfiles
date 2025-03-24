@@ -35,7 +35,7 @@ end
 
 local function calculate_wiki_dirs()
 	local cwd = vim.fn.getcwd()
-	local wiki_base = "/home/xi3k/Notes/Wiki"
+	local wiki_base = "/home/xi3k/Notes"
 
 	local paths = { wiki_base }
 
