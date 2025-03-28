@@ -63,9 +63,23 @@ return {
 			require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets" })
 
 			ls.add_snippets("all", {
-				-- Checkbox Insert: "- [ ]", trigger is 'cb'.
-				s({ trig = "ci", name = "Checkbox" }, {
+				s({ trig = "co", name = "Checkbox", desc = "Checkbox" }, {
 					t({ "- [ ] " }),
+					i(0),
+				}),
+
+				s({ trig = "ci", name = "Information", desc = "Information" }, {
+					t({ "- [i] " }),
+					i(0),
+				}),
+
+				s({ trig = "cd", name = "Decision", desc = "Decision" }, {
+					t({ "- [!] " }),
+					i(0),
+				}),
+
+				s({ trig = "cq", name = "Question", desc = "Question" }, {
+					t({ "- [?] " }),
 					i(0),
 				}),
 

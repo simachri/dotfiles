@@ -51,8 +51,9 @@ vim.keymap.set("n", "<C-w>c", ":silent! %bd<CR>", { silent = true })
 vim.keymap.set("n", "Y", "y$")
 
 -- Insertion of blank lines
-vim.keymap.set("n", "<C-j>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>", { silent = true })
-vim.keymap.set("n", "<C-k>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = true })
+-- maps to [-space and ]-space by default since nvim 0.11
+-- vim.keymap.set("n", "<C-j>", ":set paste<CR>m`o<Esc>``:set nopaste<CR>", { silent = true })
+-- vim.keymap.set("n", "<C-k>", ":set paste<CR>m`O<Esc>``:set nopaste<CR>", { silent = true })
 -- Prevent in insert-like modes to not mess with Luasnip mappings.
 -- vim.keymap.set("x", "<C-j>", "my<Esc>`>o<Esc>gv`y", { silent = true })
 -- vim.keymap.set("x", "<C-k>", "my<Esc>`<O<Esc>gv`y", { silent = true })

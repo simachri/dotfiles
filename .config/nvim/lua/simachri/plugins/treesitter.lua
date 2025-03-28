@@ -64,13 +64,7 @@ return {
 					disable = { "go", "typescript", "lua" },
 				},
 				incremental_selection = {
-					enable = true, -- false will disable the whole extension
-					keymaps = {
-						init_selection = "gnn",
-						node_incremental = "grn",
-						scope_incremental = "grc",
-						node_decremental = "grm",
-					},
+					enable = false,
 				},
 
 				-- Source: https://github.com/nvim-treesitter/nvim-treesitter-textobjects

@@ -286,6 +286,23 @@ return {
 		},
 
 		{
+			"<leader>fo",
+			function()
+				Snacks.picker.files({
+					layout = {
+						preview = false,
+					},
+					dirs = { "/home/xi3k/Notes/Open_Items" },
+					exclude = {
+						"Past",
+					},
+					ft = "md",
+				})
+			end,
+			desc = "Find Space Meeting Notes",
+		},
+
+		{
 			"<leader>fi",
 			function()
 				Snacks.picker.files({
@@ -449,15 +466,8 @@ return {
 		},
 
 		{
-			"<leader>ggl",
-			function()
-				Snacks.picker.git_log()
-			end,
-			desc = "Grep Git Log",
-		},
-
-		{
-			"<leader>fs",
+            -- gO is a default nvim mapping since 0.11
+			"gO",
 			function()
 				Snacks.picker.lsp_symbols({
 					layout = {
@@ -469,7 +479,7 @@ return {
 			desc = "LSP Find Symbols",
 		},
 		{
-			"<leader>fS",
+			"<leader>gO",
 			function()
 				Snacks.picker.lsp_workspace_symbols({
 					layout = {
@@ -505,7 +515,8 @@ return {
 			desc = "Goto Declaration",
 		},
 		{
-			"gr",
+            -- grr is a default nvim mapping since 0.11
+			"grr",
 			function()
 				Snacks.picker.lsp_references({
 					layout = {
@@ -518,7 +529,8 @@ return {
 			desc = "References",
 		},
 		{
-			"gI",
+            -- gri is a default nvim mapping since 0.11
+			"gri",
 			function()
 				Snacks.picker.lsp_implementations({
 					layout = {
@@ -625,6 +637,38 @@ return {
 				Snacks.picker.resume()
 			end,
 			desc = "Resume Search",
+		},
+
+		{
+			"<leader>rs",
+			function()
+				Snacks.picker.resume()
+			end,
+			desc = "Resume Search",
+		},
+
+		{
+			"<leader>vl",
+			function()
+				Snacks.picker.git_log()
+			end,
+			desc = "View git Log",
+		},
+
+		{
+			"<leader>vL",
+			function()
+				Snacks.picker.git_log_file()
+			end,
+			desc = "View git Log of current file",
+		},
+
+		{
+			"<leader>vs",
+			function()
+				Snacks.picker.git_status()
+			end,
+			desc = "View git Status",
 		},
 	},
 }

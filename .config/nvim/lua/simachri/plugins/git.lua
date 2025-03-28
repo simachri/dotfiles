@@ -10,10 +10,10 @@ return {
 	{
 		"sindrets/diffview.nvim",
 		keys = {
-			{ "<leader>vd", "<cmd>DiffviewOpen<cr>", { noremap = true, silent = true } },
-			{ "<leader>vq", "<cmd>DiffviewClose<cr>", { noremap = true, silent = true } },
-			{ "<leader>vh", "<cmd>DiffviewFileHistory %<cr>", { noremap = true, silent = true } },
-			{ "<leader>vl", "<cmd>DiffviewFileHistory<cr>", { noremap = true, silent = true } },
+			-- { "<leader>vd", "<cmd>DiffviewOpen<cr>", { noremap = true, silent = true } },
+			-- { "<leader>vq", "<cmd>DiffviewClose<cr>", { noremap = true, silent = true } },
+			-- { "<leader>vh", "<cmd>DiffviewFileHistory %<cr>", { noremap = true, silent = true } },
+			-- { "<leader>vl", "<cmd>DiffviewFileHistory<cr>", { noremap = true, silent = true } },
 		},
 		config = function()
 			local actions = require("diffview.actions")

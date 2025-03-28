@@ -80,6 +80,8 @@ ls.add_snippets("markdown", {
 		t({
 			"",
 			"",
+			"## Actions",
+			"",
 			"## Previous Meeting",
 			"",
 			"## Agenda",
@@ -91,8 +93,6 @@ ls.add_snippets("markdown", {
 			"## Relations",
 			"",
 			"## References",
-			"",
-			"## Actions",
 			"",
 		}),
 	}),

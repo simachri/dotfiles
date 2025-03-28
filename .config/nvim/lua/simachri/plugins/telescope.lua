@@ -370,7 +370,8 @@ return {
 			{ "<leader>fc", '<cmd>lua require("telescope.builtin").commands()<cr>', { noremap = true, silent = true } },
 
 			-- LSP: Fix actions
-			{ "<leader>lf", "<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>", { noremap = true, silent = true } },
+            -- maps to gra by default since Neovim 0.11
+			{ "gra", "<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>", { noremap = true, silent = true } },
 			-- -- LSP: Find Document symbols
 			-- {
 			-- 	"<leader>fs",

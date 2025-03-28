@@ -187,7 +187,7 @@ function Open_URL()
 	-- 	"final command: " .. "call system(\"www-browser " .. vim.fn.shellescape(url) .. "\")",
 	-- 	vim.log.levels.debug
 	-- )
-	vim.cmd("call system(\"www-browser " .. vim.fn.shellescape(url) .. "\")")
+	vim.cmd('call system("www-browser ' .. vim.fn.shellescape(url) .. '")')
 end
 
 return {
@@ -221,6 +221,11 @@ return {
 			},
 			checkbox = {
 				position = "overlay",
+                custom = {
+                    question = { raw = '[?]', rendered = '??   ', highlight = 'RenderMarkdownWarn', scope_highlight = nil },
+                    decision = { raw = '[!]', rendered = '!!   ', highlight = 'RenderMarkdownError', scope_highlight = nil },
+                    information = { raw = '[i]', rendered = 'Info ', highlight = 'RenderMarkdownHint', scope_highlight = nil },
+                },
 			},
 			dash = {
 				enabled = false,
@@ -315,11 +320,21 @@ return {
 		opts = {
 			filetypes = {
 				markdown = {
-					dir_path = ".img", ---@type string | fun(): string
+					-- use absolute file path to allow .md files to be moved around.
+					dir_path = "/home/xi3k/Notes/.img", ---@type string | fun(): string
 					extension = "png", ---@type string | fun(): string
-					file_name = "%Y-%m-%d-%H-%M-%S", ---@type string | fun(): string
-					use_absolute_path = false, ---@type boolean | fun(): boolean
-					relative_to_current_file = true, ---@type boolean | fun(): boolean
+					-- file_name = "%Y-%m-%d-%H-%M-%S", ---@type string | fun(): string
+					-- https://github.com/HakonHarnes/img-clip.nvim/issues/76#issuecomment-2154444847
+					file_name = function()
+						local desc_input = vim.fn.input("Description: ")
+						local desc_sanitized = desc_input:lower():gsub("[^a-z0-9]", "-")
+						local timestamp = os.date("%Y-%m-%d-%H-%M-%S")
+						local file_name = desc_sanitized .. "-" .. timestamp
+						return file_name
+					end,
+                    prompt_for_file_name = false,
+					use_absolute_path = true, ---@type boolean | fun(): boolean
+					relative_to_current_file = false, ---@type boolean | fun(): boolean
 					url_encode_path = true, ---@type boolean | fun(): boolean
 					template = "![$LABEL]($FILE_PATH)", ---@type string | fun(context: table): string
 					download_images = false, ---@type boolean | fun(): boolean
@@ -327,7 +342,6 @@ return {
 			},
 		},
 		keys = {
-			-- suggested keymap
 			{ "<leader>mpi", "<cmd>PasteImage<cr>", desc = "Markdown Paste Image from clipboard" },
 		},
 	},
