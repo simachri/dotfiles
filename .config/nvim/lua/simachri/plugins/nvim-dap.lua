@@ -132,9 +132,33 @@ return {
 
 			-- Specific mappings for Go
 			{ "<leader>dd", "<cmd>GoDebug<cr>", { noremap = true, silent = true }, ft = "go" },
-			{ "<leader>drl", "<cmd>GoDebug -R<cr>", { noremap = true, silent = true }, ft = "go" },
-			{ "<leader>dq", "<cmd>GoDebug -s<cr>", { noremap = true, silent = true }, ft = "go" },
-			{ "<leader>drt", "<cmd>GoDebug -n<cr>", { noremap = true, silent = true }, ft = "go" },
+			{
+				"<leader>drl",
+				"<cmd>GoDebug -R<cr>",
+				{ noremap = true, silent = true },
+				ft = "go",
+				desc = "Restart debug session",
+			},
+			{
+				"<leader>dq",
+				"<cmd>GoDebug -s<cr>",
+				{ noremap = true, silent = true },
+				ft = "go",
+				desc = "Stop debug session",
+			},
+			{
+				"<leader>drt",
+				"<cmd>GoDebug -n<cr>",
+				{ noremap = true, silent = true },
+				ft = "go",
+				desc = "Debug nearest test function",
+			},
+			{
+				"<leader>dc",
+				'<cmd>lua require"dap".continue()<cr>',
+				{ noremap = true, silent = true },
+				desc = "Debug: Continue",
+			},
 
 			{ "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<cr>', { noremap = true, silent = true } },
 

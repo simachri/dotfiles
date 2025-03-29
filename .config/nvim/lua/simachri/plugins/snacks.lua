@@ -56,14 +56,7 @@ return {
 		input = { enabled = true },
 
 		styles = {
-			notification_history = {
-				keys = {
-					["<C-c>"] = "close",
-				},
-			},
 			scratch = {
-				-- width = 100,
-				-- height = 30,
 				width = 0.9,
 				height = 0.8,
 				keys = {
@@ -188,10 +181,23 @@ return {
 		{
 			"<leader>sn",
 			function()
-				Snacks.notifier.show_history()
+				Snacks.picker.notifications({
+					layout = {
+						preview = false,
+					},
+
+					win = {
+						list = {
+							wo = {
+								wrap = true,
+							},
+						},
+					},
+				})
 			end,
-			desc = "Show Notification history",
+			desc = "Notification History",
 		},
+
 		{
 			"<leader>.",
 			function()
