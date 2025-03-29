@@ -284,7 +284,8 @@ return {
 			})
 
 			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("ui-select")
+            -- 2025-03-29: disabled as to be handled by Snacks picker
+			-- require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("dap")
 			require("telescope").load_extension("refactoring")
 			require("telescope").load_extension("tmuxinator")
@@ -366,12 +367,10 @@ return {
 			-- vim.api.nvim_set_keymap('n', '<leader>fe', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true })
 			-- -- Buffer fuzzy find: Headers
 			-- vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua search_currbuf_contents()<cr>]], { noremap = true, silent = true })
-			-- Find Vim commands
-			{ "<leader>fc", '<cmd>lua require("telescope.builtin").commands()<cr>', { noremap = true, silent = true } },
 
 			-- LSP: Fix actions
             -- maps to gra by default since Neovim 0.11
-			{ "gra", "<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>", { noremap = true, silent = true } },
+			-- { "gra", "<cmd>lua vim.lsp.buf.code_action({ apply=true })<cr>", { noremap = true, silent = true } },
 			-- -- LSP: Find Document symbols
 			-- {
 			-- 	"<leader>fs",

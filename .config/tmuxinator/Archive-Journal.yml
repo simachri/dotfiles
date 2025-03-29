@@ -1,0 +1,8 @@
+name: Archive-Journal
+root: ~/Journal/Obsidian
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

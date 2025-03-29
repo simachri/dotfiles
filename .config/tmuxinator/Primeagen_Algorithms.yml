@@ -1,0 +1,9 @@
+name: Primeagen_Algorithms
+root: ~/Development/Learning/Primeagen-Algorithms-FEM
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - zsh:

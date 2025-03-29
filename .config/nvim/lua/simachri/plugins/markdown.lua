@@ -222,9 +222,9 @@ return {
 			checkbox = {
 				position = "overlay",
                 custom = {
-                    question = { raw = '[?]', rendered = '??   ', highlight = 'RenderMarkdownWarn', scope_highlight = nil },
-                    decision = { raw = '[!]', rendered = '!!   ', highlight = 'RenderMarkdownError', scope_highlight = nil },
-                    information = { raw = '[i]', rendered = 'Info ', highlight = 'RenderMarkdownHint', scope_highlight = nil },
+                    question = { raw = '[?]', rendered = '??', highlight = 'RenderMarkdownWarn', scope_highlight = nil },
+                    decision = { raw = '[!]', rendered = '!!', highlight = 'RenderMarkdownError', scope_highlight = nil },
+                    information = { raw = '[i]', rendered = 'Info', highlight = 'RenderMarkdownHint', scope_highlight = nil },
                 },
 			},
 			dash = {

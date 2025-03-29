@@ -305,10 +305,10 @@ ls.add_snippets("markdown", {
 		t({
 			"[^fn-1",
 		}),
-		i(0),
 		t({
 			"]",
 		}),
+		i(0),
 	}),
 
 	s("Weekly Note", {

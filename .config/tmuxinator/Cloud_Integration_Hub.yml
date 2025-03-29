@@ -1,0 +1,9 @@
+name: Cloud_Integration_Hub
+root: ~/Notes/Projects/Cloud_Integration_Hub
+attach: false
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

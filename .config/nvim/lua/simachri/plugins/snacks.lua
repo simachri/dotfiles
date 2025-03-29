@@ -93,6 +93,19 @@ return {
 		picker = {
 			enabled = true,
 
+			-- use the Snacks picker for selects such as code_actions
+			ui_select = true,
+			layouts = {
+				select = {
+					layout = {
+						relative = "cursor",
+						width = 70,
+						min_width = 0,
+						row = 1,
+					},
+				},
+			},
+
 			-- NOTE: If a layout is set here, using "preset = 'foo'" does not work in the
 			-- pickers anymore.
 			-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
@@ -207,9 +220,47 @@ return {
 		},
 
 		{
-			"<leader>fw",
+			"<leader>fk",
+			function()
+				-- source:
+				-- https://github.com/folke/snacks.nvim/issues/1036#issuecomment-2734330151
+				Snacks.picker.pick({
+					title = "Directories",
+					format = "text",
+					layout = {
+						preview = false,
+					},
+					finder = function(opts, ctx)
+						local proc_opts = {
+							cmd = "fd",
+							args = { ".", "--type", "directory" },
+						}
+						return require("snacks.picker.source.proc").proc({ opts, proc_opts }, ctx)
+					end,
+					confirm = function(picker, item)
+						picker:close()
+						if item then
+							vim.cmd("e " .. item.text)
+						end
+					end,
+				})
+			end,
+			desc = "Find directories",
+		},
+
+		{
+			"<leader>fc",
+			function()
+				Snacks.picker.commands()
+			end,
+			desc = "Find Commands",
+		},
+
+		{
+			"<leader>fl",
 			function()
 				Snacks.picker.grep({
+					title = "Tagged Files in CWD",
 					layout = {
 						preview = false,
 					},
@@ -223,13 +274,14 @@ return {
 					ft = "md",
 				})
 			end,
-			desc = "Find tagged Wiki files in cwd",
+			desc = "Find tagged wiki fiLes in cwd",
 		},
 
 		{
-			"<leader>fW",
+			"<leader>fL",
 			function()
 				Snacks.picker.grep({
+					title = "Tagged Files in CWD & Wiki",
 					layout = {
 						preview = false,
 					},
@@ -240,13 +292,14 @@ return {
 					ft = "md",
 				})
 			end,
-			desc = "Find tagged Wiki files: cwd + global Wiki",
+			desc = "Find tagged wiki fiLes: cwd + global Wiki",
 		},
 
 		{
 			"<leader>fm",
 			function()
 				Snacks.picker.files({
+					title = "Meeting Notes",
 					layout = {
 						preview = false,
 					},
@@ -289,6 +342,7 @@ return {
 			"<leader>fo",
 			function()
 				Snacks.picker.files({
+					title = "Open Items",
 					layout = {
 						preview = false,
 					},
@@ -306,6 +360,7 @@ return {
 			"<leader>fi",
 			function()
 				Snacks.picker.files({
+					title = "Issues",
 					layout = {
 						preview = false,
 					},
@@ -350,6 +405,7 @@ return {
 			"<leader>fd",
 			function()
 				Snacks.picker.files({
+					title = "Dotfiles",
 					hidden = true,
 					ignored = true,
 					dirs = { "~/.config" },
@@ -398,6 +454,7 @@ return {
 			"<leader>gwc",
 			function()
 				Snacks.picker.grep_word({
+					title = "Grep Word in CWD",
 					layout = {
 						preview = false,
 					},
@@ -410,6 +467,7 @@ return {
 			"<leader>gwr",
 			function()
 				Snacks.picker.grep_word({
+					title = "Grep word relative to current file",
 					layout = {
 						preview = false,
 					},
@@ -466,7 +524,8 @@ return {
 		},
 
 		{
-            -- gO is a default nvim mapping since 0.11
+			-- gO is a default nvim mapping since 0.11
+			-- note: this is additionally set for markdown here: /home/xi3k/.config/nvim/after/ftplugin/markdown.lua
 			"gO",
 			function()
 				Snacks.picker.lsp_symbols({
@@ -478,6 +537,7 @@ return {
 			end,
 			desc = "LSP Find Symbols",
 		},
+
 		{
 			"<leader>gO",
 			function()
@@ -515,7 +575,7 @@ return {
 			desc = "Goto Declaration",
 		},
 		{
-            -- grr is a default nvim mapping since 0.11
+			-- grr is a default nvim mapping since 0.11
 			"grr",
 			function()
 				Snacks.picker.lsp_references({
@@ -529,7 +589,7 @@ return {
 			desc = "References",
 		},
 		{
-            -- gri is a default nvim mapping since 0.11
+			-- gri is a default nvim mapping since 0.11
 			"gri",
 			function()
 				Snacks.picker.lsp_implementations({
@@ -585,6 +645,7 @@ return {
 			"<leader>gr",
 			function()
 				Snacks.picker.grep({
+					title = "Grep relative to current file",
 					cwd = vim.fn.expand("%:p:h"),
 					-- layout = {
 					-- 	preview = false,
