@@ -313,10 +313,10 @@ return {
 					exclude = {
 						"Past",
 					},
-					ft = "md",
 					matcher = {
-						sort_empty = true, -- sort results when the search string is empty
+						sort_empty = true,
 					},
+					ft = "md",
 					sort = {
 						-- default sort is by score, text length and index
 						fields = { "score:desc", "text:desc", "#text", "idx" },
@@ -352,6 +352,9 @@ return {
 					layout = {
 						preview = false,
 					},
+					matcher = {
+						sort_empty = true,
+					},
 					dirs = { "/home/xi3k/Notes/Open_Items" },
 					exclude = {
 						"Past",
@@ -371,6 +374,9 @@ return {
 						preview = false,
 					},
 					dirs = calculate_issues_dirs(),
+					matcher = {
+						sort_empty = true,
+					},
 					ft = "md",
 					-- layout = {
 					-- 	layout = {
