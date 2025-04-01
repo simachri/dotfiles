@@ -25,7 +25,8 @@ vim.opt.updatetime = 50
 --    count do not show "W" after the count message (see S below)
 vim.opt.shortmess:append({ c = true, s = true })
 vim.opt.showcmd = true
-vim.opt.laststatus = 2
+-- use a global statusline, is recommended by avante.nvim
+vim.opt.laststatus = 3
 
 vim.opt.spelllang = "en,de"
 vim.opt.spell = false

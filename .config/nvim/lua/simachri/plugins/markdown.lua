@@ -195,6 +195,8 @@ return {
 		"MeanderingProgrammer/render-markdown.nvim",
 		main = "render-markdown",
 		opts = {
+			file_types = { "markdown", "Avante" },
+
 			heading = {
 				-- disable sign column related rendering
 				sign = false,
@@ -221,11 +223,21 @@ return {
 			},
 			checkbox = {
 				position = "overlay",
-                custom = {
-                    question = { raw = '[?]', rendered = '??', highlight = 'RenderMarkdownWarn', scope_highlight = nil },
-                    decision = { raw = '[!]', rendered = '!!', highlight = 'RenderMarkdownError', scope_highlight = nil },
-                    information = { raw = '[i]', rendered = 'Info', highlight = 'RenderMarkdownHint', scope_highlight = nil },
-                },
+				custom = {
+					question = { raw = "[?]", rendered = "??", highlight = "RenderMarkdownWarn", scope_highlight = nil },
+					decision = {
+						raw = "[!]",
+						rendered = "!!",
+						highlight = "RenderMarkdownError",
+						scope_highlight = nil,
+					},
+					information = {
+						raw = "[i]",
+						rendered = "Info",
+						highlight = "RenderMarkdownHint",
+						scope_highlight = nil,
+					},
+				},
 			},
 			dash = {
 				enabled = false,
@@ -235,6 +247,7 @@ return {
 				wiki = { icon = "↪ " },
 			},
 		},
+		ft = { "markdown", "Avante" },
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
 		-- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
@@ -332,7 +345,7 @@ return {
 						local file_name = desc_sanitized .. "-" .. timestamp
 						return file_name
 					end,
-                    prompt_for_file_name = false,
+					prompt_for_file_name = false,
 					use_absolute_path = true, ---@type boolean | fun(): boolean
 					relative_to_current_file = false, ---@type boolean | fun(): boolean
 					url_encode_path = true, ---@type boolean | fun(): boolean
