@@ -305,7 +305,13 @@ function Open_or_create_weekly_note()
 	local year = os.date("%Y")
 	local week_number = os.date("%W") + 1 -- is off by one in 2025
 	local formatted_week_number = string.format("%02d", week_number)
-	local month_short = os.date("%b")
+
+    -- get the month from the current week's monday
+	local current_date = os.date("*t")
+	local days_since_monday = (current_date.wday - 2) % 7
+	local monday_timestamp = os.time(current_date) - (days_since_monday * 86400)
+	local month_short = os.date("%b", monday_timestamp)
+
 	local file_path =
 		string.format("%s/Notes/Weekly/%s/Week-%s-%s.md", os.getenv("HOME"), year, formatted_week_number, month_short)
 
@@ -332,9 +338,9 @@ end
 
 vim.keymap.set(
 	"n",
-	"<leader>jj",
+	"<leader>ow",
 	":lua Open_or_create_weekly_note()<CR>",
-	{ noremap = true, silent = true, desc = "Weekly Note" }
+	{ noremap = true, silent = true, desc = "Open Weekly note" }
 )
 
 vim.keymap.set(

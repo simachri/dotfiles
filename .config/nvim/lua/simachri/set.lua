@@ -78,7 +78,7 @@ vim.opt.comments = "s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:**"
 
 -- Indicate that a line has been wrapped.
 -- vim.opt.showbreak = '\\>  '
-vim.opt.showbreak = ''
+vim.opt.showbreak = ""
 vim.opt.wrap = false
 
 -- Disable the mouse such that 'select-to-copy' works.
@@ -87,7 +87,7 @@ vim.opt.mouse = ""
 -- Wider statuscolumn to the left.
 -- see :h statuscolumn
 -- vim.opt.statuscolumn='%{v:relnum?" ":v:lnum}%= %{v:relnum?v:relnum:" "} %s '
-vim.opt.statuscolumn="%s%=%{v:virtnum?'':(v:relnum?v:relnum:v:lnum)}  "
+vim.opt.statuscolumn = "%s%=%{v:virtnum?'':(v:relnum?v:relnum:v:lnum)}  "
 
 -- Disalbe netrw in favour of nvim-tree.
 vim.g.loaded_netrw = 1
@@ -96,9 +96,15 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.clipboard = "unnamedplus"
 
 vim.filetype.add({
-  extension = {
-    jira = "confluencewiki",
-    confluencewiki = "confluencewiki",
-    cds = "cds",
-  },
+	extension = {
+		jira = "confluencewiki",
+		confluencewiki = "confluencewiki",
+		cds = "cds",
+	},
+})
+
+vim.diagnostic.config({
+	-- https://gpanders.com/blog/whats-new-in-neovim-0-11/#diagnostics
+	-- virtual_text = { current_line = true },
+	virtual_lines = { current_line = true },
 })

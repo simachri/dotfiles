@@ -1,0 +1,9 @@
+name: Repo_Collaboration_Service
+root: ~/Development/DSC/Collaboration/collab-backend
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

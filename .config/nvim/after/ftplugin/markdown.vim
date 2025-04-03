@@ -39,8 +39,8 @@ nmap <buffer><silent> <leader>mi ysiW_
 " Make text bold.
 nmap <buffer><silent> <leader>mb ysiW_.
 
-" 'Add anchor'
-nnoremap <Leader>aa o<a id=""></a><Esc>5hi
+" " 'Add anchor'
+" nnoremap <Leader>aa o<a id=""></a><Esc>5hi
 
 " " 'Get anchor' link without the filename as the link description.
 " " 1. Clear register d

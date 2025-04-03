@@ -10,6 +10,7 @@ local function calculate_dirs(dir_type)
 		"Lifecycle_Graph",
 		"PDI",
 		"SAP",
+        "Nexus",
 	}
 
 	for _, base in ipairs(base_dirs) do
@@ -272,7 +273,7 @@ return {
 					},
 					exclude = {
 						"Meetings",
-						"Issues",
+						-- "Issues",
 					},
 					search = "^tags:\\s*\\[.*?",
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list

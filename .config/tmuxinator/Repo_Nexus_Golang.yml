@@ -1,5 +1,5 @@
-name: Repo_PDI_Service
-root: ~/Development/DSC/PDI/Impl/Backend
+name: Repo_Nexus_Golang
+root: ~/Development/DSC/Nexus/Golang/
 startup_window: 1
 
 windows:
