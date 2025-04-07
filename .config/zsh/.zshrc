@@ -54,7 +54,7 @@ alias update_sys='sudo pacman -Syy && sudo pacman -Su && yay -Syu && yay -Sc && 
 alias update_go='gup update'
 alias update_rust='rustup update'
 # alias update_npm='cd ~ && bun update && npm audit fix && npm outdated'
-alias update_bun='cd ~ && bun update'
+# alias update_bun='cd ~ && bun update'
 # python packages are managed by pacman
 # alias update_pip="cd ~ && pip list --outdated | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U --user"
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'

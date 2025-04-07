@@ -9,9 +9,9 @@ local function current_date()
 	return os.date("%Y-%m-%d")
 end
 
-local function get_filename_without_leading_date()
+local function get_filename_without_trailing_date()
 	local filename = vim.fn.expand("%:t:r")
-	return filename:gsub("^%d%d%d%d%-%d%d%-%d%d[-_ ]*", ""):gsub("[-_]", " ")
+	return filename:gsub("[-_ ]*%d%d%d%d%-%d%d%-%d%d$", ""):gsub("[-_]", " ")
 end
 
 local function splitPath(path)
@@ -74,7 +74,7 @@ ls.add_snippets("markdown", {
 		}),
 		f(current_date, {}),
 		t(" "),
-		f(get_filename_without_leading_date, {}),
+		f(get_filename_without_trailing_date, {}),
 		i(0, ""),
 		-- dl(1, get_filename_without_leading_date, {}),
 		t({
@@ -111,7 +111,7 @@ ls.add_snippets("markdown", {
 			"---",
 			"# ",
 		}),
-		f(get_filename_without_leading_date, {}),
+		f(get_filename_without_trailing_date, {}),
 		i(0, ""),
 		t({
 			"",
@@ -137,7 +137,7 @@ ls.add_snippets("markdown", {
 		}),
 		i(1, "tags"),
 		t({ "]", "---", "# " }),
-		f(get_filename_without_leading_date, {}),
+		f(get_filename_without_trailing_date, {}),
 		i(0, ""),
 		t({
 			"",
@@ -159,7 +159,7 @@ ls.add_snippets("markdown", {
 		}),
 		i(1, "tags"),
 		t({ "]", "---", "# " }),
-		f(get_filename_without_leading_date, {}),
+		f(get_filename_without_trailing_date, {}),
 		i(0, ""),
 		t({
 			"",

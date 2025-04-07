@@ -346,6 +346,28 @@ return {
 		},
 
 		{
+			"<leader>fM",
+			function()
+				Snacks.picker.files({
+					title = "Meeting Notes (including past)",
+					layout = {
+						preview = false,
+					},
+					dirs = calculate_meeting_dirs(),
+					matcher = {
+						sort_empty = true,
+					},
+					ft = "md",
+					sort = {
+						-- default sort is by score, text length and index
+						fields = { "score:desc", "text:desc", "#text", "idx" },
+					},
+				})
+			end,
+			desc = "Find All Meeting Notes",
+		},
+
+		{
 			"<leader>fo",
 			function()
 				Snacks.picker.files({
