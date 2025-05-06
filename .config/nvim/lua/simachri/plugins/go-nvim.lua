@@ -32,7 +32,7 @@ return {
 				vim.api.nvim_buf_set_keymap(
 					bufnr,
 					"n",
-					"gri",
+					"gro",
 					"<cmd>GoImports<cr>",
 					{ desc = "Go Organize Imports", noremap = true, silent = true }
 				)

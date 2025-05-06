@@ -27,7 +27,7 @@ function M.setup()
 		vim.api.nvim_buf_set_keymap(
 			bufnr,
 			"n",
-			"<leader>li",
+			"gro",
 			-- jdtls.organize_imports,
 			"<cmd>lua require('jdtls').organize_imports()<CR>",
 			{ desc = "Java Organize Imports", noremap = true, silent = true }

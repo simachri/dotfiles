@@ -13,7 +13,7 @@ return {
             -- nvim 0.11
 			-- { "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true } },
 
-			-- { "<leader>ls", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true } },
+			{ "grs", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true } },
 
             -- default mapping since nvim 0.11
 			-- { "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true, silent = true } },

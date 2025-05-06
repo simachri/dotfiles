@@ -1,0 +1,8 @@
+name: DIEHL_Aviation
+root: ~/Notes/Projects/DIEHL
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim

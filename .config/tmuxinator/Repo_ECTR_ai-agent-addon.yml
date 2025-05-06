@@ -1,0 +1,9 @@
+name: Repo_ECTR_ai-agent-addon
+root: ~/Development/DSC/ECTR/ai-agent-addon
+startup_window: 1
+
+windows:
+  - zsh:
+  - Neovim:
+    - nvim
+  - Run/Debug:

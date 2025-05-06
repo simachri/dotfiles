@@ -48,7 +48,7 @@ local function print_wednesday()
 end
 
 local function print_friday()
-	return get_weekday_date(4)
+	return get_weekday_date(5)
 end
 
 local function print_week_number_and_year()

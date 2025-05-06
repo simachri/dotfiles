@@ -1,6 +1,6 @@
 name: Lifecycle_Graph
 root: ~/Notes/Projects/Lifecycle_Graph
-attach: false
+# attach: false
 startup_window: 1
 
 windows:

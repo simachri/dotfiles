@@ -206,13 +206,14 @@ return {
 			end,
 			desc = "Toggle Scratch Buffer",
 		},
-		{
-			"<leader>ls",
-			function()
-				Snacks.scratch.select()
-			end,
-			desc = "List Scratch Buffers",
-		},
+
+		-- {
+		-- 	"<leader>ls",
+		-- 	function()
+		-- 		Snacks.scratch.select()
+		-- 	end,
+		-- 	desc = "List Scratch Buffers",
+		-- },
 
 		{
 			"<leader>fj",
@@ -385,7 +386,7 @@ return {
 					ft = "md",
 				})
 			end,
-			desc = "Find Space Meeting Notes",
+			desc = "Find Open Items",
 		},
 
 		{

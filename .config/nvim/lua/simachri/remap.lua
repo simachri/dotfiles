@@ -100,7 +100,7 @@ vim.keymap.set("n", "<leader>yr", function()
 	vim.fn.setreg("+", final_yank) -- System clipboard
 	vim.fn.setreg('"', final_yank) -- Default register
 	print("Yanked: " .. final_yank)
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Yank filename; respect Markdown header" })
 
 -- Paste Reference: create a markdown wiki link from register x (system clipboard)
 vim.keymap.set("n", "<leader>pr", [[:lua PasteWithBrackets()<CR>]], { noremap = true, silent = true })

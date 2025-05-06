@@ -52,7 +52,7 @@ vim.opt.cpoptions:remove("n")
 -- vim.opt.scl = "auto:3-4"
 vim.opt.scl = "auto:1-4"
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
