@@ -274,7 +274,7 @@ return {
 					},
 					exclude = {
 						"Meetings",
-						-- "Issues",
+						"Issues",
 					},
 					search = "^tags:\\s*\\[.*?",
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list

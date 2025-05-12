@@ -306,7 +306,7 @@ function Open_or_create_weekly_note()
 	local week_number = os.date("%W") + 1 -- is off by one in 2025
 	local formatted_week_number = string.format("%02d", week_number)
 
-    -- get the month from the current week's monday
+	-- get the month from the current week's monday
 	local current_date = os.date("*t")
 	local days_since_monday = (current_date.wday - 2) % 7
 	local monday_timestamp = os.time(current_date) - (days_since_monday * 86400)
@@ -328,8 +328,12 @@ function Open_or_create_weekly_note()
 			for _, snip in ipairs(snips) do
 				if snip["name"] == "Weekly Note" then
 					require("luasnip").snip_expand(snip)
-					vim.cmd("write")
-					return true
+					-- Wait for snippet expansion and then exit insert mode and save
+					vim.schedule(function()
+						vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+						vim.cmd("write")
+					end)
+					return
 				end
 			end
 		end)
