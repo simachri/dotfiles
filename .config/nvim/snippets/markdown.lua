@@ -303,7 +303,7 @@ ls.add_snippets("markdown", {
 
 	s("Footnote", {
 		t({
-			"[^fn-1",
+			"[^fn_1",
 		}),
 		t({
 			"]",

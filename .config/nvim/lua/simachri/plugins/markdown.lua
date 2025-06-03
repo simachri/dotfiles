@@ -193,19 +193,21 @@ end
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		main = "render-markdown",
 		opts = {
 			file_types = { "markdown", "Avante" },
+
+            render_modes = true, -- render in all modes
 
 			heading = {
 				-- disable sign column related rendering
 				sign = false,
 				-- disable icons for headers
-				icons = {},
-				-- disable backgrounds
-				backgrounds = {},
-				-- -- do not cover the whole window with with the header background
-				-- width = "block",
+				-- icons = false,
+				-- -- disable backgrounds
+				-- backgrounds = false,
+				-- do not cover the whole window with with the header background
+				width = "block",
+                min_width = 89,
 				-- -- left_pad = 2,
 				-- right_pad = 1,
 			},
@@ -239,19 +241,16 @@ return {
 					},
 				},
 			},
-			dash = {
-				enabled = false,
-				-- width = 15,
-			},
+			-- dash = {
+			-- 	enabled = false,
+			-- 	-- width = 15,
+			-- },
 			link = {
 				wiki = { icon = "↪ " },
 			},
 		},
 		ft = { "markdown", "Avante" },
-		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
-		-- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	},
 
 	{

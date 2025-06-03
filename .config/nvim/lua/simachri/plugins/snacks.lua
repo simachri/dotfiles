@@ -11,6 +11,9 @@ local function calculate_dirs(dir_type)
 		"PDI",
 		"SAP",
         "Nexus",
+        "Threedy",
+        "DIEHL",
+        "Sartorius",
 	}
 
 	for _, base in ipairs(base_dirs) do
@@ -269,9 +272,9 @@ return {
 			function()
 				Snacks.picker.grep({
 					title = "Tagged Files in CWD",
-					layout = {
-						preview = false,
-					},
+					-- layout = {
+					-- 	preview = false,
+					-- },
 					exclude = {
 						"Meetings",
 						"Issues",
@@ -290,9 +293,9 @@ return {
 			function()
 				Snacks.picker.grep({
 					title = "Tagged Files in CWD & Wiki",
-					layout = {
-						preview = false,
-					},
+					-- layout = {
+					-- 	preview = false,
+					-- },
 					search = "^tags:\\s*\\[.*?",
 					dirs = calculate_wiki_dirs(),
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
