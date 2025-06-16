@@ -90,6 +90,16 @@ return {
 				noremap = true,
 				silent = true,
 			},
+			{
+				"<leader>me",
+				":lua require('qol-md-extensions').create_excalidraw_diagram()<CR>",
+				mode = { "n" },
+				desc = "Create Excalidraw diagram",
+				noremap = true,
+				silent = true,
+			},
+            -- Opening Excalidraw diagrams is implemented in Open_Url
+            -- /home/xi3k/.config/nvim/lua/simachri/plugins/markdown.lua
 		},
 	},
 }

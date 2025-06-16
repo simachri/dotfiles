@@ -180,6 +180,29 @@ function Open_URL()
 		return
 	end
 
+	-- Excalidraw integration
+	-- /home/xi3k/Development/Neovim/simachri/qol-md-extensions.nvim/lua/qol-md-extensions/init.lua
+	if string.match(url, "%.excalidraw$") then
+		local clean_file = url
+		clean_file = string.gsub(clean_file, "%[%[(.*)%]%]", "%1")
+		clean_file = string.gsub(clean_file, "!%[(.*)%]", "%1")
+
+		local notes_root = vim.fn.expand("$HOME/Notes/.excalidraw")
+		local full_path = notes_root .. "/" .. clean_file
+
+		-- vim.notify("Excalidraw file path: " .. full_path, vim.log.levels.debug)
+
+		if vim.fn.filereadable(full_path) == 1 then
+			-- Open in VSCode
+			vim.system({ '/mnt/c/Program Files/Microsoft VS Code/Code.exe', full_path })
+			print("Opening " .. clean_file .. " in VSCode...")
+		else
+			print("File not found: " .. full_path)
+		end
+
+		return true
+	end
+
 	-- vim.notify("url: " .. url, vim.log.levels.debug)
 
 	-- vim.keymap.set("n", "gx", ":call system('www-browser <C-r><C-a>')<CR>", { silent = true })
@@ -193,62 +216,80 @@ end
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		opts = {
-			file_types = { "markdown", "Avante" },
+		config = function()
+			require("render-markdown").setup({
+				file_types = { "markdown", "Avante" },
 
-            render_modes = true, -- render in all modes
+				render_modes = true, -- render in all modes
 
-			heading = {
-				-- disable sign column related rendering
-				sign = false,
-				-- disable icons for headers
-				-- icons = false,
-				-- -- disable backgrounds
-				-- backgrounds = false,
-				-- do not cover the whole window with with the header background
-				width = "block",
-                min_width = 89,
-				-- -- left_pad = 2,
-				-- right_pad = 1,
-			},
-			code = {
-				-- turn on off any sign column related rendering
-				sign = false,
-				-- Width of the code block background:
-				--  block: width of the code block
-				width = "block",
-				right_pad = 2,
-				border = "thick",
-				-- change inline code highlighting
-				-- highlight_inline = "RenderMarkdownCodeInline",
-				highlight_inline = "CustomMarkdownInlineCodeBlock",
-			},
-			checkbox = {
-				position = "overlay",
-				custom = {
-					question = { raw = "[?]", rendered = "??", highlight = "RenderMarkdownWarn", scope_highlight = nil },
-					decision = {
-						raw = "[!]",
-						rendered = "!!",
-						highlight = "RenderMarkdownError",
-						scope_highlight = nil,
-					},
-					information = {
-						raw = "[i]",
-						rendered = "Info",
-						highlight = "RenderMarkdownHint",
-						scope_highlight = nil,
+				heading = {
+					-- disable sign column related rendering
+					sign = false,
+					-- disable icons for headers
+					-- icons = false,
+					-- -- disable backgrounds
+					-- backgrounds = false,
+					-- do not cover the whole window with with the header background
+					width = "block",
+					-- min_width = 89,
+					-- -- left_pad = 2,
+					right_pad = 2,
+					-- disable setext header rendering
+					setext = false,
+				},
+				code = {
+					-- turn on off any sign column related rendering
+					sign = false,
+					-- Width of the code block background:
+					--  block: width of the code block
+					width = "block",
+					right_pad = 2,
+					border = "thick",
+					-- change inline code highlighting
+					-- highlight_inline = "RenderMarkdownCodeInline",
+					highlight_inline = "CustomMarkdownInlineCodeBlock",
+				},
+				checkbox = {
+					position = "overlay",
+					custom = {
+						question = {
+							raw = "[?]",
+							rendered = "??",
+							highlight = "RenderMarkdownWarn",
+							scope_highlight = nil,
+						},
+						decision = {
+							raw = "[!]",
+							rendered = "!!",
+							highlight = "RenderMarkdownError",
+							scope_highlight = nil,
+						},
+						information = {
+							raw = "[i]",
+							rendered = "Info",
+							highlight = "RenderMarkdownHint",
+							scope_highlight = nil,
+						},
 					},
 				},
-			},
-			-- dash = {
-			-- 	enabled = false,
-			-- 	-- width = 15,
-			-- },
-			link = {
-				wiki = { icon = "↪ " },
-			},
-		},
+				dash = {
+					enabled = false,
+					-- width = 15,
+				},
+				link = {
+					wiki = { icon = "↪ " },
+				},
+			})
+
+			-- -- Only have headings to be underlined instead of actual background.
+			-- vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { underdouble = true, bold = true })
+			-- vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { underdouble = true, bold = true })
+			-- vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { underdouble = true, bold = true })
+			-- vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { underdouble = true, bold = true })
+			-- vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { underdouble = true, bold = true })
+			-- vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { underdouble = true, bold = true })
+		end,
+
 		ft = { "markdown", "Avante" },
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
 	},

@@ -35,9 +35,9 @@ setlocal shiftwidth=2
 setlocal expandtab
 
 " Make text italic.
-nmap <buffer><silent> <leader>mi ysiW_
+nmap <buffer><silent> <leader>mi ysiW*
 " Make text bold.
-nmap <buffer><silent> <leader>mb ysiW_.
+nmap <buffer><silent> <leader>mb ysiW*.
 
 " " 'Add anchor'
 " nnoremap <Leader>aa o<a id=""></a><Esc>5hi

@@ -422,13 +422,13 @@ return {
 
 			-- Grep Search history - use <C-e> for the entry to populate the search prompt.
 			{
-				"<leader>ghs",
+				"<leader>gs",
 				'<cmd>lua require("telescope.builtin").search_history()<cr>',
 				{ noremap = true, silent = true },
 			},
 			-- Grep Command history - use <C-e> for the entry to populate the command prompt.
 			{
-				"<leader>ghc",
+				"<leader>gc",
 				'<cmd>lua require("telescope.builtin").command_history()<cr>',
 				{ noremap = true, silent = true },
 			},

@@ -10,10 +10,10 @@ local function calculate_dirs(dir_type)
 		"Lifecycle_Graph",
 		"PDI",
 		"SAP",
-        "Nexus",
-        "Threedy",
-        "DIEHL",
-        "Sartorius",
+		"Nexus",
+		"Threedy",
+		"DIEHL",
+		"Sartorius",
 	}
 
 	for _, base in ipairs(base_dirs) do
@@ -268,7 +268,7 @@ return {
 		},
 
 		{
-			"<leader>fl",
+			"<leader>fh",
 			function()
 				Snacks.picker.grep({
 					title = "Tagged Files in CWD",
@@ -288,8 +288,33 @@ return {
 			desc = "Find tagged wiki fiLes in cwd",
 		},
 
+		-- {
+		-- 	"<leader>fl",
+		-- 	function()
+		-- 		Snacks.input.input({
+		-- 			prompt = "Search tags: ",
+		-- 			default = "", -- optional default value
+		-- 		}, function(input)
+		-- 			if input then -- check if user didn't cancel
+		-- 				Snacks.picker.grep({
+		-- 					title = "Tagged Files in CWD",
+		-- 					exclude = {
+		-- 						"Meetings",
+		-- 						"Issues",
+		-- 					},
+		-- 					search = "^tags:\\s*\\[.*?" .. vim.pesc(input),
+		-- 					live = false,
+		-- 					args = { "--max-count", "1" },
+		-- 					ft = "md",
+		-- 				})
+		-- 			end
+		-- 		end)
+		-- 	end,
+		-- 	desc = "Find tagged wiki fiLes in cwd",
+		-- },
+
 		{
-			"<leader>fL",
+			"<leader>fH",
 			function()
 				Snacks.picker.grep({
 					title = "Tagged Files in CWD & Wiki",
@@ -426,6 +451,25 @@ return {
 				})
 			end,
 			desc = "Find Space Issues",
+		},
+
+		{
+			"<leader>fI",
+			function()
+				Snacks.picker.files({
+					title = "Issues",
+					layout = {
+						preview = false,
+					},
+					dirs = calculate_issues_dirs(),
+					matcher = {
+						sort_empty = true,
+					},
+					ft = "md",
+                    hidden = true,
+				})
+			end,
+			desc = "Find Space Issues - include closed (hidden)",
 		},
 
 		{
@@ -711,8 +755,8 @@ return {
 		},
 
 		{
-			-- Find Help tags
-			"<leader>fh",
+			-- Grep Help tags
+			"<leader>gh",
 			function()
 				Snacks.picker.help()
 			end,
