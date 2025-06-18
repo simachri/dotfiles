@@ -83,7 +83,8 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 # User Docker BuildKit
 export DOCKER_BUILDKIT=1
 
-export BROWSER=brave
+# export BROWSER=brave
+export BROWSER=firefox
 
 # export OPENAI_API_KEY=$(cat ~/.openai/api_key)
 export ANTHROPIC_API_KEY=$(cat ~/.anthropic/api_key)

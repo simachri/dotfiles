@@ -359,3 +359,8 @@ vim.keymap.set(
 	"<C-\\><C-n>",
 	{ noremap = true, silent = true, desc = "Terminal: Switch from TERMINAL to NORMAL mode" }
 )
+
+vim.keymap.set('n', 'ci*', '/*<CR>cT*', { desc = 'Change inside *' })
+vim.keymap.set('n', 'ci_', '/_<CR>cT_', { desc = 'Change inside _' })
+vim.keymap.set('n', 'ca*', '/*<CR>vF*c', { desc = 'Change around *' })
+vim.keymap.set('n', 'ca_', '/_<CR>vF_c', { desc = 'Change around _' })

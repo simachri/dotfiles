@@ -534,23 +534,24 @@ return {
 		},
 
 		{
-			"<leader>gwc",
+			"<leader>gw",
 			function()
 				Snacks.picker.grep_word({
-					title = "Grep Word in CWD",
+					title = "Grep word or visual selection in CWD",
 					layout = {
 						preview = false,
 					},
 				})
 			end,
 			desc = "Grep Word in CWD",
+            mode = { "n", "x" },
 		},
 
 		{
-			"<leader>gwr",
+			"<leader>gW",
 			function()
 				Snacks.picker.grep_word({
-					title = "Grep word relative to current file",
+					title = "Grep word or visual selection relative to current file",
 					layout = {
 						preview = false,
 					},
@@ -576,6 +577,7 @@ return {
 				})
 			end,
 			desc = "Grep Word Relative to current file",
+            mode = { "n", "x" },
 		},
 
 		{
