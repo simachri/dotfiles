@@ -100,7 +100,7 @@ ls.add_snippets("markdown", {
 	s("Issue", {
 		t({
 			"---",
-			"priority: default",
+			"priority: medium",
 			"status: open",
 			"created: ",
 		}),

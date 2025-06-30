@@ -1,4 +1,4 @@
-local function calculate_dirs(dir_type)
+function Calculate_dirs(dir_type)
 	local cwd = vim.fn.getcwd()
 	local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
 	local project_dirs = {
@@ -30,14 +30,14 @@ local function calculate_dirs(dir_type)
 end
 
 local function calculate_meeting_dirs()
-	return calculate_dirs("Meetings")
+	return Calculate_dirs("Meetings")
 end
 
 local function calculate_issues_dirs()
-	return calculate_dirs("Issues")
+	return Calculate_dirs("Issues")
 end
 
-local function calculate_wiki_dirs()
+function Calculate_wiki_dirs()
 	local cwd = vim.fn.getcwd()
 	local wiki_base = "/home/xi3k/Notes"
 
@@ -268,7 +268,7 @@ return {
 		},
 
 		{
-			"<leader>fh",
+			"<leader>fl",
 			function()
 				Snacks.picker.grep({
 					title = "Tagged Files in CWD",
@@ -288,33 +288,8 @@ return {
 			desc = "Find tagged wiki fiLes in cwd",
 		},
 
-		-- {
-		-- 	"<leader>fl",
-		-- 	function()
-		-- 		Snacks.input.input({
-		-- 			prompt = "Search tags: ",
-		-- 			default = "", -- optional default value
-		-- 		}, function(input)
-		-- 			if input then -- check if user didn't cancel
-		-- 				Snacks.picker.grep({
-		-- 					title = "Tagged Files in CWD",
-		-- 					exclude = {
-		-- 						"Meetings",
-		-- 						"Issues",
-		-- 					},
-		-- 					search = "^tags:\\s*\\[.*?" .. vim.pesc(input),
-		-- 					live = false,
-		-- 					args = { "--max-count", "1" },
-		-- 					ft = "md",
-		-- 				})
-		-- 			end
-		-- 		end)
-		-- 	end,
-		-- 	desc = "Find tagged wiki fiLes in cwd",
-		-- },
-
 		{
-			"<leader>fH",
+			"<leader>fL",
 			function()
 				Snacks.picker.grep({
 					title = "Tagged Files in CWD & Wiki",
@@ -322,7 +297,7 @@ return {
 					-- 	preview = false,
 					-- },
 					search = "^tags:\\s*\\[.*?",
-					dirs = calculate_wiki_dirs(),
+					dirs = Calculate_wiki_dirs(),
 					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
 					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
 					ft = "md",
@@ -420,34 +395,119 @@ return {
 		{
 			"<leader>fi",
 			function()
-				Snacks.picker.files({
+				Snacks.picker.pick({
 					title = "Issues",
+					format = "text",
 					layout = {
 						preview = false,
 					},
-					dirs = calculate_issues_dirs(),
+					data = {
+						high = 3,
+						medium = 2,
+						low = 1,
+					},
+					sort = {
+						fields = { "priority:desc", "score:desc", "text" },
+					},
+					-- Disable live search since we're using a custom finder
+					live = false,
+					-- Configure matcher to search in our custom search_text field
 					matcher = {
+						fields = { "text", "tags", "search_text" },
 						sort_empty = true,
 					},
-					ft = "md",
-					-- layout = {
-					-- 	layout = {
-					-- 		-- all values are defaults except for the title
-					-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-					-- 		box = "horizontal",
-					-- 		width = 0.8,
-					-- 		min_width = 120,
-					-- 		height = 0.8,
-					-- 		{
-					-- 			box = "vertical",
-					-- 			border = "rounded",
-					-- 			title = "Issues {live} {flags}",
-					-- 			{ win = "input", height = 1, border = "bottom" },
-					-- 			{ win = "list", border = "none" },
-					-- 		},
-					-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-					-- 	},
-					-- },
+					finder = function(opts)
+						local issue_dirs = calculate_issues_dirs()
+
+						-- Filter out non-existent directories
+						local existing_dirs = {}
+						for _, dir in ipairs(issue_dirs) do
+							if vim.fn.isdirectory(dir) == 1 then
+								table.insert(existing_dirs, dir)
+							end
+						end
+
+						if #existing_dirs == 0 then
+							return {}
+						end
+
+						local fd_cmd = { "fd", ".", "--type", "file", "--extension", "md", "--print0" }
+						for _, dir in ipairs(existing_dirs) do
+							table.insert(fd_cmd, dir)
+						end
+
+						local files_str = vim.fn.system(fd_cmd)
+						files_str = files_str:gsub("[\001-\031]", "\0") -- Replace control chars with null bytes
+						local files = vim.split(files_str, "\0", { plain = true, trimempty = true })
+
+						local items = {}
+						for _, file_path in ipairs(files) do
+							local content = vim.fn.readfile(file_path)
+							local priority = opts.data.default
+							local tags_str = ""
+							local prio_match = nil
+
+							local in_frontmatter = false
+							for i, line in ipairs(content) do
+								if i == 1 and line == "---" then
+									in_frontmatter = true
+								elseif in_frontmatter and line == "---" then
+									in_frontmatter = false
+									break
+								elseif in_frontmatter then
+									local prio_found = string.match(line, "priority: (%w+)")
+									if prio_found then
+										prio_match = prio_found
+										priority = opts.data[prio_found] or opts.data.default
+									end
+
+									local tags_match = string.match(line, "tags:%s*%[(.*)%]")
+									if tags_match then
+										tags_str = tags_match
+									end
+								end
+							end
+
+							local filename = vim.fn.fnamemodify(file_path, ":t:r") -- get filename without extension
+
+							-- Clean up tags: remove "issue" tag and split/rejoin
+							local cleaned_tags = ""
+							if tags_str ~= "" then
+								local tag_list = {}
+								for tag in tags_str:gmatch("[^,]+") do
+									tag = tag:match("^%s*(.-)%s*$") -- trim whitespace
+									if tag ~= "issue" then
+										table.insert(tag_list, tag)
+									end
+								end
+								cleaned_tags = table.concat(tag_list, ", ")
+							end
+
+							local display_text
+							if cleaned_tags ~= "" then
+								display_text = string.format("[%s] %s | %s", prio_match or "medium", filename, cleaned_tags)
+							else
+								display_text = string.format("[%s] %s", prio_match or "medium", filename)
+							end
+
+							table.insert(items, {
+								text = display_text,
+								file = file_path,
+								value = file_path,
+								priority = priority,
+								tags = tags_str,
+								-- Add searchable content that includes tags for filtering
+								search_text = display_text .. " " .. tags_str,
+							})
+						end
+						return items
+					end,
+					confirm = function(picker, item)
+						picker:close()
+						if item then
+							vim.cmd("e " .. item.value)
+						end
+					end,
 				})
 			end,
 			desc = "Find Space Issues",
@@ -466,7 +526,7 @@ return {
 						sort_empty = true,
 					},
 					ft = "md",
-                    hidden = true,
+					hidden = true,
 				})
 			end,
 			desc = "Find Space Issues - include closed (hidden)",
@@ -544,7 +604,7 @@ return {
 				})
 			end,
 			desc = "Grep Word in CWD",
-            mode = { "n", "x" },
+			mode = { "n", "x" },
 		},
 
 		{
@@ -577,7 +637,7 @@ return {
 				})
 			end,
 			desc = "Grep Word Relative to current file",
-            mode = { "n", "x" },
+			mode = { "n", "x" },
 		},
 
 		{

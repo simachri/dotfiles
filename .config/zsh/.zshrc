@@ -198,3 +198,5 @@ fi
 
 # Set up Node Version Manager
 source /usr/share/nvm/init-nvm.sh
+
+alias claude="/home/xi3k/.claude/local/claude"
