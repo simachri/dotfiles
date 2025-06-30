@@ -50,6 +50,142 @@ function Calculate_wiki_dirs()
 	return paths
 end
 
+local function create_issue_finder(include_hidden)
+	return function(opts)
+		local issue_dirs = calculate_issues_dirs()
+
+		-- Filter out non-existent directories
+		local existing_dirs = {}
+		for _, dir in ipairs(issue_dirs) do
+			if vim.fn.isdirectory(dir) == 1 then
+				table.insert(existing_dirs, dir)
+			end
+		end
+
+		if #existing_dirs == 0 then
+			return {}
+		end
+
+		local fd_cmd = { "fd", ".", "--type", "file", "--extension", "md", "--print0" }
+		if include_hidden then
+			table.insert(fd_cmd, "--hidden")
+		end
+		for _, dir in ipairs(existing_dirs) do
+			table.insert(fd_cmd, dir)
+		end
+
+		local files_str = vim.fn.system(fd_cmd)
+		files_str = files_str:gsub("[\001-\031]", "\0") -- Replace control chars with null bytes
+		local files = vim.split(files_str, "\0", { plain = true, trimempty = true })
+
+		local items = {}
+		for _, file_path in ipairs(files) do
+			local content = vim.fn.readfile(file_path)
+			local priority = opts.data.default
+			local tags_str = ""
+			local prio_match = nil
+
+			local in_frontmatter = false
+			for i, line in ipairs(content) do
+				if i == 1 and line == "---" then
+					in_frontmatter = true
+				elseif in_frontmatter and line == "---" then
+					in_frontmatter = false
+					break
+				elseif in_frontmatter then
+					local prio_found = string.match(line, "priority: (%w+)")
+					if prio_found then
+						prio_match = prio_found
+						priority = opts.data[prio_found] or opts.data.default
+					end
+
+					local tags_match = string.match(line, "tags:%s*%[(.*)%]")
+					if tags_match then
+						tags_str = tags_match
+					end
+				end
+			end
+
+			local filename = vim.fn.fnamemodify(file_path, ":t:r") -- get filename without extension
+			
+			-- Extract project name from file path
+			-- Path structure: /home/xi3k/Notes/Projects/{PROJECT}/Issues/...
+			local project_name = ""
+			local path_parts = vim.split(file_path, "/", { plain = true })
+			for i, part in ipairs(path_parts) do
+				if part == "Projects" and i + 1 <= #path_parts then
+					project_name = path_parts[i + 1]
+					break
+				end
+			end
+
+			-- Clean up tags: remove "issue" tag and split/rejoin
+			local cleaned_tags = ""
+			if tags_str ~= "" then
+				local tag_list = {}
+				for tag in tags_str:gmatch("[^,]+") do
+					tag = tag:match("^%s*(.-)%s*$") -- trim whitespace
+					if tag ~= "issue" then
+						table.insert(tag_list, tag)
+					end
+				end
+				cleaned_tags = table.concat(tag_list, ", ")
+			end
+
+			local display_text
+			if cleaned_tags ~= "" then
+				display_text = string.format("[%s] %s: %s | %s", prio_match or "medium", project_name, filename, cleaned_tags)
+			else
+				display_text = string.format("[%s] %s: %s", prio_match or "medium", project_name, filename)
+			end
+
+			table.insert(items, {
+				text = display_text,
+				file = file_path,
+				value = file_path,
+				priority = priority,
+				tags = tags_str,
+				project = project_name,
+				-- Add searchable content that includes tags and project for filtering
+				search_text = display_text .. " " .. tags_str .. " " .. project_name,
+			})
+		end
+		return items
+	end
+end
+
+local function create_issue_picker_config(title, include_hidden)
+	return {
+		title = title,
+		format = "text",
+		layout = {
+			preview = false,
+		},
+		data = {
+			high = 3,
+			medium = 2,
+			low = 1,
+		},
+		sort = {
+			fields = { "priority:desc", "score:desc", "text" },
+		},
+		-- Disable live search since we're using a custom finder
+		live = false,
+		-- Configure matcher to search in our custom search_text field
+		matcher = {
+			fields = { "text", "tags", "search_text" },
+			sort_empty = true,
+		},
+		finder = create_issue_finder(include_hidden),
+		confirm = function(picker, item)
+			picker:close()
+			if item then
+				vim.cmd("e " .. item.value)
+			end
+		end,
+	}
+end
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -395,120 +531,7 @@ return {
 		{
 			"<leader>fi",
 			function()
-				Snacks.picker.pick({
-					title = "Issues",
-					format = "text",
-					layout = {
-						preview = false,
-					},
-					data = {
-						high = 3,
-						medium = 2,
-						low = 1,
-					},
-					sort = {
-						fields = { "priority:desc", "score:desc", "text" },
-					},
-					-- Disable live search since we're using a custom finder
-					live = false,
-					-- Configure matcher to search in our custom search_text field
-					matcher = {
-						fields = { "text", "tags", "search_text" },
-						sort_empty = true,
-					},
-					finder = function(opts)
-						local issue_dirs = calculate_issues_dirs()
-
-						-- Filter out non-existent directories
-						local existing_dirs = {}
-						for _, dir in ipairs(issue_dirs) do
-							if vim.fn.isdirectory(dir) == 1 then
-								table.insert(existing_dirs, dir)
-							end
-						end
-
-						if #existing_dirs == 0 then
-							return {}
-						end
-
-						local fd_cmd = { "fd", ".", "--type", "file", "--extension", "md", "--print0" }
-						for _, dir in ipairs(existing_dirs) do
-							table.insert(fd_cmd, dir)
-						end
-
-						local files_str = vim.fn.system(fd_cmd)
-						files_str = files_str:gsub("[\001-\031]", "\0") -- Replace control chars with null bytes
-						local files = vim.split(files_str, "\0", { plain = true, trimempty = true })
-
-						local items = {}
-						for _, file_path in ipairs(files) do
-							local content = vim.fn.readfile(file_path)
-							local priority = opts.data.default
-							local tags_str = ""
-							local prio_match = nil
-
-							local in_frontmatter = false
-							for i, line in ipairs(content) do
-								if i == 1 and line == "---" then
-									in_frontmatter = true
-								elseif in_frontmatter and line == "---" then
-									in_frontmatter = false
-									break
-								elseif in_frontmatter then
-									local prio_found = string.match(line, "priority: (%w+)")
-									if prio_found then
-										prio_match = prio_found
-										priority = opts.data[prio_found] or opts.data.default
-									end
-
-									local tags_match = string.match(line, "tags:%s*%[(.*)%]")
-									if tags_match then
-										tags_str = tags_match
-									end
-								end
-							end
-
-							local filename = vim.fn.fnamemodify(file_path, ":t:r") -- get filename without extension
-
-							-- Clean up tags: remove "issue" tag and split/rejoin
-							local cleaned_tags = ""
-							if tags_str ~= "" then
-								local tag_list = {}
-								for tag in tags_str:gmatch("[^,]+") do
-									tag = tag:match("^%s*(.-)%s*$") -- trim whitespace
-									if tag ~= "issue" then
-										table.insert(tag_list, tag)
-									end
-								end
-								cleaned_tags = table.concat(tag_list, ", ")
-							end
-
-							local display_text
-							if cleaned_tags ~= "" then
-								display_text = string.format("[%s] %s | %s", prio_match or "medium", filename, cleaned_tags)
-							else
-								display_text = string.format("[%s] %s", prio_match or "medium", filename)
-							end
-
-							table.insert(items, {
-								text = display_text,
-								file = file_path,
-								value = file_path,
-								priority = priority,
-								tags = tags_str,
-								-- Add searchable content that includes tags for filtering
-								search_text = display_text .. " " .. tags_str,
-							})
-						end
-						return items
-					end,
-					confirm = function(picker, item)
-						picker:close()
-						if item then
-							vim.cmd("e " .. item.value)
-						end
-					end,
-				})
+				Snacks.picker.pick(create_issue_picker_config("Issues", false))
 			end,
 			desc = "Find Space Issues",
 		},
@@ -516,18 +539,7 @@ return {
 		{
 			"<leader>fI",
 			function()
-				Snacks.picker.files({
-					title = "Issues",
-					layout = {
-						preview = false,
-					},
-					dirs = calculate_issues_dirs(),
-					matcher = {
-						sort_empty = true,
-					},
-					ft = "md",
-					hidden = true,
-				})
+				Snacks.picker.pick(create_issue_picker_config("Issues - include closed (hidden)", true))
 			end,
 			desc = "Find Space Issues - include closed (hidden)",
 		},
