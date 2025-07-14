@@ -218,7 +218,8 @@ return {
 		"MeanderingProgrammer/render-markdown.nvim",
 		config = function()
 			require("render-markdown").setup({
-				file_types = { "markdown", "Avante" },
+				file_types = { "markdown", },
+				-- file_types = { "markdown", "Avante" },
 
 				render_modes = true, -- render in all modes
 
@@ -290,7 +291,8 @@ return {
 			-- vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { underdouble = true, bold = true })
 		end,
 
-		ft = { "markdown", "Avante" },
+		ft = { "markdown" },
+		-- ft = { "markdown", "Avante" },
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
 	},
 

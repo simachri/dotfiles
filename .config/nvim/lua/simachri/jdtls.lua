@@ -28,9 +28,24 @@ function M.setup()
 			bufnr,
 			"n",
 			"gro",
-			-- jdtls.organize_imports,
 			"<cmd>lua require('jdtls').organize_imports()<CR>",
-			{ desc = "Java Organize Imports", noremap = true, silent = true }
+			{ desc = "Java: Organize Imports", noremap = true, silent = true }
+		)
+
+		vim.api.nvim_buf_set_keymap(
+			bufnr,
+			"n",
+			"grl",
+			"<cmd>lua require('jdtls').extract_variable()<CR>",
+			{ desc = "Java: Extract local variable", noremap = true, silent = true }
+		)
+
+		vim.api.nvim_buf_set_keymap(
+			bufnr,
+			"n",
+			"grc",
+			"<cmd>lua require('jdtls').extract_constant()<CR>",
+			{ desc = "Java: Extract constant", noremap = true, silent = true }
 		)
 
 		-- vim.keymap.set("n", "<leader>df", jdtls.test_class, opts)

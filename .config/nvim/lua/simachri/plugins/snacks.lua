@@ -1,4 +1,4 @@
-function Calculate_dirs(dir_type)
+local function calculate_search_dirs(dir_type)
 	local cwd = vim.fn.getcwd()
 	local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
 	local project_dirs = {
@@ -29,12 +29,28 @@ function Calculate_dirs(dir_type)
 	return { dir_type }
 end
 
+function Find_tagged_files(opts)
+	opts = opts or {}
+
+	local default_config = {
+		title = "Tagged Files",
+		search = "^tags:\\s*\\[.*?",
+		live = false,
+		args = { "--max-count", "1" },
+		ft = "md",
+	}
+
+	local config = vim.tbl_deep_extend("force", default_config, opts)
+
+	Snacks.picker.grep(config)
+end
+
 local function calculate_meeting_dirs()
-	return Calculate_dirs("Meetings")
+	return calculate_search_dirs("Meetings")
 end
 
 local function calculate_issues_dirs()
-	return Calculate_dirs("Issues")
+	return calculate_search_dirs("Issues")
 end
 
 function Calculate_wiki_dirs()
@@ -291,8 +307,6 @@ return {
 						["<Down>"] = { "history_forward", mode = { "i", "n" } },
 						["<Up>"] = { "history_back", mode = { "i", "n" } },
 						["<C-c>"] = { "close", mode = { "i", "n" } },
-						-- ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
-						["<c-h>"] = { "toggle_preview", mode = { "i", "n" } },
 					},
 				},
 
@@ -319,7 +333,7 @@ return {
 
 	keys = {
 		{
-			"<leader>sn",
+			"<leader>fn",
 			function()
 				Snacks.picker.notifications({
 					layout = {
@@ -403,44 +417,46 @@ return {
 			desc = "Find Commands",
 		},
 
-		{
-			"<leader>fl",
-			function()
-				Snacks.picker.grep({
-					title = "Tagged Files in CWD",
-					-- layout = {
-					-- 	preview = false,
-					-- },
-					exclude = {
-						"Meetings",
-						"Issues",
-					},
-					search = "^tags:\\s*\\[.*?",
-					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
-					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
-					ft = "md",
-				})
-			end,
-			desc = "Find tagged wiki fiLes in cwd",
-		},
 
-		{
-			"<leader>fL",
-			function()
-				Snacks.picker.grep({
-					title = "Tagged Files in CWD & Wiki",
-					-- layout = {
-					-- 	preview = false,
-					-- },
-					search = "^tags:\\s*\\[.*?",
-					dirs = Calculate_wiki_dirs(),
-					live = false, -- will show all files with tags which then can be fuzzy searched in the result list
-					args = { "--max-count", "1" }, -- stop for each filter after 1 hit
-					ft = "md",
-				})
-			end,
-			desc = "Find tagged wiki fiLes: cwd + global Wiki",
-		},
+        -- is mapped in the respective .nvim.lua
+		-- {
+		-- 	"<leader>fl",
+		-- 	function()
+		-- 		Snacks.picker.grep({
+		-- 			title = "Tagged Files in CWD",
+		-- 			-- layout = {
+		-- 			-- 	preview = false,
+		-- 			-- },
+		-- 			exclude = {
+		-- 				"Meetings",
+		-- 				"Issues",
+		-- 			},
+		-- 			search = "^tags:\\s*\\[.*?",
+		-- 			live = false, -- will show all files with tags which then can be fuzzy searched in the result list
+		-- 			args = { "--max-count", "1" }, -- stop for each filter after 1 hit
+		-- 			ft = "md",
+		-- 		})
+		-- 	end,
+		-- 	desc = "Find tagged wiki fiLes in cwd",
+		-- },
+		--
+		-- {
+		-- 	"<leader>fL",
+		-- 	function()
+		-- 		Snacks.picker.grep({
+		-- 			title = "Tagged Files in CWD & Wiki",
+		-- 			-- layout = {
+		-- 			-- 	preview = false,
+		-- 			-- },
+		-- 			search = "^tags:\\s*\\[.*?",
+		-- 			dirs = Calculate_wiki_dirs(),
+		-- 			live = false, -- will show all files with tags which then can be fuzzy searched in the result list
+		-- 			args = { "--max-count", "1" }, -- stop for each filter after 1 hit
+		-- 			ft = "md",
+		-- 		})
+		-- 	end,
+		-- 	desc = "Find tagged wiki fiLes: cwd + global Wiki",
+		-- },
 
 		{
 			"<leader>fm",
@@ -511,7 +527,7 @@ return {
 			"<leader>fo",
 			function()
 				Snacks.picker.files({
-					title = "Open Items",
+					title = "Follow-ups",
 					layout = {
 						preview = false,
 					},
@@ -525,7 +541,7 @@ return {
 					ft = "md",
 				})
 			end,
-			desc = "Find Open Items",
+			desc = "Find Follow-ups",
 		},
 
 		{
@@ -545,7 +561,7 @@ return {
 		},
 
 		{
-			"<leader>lb",
+			"<leader>fb",
 			function()
 				Snacks.picker.buffers({
 					layout = {

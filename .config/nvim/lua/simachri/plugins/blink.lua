@@ -5,7 +5,7 @@ return {
 		"echasnovski/mini.icons",
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
-		"Kaiser-Yang/blink-cmp-avante",
+		-- "Kaiser-Yang/blink-cmp-avante",
 	},
 
 	version = "1.*",
@@ -14,17 +14,18 @@ return {
 	---@type blink.cmp.Config
 	opts = {
 		sources = {
-			default = { "avante", "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer" },
+			-- default = { "avante", "lsp", "path", "snippets", "buffer" },
 
 			-- https://cmp.saghen.dev/configuration/sources.html#provider-options
 			providers = {
-				avante = {
-					module = "blink-cmp-avante",
-					name = "Avante",
-					opts = {
-						-- options for blink-cmp-avante
-					},
-				},
+				-- avante = {
+				-- 	module = "blink-cmp-avante",
+				-- 	name = "Avante",
+				-- 	opts = {
+				-- 		-- options for blink-cmp-avante
+				-- 	},
+				-- },
 				lsp = {
 					-- show lsp first
 					score_offset = 100000,

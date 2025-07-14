@@ -53,27 +53,14 @@ return {
 
 			require("lualine").setup({
 				options = {
-					icons_enabled = true,
-					-- theme = custom_solarized,
 					theme = "rose-pine",
-					component_separators = { left = "", right = "" },
-					section_separators = { left = "", right = "" },
-					disabled_filetypes = {
-						statusline = {},
-						winbar = {},
-					},
-					ignore_focus = {},
-					always_divide_middle = true,
-					globalstatus = false,
-					refresh = {
-						statusline = 1000,
-						tabline = 1000,
-						winbar = 1000,
-					},
 				},
 				sections = {
 					-- https://github.com/letieu/harpoon-lualine
-					lualine_a = { "harpoon2" },
+					lualine_a = { {
+						"harpoon2",
+						icon = false,
+					} },
 					lualine_b = { "branch", "diff", "diagnostics" },
 					lualine_c = {
 						"%=",

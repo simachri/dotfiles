@@ -28,7 +28,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>lt",
+				"<leader>ft",
 				function()
 					Snacks.picker.pick({
 						dirs = {
@@ -106,68 +106,68 @@ return {
 						-- end,
 					})
 				end,
-				desc = "List Todos",
+				desc = "Find Todos",
 			},
 
-			{
-				"<leader>lw",
-				function()
-					Snacks.picker.pick({
-						dirs = {
-							"~/Notes",
-						},
-						source = "todo_comments",
-						keywords = { "PENDING" },
-						ft = "md",
-						sort = {
-							fields = {
-								"score:desc",
-								"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
-								-- "idx",
-								-- "#text",
-							},
-						},
-						matcher = {
-							sort_empty = true,
-							frecency = false, -- frecency bonus
-							history_bonus = false, -- give more weight to chronological order
-							cwd_bonus = false,
-						},
-						formatters = {
-							file = {
-								filename_only = true,
-							},
-						},
-						layout = {
-							preview = false,
-						},
-						-- layout = {
-						-- 	preset = "default",
-						-- 	layout = {
-						-- 		-- all values are defaults except for the title
-						-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
-						-- 		box = "horizontal",
-						-- 		width = 0.8,
-						-- 		min_width = 120,
-						-- 		height = 0.8,
-						-- 		{
-						-- 			box = "vertical",
-						-- 			border = "rounded",
-						-- 			title = "Pending ToDo's {live} {flags}",
-						-- 			{ win = "input", height = 1, border = "bottom" },
-						-- 			{ win = "list", border = "none" },
-						-- 		},
-						-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-						-- 	},
-						-- },
-					})
-				end,
-				ft = "markdown",
-				desc = "List Waiting todos",
-			},
+			-- {
+			-- 	"<leader>fw",
+			-- 	function()
+			-- 		Snacks.picker.pick({
+			-- 			dirs = {
+			-- 				"~/Notes",
+			-- 			},
+			-- 			source = "todo_comments",
+			-- 			keywords = { "PENDING" },
+			-- 			ft = "md",
+			-- 			sort = {
+			-- 				fields = {
+			-- 					"score:desc",
+			-- 					"line", -- contains the matching keyword. this will sort NEXT > TODO > WAIT.
+			-- 					-- "idx",
+			-- 					-- "#text",
+			-- 				},
+			-- 			},
+			-- 			matcher = {
+			-- 				sort_empty = true,
+			-- 				frecency = false, -- frecency bonus
+			-- 				history_bonus = false, -- give more weight to chronological order
+			-- 				cwd_bonus = false,
+			-- 			},
+			-- 			formatters = {
+			-- 				file = {
+			-- 					filename_only = true,
+			-- 				},
+			-- 			},
+			-- 			layout = {
+			-- 				preview = false,
+			-- 			},
+			-- 			-- layout = {
+			-- 			-- 	preset = "default",
+			-- 			-- 	layout = {
+			-- 			-- 		-- all values are defaults except for the title
+			-- 			-- 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#default
+			-- 			-- 		box = "horizontal",
+			-- 			-- 		width = 0.8,
+			-- 			-- 		min_width = 120,
+			-- 			-- 		height = 0.8,
+			-- 			-- 		{
+			-- 			-- 			box = "vertical",
+			-- 			-- 			border = "rounded",
+			-- 			-- 			title = "Pending ToDo's {live} {flags}",
+			-- 			-- 			{ win = "input", height = 1, border = "bottom" },
+			-- 			-- 			{ win = "list", border = "none" },
+			-- 			-- 		},
+			-- 			-- 		{ win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
+			-- 			-- 	},
+			-- 			-- },
+			-- 		})
+			-- 	end,
+			-- 	ft = "markdown",
+			-- 	desc = "Find Waiting todos",
+			-- },
 
 			{
-				"<leader>lT",
+				"<leader>fT",
 				function()
 					Snacks.picker.pick({
 						source = "todo_comments",
@@ -187,7 +187,7 @@ return {
 						},
 					})
 				end,
-				desc = "List Codebase Todos",
+				desc = "Find Codebase Todos",
 			},
 		},
 	},

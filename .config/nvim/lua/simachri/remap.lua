@@ -342,9 +342,110 @@ end
 
 vim.keymap.set(
 	"n",
-	"<leader>ow",
+	"<leader>fw",
 	":lua Open_or_create_weekly_note()<CR>",
 	{ noremap = true, silent = true, desc = "Open Weekly note" }
+)
+
+function Create_project_meeting_note()
+	local projects_dir = os.getenv("HOME") .. "/Notes/Projects"
+
+	local handle = vim.loop.fs_scandir(projects_dir)
+	if not handle then
+		vim.notify("Could not access projects directory", vim.log.levels.ERROR)
+		return
+	end
+
+	local projects = {}
+	while true do
+		local name, type = vim.loop.fs_scandir_next(handle)
+		if not name then
+			break
+		end
+		if type == "directory" then
+			table.insert(projects, name)
+		end
+	end
+
+	if #projects == 0 then
+		vim.notify("No projects found", vim.log.levels.ERROR)
+		return
+	end
+
+	table.sort(projects)
+
+	vim.ui.select(projects, {
+		prompt = "Select project:",
+		format_item = function(item)
+			return item
+		end,
+	}, function(project)
+		if not project then
+			return
+		end
+
+		local project_path = projects_dir .. "/" .. project
+		local meetings_dir = project_path .. "/Meetings"
+
+		local stat = vim.loop.fs_stat(meetings_dir)
+		if not stat then
+			local success = vim.fn.mkdir(meetings_dir, "p")
+			if success == 0 then
+				vim.notify("Failed to create Meetings directory", vim.log.levels.ERROR)
+				return
+			end
+		elseif stat.type ~= "directory" then
+			vim.notify("Meetings path exists but is not a directory", vim.log.levels.ERROR)
+			return
+		end
+
+		vim.ui.input({
+			prompt = "Meeting filename (without date): ",
+		}, function(filename)
+			if not filename or filename == "" then
+				return
+			end
+
+			-- Clean filename - remove any existing date suffix and .md extension
+			filename = filename:gsub("_?%d%d%d%d%-%d%d%-%d%d%.md$", "")
+			filename = filename:gsub("%.md$", "")
+
+			local date = os.date("%Y-%m-%d")
+			local full_filename = filename .. "_" .. date .. ".md"
+			local file_path = meetings_dir .. "/" .. full_filename
+
+			local file_exists = vim.loop.fs_stat(file_path)
+			if file_exists then
+				vim.notify("File already exists: " .. full_filename, vim.log.levels.ERROR)
+				return
+			end
+
+			vim.cmd("edit " .. file_path)
+
+			vim.schedule(function()
+				local snips = require("luasnip").get_snippets()["markdown"]
+				for _, snip in ipairs(snips) do
+					if snip["name"] == "Meeting Notes" then
+						require("luasnip").snip_expand(snip)
+						-- wait for snippet expansion and then exit insert mode
+						vim.defer_fn(function()
+							require("luasnip").unlink_current()
+							vim.cmd.stopinsert()
+						end, 50)
+						return
+					end
+				end
+				vim.notify("Meeting Notes snippet not found", vim.log.levels.WARN)
+			end)
+		end)
+	end)
+end
+
+vim.keymap.set(
+	"n",
+	"<leader>cm",
+	":lua Create_project_meeting_note()<CR>",
+	{ noremap = true, silent = true, desc = "Create project meeting note" }
 )
 
 vim.keymap.set(
@@ -360,7 +461,7 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = "Terminal: Switch from TERMINAL to NORMAL mode" }
 )
 
-vim.keymap.set('n', 'ci*', '/*<CR>cT*', { desc = 'Change inside *' })
-vim.keymap.set('n', 'ci_', '/_<CR>cT_', { desc = 'Change inside _' })
-vim.keymap.set('n', 'ca*', '/*<CR>vF*c', { desc = 'Change around *' })
-vim.keymap.set('n', 'ca_', '/_<CR>vF_c', { desc = 'Change around _' })
+vim.keymap.set("n", "ci*", "/*<CR>cT*", { desc = "Change inside *" })
+vim.keymap.set("n", "ci_", "/_<CR>cT_", { desc = "Change inside _" })
+vim.keymap.set("n", "ca*", "/*<CR>vF*c", { desc = "Change around *" })
+vim.keymap.set("n", "ca_", "/_<CR>vF_c", { desc = "Change around _" })
