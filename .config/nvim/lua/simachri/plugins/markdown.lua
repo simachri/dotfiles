@@ -213,6 +213,40 @@ function Open_URL()
 	vim.cmd('call system("www-browser ' .. vim.fn.shellescape(url) .. '")')
 end
 
+function Open_Miro_Board()
+	local current_path = vim.fn.expand("%:p:h")
+	local parent_dir = vim.fn.fnamemodify(current_path, ":h")
+	
+	local miro_file = parent_dir .. "/.miro"
+	
+	if vim.fn.filereadable(miro_file) == 0 then
+		vim.notify("No .miro file found in project root: " .. parent_dir, vim.log.levels.WARN)
+		return
+	end
+	
+	local file = io.open(miro_file, "r")
+	if not file then
+		vim.notify("Could not read .miro file", vim.log.levels.ERROR)
+		return
+	end
+	
+	local board_id = file:read("*l")
+	file:close()
+	
+	if not board_id or board_id == "" then
+		vim.notify(".miro file is empty", vim.log.levels.WARN)
+		return
+	end
+	
+	board_id = board_id:gsub("^%s*(.-)%s*$", "%1")
+	
+	local miro_url = "https://miro.com/app/board/" .. board_id
+	
+	vim.cmd('call system("www-browser ' .. vim.fn.shellescape(miro_url) .. '")')
+	
+	vim.notify("Opening Miro board: " .. board_id, vim.log.levels.INFO)
+end
+
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",

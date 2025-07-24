@@ -349,94 +349,118 @@ vim.keymap.set(
 
 function Create_project_meeting_note()
 	local projects_dir = os.getenv("HOME") .. "/Notes/Projects"
+	local current_dir = vim.fn.getcwd()
+	local project = nil
+	local project_path = nil
 
-	local handle = vim.loop.fs_scandir(projects_dir)
-	if not handle then
-		vim.notify("Could not access projects directory", vim.log.levels.ERROR)
-		return
-	end
-
-	local projects = {}
-	while true do
-		local name, type = vim.loop.fs_scandir_next(handle)
-		if not name then
-			break
-		end
-		if type == "directory" then
-			table.insert(projects, name)
+	-- check if CWD is already in a project directory
+	if current_dir:sub(1, #projects_dir) == projects_dir then
+		local relative_path = current_dir:sub(#projects_dir + 2)
+		if relative_path and relative_path ~= "" then
+			project = relative_path:match("^([^/]+)")
+			if project then
+				project_path = projects_dir .. "/" .. project
+			end
 		end
 	end
 
-	if #projects == 0 then
-		vim.notify("No projects found", vim.log.levels.ERROR)
-		return
-	end
-
-	table.sort(projects)
-
-	vim.ui.select(projects, {
-		prompt = "Select project:",
-		format_item = function(item)
-			return item
-		end,
-	}, function(project)
-		if not project then
+	-- if not in a project directory, show the project selection
+	if not project then
+		local handle = vim.loop.fs_scandir(projects_dir)
+		if not handle then
+			vim.notify("Could not access projects directory", vim.log.levels.ERROR)
 			return
 		end
 
-		local project_path = projects_dir .. "/" .. project
-		local meetings_dir = project_path .. "/Meetings"
-
-		local stat = vim.loop.fs_stat(meetings_dir)
-		if not stat then
-			local success = vim.fn.mkdir(meetings_dir, "p")
-			if success == 0 then
-				vim.notify("Failed to create Meetings directory", vim.log.levels.ERROR)
-				return
+		local projects = {}
+		while true do
+			local name, type = vim.loop.fs_scandir_next(handle)
+			if not name then
+				break
 			end
-		elseif stat.type ~= "directory" then
-			vim.notify("Meetings path exists but is not a directory", vim.log.levels.ERROR)
+			if type == "directory" then
+				table.insert(projects, name)
+			end
+		end
+
+		if #projects == 0 then
+			vim.notify("No projects found", vim.log.levels.ERROR)
 			return
 		end
 
-		vim.ui.input({
-			prompt = "Meeting filename (without date): ",
-		}, function(filename)
-			if not filename or filename == "" then
+		table.sort(projects)
+
+		vim.ui.select(projects, {
+			prompt = "Select project:",
+			format_item = function(item)
+				return item
+			end,
+		}, function(selected_project)
+			if not selected_project then
 				return
 			end
+			project = selected_project
+			project_path = projects_dir .. "/" .. project
+			create_meeting_note_in_project(project_path)
+		end)
+	else
+		-- directly create meeting note in current project
+		create_meeting_note_in_project(project_path)
+	end
+end
 
-			-- Clean filename - remove any existing date suffix and .md extension
-			filename = filename:gsub("_?%d%d%d%d%-%d%d%-%d%d%.md$", "")
-			filename = filename:gsub("%.md$", "")
+function create_meeting_note_in_project(project_path)
+	local meetings_dir = project_path .. "/Meetings"
 
-			local date = os.date("%Y-%m-%d")
-			local full_filename = filename .. "_" .. date .. ".md"
-			local file_path = meetings_dir .. "/" .. full_filename
+	local stat = vim.loop.fs_stat(meetings_dir)
+	if not stat then
+		local success = vim.fn.mkdir(meetings_dir, "p")
+		if success == 0 then
+			vim.notify("Failed to create Meetings directory", vim.log.levels.ERROR)
+			return
+		end
+	elseif stat.type ~= "directory" then
+		vim.notify("Meetings path exists but is not a directory", vim.log.levels.ERROR)
+		return
+	end
 
-			local file_exists = vim.loop.fs_stat(file_path)
-			if file_exists then
-				vim.notify("File already exists: " .. full_filename, vim.log.levels.ERROR)
-				return
-			end
+	vim.ui.input({
+		prompt = "Meeting filename (without date): ",
+	}, function(filename)
+		if not filename or filename == "" then
+			return
+		end
 
-			vim.cmd("edit " .. file_path)
+		-- clean filename - remove any existing date suffix and .md extension
+		filename = filename:gsub("_?%d%d%d%d%-%d%d%-%d%d%.md$", "")
+		filename = filename:gsub("%.md$", "")
 
-			vim.schedule(function()
-				local snips = require("luasnip").get_snippets()["markdown"]
-				for _, snip in ipairs(snips) do
-					if snip["name"] == "Meeting Notes" then
-						require("luasnip").snip_expand(snip)
-						-- wait for snippet expansion and then exit insert mode
-						vim.defer_fn(function()
-							require("luasnip").unlink_current()
-							vim.cmd.stopinsert()
-						end, 50)
-						return
-					end
+		local date = os.date("%Y-%m-%d")
+		local full_filename = filename .. "_" .. date .. ".md"
+		local file_path = meetings_dir .. "/" .. full_filename
+
+		local file_exists = vim.loop.fs_stat(file_path)
+		if file_exists then
+			vim.notify("File already exists: " .. full_filename, vim.log.levels.ERROR)
+			return
+		end
+
+		vim.cmd("edit " .. file_path)
+
+		vim.schedule(function()
+			local snips = require("luasnip").get_snippets()["markdown"]
+			for _, snip in ipairs(snips) do
+				if snip["name"] == "Meeting Notes" then
+					require("luasnip").snip_expand(snip)
+					-- wait for snippet expansion and then exit insert mode
+					vim.defer_fn(function()
+						require("luasnip").unlink_current()
+						vim.cmd.stopinsert()
+					end, 50)
+					return
 				end
-				vim.notify("Meeting Notes snippet not found", vim.log.levels.WARN)
-			end)
+			end
+			vim.notify("Meeting Notes snippet not found", vim.log.levels.WARN)
 		end)
 	end)
 end

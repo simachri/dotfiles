@@ -200,3 +200,6 @@ fi
 source /usr/share/nvm/init-nvm.sh
 
 alias claude="/home/xi3k/.claude/local/claude"
+
+# Load Tmux Harpoon
+source ~/.config/zsh/tmux_harpoon.sh

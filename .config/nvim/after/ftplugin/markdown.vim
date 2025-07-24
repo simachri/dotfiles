@@ -70,3 +70,7 @@ nnoremap <buffer><silent> ge :lua Jump_to_file_with_anchor()<cr>
 
 " Open_URL is defined in /home/xi3k/.config/nvim/lua/simachri/plugins/markdown.lua
 nnoremap <buffer><silent> gx :lua Open_URL()<cr>
+
+" Open Miro board for current project
+" Function is implemented in /home/xi3k/.config/nvim/lua/simachri/plugins/markdown.lua
+nnoremap <buffer><silent> gm :lua Open_Miro_Board()<cr>

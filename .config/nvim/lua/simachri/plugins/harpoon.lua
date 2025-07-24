@@ -84,6 +84,10 @@ return {
 			vim.keymap.set("n", "<leader>jf", function()
 				harpoon:list():select(4)
 			end)
+
+			vim.keymap.set("n", "<leader>jL", function()
+                vim.cmd('edit ' .. vim.fn.expand('~/.tmux_harpoon'))
+			end)
 			--
 			-- -- Toggle previous & next buffers stored within Harpoon list
 			-- vim.keymap.set("n", "<C-S-P>", function()

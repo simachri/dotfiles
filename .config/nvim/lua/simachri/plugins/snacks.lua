@@ -38,6 +38,9 @@ function Find_tagged_files(opts)
 		live = false,
 		args = { "--max-count", "1" },
 		ft = "md",
+		layout = {
+			preview = false,
+		},
 	}
 
 	local config = vim.tbl_deep_extend("force", default_config, opts)

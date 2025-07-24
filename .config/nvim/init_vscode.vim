@@ -207,25 +207,17 @@ nnoremap <leader>js <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor2')<CR>
 nnoremap <leader>jd <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3')<CR>
 nnoremap <leader>jf <Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor4')<CR>
 
-        "{
-            ""before": ["g", "i"],
-            ""after": [],
-            ""commands": [
-                ""editor.action.goToImplementation",
-            "]
-        "},
-        "{
-            ""before": ["g", "r"],
-            ""after": [],
-            ""commands": [
-                ""editor.action.goToReferences",
-            "]
-        "},
-        "{
-            ""before": ["K"],
-            ""after": [],
-            ""commands": [
-                ""editor.action.showDefinitionPreviewHover",
-            "]
-        "},
-
+" custom set command that handles wrap and passes through other options
+cabbrev <expr> set (getcmdtype() == ':' && getcmdpos() == 4) ? 'Set' : 'set'
+command! -nargs=+ Set call s:VSCodeSet(<f-args>)
+function! s:VSCodeSet(...)
+  for arg in a:000
+    if arg == 'wrap'
+      call VSCodeNotify('editor.action.toggleWordWrap')
+    elseif arg == 'nowrap'  
+      call VSCodeNotify('editor.action.toggleWordWrap')
+    else
+      execute 'set ' . arg
+    endif
+  endfor
+endfunction
