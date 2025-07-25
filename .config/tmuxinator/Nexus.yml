@@ -1,6 +1,6 @@
 name: Nexus
 root: ~/Notes/Projects/Nexus
-attach: false
+# attach: false
 startup_window: 1
 
 windows:

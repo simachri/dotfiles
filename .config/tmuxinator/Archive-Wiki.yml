@@ -1,6 +1,6 @@
 name: Archive-Wiki
 root: ~/Wiki
-attach: false
+# attach: false
 startup_window: 1
 
 windows:

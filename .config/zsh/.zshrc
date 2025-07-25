@@ -58,8 +58,39 @@ alias update_rust='rustup update'
 # python packages are managed by pacman
 # alias update_pip="cd ~ && pip list --outdated | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U --user"
 alias df='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-# alias ws-old='tmuxinator start workspace -n ws -p ~/.config/tmux/tmuxinator-ws.yml'
-alias ws='tmuxinator start Archive-Wiki; tmuxinator start Nexus; tmuxinator start Notes'
+# alias ws='tmuxinator start Archive-Wiki; tmuxinator start Nexus; tmuxinator start Notes'
+ws() {
+    local harpoon_file="$HOME/.tmux_harpoon"
+    
+    if [ ! -s "$harpoon_file" ]; then
+        echo "No harpoon entries found, starting fallback session: Notes"
+        tmuxinator start Notes
+        return
+    fi
+    
+    local sessions_list=$(awk -F: 'NF > 0 && $1 != "" {seen[$1]++; if(seen[$1]==1) print $1}' "$harpoon_file" | tr '\n' ' ')
+    
+    if [ -z "$sessions_list" ]; then
+        echo "No sessions found in harpoon file, starting fallback session: Notes"
+        tmuxinator start Notes
+        return
+    fi
+    
+    local sessions_array=(${=sessions_list})
+    
+    echo "Found sessions: ${sessions_array[*]}"
+    
+    for session in "${sessions_array[@]}"; do
+        if ! tmux has-session -t "$session" 2>/dev/null; then
+            echo "Starting session: '$session' (detached)"
+            tmuxinator start "$session" --no-attach
+        fi
+    done
+    local first_session="${sessions_array[1]}"
+    echo "Attaching to session: '$first_session'"
+    harpoon_nav_session "$first_session"
+}
+
 
 # change tmux workspace directory
 function cdt() {
