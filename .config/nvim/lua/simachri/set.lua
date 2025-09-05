@@ -105,8 +105,8 @@ vim.filetype.add({
 
 vim.diagnostic.config({
 	-- https://gpanders.com/blog/whats-new-in-neovim-0-11/#diagnostics
-	-- virtual_text = { current_line = true },
-	virtual_lines = { current_line = true },
+	virtual_text = { current_line = true },
+	-- virtual_lines = { current_line = true },
 })
 
 -- allow project-specific configuration through .nvim.lua files.

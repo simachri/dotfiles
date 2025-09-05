@@ -6,6 +6,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
 		-- "Kaiser-Yang/blink-cmp-avante",
+		-- "MahanRahmati/blink-nerdfont.nvim",
 	},
 
 	version = "1.*",
@@ -14,7 +15,8 @@ return {
 	---@type blink.cmp.Config
 	opts = {
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", },
+			-- default = { "lsp", "path", "snippets", "buffer", "nerdfont" },
 			-- default = { "avante", "lsp", "path", "snippets", "buffer" },
 
 			-- https://cmp.saghen.dev/configuration/sources.html#provider-options
@@ -45,6 +47,12 @@ return {
 						return vim.fn.getcmdline():sub(1, 1) ~= "!"
 					end,
 				},
+				-- nerdfont = {
+				-- 	module = "blink-nerdfont",
+				-- 	name = "Nerd Fonts",
+				-- 	score_offset = 15,
+				-- 	opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
+				-- },
 			},
 		},
 

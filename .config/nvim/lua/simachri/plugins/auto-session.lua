@@ -4,7 +4,7 @@ return {
 		"rmagatti/auto-session",
 		lazy = false,
 		keys = {
-			{ "<leader>sr", "<cmd>silent! SessionRestore<CR>", { noremap = true, silent = true } },
+			{ "<leader>sr", "<cmd>silent! AutoSession restore<CR>", { noremap = true, silent = true } },
 		},
 		opts = {
 			auto_restore = false,
