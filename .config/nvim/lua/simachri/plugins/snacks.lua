@@ -2,18 +2,26 @@ local function calculate_search_dirs(dir_type)
 	local cwd = vim.fn.getcwd()
 	local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
 	local project_dirs = {
-		"DSC",
+        "BDF",
+        "Cideon",
+		"DIEHL",
 		"Deutsche_Bahn",
+		"DSC",
 		"ECTR",
 		"Hilti",
 		"Kaeser",
 		"Lifecycle_Graph",
+		"Milliarum",
+		"Neovim",
+		"Nexus",
 		"PDI",
 		"SAP",
-		"Nexus",
-		"Threedy",
-		"DIEHL",
 		"Sartorius",
+		"Threedy",
+        "Uhlmann",
+        "Voith",
+        "Wittenstein",
+        "Ypsomed",
 	}
 
 	for _, base in ipairs(base_dirs) do

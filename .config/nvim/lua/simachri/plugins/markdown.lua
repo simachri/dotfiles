@@ -331,8 +331,7 @@ return {
 	},
 
 	{
-		-- 2025-02-14: Disabling this as I am using this plugin only for jumping to next
-		-- header and next link.
+		-- Using this plugin only for jumping to next header and next link.
 		"jakewvincent/mkdnflow.nvim",
 		ft = { "markdown" },
 		enabled = true,

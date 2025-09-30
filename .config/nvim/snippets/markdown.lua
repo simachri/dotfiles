@@ -97,6 +97,34 @@ ls.add_snippets("markdown", {
 		}),
 	}),
 
+	s("Event", {
+		t({
+			"---",
+			"location: {event_location}",
+			"tags: [meeting]",
+			"---",
+			"# ",
+		}),
+		f(get_filename_without_trailing_date, {}),
+		i(0, ""),
+		t({
+			"",
+			"",
+			"## Preparation",
+			"",
+			"## Agenda",
+			"",
+			"## Attendees",
+			"",
+			"## Notes",
+			"",
+			"## Relations",
+			"",
+			"## References",
+			"",
+		}),
+	}),
+
 	s("Issue", {
 		t({
 			"---",
