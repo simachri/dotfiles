@@ -39,16 +39,14 @@ return {
 						ft = "md",
 						sort = {
 							fields = {
-								"score:desc",
-								"line", -- contains the matching keyword. this will sort CONT > NEXT > PENDING > TODO
-								-- "idx",
-								-- "#text",
+                                "line", -- contains the matching keyword. this will sort CONT > NEXT > PENDING > TODO
+                                "score:desc",
 							},
 						},
 						matcher = {
 							sort_empty = true,
-							frecency = false, -- frecency bonus
-							history_bonus = false, -- give more weight to chronological order
+							frecency = false,
+							history_bonus = false,
 							cwd_bonus = false,
 						},
 						-- Remove 'waiting' items that are not yet due.
@@ -56,13 +54,16 @@ return {
 						transform = function(item)
 							local remove_item_as_not_yet_due = false
 
-							-- special handling for PENDING, all others to be returned as-is
-							if not string.match(item.line, "PENDING:") then
+							if not item.text then
+								return item
+							end
+
+							if not string.match(item.text, "PENDING:") then
 								return item
 							end
 
 							-- check if line contains a date
-							local year, month, day = string.match(item.line, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
+							local year, month, day = string.match(item.text, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
 							if not year then
 								return item
 							end
@@ -85,25 +86,6 @@ return {
 						layout = {
 							preview = false,
 						},
-						-- -- https://github.com/folke/todo-comments.nvim/blob/304a8d204ee787d2544d8bc23cd38d2f929e7cc5/lua/todo-comments/snacks.lua#L27
-						-- ---@param item snacks.picker.Item
-						-- ---@param picker snacks.Picker
-						-- format = function(item, picker)
-						-- 	local Config = require("todo-comments.config")
-						-- 	local Highlight = require("todo-comments.highlight")
-						--
-						-- 	local a = Snacks.picker.util.align
-						-- 	local _, _, kw = Highlight.match(item.text)
-						-- 	local ret = {} ---@type snacks.picker.Highlights
-						-- 	if kw then
-						-- 		kw = Config.keywords[kw] or kw
-						-- 		local icon = vim.tbl_get(Config.options.keywords, kw, "icon") or ""
-						-- 		ret[#ret + 1] = { a(icon, 2), "TodoFg" .. kw }
-						-- 		ret[#ret + 1] = { a(kw, 6, { align = "center" }), "TodoBg" .. kw }
-						-- 		ret[#ret + 1] = { " " }
-						-- 	end
-						-- 	return vim.list_extend(ret, Snacks.picker.format.file(item, picker))
-						-- end,
 					})
 				end,
 				desc = "Find Todos",

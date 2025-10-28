@@ -308,7 +308,8 @@ return {
 			formatters = {
 				file = {
 					filename_first = true, -- display filename before the file path
-					truncate = 80, -- truncate the file path to (roughly) this length
+					truncate = "left",
+                    min_width = 80,
 				},
 			},
 
@@ -545,7 +546,7 @@ return {
 					matcher = {
 						sort_empty = true,
 					},
-					dirs = { "/home/xi3k/Notes/Open_Items" },
+					dirs = { "/home/xi3k/Notes/Follow_Ups" },
 					exclude = {
 						"Past",
 					},
