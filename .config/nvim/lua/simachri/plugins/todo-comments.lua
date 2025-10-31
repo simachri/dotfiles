@@ -35,14 +35,8 @@ return {
 							"~/Notes",
 						},
 						source = "todo_comments",
-						keywords = { "CONT", "NEXT", "TODO", "PENDING" },
+						keywords = { "CONT", "NEXT", "TODO", "PEND", "PENDING" },
 						ft = "md",
-						sort = {
-							fields = {
-                                "line", -- contains the matching keyword. this will sort CONT > NEXT > PENDING > TODO
-                                "score:desc",
-							},
-						},
 						matcher = {
 							sort_empty = true,
 							frecency = false,
@@ -50,33 +44,86 @@ return {
 							cwd_bonus = false,
 						},
 						-- Remove 'waiting' items that are not yet due.
+						-- Add "prio" field to enable sorting
 						---@param item snacks.picker.finder.Item Item returned from the matcher
 						transform = function(item)
-							local remove_item_as_not_yet_due = false
-
-							if not item.text then
-								return item
+							if item.text and string.match(item.text, "PENDING:") then
+								local y, m, d = string.match(item.text, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
+								if y then
+									y, m, d = tonumber(y), tonumber(m), tonumber(d)
+									local now = os.date("*t")
+									local today = os.time({ year = now.year, month = now.month, day = now.day })
+									local due = os.time({ year = y, month = m, day = d })
+									if due > today then
+										return nil
+									end
+								end
 							end
 
-							if not string.match(item.text, "PENDING:") then
-								return item
+							local tag = (item.tag or item.kind)
+							if tag then
+								tag = tag:upper()
+							end
+							if not tag and item.text then
+								tag = item.text:match("(%u+)%s*:") or item.text:match("(%u+)")
 							end
 
-							-- check if line contains a date
-							local year, month, day = string.match(item.text, "`(%d%d%d%d)%-(%d%d)%-(%d%d)`")
-							if not year then
-								return item
-							end
-
-							year, month, day = tonumber(year), tonumber(month), tonumber(day)
-							local now = os.date("*t")
-							local today = os.time({ year = now.year, month = now.month, day = now.day })
-							local due_date = os.time({ year = year, month = month, day = day })
-							if due_date > today then
-								return remove_item_as_not_yet_due
-							end
+							local rank = { CONT = 1, NEXT = 2, PEND = 3, PENDING = 3, TODO = 4 }
+							item.prio = rank[tag or ""] or 99
 
 							return item
+						end,
+						-- sort = {
+						-- 	fields = {
+						-- 		"prio", -- new field, see transform function
+						-- 		"score:desc", -- fuzzy, when search items are typed
+						-- 	},
+						-- },
+						sort = function(left, right)
+							local priority = { CONT = 1, NEXT = 2, PEND = 3, PENDING = 3, TODO = 4 }
+
+							local function extract_tag(item)
+								local tag = item.tag or item.kind
+								if not tag and item.text then
+									tag = item.text:match("(%u+)%s*:") or item.text:match("(%u+)")
+								end
+								if tag then
+									tag = tag:upper()
+								end
+								return tag
+							end
+
+							local left_tag = extract_tag(left)
+							local right_tag = extract_tag(right)
+
+							local left_priority = priority[left_tag or ""] or 99
+							local right_priority = priority[right_tag or ""] or 99
+
+							if left_priority ~= right_priority then
+								return left_priority < right_priority
+							end
+
+							local left_score = left.score or 0
+							local right_score = right.score or 0
+							if left_score ~= right_score then
+								return left_score > right_score
+							end
+
+							local left_path = left.path or ""
+							local right_path = right.path or ""
+							if left_path ~= right_path then
+								return left_path < right_path
+							end
+
+							local left_line = left.line or 0
+							local right_line = right.line or 0
+							if left_line ~= right_line then
+								return left_line < right_line
+							end
+
+							local left_index = left.idx or 0
+							local right_index = right.idx or 0
+							return left_index < right_index
 						end,
 						formatters = {
 							file = {

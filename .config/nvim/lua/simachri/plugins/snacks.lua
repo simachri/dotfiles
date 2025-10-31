@@ -2,8 +2,8 @@ local function calculate_search_dirs(dir_type)
 	local cwd = vim.fn.getcwd()
 	local base_dirs = { "/home/xi3k/Notes", "/home/xi3k/Notes/Projects", "/home/xi3k/Notes/Wiki" }
 	local project_dirs = {
-        "BDF",
-        "Cideon",
+		"BDF",
+		"Cideon",
 		"DIEHL",
 		"Deutsche_Bahn",
 		"DSC",
@@ -18,10 +18,10 @@ local function calculate_search_dirs(dir_type)
 		"SAP",
 		"Sartorius",
 		"Threedy",
-        "Uhlmann",
-        "Voith",
-        "Wittenstein",
-        "Ypsomed",
+		"Uhlmann",
+		"Voith",
+		"Wittenstein",
+		"Ypsomed",
 	}
 
 	for _, base in ipairs(base_dirs) do
@@ -134,7 +134,7 @@ local function create_issue_finder(include_hidden)
 			end
 
 			local filename = vim.fn.fnamemodify(file_path, ":t:r") -- get filename without extension
-			
+
 			-- Extract project name from file path
 			-- Path structure: /home/xi3k/Notes/Projects/{PROJECT}/Issues/...
 			local project_name = ""
@@ -161,7 +161,8 @@ local function create_issue_finder(include_hidden)
 
 			local display_text
 			if cleaned_tags ~= "" then
-				display_text = string.format("[%s] %s: %s | %s", prio_match or "medium", project_name, filename, cleaned_tags)
+				display_text =
+					string.format("[%s] %s: %s | %s", prio_match or "medium", project_name, filename, cleaned_tags)
 			else
 				display_text = string.format("[%s] %s: %s", prio_match or "medium", project_name, filename)
 			end
@@ -309,7 +310,7 @@ return {
 				file = {
 					filename_first = true, -- display filename before the file path
 					truncate = "left",
-                    min_width = 80,
+					min_width = 80,
 				},
 			},
 
@@ -408,7 +409,10 @@ return {
 							cmd = "fd",
 							args = { ".", "--type", "directory" },
 						}
-						return require("snacks.picker.source.proc").proc({ opts, proc_opts }, ctx)
+						return require("snacks.picker.source.proc").proc(
+							vim.tbl_deep_extend("force", opts or {}, proc_opts),
+							ctx
+						)
 					end,
 					confirm = function(picker, item)
 						picker:close()
@@ -429,8 +433,7 @@ return {
 			desc = "Find Commands",
 		},
 
-
-        -- is mapped in the respective .nvim.lua
+		-- is mapped in the respective .nvim.lua
 		-- {
 		-- 	"<leader>fl",
 		-- 	function()
